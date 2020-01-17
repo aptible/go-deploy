@@ -8,13 +8,13 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/aptible/go-deploy/client/operations"
 	"github.com/go-openapi/strfmt"
+	"github.com/reggregory/go-deploy/client/operations"
 
-	deploy "github.com/aptible/go-deploy/client"
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/mitchellh/go-homedir"
+	deploy "github.com/reggregory/go-deploy/client"
 )
 
 func main() {
