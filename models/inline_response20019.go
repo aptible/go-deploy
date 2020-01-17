@@ -17,78 +17,30 @@ import (
 // swagger:model inline_response_200_19
 type InlineResponse20019 struct {
 
-	// resource type
-	// Required: true
-	ResourceType *string `json:"_type"`
-
 	// embedded
 	// Required: true
-	Embedded *InlineResponse20018EmbeddedEmbedded `json:"_embedded"`
+	Embedded *InlineResponse20019Embedded `json:"_embedded"`
 
 	// links
 	// Required: true
-	Links *InlineResponse20018EmbeddedLinks `json:"_links"`
+	Links *InlineResponse20019Links `json:"_links"`
 
-	// connection url
+	// current page
 	// Required: true
-	ConnectionURL *string `json:"connection_url"`
+	CurrentPage *int64 `json:"current_page"`
 
-	// created at
+	// per page
 	// Required: true
-	CreatedAt *string `json:"created_at"`
+	PerPage *int64 `json:"per_page"`
 
-	// docker repo
+	// total count
 	// Required: true
-	DockerRepo *string `json:"docker_repo"`
-
-	// handle
-	// Required: true
-	Handle *string `json:"handle"`
-
-	// id
-	// Required: true
-	ID *int64 `json:"id"`
-
-	// initial container size
-	// Required: true
-	InitialContainerSize *int64 `json:"initial_container_size"`
-
-	// initial disk size
-	// Required: true
-	InitialDiskSize *int64 `json:"initial_disk_size"`
-
-	// passphrase
-	// Required: true
-	Passphrase *string `json:"passphrase"`
-
-	// port mapping
-	// Required: true
-	PortMapping []int64 `json:"port_mapping"`
-
-	// provisioned
-	// Required: true
-	Provisioned *bool `json:"provisioned"`
-
-	// status
-	// Required: true
-	Status *string `json:"status"`
-
-	// type
-	// Required: true
-	Type *string `json:"type"`
-
-	// updated at
-	// Required: true
-	UpdatedAt *string `json:"updated_at"`
+	TotalCount *int64 `json:"total_count"`
 }
 
 // Validate validates this inline response 200 19
 func (m *InlineResponse20019) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateResourceType(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateEmbedded(formats); err != nil {
 		res = append(res, err)
@@ -98,70 +50,21 @@ func (m *InlineResponse20019) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateConnectionURL(formats); err != nil {
+	if err := m.validateCurrentPage(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateCreatedAt(formats); err != nil {
+	if err := m.validatePerPage(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDockerRepo(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateHandle(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateInitialContainerSize(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateInitialDiskSize(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePassphrase(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePortMapping(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateProvisioned(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateStatus(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUpdatedAt(formats); err != nil {
+	if err := m.validateTotalCount(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *InlineResponse20019) validateResourceType(formats strfmt.Registry) error {
-
-	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -201,117 +104,27 @@ func (m *InlineResponse20019) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20019) validateConnectionURL(formats strfmt.Registry) error {
+func (m *InlineResponse20019) validateCurrentPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("connection_url", "body", m.ConnectionURL); err != nil {
+	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20019) validateCreatedAt(formats strfmt.Registry) error {
+func (m *InlineResponse20019) validatePerPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20019) validateDockerRepo(formats strfmt.Registry) error {
+func (m *InlineResponse20019) validateTotalCount(formats strfmt.Registry) error {
 
-	if err := validate.Required("docker_repo", "body", m.DockerRepo); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019) validateHandle(formats strfmt.Registry) error {
-
-	if err := validate.Required("handle", "body", m.Handle); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019) validateInitialContainerSize(formats strfmt.Registry) error {
-
-	if err := validate.Required("initial_container_size", "body", m.InitialContainerSize); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019) validateInitialDiskSize(formats strfmt.Registry) error {
-
-	if err := validate.Required("initial_disk_size", "body", m.InitialDiskSize); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019) validatePassphrase(formats strfmt.Registry) error {
-
-	if err := validate.Required("passphrase", "body", m.Passphrase); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019) validatePortMapping(formats strfmt.Registry) error {
-
-	if err := validate.Required("port_mapping", "body", m.PortMapping); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019) validateProvisioned(formats strfmt.Registry) error {
-
-	if err := validate.Required("provisioned", "body", m.Provisioned); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019) validateStatus(formats strfmt.Registry) error {
-
-	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019) validateUpdatedAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
 		return err
 	}
 

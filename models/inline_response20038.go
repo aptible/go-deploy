@@ -17,28 +17,32 @@ import (
 // swagger:model inline_response_200_38
 type InlineResponse20038 struct {
 
-	// resource type
+	// embedded
 	// Required: true
-	ResourceType *string `json:"_type"`
+	Embedded *InlineResponse20038Embedded `json:"_embedded"`
 
 	// links
 	// Required: true
-	Links *InlineResponse20037EmbeddedLinks `json:"_links"`
+	Links *InlineResponse20038Links `json:"_links"`
 
-	// id
+	// current page
 	// Required: true
-	ID *int64 `json:"id"`
+	CurrentPage *int64 `json:"current_page"`
 
-	// scope
+	// per page
 	// Required: true
-	Scope *string `json:"scope"`
+	PerPage *int64 `json:"per_page"`
+
+	// total count
+	// Required: true
+	TotalCount *int64 `json:"total_count"`
 }
 
 // Validate validates this inline response 200 38
 func (m *InlineResponse20038) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateResourceType(formats); err != nil {
+	if err := m.validateEmbedded(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,11 +50,15 @@ func (m *InlineResponse20038) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateCurrentPage(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateScope(formats); err != nil {
+	if err := m.validatePerPage(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -60,10 +68,19 @@ func (m *InlineResponse20038) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20038) validateResourceType(formats strfmt.Registry) error {
+func (m *InlineResponse20038) validateEmbedded(formats strfmt.Registry) error {
 
-	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
+	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
 		return err
+	}
+
+	if m.Embedded != nil {
+		if err := m.Embedded.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_embedded")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -87,18 +104,27 @@ func (m *InlineResponse20038) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20038) validateID(formats strfmt.Registry) error {
+func (m *InlineResponse20038) validateCurrentPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20038) validateScope(formats strfmt.Registry) error {
+func (m *InlineResponse20038) validatePerPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("scope", "body", m.Scope); err != nil {
+	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20038) validateTotalCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
 		return err
 	}
 

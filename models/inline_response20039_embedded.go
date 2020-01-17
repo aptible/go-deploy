@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_39__embedded
 type InlineResponse20039Embedded struct {
 
-	// releases
-	Releases []*InlineResponse20039EmbeddedReleases `json:"releases"`
+	// vpc peers
+	VpcPeers []*InlineResponse20039EmbeddedVpcPeers `json:"vpc_peers"`
 }
 
 // Validate validates this inline response 200 39 embedded
 func (m *InlineResponse20039Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateReleases(formats); err != nil {
+	if err := m.validateVpcPeers(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse20039Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20039Embedded) validateReleases(formats strfmt.Registry) error {
+func (m *InlineResponse20039Embedded) validateVpcPeers(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Releases) { // not required
+	if swag.IsZero(m.VpcPeers) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Releases); i++ {
-		if swag.IsZero(m.Releases[i]) { // not required
+	for i := 0; i < len(m.VpcPeers); i++ {
+		if swag.IsZero(m.VpcPeers[i]) { // not required
 			continue
 		}
 
-		if m.Releases[i] != nil {
-			if err := m.Releases[i].Validate(formats); err != nil {
+		if m.VpcPeers[i] != nil {
+			if err := m.VpcPeers[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("releases" + "." + strconv.Itoa(i))
+					return ve.ValidateName("vpc_peers" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

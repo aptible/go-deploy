@@ -52,20 +52,20 @@ func NewGetStacksStackIDIntrusionDetectionReportsOK() *GetStacksStackIDIntrusion
 successful
 */
 type GetStacksStackIDIntrusionDetectionReportsOK struct {
-	Payload *models.InlineResponse20029
+	Payload *models.InlineResponse20024
 }
 
 func (o *GetStacksStackIDIntrusionDetectionReportsOK) Error() string {
 	return fmt.Sprintf("[GET /stacks/{stack_id}/intrusion_detection_reports][%d] getStacksStackIdIntrusionDetectionReportsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetStacksStackIDIntrusionDetectionReportsOK) GetPayload() *models.InlineResponse20029 {
+func (o *GetStacksStackIDIntrusionDetectionReportsOK) GetPayload() *models.InlineResponse20024 {
 	return o.Payload
 }
 
 func (o *GetStacksStackIDIntrusionDetectionReportsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20029)
+	o.Payload = new(models.InlineResponse20024)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

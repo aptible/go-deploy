@@ -16,8 +16,11 @@ import (
 // swagger:model inline_response_200_10__embedded__links
 type InlineResponse20010EmbeddedLinks struct {
 
-	// resource
-	Resource *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"resource,omitempty"`
+	// database
+	Database *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database,omitempty"`
+
+	// operations
+	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
 
 	// self
 	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
@@ -27,7 +30,11 @@ type InlineResponse20010EmbeddedLinks struct {
 func (m *InlineResponse20010EmbeddedLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateResource(formats); err != nil {
+	if err := m.validateDatabase(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOperations(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -41,16 +48,34 @@ func (m *InlineResponse20010EmbeddedLinks) Validate(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *InlineResponse20010EmbeddedLinks) validateResource(formats strfmt.Registry) error {
+func (m *InlineResponse20010EmbeddedLinks) validateDatabase(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Resource) { // not required
+	if swag.IsZero(m.Database) { // not required
 		return nil
 	}
 
-	if m.Resource != nil {
-		if err := m.Resource.Validate(formats); err != nil {
+	if m.Database != nil {
+		if err := m.Database.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("resource")
+				return ve.ValidateName("database")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Operations) { // not required
+		return nil
+	}
+
+	if m.Operations != nil {
+		if err := m.Operations.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("operations")
 			}
 			return err
 		}

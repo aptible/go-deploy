@@ -52,13 +52,25 @@ func NewPostDatabasesDatabaseIDOperationsCreated() *PostDatabasesDatabaseIDOpera
 successful
 */
 type PostDatabasesDatabaseIDOperationsCreated struct {
+	Payload *models.InlineResponse20028
 }
 
 func (o *PostDatabasesDatabaseIDOperationsCreated) Error() string {
-	return fmt.Sprintf("[POST /databases/{database_id}/operations][%d] postDatabasesDatabaseIdOperationsCreated ", 201)
+	return fmt.Sprintf("[POST /databases/{database_id}/operations][%d] postDatabasesDatabaseIdOperationsCreated  %+v", 201, o.Payload)
+}
+
+func (o *PostDatabasesDatabaseIDOperationsCreated) GetPayload() *models.InlineResponse20028 {
+	return o.Payload
 }
 
 func (o *PostDatabasesDatabaseIDOperationsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.InlineResponse20028)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

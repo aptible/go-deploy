@@ -46,20 +46,20 @@ func NewGetOK() *GetOK {
 successful
 */
 type GetOK struct {
-	Payload *models.InlineResponse20026
+	Payload *models.InlineResponse20021
 }
 
 func (o *GetOK) Error() string {
 	return fmt.Sprintf("[GET /][%d] getOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOK) GetPayload() *models.InlineResponse20026 {
+func (o *GetOK) GetPayload() *models.InlineResponse20021 {
 	return o.Payload
 }
 
 func (o *GetOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20026)
+	o.Payload = new(models.InlineResponse20021)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

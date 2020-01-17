@@ -23,55 +23,91 @@ type InlineResponse20028 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse2004EmbeddedEmbeddedCurrentImageLinks `json:"_links"`
+	Links *InlineResponse2003EmbeddedEmbeddedLastOperationLinks `json:"_links"`
+
+	// aborted
+	// Required: true
+	Aborted *bool `json:"aborted"`
+
+	// cancelled
+	// Required: true
+	Cancelled *bool `json:"cancelled"`
+
+	// certificate
+	// Required: true
+	Certificate *string `json:"certificate"`
+
+	// command
+	// Required: true
+	Command *string `json:"command"`
+
+	// container count
+	// Required: true
+	ContainerCount *int64 `json:"container_count"`
+
+	// container size
+	// Required: true
+	ContainerSize *int64 `json:"container_size"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
+	// destination region
+	// Required: true
+	DestinationRegion *string `json:"destination_region"`
+
+	// disk size
+	// Required: true
+	DiskSize *int64 `json:"disk_size"`
+
 	// docker ref
 	// Required: true
 	DockerRef *string `json:"docker_ref"`
 
-	// docker repo
+	// env
 	// Required: true
-	DockerRepo *string `json:"docker_repo"`
-
-	// dualstack hint
-	// Required: true
-	DualstackHint *int64 `json:"dualstack_hint"`
-
-	// exposed ports
-	// Required: true
-	ExposedPorts []int64 `json:"exposed_ports"`
+	Env interface{} `json:"env"`
 
 	// git ref
 	// Required: true
 	GitRef *string `json:"git_ref"`
 
-	// git repo
+	// handle
 	// Required: true
-	GitRepo *string `json:"git_repo"`
+	Handle *string `json:"handle"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// platform
+	// interactive
 	// Required: true
-	Platform *string `json:"platform"`
+	Interactive *bool `json:"interactive"`
 
-	// release
+	// private key
 	// Required: true
-	Release *string `json:"release"`
+	PrivateKey *string `json:"private_key"`
 
-	// scan
+	// status
 	// Required: true
-	Scan *string `json:"scan"`
+	Status *string `json:"status"`
+
+	// type
+	// Required: true
+	Type *string `json:"type"`
 
 	// updated at
 	// Required: true
 	UpdatedAt *string `json:"updated_at"`
+
+	// user email
+	// Required: true
+	UserEmail *string `json:"user_email"`
+
+	// user name
+	// Required: true
+	UserName *string `json:"user_name"`
 }
 
 // Validate validates this inline response 200 28
@@ -86,7 +122,39 @@ func (m *InlineResponse20028) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateAborted(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCancelled(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCertificate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCommand(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContainerCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContainerSize(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDestinationRegion(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDiskSize(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -94,15 +162,7 @@ func (m *InlineResponse20028) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateDockerRepo(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDualstackHint(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateExposedPorts(formats); err != nil {
+	if err := m.validateEnv(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -110,7 +170,7 @@ func (m *InlineResponse20028) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateGitRepo(formats); err != nil {
+	if err := m.validateHandle(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -118,19 +178,31 @@ func (m *InlineResponse20028) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validatePlatform(formats); err != nil {
+	if err := m.validateInteractive(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateRelease(formats); err != nil {
+	if err := m.validatePrivateKey(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateScan(formats); err != nil {
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateUpdatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserEmail(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -167,9 +239,81 @@ func (m *InlineResponse20028) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *InlineResponse20028) validateAborted(formats strfmt.Registry) error {
+
+	if err := validate.Required("aborted", "body", m.Aborted); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20028) validateCancelled(formats strfmt.Registry) error {
+
+	if err := validate.Required("cancelled", "body", m.Cancelled); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20028) validateCertificate(formats strfmt.Registry) error {
+
+	if err := validate.Required("certificate", "body", m.Certificate); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20028) validateCommand(formats strfmt.Registry) error {
+
+	if err := validate.Required("command", "body", m.Command); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20028) validateContainerCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("container_count", "body", m.ContainerCount); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20028) validateContainerSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("container_size", "body", m.ContainerSize); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *InlineResponse20028) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20028) validateDestinationRegion(formats strfmt.Registry) error {
+
+	if err := validate.Required("destination_region", "body", m.DestinationRegion); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20028) validateDiskSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("disk_size", "body", m.DiskSize); err != nil {
 		return err
 	}
 
@@ -185,27 +329,9 @@ func (m *InlineResponse20028) validateDockerRef(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20028) validateDockerRepo(formats strfmt.Registry) error {
+func (m *InlineResponse20028) validateEnv(formats strfmt.Registry) error {
 
-	if err := validate.Required("docker_repo", "body", m.DockerRepo); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20028) validateDualstackHint(formats strfmt.Registry) error {
-
-	if err := validate.Required("dualstack_hint", "body", m.DualstackHint); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20028) validateExposedPorts(formats strfmt.Registry) error {
-
-	if err := validate.Required("exposed_ports", "body", m.ExposedPorts); err != nil {
+	if err := validate.Required("env", "body", m.Env); err != nil {
 		return err
 	}
 
@@ -221,9 +347,9 @@ func (m *InlineResponse20028) validateGitRef(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20028) validateGitRepo(formats strfmt.Registry) error {
+func (m *InlineResponse20028) validateHandle(formats strfmt.Registry) error {
 
-	if err := validate.Required("git_repo", "body", m.GitRepo); err != nil {
+	if err := validate.Required("handle", "body", m.Handle); err != nil {
 		return err
 	}
 
@@ -239,27 +365,36 @@ func (m *InlineResponse20028) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20028) validatePlatform(formats strfmt.Registry) error {
+func (m *InlineResponse20028) validateInteractive(formats strfmt.Registry) error {
 
-	if err := validate.Required("platform", "body", m.Platform); err != nil {
+	if err := validate.Required("interactive", "body", m.Interactive); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20028) validateRelease(formats strfmt.Registry) error {
+func (m *InlineResponse20028) validatePrivateKey(formats strfmt.Registry) error {
 
-	if err := validate.Required("release", "body", m.Release); err != nil {
+	if err := validate.Required("private_key", "body", m.PrivateKey); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20028) validateScan(formats strfmt.Registry) error {
+func (m *InlineResponse20028) validateStatus(formats strfmt.Registry) error {
 
-	if err := validate.Required("scan", "body", m.Scan); err != nil {
+	if err := validate.Required("status", "body", m.Status); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20028) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
@@ -269,6 +404,24 @@ func (m *InlineResponse20028) validateScan(formats strfmt.Registry) error {
 func (m *InlineResponse20028) validateUpdatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20028) validateUserEmail(formats strfmt.Registry) error {
+
+	if err := validate.Required("user_email", "body", m.UserEmail); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20028) validateUserName(formats strfmt.Registry) error {
+
+	if err := validate.Required("user_name", "body", m.UserName); err != nil {
 		return err
 	}
 

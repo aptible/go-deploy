@@ -52,20 +52,20 @@ func NewGetAccountsAccountIDActivityReportsOK() *GetAccountsAccountIDActivityRep
 successful
 */
 type GetAccountsAccountIDActivityReportsOK struct {
-	Payload *models.InlineResponse2002
+	Payload *models.InlineResponse2001
 }
 
 func (o *GetAccountsAccountIDActivityReportsOK) Error() string {
 	return fmt.Sprintf("[GET /accounts/{account_id}/activity_reports][%d] getAccountsAccountIdActivityReportsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAccountsAccountIDActivityReportsOK) GetPayload() *models.InlineResponse2002 {
+func (o *GetAccountsAccountIDActivityReportsOK) GetPayload() *models.InlineResponse2001 {
 	return o.Payload
 }
 
 func (o *GetAccountsAccountIDActivityReportsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse2002)
+	o.Payload = new(models.InlineResponse2001)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

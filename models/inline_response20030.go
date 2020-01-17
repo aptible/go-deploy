@@ -17,40 +17,32 @@ import (
 // swagger:model inline_response_200_30
 type InlineResponse20030 struct {
 
-	// resource type
+	// embedded
 	// Required: true
-	ResourceType *string `json:"_type"`
+	Embedded *InlineResponse20030Embedded `json:"_embedded"`
 
 	// links
 	// Required: true
-	Links *InlineResponse20029EmbeddedLinks `json:"_links"`
+	Links *InlineResponse2001Links `json:"_links"`
 
-	// created at
+	// current page
 	// Required: true
-	CreatedAt *string `json:"created_at"`
+	CurrentPage *int64 `json:"current_page"`
 
-	// ends at
+	// per page
 	// Required: true
-	EndsAt *string `json:"ends_at"`
+	PerPage *int64 `json:"per_page"`
 
-	// id
+	// total count
 	// Required: true
-	ID *int64 `json:"id"`
-
-	// starts at
-	// Required: true
-	StartsAt *string `json:"starts_at"`
-
-	// updated at
-	// Required: true
-	UpdatedAt *string `json:"updated_at"`
+	TotalCount *int64 `json:"total_count"`
 }
 
 // Validate validates this inline response 200 30
 func (m *InlineResponse20030) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateResourceType(formats); err != nil {
+	if err := m.validateEmbedded(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -58,23 +50,15 @@ func (m *InlineResponse20030) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCreatedAt(formats); err != nil {
+	if err := m.validateCurrentPage(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateEndsAt(formats); err != nil {
+	if err := m.validatePerPage(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateStartsAt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUpdatedAt(formats); err != nil {
+	if err := m.validateTotalCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -84,10 +68,19 @@ func (m *InlineResponse20030) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20030) validateResourceType(formats strfmt.Registry) error {
+func (m *InlineResponse20030) validateEmbedded(formats strfmt.Registry) error {
 
-	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
+	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
 		return err
+	}
+
+	if m.Embedded != nil {
+		if err := m.Embedded.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_embedded")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -111,45 +104,27 @@ func (m *InlineResponse20030) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20030) validateCreatedAt(formats strfmt.Registry) error {
+func (m *InlineResponse20030) validateCurrentPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20030) validateEndsAt(formats strfmt.Registry) error {
+func (m *InlineResponse20030) validatePerPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("ends_at", "body", m.EndsAt); err != nil {
+	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20030) validateID(formats strfmt.Registry) error {
+func (m *InlineResponse20030) validateTotalCount(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20030) validateStartsAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("starts_at", "body", m.StartsAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20030) validateUpdatedAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
 		return err
 	}
 

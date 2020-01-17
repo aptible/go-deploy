@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_33__embedded
 type InlineResponse20033Embedded struct {
 
-	// metric drains
-	MetricDrains []*InlineResponse20033EmbeddedMetricDrains `json:"metric_drains"`
+	// services
+	Services []*InlineResponse2003EmbeddedEmbeddedServices `json:"services"`
 }
 
 // Validate validates this inline response 200 33 embedded
 func (m *InlineResponse20033Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateMetricDrains(formats); err != nil {
+	if err := m.validateServices(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse20033Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20033Embedded) validateMetricDrains(formats strfmt.Registry) error {
+func (m *InlineResponse20033Embedded) validateServices(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.MetricDrains) { // not required
+	if swag.IsZero(m.Services) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.MetricDrains); i++ {
-		if swag.IsZero(m.MetricDrains[i]) { // not required
+	for i := 0; i < len(m.Services); i++ {
+		if swag.IsZero(m.Services[i]) { // not required
 			continue
 		}
 
-		if m.MetricDrains[i] != nil {
-			if err := m.MetricDrains[i].Validate(formats); err != nil {
+		if m.Services[i] != nil {
+			if err := m.Services[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("metric_drains" + "." + strconv.Itoa(i))
+					return ve.ValidateName("services" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -19,32 +19,23 @@ type InlineResponse2004EmbeddedLinks struct {
 	// account
 	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
 
-	// configurations
-	Configurations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"configurations,omitempty"`
+	// copied from
+	CopiedFrom *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"copied_from,omitempty"`
 
-	// current configuration
-	CurrentConfiguration *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"current_configuration,omitempty"`
+	// copies
+	Copies *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"copies,omitempty"`
 
-	// current image
-	CurrentImage *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"current_image,omitempty"`
+	// database
+	Database *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database,omitempty"`
 
-	// ephemeral sessions
-	EphemeralSessions *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"ephemeral_sessions,omitempty"`
-
-	// images
-	Images *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"images,omitempty"`
+	// database image
+	DatabaseImage *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database_image,omitempty"`
 
 	// operations
 	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
 
 	// self
 	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
-
-	// services
-	Services *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"services,omitempty"`
-
-	// vhosts
-	Vhosts *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"vhosts,omitempty"`
 }
 
 // Validate validates this inline response 200 4 embedded links
@@ -55,23 +46,19 @@ func (m *InlineResponse2004EmbeddedLinks) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
-	if err := m.validateConfigurations(formats); err != nil {
+	if err := m.validateCopiedFrom(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateCurrentConfiguration(formats); err != nil {
+	if err := m.validateCopies(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateCurrentImage(formats); err != nil {
+	if err := m.validateDatabase(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateEphemeralSessions(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateImages(formats); err != nil {
+	if err := m.validateDatabaseImage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -80,14 +67,6 @@ func (m *InlineResponse2004EmbeddedLinks) Validate(formats strfmt.Registry) erro
 	}
 
 	if err := m.validateSelf(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateServices(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVhosts(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -115,16 +94,16 @@ func (m *InlineResponse2004EmbeddedLinks) validateAccount(formats strfmt.Registr
 	return nil
 }
 
-func (m *InlineResponse2004EmbeddedLinks) validateConfigurations(formats strfmt.Registry) error {
+func (m *InlineResponse2004EmbeddedLinks) validateCopiedFrom(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Configurations) { // not required
+	if swag.IsZero(m.CopiedFrom) { // not required
 		return nil
 	}
 
-	if m.Configurations != nil {
-		if err := m.Configurations.Validate(formats); err != nil {
+	if m.CopiedFrom != nil {
+		if err := m.CopiedFrom.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("configurations")
+				return ve.ValidateName("copied_from")
 			}
 			return err
 		}
@@ -133,16 +112,16 @@ func (m *InlineResponse2004EmbeddedLinks) validateConfigurations(formats strfmt.
 	return nil
 }
 
-func (m *InlineResponse2004EmbeddedLinks) validateCurrentConfiguration(formats strfmt.Registry) error {
+func (m *InlineResponse2004EmbeddedLinks) validateCopies(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.CurrentConfiguration) { // not required
+	if swag.IsZero(m.Copies) { // not required
 		return nil
 	}
 
-	if m.CurrentConfiguration != nil {
-		if err := m.CurrentConfiguration.Validate(formats); err != nil {
+	if m.Copies != nil {
+		if err := m.Copies.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("current_configuration")
+				return ve.ValidateName("copies")
 			}
 			return err
 		}
@@ -151,16 +130,16 @@ func (m *InlineResponse2004EmbeddedLinks) validateCurrentConfiguration(formats s
 	return nil
 }
 
-func (m *InlineResponse2004EmbeddedLinks) validateCurrentImage(formats strfmt.Registry) error {
+func (m *InlineResponse2004EmbeddedLinks) validateDatabase(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.CurrentImage) { // not required
+	if swag.IsZero(m.Database) { // not required
 		return nil
 	}
 
-	if m.CurrentImage != nil {
-		if err := m.CurrentImage.Validate(formats); err != nil {
+	if m.Database != nil {
+		if err := m.Database.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("current_image")
+				return ve.ValidateName("database")
 			}
 			return err
 		}
@@ -169,34 +148,16 @@ func (m *InlineResponse2004EmbeddedLinks) validateCurrentImage(formats strfmt.Re
 	return nil
 }
 
-func (m *InlineResponse2004EmbeddedLinks) validateEphemeralSessions(formats strfmt.Registry) error {
+func (m *InlineResponse2004EmbeddedLinks) validateDatabaseImage(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.EphemeralSessions) { // not required
+	if swag.IsZero(m.DatabaseImage) { // not required
 		return nil
 	}
 
-	if m.EphemeralSessions != nil {
-		if err := m.EphemeralSessions.Validate(formats); err != nil {
+	if m.DatabaseImage != nil {
+		if err := m.DatabaseImage.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("ephemeral_sessions")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2004EmbeddedLinks) validateImages(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Images) { // not required
-		return nil
-	}
-
-	if m.Images != nil {
-		if err := m.Images.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("images")
+				return ve.ValidateName("database_image")
 			}
 			return err
 		}
@@ -233,42 +194,6 @@ func (m *InlineResponse2004EmbeddedLinks) validateSelf(formats strfmt.Registry) 
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2004EmbeddedLinks) validateServices(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Services) { // not required
-		return nil
-	}
-
-	if m.Services != nil {
-		if err := m.Services.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("services")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2004EmbeddedLinks) validateVhosts(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Vhosts) { // not required
-		return nil
-	}
-
-	if m.Vhosts != nil {
-		if err := m.Vhosts.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vhosts")
 			}
 			return err
 		}

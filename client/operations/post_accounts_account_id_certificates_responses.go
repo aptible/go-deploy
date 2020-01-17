@@ -52,13 +52,25 @@ func NewPostAccountsAccountIDCertificatesCreated() *PostAccountsAccountIDCertifi
 successful
 */
 type PostAccountsAccountIDCertificatesCreated struct {
+	Payload *models.InlineResponse2012
 }
 
 func (o *PostAccountsAccountIDCertificatesCreated) Error() string {
-	return fmt.Sprintf("[POST /accounts/{account_id}/certificates][%d] postAccountsAccountIdCertificatesCreated ", 201)
+	return fmt.Sprintf("[POST /accounts/{account_id}/certificates][%d] postAccountsAccountIdCertificatesCreated  %+v", 201, o.Payload)
+}
+
+func (o *PostAccountsAccountIDCertificatesCreated) GetPayload() *models.InlineResponse2012 {
+	return o.Payload
 }
 
 func (o *PostAccountsAccountIDCertificatesCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.InlineResponse2012)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

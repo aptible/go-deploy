@@ -29,89 +29,21 @@ type InlineResponse20032 struct {
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// drain apps
+	// docker ref
 	// Required: true
-	DrainApps *bool `json:"drain_apps"`
+	DockerRef *string `json:"docker_ref"`
 
-	// drain databases
+	// docker repo
 	// Required: true
-	DrainDatabases *bool `json:"drain_databases"`
-
-	// drain ephemeral sessions
-	// Required: true
-	DrainEphemeralSessions *bool `json:"drain_ephemeral_sessions"`
-
-	// drain host
-	// Required: true
-	DrainHost *string `json:"drain_host"`
-
-	// drain password
-	// Required: true
-	DrainPassword *string `json:"drain_password"`
-
-	// drain port
-	// Required: true
-	DrainPort *int64 `json:"drain_port"`
-
-	// drain proxies
-	// Required: true
-	DrainProxies *bool `json:"drain_proxies"`
-
-	// drain type
-	// Required: true
-	DrainType *string `json:"drain_type"`
-
-	// drain username
-	// Required: true
-	DrainUsername *string `json:"drain_username"`
-
-	// gentlemanjerry allocation
-	// Required: true
-	GentlemanjerryAllocation []string `json:"gentlemanjerry_allocation"`
-
-	// gentlemanjerry certificate
-	// Required: true
-	GentlemanjerryCertificate *string `json:"gentlemanjerry_certificate"`
-
-	// gentlemanjerry docker name
-	// Required: true
-	GentlemanjerryDockerName *string `json:"gentlemanjerry_docker_name"`
-
-	// gentlemanjerry host
-	// Required: true
-	GentlemanjerryHost *string `json:"gentlemanjerry_host"`
-
-	// gentlemanjerry instance id
-	// Required: true
-	GentlemanjerryInstanceID *string `json:"gentlemanjerry_instance_id"`
-
-	// gentlemanjerry port mapping
-	// Required: true
-	GentlemanjerryPortMapping [][]int64 `json:"gentlemanjerry_port_mapping"`
-
-	// handle
-	// Required: true
-	Handle *string `json:"handle"`
+	DockerRepo *string `json:"docker_repo"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// logging token
-	// Required: true
-	LoggingToken *string `json:"logging_token"`
-
-	// status
-	// Required: true
-	Status *string `json:"status"`
-
 	// updated at
 	// Required: true
 	UpdatedAt *string `json:"updated_at"`
-
-	// url
-	// Required: true
-	URL *string `json:"url"`
 }
 
 // Validate validates this inline response 200 32
@@ -130,67 +62,11 @@ func (m *InlineResponse20032) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateDrainApps(formats); err != nil {
+	if err := m.validateDockerRef(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDrainDatabases(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDrainEphemeralSessions(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDrainHost(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDrainPassword(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDrainPort(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDrainProxies(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDrainType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDrainUsername(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateGentlemanjerryAllocation(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateGentlemanjerryCertificate(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateGentlemanjerryDockerName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateGentlemanjerryHost(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateGentlemanjerryInstanceID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateGentlemanjerryPortMapping(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateHandle(formats); err != nil {
+	if err := m.validateDockerRepo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -198,19 +74,7 @@ func (m *InlineResponse20032) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateLoggingToken(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateStatus(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateUpdatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateURL(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -256,144 +120,18 @@ func (m *InlineResponse20032) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20032) validateDrainApps(formats strfmt.Registry) error {
+func (m *InlineResponse20032) validateDockerRef(formats strfmt.Registry) error {
 
-	if err := validate.Required("drain_apps", "body", m.DrainApps); err != nil {
+	if err := validate.Required("docker_ref", "body", m.DockerRef); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20032) validateDrainDatabases(formats strfmt.Registry) error {
+func (m *InlineResponse20032) validateDockerRepo(formats strfmt.Registry) error {
 
-	if err := validate.Required("drain_databases", "body", m.DrainDatabases); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateDrainEphemeralSessions(formats strfmt.Registry) error {
-
-	if err := validate.Required("drain_ephemeral_sessions", "body", m.DrainEphemeralSessions); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateDrainHost(formats strfmt.Registry) error {
-
-	if err := validate.Required("drain_host", "body", m.DrainHost); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateDrainPassword(formats strfmt.Registry) error {
-
-	if err := validate.Required("drain_password", "body", m.DrainPassword); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateDrainPort(formats strfmt.Registry) error {
-
-	if err := validate.Required("drain_port", "body", m.DrainPort); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateDrainProxies(formats strfmt.Registry) error {
-
-	if err := validate.Required("drain_proxies", "body", m.DrainProxies); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateDrainType(formats strfmt.Registry) error {
-
-	if err := validate.Required("drain_type", "body", m.DrainType); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateDrainUsername(formats strfmt.Registry) error {
-
-	if err := validate.Required("drain_username", "body", m.DrainUsername); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateGentlemanjerryAllocation(formats strfmt.Registry) error {
-
-	if err := validate.Required("gentlemanjerry_allocation", "body", m.GentlemanjerryAllocation); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateGentlemanjerryCertificate(formats strfmt.Registry) error {
-
-	if err := validate.Required("gentlemanjerry_certificate", "body", m.GentlemanjerryCertificate); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateGentlemanjerryDockerName(formats strfmt.Registry) error {
-
-	if err := validate.Required("gentlemanjerry_docker_name", "body", m.GentlemanjerryDockerName); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateGentlemanjerryHost(formats strfmt.Registry) error {
-
-	if err := validate.Required("gentlemanjerry_host", "body", m.GentlemanjerryHost); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateGentlemanjerryInstanceID(formats strfmt.Registry) error {
-
-	if err := validate.Required("gentlemanjerry_instance_id", "body", m.GentlemanjerryInstanceID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateGentlemanjerryPortMapping(formats strfmt.Registry) error {
-
-	if err := validate.Required("gentlemanjerry_port_mapping", "body", m.GentlemanjerryPortMapping); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateHandle(formats strfmt.Registry) error {
-
-	if err := validate.Required("handle", "body", m.Handle); err != nil {
+	if err := validate.Required("docker_repo", "body", m.DockerRepo); err != nil {
 		return err
 	}
 
@@ -409,36 +147,9 @@ func (m *InlineResponse20032) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20032) validateLoggingToken(formats strfmt.Registry) error {
-
-	if err := validate.Required("logging_token", "body", m.LoggingToken); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateStatus(formats strfmt.Registry) error {
-
-	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *InlineResponse20032) validateUpdatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20032) validateURL(formats strfmt.Registry) error {
-
-	if err := validate.Required("url", "body", m.URL); err != nil {
 		return err
 	}
 

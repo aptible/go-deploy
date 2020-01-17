@@ -52,13 +52,25 @@ func NewPostAppsAppIDConfigurationsCreated() *PostAppsAppIDConfigurationsCreated
 successful
 */
 type PostAppsAppIDConfigurationsCreated struct {
+	Payload *models.InlineResponse2013
 }
 
 func (o *PostAppsAppIDConfigurationsCreated) Error() string {
-	return fmt.Sprintf("[POST /apps/{app_id}/configurations][%d] postAppsAppIdConfigurationsCreated ", 201)
+	return fmt.Sprintf("[POST /apps/{app_id}/configurations][%d] postAppsAppIdConfigurationsCreated  %+v", 201, o.Payload)
+}
+
+func (o *PostAppsAppIDConfigurationsCreated) GetPayload() *models.InlineResponse2013 {
+	return o.Payload
 }
 
 func (o *PostAppsAppIDConfigurationsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.InlineResponse2013)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

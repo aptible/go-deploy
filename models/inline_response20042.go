@@ -23,31 +23,11 @@ type InlineResponse20042 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse2004EmbeddedEmbeddedLinks `json:"_links"`
-
-	// command
-	// Required: true
-	Command *string `json:"command"`
-
-	// container count
-	// Required: true
-	ContainerCount *int64 `json:"container_count"`
-
-	// container memory limit mb
-	// Required: true
-	ContainerMemoryLimitMb *int64 `json:"container_memory_limit_mb"`
+	Links *InlineResponse20039EmbeddedLinks `json:"_links"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
-
-	// docker ref
-	// Required: true
-	DockerRef *string `json:"docker_ref"`
-
-	// docker repo
-	// Required: true
-	DockerRepo *string `json:"docker_repo"`
 
 	// handle
 	// Required: true
@@ -57,9 +37,49 @@ type InlineResponse20042 struct {
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// process type
+	// our gateway
 	// Required: true
-	ProcessType *string `json:"process_type"`
+	OurGateway *string `json:"our_gateway"`
+
+	// our networks
+	// Required: true
+	OurNetworks [][]string `json:"our_networks"`
+
+	// peer gateway
+	// Required: true
+	PeerGateway *string `json:"peer_gateway"`
+
+	// peer networks
+	// Required: true
+	PeerNetworks [][]string `json:"peer_networks"`
+
+	// perfect forward secrecy
+	// Required: true
+	PerfectForwardSecrecy *bool `json:"perfect_forward_secrecy"`
+
+	// phase 1 alg
+	// Required: true
+	Phase1Alg *string `json:"phase_1_alg"`
+
+	// phase 1 dh group
+	// Required: true
+	Phase1DhGroup *int64 `json:"phase_1_dh_group"`
+
+	// phase 1 lifetime
+	// Required: true
+	Phase1Lifetime *int64 `json:"phase_1_lifetime"`
+
+	// phase 2 alg
+	// Required: true
+	Phase2Alg *string `json:"phase_2_alg"`
+
+	// phase 2 dh group
+	// Required: true
+	Phase2DhGroup *int64 `json:"phase_2_dh_group"`
+
+	// phase 2 lifetime
+	// Required: true
+	Phase2Lifetime *int64 `json:"phase_2_lifetime"`
 
 	// updated at
 	// Required: true
@@ -78,27 +98,7 @@ func (m *InlineResponse20042) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCommand(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateContainerCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateContainerMemoryLimitMb(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateCreatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDockerRef(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDockerRepo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -110,7 +110,47 @@ func (m *InlineResponse20042) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateProcessType(formats); err != nil {
+	if err := m.validateOurGateway(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOurNetworks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePeerGateway(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePeerNetworks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePerfectForwardSecrecy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase1Alg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase1DhGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase1Lifetime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase2Alg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase2DhGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase2Lifetime(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -151,54 +191,9 @@ func (m *InlineResponse20042) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20042) validateCommand(formats strfmt.Registry) error {
-
-	if err := validate.Required("command", "body", m.Command); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validateContainerCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("container_count", "body", m.ContainerCount); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validateContainerMemoryLimitMb(formats strfmt.Registry) error {
-
-	if err := validate.Required("container_memory_limit_mb", "body", m.ContainerMemoryLimitMb); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *InlineResponse20042) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validateDockerRef(formats strfmt.Registry) error {
-
-	if err := validate.Required("docker_ref", "body", m.DockerRef); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validateDockerRepo(formats strfmt.Registry) error {
-
-	if err := validate.Required("docker_repo", "body", m.DockerRepo); err != nil {
 		return err
 	}
 
@@ -223,9 +218,99 @@ func (m *InlineResponse20042) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20042) validateProcessType(formats strfmt.Registry) error {
+func (m *InlineResponse20042) validateOurGateway(formats strfmt.Registry) error {
 
-	if err := validate.Required("process_type", "body", m.ProcessType); err != nil {
+	if err := validate.Required("our_gateway", "body", m.OurGateway); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20042) validateOurNetworks(formats strfmt.Registry) error {
+
+	if err := validate.Required("our_networks", "body", m.OurNetworks); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20042) validatePeerGateway(formats strfmt.Registry) error {
+
+	if err := validate.Required("peer_gateway", "body", m.PeerGateway); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20042) validatePeerNetworks(formats strfmt.Registry) error {
+
+	if err := validate.Required("peer_networks", "body", m.PeerNetworks); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20042) validatePerfectForwardSecrecy(formats strfmt.Registry) error {
+
+	if err := validate.Required("perfect_forward_secrecy", "body", m.PerfectForwardSecrecy); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20042) validatePhase1Alg(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_1_alg", "body", m.Phase1Alg); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20042) validatePhase1DhGroup(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_1_dh_group", "body", m.Phase1DhGroup); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20042) validatePhase1Lifetime(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_1_lifetime", "body", m.Phase1Lifetime); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20042) validatePhase2Alg(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_2_alg", "body", m.Phase2Alg); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20042) validatePhase2DhGroup(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_2_dh_group", "body", m.Phase2DhGroup); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20042) validatePhase2Lifetime(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_2_lifetime", "body", m.Phase2Lifetime); err != nil {
 		return err
 	}
 

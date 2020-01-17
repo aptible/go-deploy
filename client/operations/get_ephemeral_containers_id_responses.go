@@ -52,20 +52,20 @@ func NewGetEphemeralContainersIDOK() *GetEphemeralContainersIDOK {
 successful
 */
 type GetEphemeralContainersIDOK struct {
-	Payload *models.InlineResponse20023
+	Payload *models.InlineResponse20018
 }
 
 func (o *GetEphemeralContainersIDOK) Error() string {
 	return fmt.Sprintf("[GET /ephemeral_containers/{id}][%d] getEphemeralContainersIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetEphemeralContainersIDOK) GetPayload() *models.InlineResponse20023 {
+func (o *GetEphemeralContainersIDOK) GetPayload() *models.InlineResponse20018 {
 	return o.Payload
 }
 
 func (o *GetEphemeralContainersIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20023)
+	o.Payload = new(models.InlineResponse20018)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

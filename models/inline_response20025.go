@@ -25,25 +25,21 @@ type InlineResponse20025 struct {
 	// Required: true
 	Links *InlineResponse20024EmbeddedLinks `json:"_links"`
 
-	// aws instance id
-	// Required: true
-	AwsInstanceID *string `json:"aws_instance_id"`
-
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// host
+	// ends at
 	// Required: true
-	Host *string `json:"host"`
+	EndsAt *string `json:"ends_at"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// name
+	// starts at
 	// Required: true
-	Name *string `json:"name"`
+	StartsAt *string `json:"starts_at"`
 
 	// updated at
 	// Required: true
@@ -62,15 +58,11 @@ func (m *InlineResponse20025) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAwsInstanceID(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateHost(formats); err != nil {
+	if err := m.validateEndsAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -78,7 +70,7 @@ func (m *InlineResponse20025) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateName(formats); err != nil {
+	if err := m.validateStartsAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -119,15 +111,6 @@ func (m *InlineResponse20025) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20025) validateAwsInstanceID(formats strfmt.Registry) error {
-
-	if err := validate.Required("aws_instance_id", "body", m.AwsInstanceID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *InlineResponse20025) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
@@ -137,9 +120,9 @@ func (m *InlineResponse20025) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20025) validateHost(formats strfmt.Registry) error {
+func (m *InlineResponse20025) validateEndsAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("host", "body", m.Host); err != nil {
+	if err := validate.Required("ends_at", "body", m.EndsAt); err != nil {
 		return err
 	}
 
@@ -155,9 +138,9 @@ func (m *InlineResponse20025) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20025) validateName(formats strfmt.Registry) error {
+func (m *InlineResponse20025) validateStartsAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", m.Name); err != nil {
+	if err := validate.Required("starts_at", "body", m.StartsAt); err != nil {
 		return err
 	}
 

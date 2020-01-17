@@ -23,47 +23,31 @@ type InlineResponse20034 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse20033EmbeddedLinks `json:"_links"`
+	Links *InlineResponse2003EmbeddedEmbeddedLinks `json:"_links"`
 
-	// aggregator allocation
+	// command
 	// Required: true
-	AggregatorAllocation []string `json:"aggregator_allocation"`
+	Command *string `json:"command"`
 
-	// aggregator ca certificate
+	// container count
 	// Required: true
-	AggregatorCaCertificate *string `json:"aggregator_ca_certificate"`
+	ContainerCount *int64 `json:"container_count"`
 
-	// aggregator ca private key blob
+	// container memory limit mb
 	// Required: true
-	AggregatorCaPrivateKeyBlob *string `json:"aggregator_ca_private_key_blob"`
-
-	// aggregator docker name
-	// Required: true
-	AggregatorDockerName *string `json:"aggregator_docker_name"`
-
-	// aggregator host
-	// Required: true
-	AggregatorHost *string `json:"aggregator_host"`
-
-	// aggregator instance id
-	// Required: true
-	AggregatorInstanceID *string `json:"aggregator_instance_id"`
-
-	// aggregator port mapping
-	// Required: true
-	AggregatorPortMapping [][]int64 `json:"aggregator_port_mapping"`
+	ContainerMemoryLimitMb *int64 `json:"container_memory_limit_mb"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// drain configuration
+	// docker ref
 	// Required: true
-	DrainConfiguration *InlineResponse20033EmbeddedDrainConfiguration `json:"drain_configuration"`
+	DockerRef *string `json:"docker_ref"`
 
-	// drain type
+	// docker repo
 	// Required: true
-	DrainType *string `json:"drain_type"`
+	DockerRepo *string `json:"docker_repo"`
 
 	// handle
 	// Required: true
@@ -73,9 +57,9 @@ type InlineResponse20034 struct {
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// status
+	// process type
 	// Required: true
-	Status *string `json:"status"`
+	ProcessType *string `json:"process_type"`
 
 	// updated at
 	// Required: true
@@ -94,31 +78,15 @@ func (m *InlineResponse20034) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAggregatorAllocation(formats); err != nil {
+	if err := m.validateCommand(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateAggregatorCaCertificate(formats); err != nil {
+	if err := m.validateContainerCount(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateAggregatorCaPrivateKeyBlob(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAggregatorDockerName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAggregatorHost(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAggregatorInstanceID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAggregatorPortMapping(formats); err != nil {
+	if err := m.validateContainerMemoryLimitMb(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -126,11 +94,11 @@ func (m *InlineResponse20034) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateDrainConfiguration(formats); err != nil {
+	if err := m.validateDockerRef(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDrainType(formats); err != nil {
+	if err := m.validateDockerRepo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -142,7 +110,7 @@ func (m *InlineResponse20034) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateStatus(formats); err != nil {
+	if err := m.validateProcessType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -183,63 +151,27 @@ func (m *InlineResponse20034) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20034) validateAggregatorAllocation(formats strfmt.Registry) error {
+func (m *InlineResponse20034) validateCommand(formats strfmt.Registry) error {
 
-	if err := validate.Required("aggregator_allocation", "body", m.AggregatorAllocation); err != nil {
+	if err := validate.Required("command", "body", m.Command); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20034) validateAggregatorCaCertificate(formats strfmt.Registry) error {
+func (m *InlineResponse20034) validateContainerCount(formats strfmt.Registry) error {
 
-	if err := validate.Required("aggregator_ca_certificate", "body", m.AggregatorCaCertificate); err != nil {
+	if err := validate.Required("container_count", "body", m.ContainerCount); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20034) validateAggregatorCaPrivateKeyBlob(formats strfmt.Registry) error {
+func (m *InlineResponse20034) validateContainerMemoryLimitMb(formats strfmt.Registry) error {
 
-	if err := validate.Required("aggregator_ca_private_key_blob", "body", m.AggregatorCaPrivateKeyBlob); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20034) validateAggregatorDockerName(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregator_docker_name", "body", m.AggregatorDockerName); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20034) validateAggregatorHost(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregator_host", "body", m.AggregatorHost); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20034) validateAggregatorInstanceID(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregator_instance_id", "body", m.AggregatorInstanceID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20034) validateAggregatorPortMapping(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregator_port_mapping", "body", m.AggregatorPortMapping); err != nil {
+	if err := validate.Required("container_memory_limit_mb", "body", m.ContainerMemoryLimitMb); err != nil {
 		return err
 	}
 
@@ -255,27 +187,18 @@ func (m *InlineResponse20034) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20034) validateDrainConfiguration(formats strfmt.Registry) error {
+func (m *InlineResponse20034) validateDockerRef(formats strfmt.Registry) error {
 
-	if err := validate.Required("drain_configuration", "body", m.DrainConfiguration); err != nil {
+	if err := validate.Required("docker_ref", "body", m.DockerRef); err != nil {
 		return err
-	}
-
-	if m.DrainConfiguration != nil {
-		if err := m.DrainConfiguration.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("drain_configuration")
-			}
-			return err
-		}
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20034) validateDrainType(formats strfmt.Registry) error {
+func (m *InlineResponse20034) validateDockerRepo(formats strfmt.Registry) error {
 
-	if err := validate.Required("drain_type", "body", m.DrainType); err != nil {
+	if err := validate.Required("docker_repo", "body", m.DockerRepo); err != nil {
 		return err
 	}
 
@@ -300,9 +223,9 @@ func (m *InlineResponse20034) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20034) validateStatus(formats strfmt.Registry) error {
+func (m *InlineResponse20034) validateProcessType(formats strfmt.Registry) error {
 
-	if err := validate.Required("status", "body", m.Status); err != nil {
+	if err := validate.Required("process_type", "body", m.ProcessType); err != nil {
 		return err
 	}
 

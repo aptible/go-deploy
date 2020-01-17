@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_36__embedded
 type InlineResponse20036Embedded struct {
 
-	// operations
-	Operations []*InlineResponse2004EmbeddedEmbeddedLastOperation `json:"operations"`
+	// stacks
+	Stacks []*InlineResponse20036EmbeddedStacks `json:"stacks"`
 }
 
 // Validate validates this inline response 200 36 embedded
 func (m *InlineResponse20036Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateOperations(formats); err != nil {
+	if err := m.validateStacks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse20036Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20036Embedded) validateOperations(formats strfmt.Registry) error {
+func (m *InlineResponse20036Embedded) validateStacks(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Operations) { // not required
+	if swag.IsZero(m.Stacks) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Operations); i++ {
-		if swag.IsZero(m.Operations[i]) { // not required
+	for i := 0; i < len(m.Stacks); i++ {
+		if swag.IsZero(m.Stacks[i]) { // not required
 			continue
 		}
 
-		if m.Operations[i] != nil {
-			if err := m.Operations[i].Validate(formats); err != nil {
+		if m.Stacks[i] != nil {
+			if err := m.Stacks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("operations" + "." + strconv.Itoa(i))
+					return ve.ValidateName("stacks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

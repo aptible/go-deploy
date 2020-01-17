@@ -52,13 +52,25 @@ func NewPostBackupsBackupIDOperationsCreated() *PostBackupsBackupIDOperationsCre
 successful
 */
 type PostBackupsBackupIDOperationsCreated struct {
+	Payload *models.InlineResponse20028
 }
 
 func (o *PostBackupsBackupIDOperationsCreated) Error() string {
-	return fmt.Sprintf("[POST /backups/{backup_id}/operations][%d] postBackupsBackupIdOperationsCreated ", 201)
+	return fmt.Sprintf("[POST /backups/{backup_id}/operations][%d] postBackupsBackupIdOperationsCreated  %+v", 201, o.Payload)
+}
+
+func (o *PostBackupsBackupIDOperationsCreated) GetPayload() *models.InlineResponse20028 {
+	return o.Payload
 }
 
 func (o *PostBackupsBackupIDOperationsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.InlineResponse20028)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

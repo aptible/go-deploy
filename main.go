@@ -73,7 +73,7 @@ func getToken() (string, error) {
 
 func getOperations(token string) ([]string, error) {
 	rt := httptransport.New(
-		deploy.DefaultHost,
+		os.Getenv("APTIBLE_API_ROOT_URL"),
 		deploy.DefaultBasePath,
 		deploy.DefaultSchemes)
 	rt.Consumers["application/hal+json"] = runtime.JSONConsumer()

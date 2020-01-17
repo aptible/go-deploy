@@ -23,35 +23,51 @@ type InlineResponse20023 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse20022EmbeddedLinks `json:"_links"`
-
-	// allocation
-	// Required: true
-	Allocation []string `json:"allocation"`
+	Links *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks `json:"_links"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// docker name
+	// docker ref
 	// Required: true
-	DockerName *string `json:"docker_name"`
+	DockerRef *string `json:"docker_ref"`
+
+	// docker repo
+	// Required: true
+	DockerRepo *string `json:"docker_repo"`
+
+	// dualstack hint
+	// Required: true
+	DualstackHint *int64 `json:"dualstack_hint"`
+
+	// exposed ports
+	// Required: true
+	ExposedPorts []int64 `json:"exposed_ports"`
+
+	// git ref
+	// Required: true
+	GitRef *string `json:"git_ref"`
+
+	// git repo
+	// Required: true
+	GitRepo *string `json:"git_repo"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// interactive
+	// platform
 	// Required: true
-	Interactive *bool `json:"interactive"`
+	Platform *string `json:"platform"`
 
-	// layer
+	// release
 	// Required: true
-	Layer *string `json:"layer"`
+	Release *string `json:"release"`
 
-	// memory limit
+	// scan
 	// Required: true
-	MemoryLimit *int64 `json:"memory_limit"`
+	Scan *string `json:"scan"`
 
 	// updated at
 	// Required: true
@@ -70,15 +86,31 @@ func (m *InlineResponse20023) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAllocation(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDockerName(formats); err != nil {
+	if err := m.validateDockerRef(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDockerRepo(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDualstackHint(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateExposedPorts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGitRef(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGitRepo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -86,15 +118,15 @@ func (m *InlineResponse20023) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateInteractive(formats); err != nil {
+	if err := m.validatePlatform(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateLayer(formats); err != nil {
+	if err := m.validateRelease(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateMemoryLimit(formats); err != nil {
+	if err := m.validateScan(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -135,15 +167,6 @@ func (m *InlineResponse20023) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20023) validateAllocation(formats strfmt.Registry) error {
-
-	if err := validate.Required("allocation", "body", m.Allocation); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *InlineResponse20023) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
@@ -153,9 +176,54 @@ func (m *InlineResponse20023) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20023) validateDockerName(formats strfmt.Registry) error {
+func (m *InlineResponse20023) validateDockerRef(formats strfmt.Registry) error {
 
-	if err := validate.Required("docker_name", "body", m.DockerName); err != nil {
+	if err := validate.Required("docker_ref", "body", m.DockerRef); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20023) validateDockerRepo(formats strfmt.Registry) error {
+
+	if err := validate.Required("docker_repo", "body", m.DockerRepo); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20023) validateDualstackHint(formats strfmt.Registry) error {
+
+	if err := validate.Required("dualstack_hint", "body", m.DualstackHint); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20023) validateExposedPorts(formats strfmt.Registry) error {
+
+	if err := validate.Required("exposed_ports", "body", m.ExposedPorts); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20023) validateGitRef(formats strfmt.Registry) error {
+
+	if err := validate.Required("git_ref", "body", m.GitRef); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20023) validateGitRepo(formats strfmt.Registry) error {
+
+	if err := validate.Required("git_repo", "body", m.GitRepo); err != nil {
 		return err
 	}
 
@@ -171,27 +239,27 @@ func (m *InlineResponse20023) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20023) validateInteractive(formats strfmt.Registry) error {
+func (m *InlineResponse20023) validatePlatform(formats strfmt.Registry) error {
 
-	if err := validate.Required("interactive", "body", m.Interactive); err != nil {
+	if err := validate.Required("platform", "body", m.Platform); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20023) validateLayer(formats strfmt.Registry) error {
+func (m *InlineResponse20023) validateRelease(formats strfmt.Registry) error {
 
-	if err := validate.Required("layer", "body", m.Layer); err != nil {
+	if err := validate.Required("release", "body", m.Release); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20023) validateMemoryLimit(formats strfmt.Registry) error {
+func (m *InlineResponse20023) validateScan(formats strfmt.Registry) error {
 
-	if err := validate.Required("memory_limit", "body", m.MemoryLimit); err != nil {
+	if err := validate.Required("scan", "body", m.Scan); err != nil {
 		return err
 	}
 
