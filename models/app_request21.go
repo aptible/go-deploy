@@ -42,6 +42,9 @@ type AppRequest21 struct {
 	// disk size
 	DiskSize int64 `json:"disk_size,omitempty"`
 
+	// env
+	Env interface{} `json:"env,omitempty"`
+
 	// git ref
 	GitRef string `json:"git_ref,omitempty"`
 
