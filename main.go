@@ -3,14 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 
-	"github.com/go-openapi/strfmt"
 	"github.com/reggregory/go-deploy/client/operations"
 
-	"github.com/go-openapi/runtime"
-	httptransport "github.com/go-openapi/runtime/client"
-	deploy "github.com/reggregory/go-deploy/client"
 	"github.com/reggregory/go-deploy/helpers"
 )
 
@@ -31,16 +26,7 @@ func main() {
 }
 
 func getOperations(token string) ([]string, error) {
-	rt := httptransport.New(
-		os.Getenv("APTIBLE_API_ROOT_URL"),
-		deploy.DefaultBasePath,
-		deploy.DefaultSchemes)
-	rt.Consumers["application/hal+json"] = runtime.JSONConsumer()
-	rt.Producers["application/hal+json"] = runtime.JSONProducer()
-	client := deploy.New(rt, strfmt.Default)
-
-	bearerTokenAuth := httptransport.BearerToken(token)
-
+	client, bearerTokenAuth := helpers.SetUpClient()
 	page := int64(1)
 	params := operations.NewGetAccountsAccountIDOperationsParams().WithAccountID(2).WithPage(&page)
 	resp, err := client.Operations.GetAccountsAccountIDOperations(params, bearerTokenAuth)
