@@ -1,24 +1,21 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
-	"path/filepath"
 
 	"github.com/go-openapi/strfmt"
 	"github.com/reggregory/go-deploy/client/operations"
 
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
-	"github.com/mitchellh/go-homedir"
 	deploy "github.com/reggregory/go-deploy/client"
+	"github.com/reggregory/go-deploy/helpers"
 )
 
 func main() {
-	token, err := getToken()
+	token, err := helpers.GetToken()
 	if err != nil {
 		log.Fatalf("couldn't do it: %s", err)
 	}
@@ -33,44 +30,6 @@ func main() {
 	}
 }
 
-func getToken() (string, error) {
-	// Tries to get token via environment variable
-	token := os.Getenv("APTIBLE_ACCESS_TOKEN")
-	if token != "" {
-		return token, nil
-	}
-
-	home, err := homedir.Dir()
-	if err != nil {
-		return "", err
-	}
-
-	dat, err := ioutil.ReadFile(filepath.Join(home, ".aptible", "tokens.json"))
-	if err != nil {
-		return "", err
-	}
-
-	// Contains tokens from the tokens.json file.
-	var tokens map[string]string
-	if err := json.Unmarshal(dat, &tokens); err != nil {
-		panic(err)
-	}
-
-	// Gets auth server
-	auth := os.Getenv("APTIBLE_AUTH_ROOT_URL")
-	if auth == "" {
-		auth = "https://auth.aptible.com"
-	}
-
-	// Checks if there is a token.
-	token = tokens[auth]
-	if token != "" {
-		return token, nil
-	}
-
-	return "", fmt.Errorf("No token found for %s", auth)
-}
-
 func getOperations(token string) ([]string, error) {
 	rt := httptransport.New(
 		os.Getenv("APTIBLE_API_ROOT_URL"),
@@ -83,7 +42,7 @@ func getOperations(token string) ([]string, error) {
 	bearerTokenAuth := httptransport.BearerToken(token)
 
 	page := int64(1)
-	params := operations.NewGetAccountsAccountIDOperationsParams().WithAccountID(1).WithPage(&page)
+	params := operations.NewGetAccountsAccountIDOperationsParams().WithAccountID(2).WithPage(&page)
 	resp, err := client.Operations.GetAccountsAccountIDOperations(params, bearerTokenAuth)
 	if err != nil {
 		return []string{}, err
