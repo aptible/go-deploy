@@ -16,3 +16,14 @@ func CreateApp(client *deploy.DeployAPIV1, token runtime.ClientAuthInfoWriter, h
 	}
 	return resp.Payload, err
 }
+
+func DeployApp(client *deploy.DeployAPIV1, token runtime.ClientAuthInfoWriter, app_id int64, env map[string]interface{}) error {
+	req_type := "deploy"
+	app_req := models.AppRequest21{Type: &req_type, Env: env, ContainerCount: 1, ContainerSize: 1024}
+	app_params := operations.NewPostAppsAppIDOperationsParams().WithAppID(app_id).WithAppRequest(&app_req)
+	_, err := client.Operations.PostAppsAppIDOperations(app_params, token)
+	if err != nil {
+		return err
+	}
+	return err
+}
