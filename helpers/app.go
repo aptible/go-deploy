@@ -1,6 +1,8 @@
 package helpers
 
 import (
+	"fmt"
+
 	"github.com/go-openapi/runtime"
 	deploy "github.com/reggregory/go-deploy/client"
 	"github.com/reggregory/go-deploy/client/operations"
@@ -26,4 +28,25 @@ func DeployApp(client *deploy.DeployAPIV1, token runtime.ClientAuthInfoWriter, a
 		return err
 	}
 	return err
+}
+
+func GetApp(client *deploy.DeployAPIV1, token runtime.ClientAuthInfoWriter, app_id int64) (bool, error) {
+	params := operations.NewGetAppsIDParams().WithID(app_id)
+	_, err := client.Operations.GetAppsID(params, token)
+
+	if err != nil {
+		err_struct := err.(*operations.GetAppsIDDefault)
+		switch err_struct.Code() {
+		case 404:
+			// If deleted == true, then the app needs to be removed from Terraform.
+			return true, nil
+		case 401:
+			e := fmt.Errorf("Make sure you have the correct auth token.")
+			return false, e
+		default:
+			e := fmt.Errorf("There was an error when completing the request to get the app. \n[ERROR] -%s", err)
+			return false, e
+		}
+	}
+	return false, err
 }
