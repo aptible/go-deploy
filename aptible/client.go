@@ -1,6 +1,9 @@
 package aptible
 
 import (
+	"os"
+	"strings"
+
 	"github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/runtime"
@@ -11,7 +14,7 @@ import (
 // sets up client and gets auth token used for API requests
 func SetUpClient() (*deploy.DeployAPIV1, runtime.ClientAuthInfoWriter) {
 	rt := httptransport.New(
-		"api-rachel.aptible-sandbox.com",
+		GetHost(),
 		deploy.DefaultBasePath,
 		deploy.DefaultSchemes)
 	rt.Consumers["application/hal+json"] = runtime.JSONConsumer()
@@ -22,4 +25,17 @@ func SetUpClient() (*deploy.DeployAPIV1, runtime.ClientAuthInfoWriter) {
 	bearerTokenAuth := httptransport.BearerToken(token)
 
 	return client, bearerTokenAuth
+}
+
+func GetHost() string {
+	host, ok := os.LookupEnv("APTIBLE_API_ROOT_URL")
+	if !ok {
+		host = deploy.DefaultHost
+	}
+
+	if strings.HasPrefix(host, "https://") {
+		host = host[8:]
+	}
+
+	return host
 }
