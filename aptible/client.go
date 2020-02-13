@@ -1,4 +1,4 @@
-package helpers
+package aptible
 
 import (
 	"github.com/go-openapi/strfmt"

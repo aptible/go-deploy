@@ -6,11 +6,11 @@ import (
 
 	"github.com/reggregory/go-deploy/client/operations"
 
-	"github.com/reggregory/go-deploy/helpers"
+	"github.com/reggregory/go-deploy/aptible"
 )
 
 func main() {
-	token, err := helpers.GetToken()
+	token, err := aptible.GetToken()
 	if err != nil {
 		log.Fatalf("couldn't do it: %s", err)
 	}
@@ -26,7 +26,7 @@ func main() {
 }
 
 func getOperations(token string) ([]string, error) {
-	client, bearerTokenAuth := helpers.SetUpClient()
+	client, bearerTokenAuth := aptible.SetUpClient()
 	page := int64(1)
 	params := operations.NewGetAccountsAccountIDOperationsParams().WithAccountID(2).WithPage(&page)
 	resp, err := client.Operations.GetAccountsAccountIDOperations(params, bearerTokenAuth)
