@@ -4,15 +4,19 @@ import (
 	"os"
 	"strings"
 
-	"github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	deploy "github.com/reggregory/go-deploy/client"
 )
 
+type Client struct {
+	Client *deploy.DeployAPIV1
+	Token  runtime.ClientAuthInfoWriter
+}
+
 // sets up client and gets auth token used for API requests
-func SetUpClient() (*deploy.DeployAPIV1, runtime.ClientAuthInfoWriter) {
+func SetUpClient() *Client {
 	rt := httptransport.New(
 		GetHost(),
 		deploy.DefaultBasePath,
@@ -24,7 +28,10 @@ func SetUpClient() (*deploy.DeployAPIV1, runtime.ClientAuthInfoWriter) {
 	token, _ := GetToken()
 	bearerTokenAuth := httptransport.BearerToken(token)
 
-	return client, bearerTokenAuth
+	c := Client{}
+	c.Client = client
+	c.Token = bearerTokenAuth
+	return &c
 }
 
 func GetHost() string {

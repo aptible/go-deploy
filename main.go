@@ -4,17 +4,12 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/reggregory/go-deploy/client/operations"
-
 	"github.com/reggregory/go-deploy/aptible"
+	"github.com/reggregory/go-deploy/client/operations"
 )
 
 func main() {
-	token, err := aptible.GetToken()
-	if err != nil {
-		log.Fatalf("couldn't do it: %s", err)
-	}
-	ops, err := getOperations(token)
+	ops, err := getOperations()
 	if err != nil {
 		log.Fatalf("couldn't do it: %s", err)
 	}
@@ -25,11 +20,11 @@ func main() {
 	}
 }
 
-func getOperations(token string) ([]string, error) {
-	client, bearerTokenAuth := aptible.SetUpClient()
+func getOperations() ([]string, error) {
+	c := aptible.SetUpClient()
 	page := int64(1)
 	params := operations.NewGetAccountsAccountIDOperationsParams().WithAccountID(2).WithPage(&page)
-	resp, err := client.Operations.GetAccountsAccountIDOperations(params, bearerTokenAuth)
+	resp, err := c.Client.Operations.GetAccountsAccountIDOperations(params, c.Token)
 	if err != nil {
 		return []string{}, err
 	}
