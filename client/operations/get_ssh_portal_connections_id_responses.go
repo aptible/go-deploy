@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetSSHPortalConnectionsIDReader is a Reader for the GetSSHPortalConnectionsID structure.
@@ -52,20 +52,20 @@ func NewGetSSHPortalConnectionsIDOK() *GetSSHPortalConnectionsIDOK {
 successful
 */
 type GetSSHPortalConnectionsIDOK struct {
-	Payload *models.InlineResponse20044
+	Payload *models.InlineResponse2018
 }
 
 func (o *GetSSHPortalConnectionsIDOK) Error() string {
 	return fmt.Sprintf("[GET /ssh_portal_connections/{id}][%d] getSshPortalConnectionsIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetSSHPortalConnectionsIDOK) GetPayload() *models.InlineResponse20044 {
+func (o *GetSSHPortalConnectionsIDOK) GetPayload() *models.InlineResponse2018 {
 	return o.Payload
 }
 
 func (o *GetSSHPortalConnectionsIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20044)
+	o.Payload = new(models.InlineResponse2018)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetDatabaseCredentialsDatabaseCredentialIDOperationsReader is a Reader for the GetDatabaseCredentialsDatabaseCredentialIDOperations structure.
@@ -52,20 +52,20 @@ func NewGetDatabaseCredentialsDatabaseCredentialIDOperationsOK() *GetDatabaseCre
 successful
 */
 type GetDatabaseCredentialsDatabaseCredentialIDOperationsOK struct {
-	Payload *models.InlineResponse20036
+	Payload *models.InlineResponse20029
 }
 
 func (o *GetDatabaseCredentialsDatabaseCredentialIDOperationsOK) Error() string {
 	return fmt.Sprintf("[GET /database_credentials/{database_credential_id}/operations][%d] getDatabaseCredentialsDatabaseCredentialIdOperationsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetDatabaseCredentialsDatabaseCredentialIDOperationsOK) GetPayload() *models.InlineResponse20036 {
+func (o *GetDatabaseCredentialsDatabaseCredentialIDOperationsOK) GetPayload() *models.InlineResponse20029 {
 	return o.Payload
 }
 
 func (o *GetDatabaseCredentialsDatabaseCredentialIDOperationsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20036)
+	o.Payload = new(models.InlineResponse20029)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

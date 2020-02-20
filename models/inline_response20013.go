@@ -17,76 +17,32 @@ import (
 // swagger:model inline_response_200_13
 type InlineResponse20013 struct {
 
-	// resource type
+	// embedded
 	// Required: true
-	ResourceType *string `json:"_type"`
+	Embedded *InlineResponse20013Embedded `json:"_embedded"`
 
 	// links
 	// Required: true
-	Links *InlineResponse20012EmbeddedLinks `json:"_links"`
+	Links *InlineResponse20013Links `json:"_links"`
 
-	// allocation
+	// current page
 	// Required: true
-	Allocation []string `json:"allocation"`
+	CurrentPage *int64 `json:"current_page"`
 
-	// aws instance id
+	// per page
 	// Required: true
-	AwsInstanceID *string `json:"aws_instance_id"`
+	PerPage *int64 `json:"per_page"`
 
-	// created at
+	// total count
 	// Required: true
-	CreatedAt *string `json:"created_at"`
-
-	// docker name
-	// Required: true
-	DockerName *string `json:"docker_name"`
-
-	// host
-	// Required: true
-	Host *string `json:"host"`
-
-	// id
-	// Required: true
-	ID *int64 `json:"id"`
-
-	// instance class
-	// Required: true
-	InstanceClass *string `json:"instance_class"`
-
-	// layer
-	// Required: true
-	Layer *string `json:"layer"`
-
-	// memory limit
-	// Required: true
-	MemoryLimit *int64 `json:"memory_limit"`
-
-	// mounts
-	// Required: true
-	Mounts [][]string `json:"mounts"`
-
-	// port
-	// Required: true
-	Port *int64 `json:"port"`
-
-	// port mapping
-	// Required: true
-	PortMapping []int64 `json:"port_mapping"`
-
-	// status
-	// Required: true
-	Status *string `json:"status"`
-
-	// updated at
-	// Required: true
-	UpdatedAt *string `json:"updated_at"`
+	TotalCount *int64 `json:"total_count"`
 }
 
 // Validate validates this inline response 200 13
 func (m *InlineResponse20013) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateResourceType(formats); err != nil {
+	if err := m.validateEmbedded(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -94,59 +50,15 @@ func (m *InlineResponse20013) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAllocation(formats); err != nil {
+	if err := m.validateCurrentPage(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateAwsInstanceID(formats); err != nil {
+	if err := m.validatePerPage(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateCreatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDockerName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateHost(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateInstanceClass(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLayer(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMemoryLimit(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMounts(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePort(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePortMapping(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateStatus(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUpdatedAt(formats); err != nil {
+	if err := m.validateTotalCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -156,10 +68,19 @@ func (m *InlineResponse20013) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20013) validateResourceType(formats strfmt.Registry) error {
+func (m *InlineResponse20013) validateEmbedded(formats strfmt.Registry) error {
 
-	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
+	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
 		return err
+	}
+
+	if m.Embedded != nil {
+		if err := m.Embedded.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_embedded")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -183,126 +104,27 @@ func (m *InlineResponse20013) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20013) validateAllocation(formats strfmt.Registry) error {
+func (m *InlineResponse20013) validateCurrentPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("allocation", "body", m.Allocation); err != nil {
+	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20013) validateAwsInstanceID(formats strfmt.Registry) error {
+func (m *InlineResponse20013) validatePerPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("aws_instance_id", "body", m.AwsInstanceID); err != nil {
+	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20013) validateCreatedAt(formats strfmt.Registry) error {
+func (m *InlineResponse20013) validateTotalCount(formats strfmt.Registry) error {
 
-	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20013) validateDockerName(formats strfmt.Registry) error {
-
-	if err := validate.Required("docker_name", "body", m.DockerName); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20013) validateHost(formats strfmt.Registry) error {
-
-	if err := validate.Required("host", "body", m.Host); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20013) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20013) validateInstanceClass(formats strfmt.Registry) error {
-
-	if err := validate.Required("instance_class", "body", m.InstanceClass); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20013) validateLayer(formats strfmt.Registry) error {
-
-	if err := validate.Required("layer", "body", m.Layer); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20013) validateMemoryLimit(formats strfmt.Registry) error {
-
-	if err := validate.Required("memory_limit", "body", m.MemoryLimit); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20013) validateMounts(formats strfmt.Registry) error {
-
-	if err := validate.Required("mounts", "body", m.Mounts); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20013) validatePort(formats strfmt.Registry) error {
-
-	if err := validate.Required("port", "body", m.Port); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20013) validatePortMapping(formats strfmt.Registry) error {
-
-	if err := validate.Required("port_mapping", "body", m.PortMapping); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20013) validateStatus(formats strfmt.Registry) error {
-
-	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20013) validateUpdatedAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
 		return err
 	}
 

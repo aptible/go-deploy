@@ -16,6 +16,12 @@ import (
 // swagger:model inline_response_200_17__links
 type InlineResponse20017Links struct {
 
+	// ephemeral session
+	EphemeralSession *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"ephemeral_session,omitempty"`
+
+	// log drain
+	LogDrain *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"log_drain,omitempty"`
+
 	// next
 	Next *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"next,omitempty"`
 
@@ -29,6 +35,14 @@ type InlineResponse20017Links struct {
 // Validate validates this inline response 200 17 links
 func (m *InlineResponse20017Links) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateEphemeralSession(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLogDrain(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateNext(formats); err != nil {
 		res = append(res, err)
@@ -45,6 +59,42 @@ func (m *InlineResponse20017Links) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *InlineResponse20017Links) validateEphemeralSession(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EphemeralSession) { // not required
+		return nil
+	}
+
+	if m.EphemeralSession != nil {
+		if err := m.EphemeralSession.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ephemeral_session")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20017Links) validateLogDrain(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LogDrain) { // not required
+		return nil
+	}
+
+	if m.LogDrain != nil {
+		if err := m.LogDrain.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("log_drain")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

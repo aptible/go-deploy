@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetContainersIDReader is a Reader for the GetContainersID structure.
@@ -52,20 +52,20 @@ func NewGetContainersIDOK() *GetContainersIDOK {
 successful
 */
 type GetContainersIDOK struct {
-	Payload *models.InlineResponse20013
+	Payload *models.InlineResponse2009
 }
 
 func (o *GetContainersIDOK) Error() string {
 	return fmt.Sprintf("[GET /containers/{id}][%d] getContainersIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetContainersIDOK) GetPayload() *models.InlineResponse20013 {
+func (o *GetContainersIDOK) GetPayload() *models.InlineResponse2009 {
 	return o.Payload
 }
 
 func (o *GetContainersIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20013)
+	o.Payload = new(models.InlineResponse2009)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

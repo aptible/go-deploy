@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // PostVhostsVhostIDOperationsReader is a Reader for the PostVhostsVhostIDOperations structure.
@@ -52,13 +52,25 @@ func NewPostVhostsVhostIDOperationsCreated() *PostVhostsVhostIDOperationsCreated
 successful
 */
 type PostVhostsVhostIDOperationsCreated struct {
+	Payload *models.InlineResponse20028
 }
 
 func (o *PostVhostsVhostIDOperationsCreated) Error() string {
-	return fmt.Sprintf("[POST /vhosts/{vhost_id}/operations][%d] postVhostsVhostIdOperationsCreated ", 201)
+	return fmt.Sprintf("[POST /vhosts/{vhost_id}/operations][%d] postVhostsVhostIdOperationsCreated  %+v", 201, o.Payload)
+}
+
+func (o *PostVhostsVhostIDOperationsCreated) GetPayload() *models.InlineResponse20028 {
+	return o.Payload
 }
 
 func (o *PostVhostsVhostIDOperationsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.InlineResponse20028)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

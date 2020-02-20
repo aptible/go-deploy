@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetAccountsAccountIDLogDrainsReader is a Reader for the GetAccountsAccountIDLogDrains structure.
@@ -52,20 +52,20 @@ func NewGetAccountsAccountIDLogDrainsOK() *GetAccountsAccountIDLogDrainsOK {
 successful
 */
 type GetAccountsAccountIDLogDrainsOK struct {
-	Payload *models.InlineResponse20031
+	Payload *models.InlineResponse20026
 }
 
 func (o *GetAccountsAccountIDLogDrainsOK) Error() string {
 	return fmt.Sprintf("[GET /accounts/{account_id}/log_drains][%d] getAccountsAccountIdLogDrainsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAccountsAccountIDLogDrainsOK) GetPayload() *models.InlineResponse20031 {
+func (o *GetAccountsAccountIDLogDrainsOK) GetPayload() *models.InlineResponse20026 {
 	return o.Payload
 }
 
 func (o *GetAccountsAccountIDLogDrainsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20031)
+	o.Payload = new(models.InlineResponse20026)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetCertificatesCertificateIDVhostsReader is a Reader for the GetCertificatesCertificateIDVhosts structure.
@@ -52,20 +52,20 @@ func NewGetCertificatesCertificateIDVhostsOK() *GetCertificatesCertificateIDVhos
 successful
 */
 type GetCertificatesCertificateIDVhostsOK struct {
-	Payload *models.InlineResponse20047
+	Payload *models.InlineResponse20038
 }
 
 func (o *GetCertificatesCertificateIDVhostsOK) Error() string {
 	return fmt.Sprintf("[GET /certificates/{certificate_id}/vhosts][%d] getCertificatesCertificateIdVhostsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetCertificatesCertificateIDVhostsOK) GetPayload() *models.InlineResponse20047 {
+func (o *GetCertificatesCertificateIDVhostsOK) GetPayload() *models.InlineResponse20038 {
 	return o.Payload
 }
 
 func (o *GetCertificatesCertificateIDVhostsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20047)
+	o.Payload = new(models.InlineResponse20038)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

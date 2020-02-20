@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetBackupsBackupIDCopiesReader is a Reader for the GetBackupsBackupIDCopies structure.
@@ -52,20 +52,20 @@ func NewGetBackupsBackupIDCopiesOK() *GetBackupsBackupIDCopiesOK {
 successful
 */
 type GetBackupsBackupIDCopiesOK struct {
-	Payload *models.InlineResponse2006
+	Payload *models.InlineResponse2004
 }
 
 func (o *GetBackupsBackupIDCopiesOK) Error() string {
 	return fmt.Sprintf("[GET /backups/{backup_id}/copies][%d] getBackupsBackupIdCopiesOK  %+v", 200, o.Payload)
 }
 
-func (o *GetBackupsBackupIDCopiesOK) GetPayload() *models.InlineResponse2006 {
+func (o *GetBackupsBackupIDCopiesOK) GetPayload() *models.InlineResponse2004 {
 	return o.Payload
 }
 
 func (o *GetBackupsBackupIDCopiesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse2006)
+	o.Payload = new(models.InlineResponse2004)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

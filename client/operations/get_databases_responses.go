@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetDatabasesReader is a Reader for the GetDatabases structure.
@@ -52,20 +52,20 @@ func NewGetDatabasesOK() *GetDatabasesOK {
 successful
 */
 type GetDatabasesOK struct {
-	Payload *models.InlineResponse20018
+	Payload *models.InlineResponse20014
 }
 
 func (o *GetDatabasesOK) Error() string {
 	return fmt.Sprintf("[GET /databases][%d] getDatabasesOK  %+v", 200, o.Payload)
 }
 
-func (o *GetDatabasesOK) GetPayload() *models.InlineResponse20018 {
+func (o *GetDatabasesOK) GetPayload() *models.InlineResponse20014 {
 	return o.Payload
 }
 
 func (o *GetDatabasesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20018)
+	o.Payload = new(models.InlineResponse20014)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

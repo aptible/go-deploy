@@ -16,46 +16,21 @@ import (
 // swagger:model inline_response_200_31__embedded__links
 type InlineResponse20031EmbeddedLinks struct {
 
-	// account
-	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
-
 	// containers
 	Containers *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"containers,omitempty"`
 
-	// database
-	Database *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database,omitempty"`
-
-	// ephemeral containers
-	EphemeralContainers *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"ephemeral_containers,omitempty"`
-
-	// operations
-	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
-
 	// self
 	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+
+	// service
+	Service *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"service,omitempty"`
 }
 
 // Validate validates this inline response 200 31 embedded links
 func (m *InlineResponse20031EmbeddedLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAccount(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateContainers(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDatabase(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateEphemeralContainers(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateOperations(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -63,27 +38,13 @@ func (m *InlineResponse20031EmbeddedLinks) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.validateService(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *InlineResponse20031EmbeddedLinks) validateAccount(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Account) { // not required
-		return nil
-	}
-
-	if m.Account != nil {
-		if err := m.Account.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("account")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -105,60 +66,6 @@ func (m *InlineResponse20031EmbeddedLinks) validateContainers(formats strfmt.Reg
 	return nil
 }
 
-func (m *InlineResponse20031EmbeddedLinks) validateDatabase(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Database) { // not required
-		return nil
-	}
-
-	if m.Database != nil {
-		if err := m.Database.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("database")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20031EmbeddedLinks) validateEphemeralContainers(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.EphemeralContainers) { // not required
-		return nil
-	}
-
-	if m.EphemeralContainers != nil {
-		if err := m.EphemeralContainers.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("ephemeral_containers")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20031EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Operations) { // not required
-		return nil
-	}
-
-	if m.Operations != nil {
-		if err := m.Operations.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("operations")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *InlineResponse20031EmbeddedLinks) validateSelf(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Self) { // not required
@@ -169,6 +76,24 @@ func (m *InlineResponse20031EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20031EmbeddedLinks) validateService(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Service) { // not required
+		return nil
+	}
+
+	if m.Service != nil {
+		if err := m.Service.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("service")
 			}
 			return err
 		}

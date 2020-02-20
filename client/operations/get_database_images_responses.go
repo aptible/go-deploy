@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetDatabaseImagesReader is a Reader for the GetDatabaseImages structure.
@@ -52,20 +52,20 @@ func NewGetDatabaseImagesOK() *GetDatabaseImagesOK {
 successful
 */
 type GetDatabaseImagesOK struct {
-	Payload *models.InlineResponse20017
+	Payload *models.InlineResponse20013
 }
 
 func (o *GetDatabaseImagesOK) Error() string {
 	return fmt.Sprintf("[GET /database_images][%d] getDatabaseImagesOK  %+v", 200, o.Payload)
 }
 
-func (o *GetDatabaseImagesOK) GetPayload() *models.InlineResponse20017 {
+func (o *GetDatabaseImagesOK) GetPayload() *models.InlineResponse20013 {
 	return o.Payload
 }
 
 func (o *GetDatabaseImagesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20017)
+	o.Payload = new(models.InlineResponse20013)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

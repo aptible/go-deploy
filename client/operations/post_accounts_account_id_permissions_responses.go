@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // PostAccountsAccountIDPermissionsReader is a Reader for the PostAccountsAccountIDPermissions structure.
@@ -52,13 +52,25 @@ func NewPostAccountsAccountIDPermissionsCreated() *PostAccountsAccountIDPermissi
 successful
 */
 type PostAccountsAccountIDPermissionsCreated struct {
+	Payload *models.InlineResponse2017
 }
 
 func (o *PostAccountsAccountIDPermissionsCreated) Error() string {
-	return fmt.Sprintf("[POST /accounts/{account_id}/permissions][%d] postAccountsAccountIdPermissionsCreated ", 201)
+	return fmt.Sprintf("[POST /accounts/{account_id}/permissions][%d] postAccountsAccountIdPermissionsCreated  %+v", 201, o.Payload)
+}
+
+func (o *PostAccountsAccountIDPermissionsCreated) GetPayload() *models.InlineResponse2017 {
+	return o.Payload
 }
 
 func (o *PostAccountsAccountIDPermissionsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.InlineResponse2017)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

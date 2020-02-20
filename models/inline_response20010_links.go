@@ -16,14 +16,14 @@ import (
 // swagger:model inline_response_200_10__links
 type InlineResponse20010Links struct {
 
+	// database
+	Database *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database,omitempty"`
+
 	// next
 	Next *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"next,omitempty"`
 
 	// prev
 	Prev *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"prev,omitempty"`
-
-	// resource
-	Resource *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"resource,omitempty"`
 
 	// self
 	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
@@ -33,15 +33,15 @@ type InlineResponse20010Links struct {
 func (m *InlineResponse20010Links) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDatabase(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateNext(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validatePrev(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateResource(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -52,6 +52,24 @@ func (m *InlineResponse20010Links) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *InlineResponse20010Links) validateDatabase(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Database) { // not required
+		return nil
+	}
+
+	if m.Database != nil {
+		if err := m.Database.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("database")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -83,24 +101,6 @@ func (m *InlineResponse20010Links) validatePrev(formats strfmt.Registry) error {
 		if err := m.Prev.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("prev")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20010Links) validateResource(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Resource) { // not required
-		return nil
-	}
-
-	if m.Resource != nil {
-		if err := m.Resource.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("resource")
 			}
 			return err
 		}

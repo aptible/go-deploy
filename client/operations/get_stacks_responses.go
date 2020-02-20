@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetStacksReader is a Reader for the GetStacks structure.
@@ -52,20 +52,20 @@ func NewGetStacksOK() *GetStacksOK {
 successful
 */
 type GetStacksOK struct {
-	Payload *models.InlineResponse20045
+	Payload *models.InlineResponse20036
 }
 
 func (o *GetStacksOK) Error() string {
 	return fmt.Sprintf("[GET /stacks][%d] getStacksOK  %+v", 200, o.Payload)
 }
 
-func (o *GetStacksOK) GetPayload() *models.InlineResponse20045 {
+func (o *GetStacksOK) GetPayload() *models.InlineResponse20036 {
 	return o.Payload
 }
 
 func (o *GetStacksOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20045)
+	o.Payload = new(models.InlineResponse20036)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

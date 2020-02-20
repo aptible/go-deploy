@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -17,32 +19,101 @@ import (
 // swagger:model inline_response_200_37
 type InlineResponse20037 struct {
 
-	// embedded
+	// resource type
 	// Required: true
-	Embedded *InlineResponse20037Embedded `json:"_embedded"`
+	ResourceType *string `json:"_type"`
 
 	// links
 	// Required: true
-	Links *InlineResponse2002Links `json:"_links"`
+	Links *InlineResponse20036EmbeddedLinks `json:"_links"`
 
-	// current page
+	// account id
 	// Required: true
-	CurrentPage *int64 `json:"current_page"`
+	AccountID *string `json:"account_id"`
 
-	// per page
+	// cpu limits
 	// Required: true
-	PerPage *int64 `json:"per_page"`
+	CPULimits *bool `json:"cpu_limits"`
 
-	// total count
+	// created at
 	// Required: true
-	TotalCount *int64 `json:"total_count"`
+	CreatedAt *string `json:"created_at"`
+
+	// default
+	// Required: true
+	Default *bool `json:"default"`
+
+	// expose intrusion detection reports
+	// Required: true
+	ExposeIntrusionDetectionReports *bool `json:"expose_intrusion_detection_reports"`
+
+	// id
+	// Required: true
+	ID *int64 `json:"id"`
+
+	// intrusion detection
+	// Required: true
+	IntrusionDetection *bool `json:"intrusion_detection"`
+
+	// memory limits
+	// Required: true
+	MemoryLimits *bool `json:"memory_limits"`
+
+	// name
+	// Required: true
+	Name *string `json:"name"`
+
+	// outbound ip addresses
+	// Required: true
+	OutboundIPAddresses []string `json:"outbound_ip_addresses"`
+
+	// public
+	// Required: true
+	Public *bool `json:"public"`
+
+	// region
+	// Required: true
+	Region *string `json:"region"`
+
+	// ssh host dsa public key
+	// Required: true
+	SSHHostDsaPublicKey *string `json:"ssh_host_dsa_public_key"`
+
+	// ssh host ecdsa public key
+	// Required: true
+	SSHHostEcdsaPublicKey *string `json:"ssh_host_ecdsa_public_key"`
+
+	// ssh host rsa public key
+	// Required: true
+	SSHHostRsaPublicKey *string `json:"ssh_host_rsa_public_key"`
+
+	// ssh portal host
+	// Required: true
+	SSHPortalHost *string `json:"ssh_portal_host"`
+
+	// ssh portal port
+	// Required: true
+	SSHPortalPort *int64 `json:"ssh_portal_port"`
+
+	// updated at
+	// Required: true
+	UpdatedAt *string `json:"updated_at"`
+
+	// version
+	// Required: true
+	// Enum: [v1 v2]
+	Version *string `json:"version"`
+
+	// vpc id
+	// Required: true
+	VpcID *int64 `json:"vpc_id"`
 }
 
 // Validate validates this inline response 200 37
 func (m *InlineResponse20037) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEmbedded(formats); err != nil {
+	if err := m.validateResourceType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -50,15 +121,83 @@ func (m *InlineResponse20037) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCurrentPage(formats); err != nil {
+	if err := m.validateAccountID(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validatePerPage(formats); err != nil {
+	if err := m.validateCPULimits(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTotalCount(formats); err != nil {
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDefault(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateExposeIntrusionDetectionReports(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIntrusionDetection(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMemoryLimits(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOutboundIPAddresses(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePublic(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRegion(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSSHHostDsaPublicKey(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSSHHostEcdsaPublicKey(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSSHHostRsaPublicKey(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSSHPortalHost(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSSHPortalPort(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVersion(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVpcID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -68,19 +207,10 @@ func (m *InlineResponse20037) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20037) validateEmbedded(formats strfmt.Registry) error {
+func (m *InlineResponse20037) validateResourceType(formats strfmt.Registry) error {
 
-	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
+	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
 		return err
-	}
-
-	if m.Embedded != nil {
-		if err := m.Embedded.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("_embedded")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -104,27 +234,214 @@ func (m *InlineResponse20037) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20037) validateCurrentPage(formats strfmt.Registry) error {
+func (m *InlineResponse20037) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
+	if err := validate.Required("account_id", "body", m.AccountID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20037) validatePerPage(formats strfmt.Registry) error {
+func (m *InlineResponse20037) validateCPULimits(formats strfmt.Registry) error {
 
-	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
+	if err := validate.Required("cpu_limits", "body", m.CPULimits); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20037) validateTotalCount(formats strfmt.Registry) error {
+func (m *InlineResponse20037) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
+	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateDefault(formats strfmt.Registry) error {
+
+	if err := validate.Required("default", "body", m.Default); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateExposeIntrusionDetectionReports(formats strfmt.Registry) error {
+
+	if err := validate.Required("expose_intrusion_detection_reports", "body", m.ExposeIntrusionDetectionReports); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateIntrusionDetection(formats strfmt.Registry) error {
+
+	if err := validate.Required("intrusion_detection", "body", m.IntrusionDetection); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateMemoryLimits(formats strfmt.Registry) error {
+
+	if err := validate.Required("memory_limits", "body", m.MemoryLimits); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateOutboundIPAddresses(formats strfmt.Registry) error {
+
+	if err := validate.Required("outbound_ip_addresses", "body", m.OutboundIPAddresses); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validatePublic(formats strfmt.Registry) error {
+
+	if err := validate.Required("public", "body", m.Public); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateRegion(formats strfmt.Registry) error {
+
+	if err := validate.Required("region", "body", m.Region); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateSSHHostDsaPublicKey(formats strfmt.Registry) error {
+
+	if err := validate.Required("ssh_host_dsa_public_key", "body", m.SSHHostDsaPublicKey); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateSSHHostEcdsaPublicKey(formats strfmt.Registry) error {
+
+	if err := validate.Required("ssh_host_ecdsa_public_key", "body", m.SSHHostEcdsaPublicKey); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateSSHHostRsaPublicKey(formats strfmt.Registry) error {
+
+	if err := validate.Required("ssh_host_rsa_public_key", "body", m.SSHHostRsaPublicKey); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateSSHPortalHost(formats strfmt.Registry) error {
+
+	if err := validate.Required("ssh_portal_host", "body", m.SSHPortalHost); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateSSHPortalPort(formats strfmt.Registry) error {
+
+	if err := validate.Required("ssh_portal_port", "body", m.SSHPortalPort); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateUpdatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var inlineResponse20037TypeVersionPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["v1","v2"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		inlineResponse20037TypeVersionPropEnum = append(inlineResponse20037TypeVersionPropEnum, v)
+	}
+}
+
+const (
+
+	// InlineResponse20037VersionV1 captures enum value "v1"
+	InlineResponse20037VersionV1 string = "v1"
+
+	// InlineResponse20037VersionV2 captures enum value "v2"
+	InlineResponse20037VersionV2 string = "v2"
+)
+
+// prop value enum
+func (m *InlineResponse20037) validateVersionEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, inlineResponse20037TypeVersionPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *InlineResponse20037) validateVersion(formats strfmt.Registry) error {
+
+	if err := validate.Required("version", "body", m.Version); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateVersionEnum("version", "body", *m.Version); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20037) validateVpcID(formats strfmt.Registry) error {
+
+	if err := validate.Required("vpc_id", "body", m.VpcID); err != nil {
 		return err
 	}
 

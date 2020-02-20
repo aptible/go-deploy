@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetImagesIDReader is a Reader for the GetImagesID structure.
@@ -52,20 +52,20 @@ func NewGetImagesIDOK() *GetImagesIDOK {
 successful
 */
 type GetImagesIDOK struct {
-	Payload *models.InlineResponse20028
+	Payload *models.InlineResponse20023
 }
 
 func (o *GetImagesIDOK) Error() string {
 	return fmt.Sprintf("[GET /images/{id}][%d] getImagesIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetImagesIDOK) GetPayload() *models.InlineResponse20028 {
+func (o *GetImagesIDOK) GetPayload() *models.InlineResponse20023 {
 	return o.Payload
 }
 
 func (o *GetImagesIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20028)
+	o.Payload = new(models.InlineResponse20023)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

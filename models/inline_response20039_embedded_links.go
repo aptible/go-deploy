@@ -16,53 +16,28 @@ import (
 // swagger:model inline_response_200_39__embedded__links
 type InlineResponse20039EmbeddedLinks struct {
 
-	// containers
-	Containers *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"containers,omitempty"`
-
 	// self
 	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
 
-	// service
-	Service *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"service,omitempty"`
+	// stack
+	Stack *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"stack,omitempty"`
 }
 
 // Validate validates this inline response 200 39 embedded links
 func (m *InlineResponse20039EmbeddedLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateContainers(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateSelf(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateService(formats); err != nil {
+	if err := m.validateStack(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *InlineResponse20039EmbeddedLinks) validateContainers(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Containers) { // not required
-		return nil
-	}
-
-	if m.Containers != nil {
-		if err := m.Containers.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("containers")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -84,16 +59,16 @@ func (m *InlineResponse20039EmbeddedLinks) validateSelf(formats strfmt.Registry)
 	return nil
 }
 
-func (m *InlineResponse20039EmbeddedLinks) validateService(formats strfmt.Registry) error {
+func (m *InlineResponse20039EmbeddedLinks) validateStack(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Service) { // not required
+	if swag.IsZero(m.Stack) { // not required
 		return nil
 	}
 
-	if m.Service != nil {
-		if err := m.Service.Validate(formats); err != nil {
+	if m.Stack != nil {
+		if err := m.Stack.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("service")
+				return ve.ValidateName("stack")
 			}
 			return err
 		}

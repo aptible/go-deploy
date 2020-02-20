@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetAppsAppIDServicesReader is a Reader for the GetAppsAppIDServices structure.
@@ -52,20 +52,20 @@ func NewGetAppsAppIDServicesOK() *GetAppsAppIDServicesOK {
 successful
 */
 type GetAppsAppIDServicesOK struct {
-	Payload *models.InlineResponse20041
+	Payload *models.InlineResponse20033
 }
 
 func (o *GetAppsAppIDServicesOK) Error() string {
 	return fmt.Sprintf("[GET /apps/{app_id}/services][%d] getAppsAppIdServicesOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAppsAppIDServicesOK) GetPayload() *models.InlineResponse20041 {
+func (o *GetAppsAppIDServicesOK) GetPayload() *models.InlineResponse20033 {
 	return o.Payload
 }
 
 func (o *GetAppsAppIDServicesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20041)
+	o.Payload = new(models.InlineResponse20033)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

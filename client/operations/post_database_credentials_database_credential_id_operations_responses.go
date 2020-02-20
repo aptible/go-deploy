@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // PostDatabaseCredentialsDatabaseCredentialIDOperationsReader is a Reader for the PostDatabaseCredentialsDatabaseCredentialIDOperations structure.
@@ -52,13 +52,25 @@ func NewPostDatabaseCredentialsDatabaseCredentialIDOperationsCreated() *PostData
 successful
 */
 type PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated struct {
+	Payload *models.InlineResponse20028
 }
 
 func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated) Error() string {
-	return fmt.Sprintf("[POST /database_credentials/{database_credential_id}/operations][%d] postDatabaseCredentialsDatabaseCredentialIdOperationsCreated ", 201)
+	return fmt.Sprintf("[POST /database_credentials/{database_credential_id}/operations][%d] postDatabaseCredentialsDatabaseCredentialIdOperationsCreated  %+v", 201, o.Payload)
+}
+
+func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated) GetPayload() *models.InlineResponse20028 {
+	return o.Payload
 }
 
 func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.InlineResponse20028)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

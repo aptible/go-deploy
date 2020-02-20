@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetVhostsIDReader is a Reader for the GetVhostsID structure.
@@ -52,20 +52,20 @@ func NewGetVhostsIDOK() *GetVhostsIDOK {
 successful
 */
 type GetVhostsIDOK struct {
-	Payload *models.InlineResponse20048
+	Payload *models.InlineResponse2019
 }
 
 func (o *GetVhostsIDOK) Error() string {
 	return fmt.Sprintf("[GET /vhosts/{id}][%d] getVhostsIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetVhostsIDOK) GetPayload() *models.InlineResponse20048 {
+func (o *GetVhostsIDOK) GetPayload() *models.InlineResponse2019 {
 	return o.Payload
 }
 
 func (o *GetVhostsIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20048)
+	o.Payload = new(models.InlineResponse2019)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

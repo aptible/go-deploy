@@ -16,21 +16,80 @@ import (
 // swagger:model inline_response_200_14__embedded__links
 type InlineResponse20014EmbeddedLinks struct {
 
-	// database
-	Database *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database,omitempty"`
+	// account
+	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
+
+	// backups
+	Backups *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"backups,omitempty"`
+
+	// configurations
+	Configurations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"configurations,omitempty"`
+
+	// current configuration
+	CurrentConfiguration *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"current_configuration,omitempty"`
+
+	// database credentials
+	DatabaseCredentials *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database_credentials,omitempty"`
+
+	// database image
+	DatabaseImage *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database_image,omitempty"`
+
+	// dependents
+	Dependents *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"dependents,omitempty"`
+
+	// disk
+	Disk *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"disk,omitempty"`
+
+	// initialize from
+	InitializeFrom *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"initialize_from,omitempty"`
 
 	// operations
 	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
 
 	// self
 	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+
+	// service
+	Service *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"service,omitempty"`
 }
 
 // Validate validates this inline response 200 14 embedded links
 func (m *InlineResponse20014EmbeddedLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateDatabase(formats); err != nil {
+	if err := m.validateAccount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackups(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConfigurations(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCurrentConfiguration(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatabaseCredentials(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatabaseImage(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDependents(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisk(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInitializeFrom(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -42,22 +101,170 @@ func (m *InlineResponse20014EmbeddedLinks) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.validateService(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
 }
 
-func (m *InlineResponse20014EmbeddedLinks) validateDatabase(formats strfmt.Registry) error {
+func (m *InlineResponse20014EmbeddedLinks) validateAccount(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Database) { // not required
+	if swag.IsZero(m.Account) { // not required
 		return nil
 	}
 
-	if m.Database != nil {
-		if err := m.Database.Validate(formats); err != nil {
+	if m.Account != nil {
+		if err := m.Account.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("database")
+				return ve.ValidateName("account")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014EmbeddedLinks) validateBackups(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Backups) { // not required
+		return nil
+	}
+
+	if m.Backups != nil {
+		if err := m.Backups.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backups")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014EmbeddedLinks) validateConfigurations(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Configurations) { // not required
+		return nil
+	}
+
+	if m.Configurations != nil {
+		if err := m.Configurations.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("configurations")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014EmbeddedLinks) validateCurrentConfiguration(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CurrentConfiguration) { // not required
+		return nil
+	}
+
+	if m.CurrentConfiguration != nil {
+		if err := m.CurrentConfiguration.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("current_configuration")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014EmbeddedLinks) validateDatabaseCredentials(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DatabaseCredentials) { // not required
+		return nil
+	}
+
+	if m.DatabaseCredentials != nil {
+		if err := m.DatabaseCredentials.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("database_credentials")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014EmbeddedLinks) validateDatabaseImage(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DatabaseImage) { // not required
+		return nil
+	}
+
+	if m.DatabaseImage != nil {
+		if err := m.DatabaseImage.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("database_image")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014EmbeddedLinks) validateDependents(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Dependents) { // not required
+		return nil
+	}
+
+	if m.Dependents != nil {
+		if err := m.Dependents.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("dependents")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014EmbeddedLinks) validateDisk(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Disk) { // not required
+		return nil
+	}
+
+	if m.Disk != nil {
+		if err := m.Disk.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014EmbeddedLinks) validateInitializeFrom(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.InitializeFrom) { // not required
+		return nil
+	}
+
+	if m.InitializeFrom != nil {
+		if err := m.InitializeFrom.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("initialize_from")
 			}
 			return err
 		}
@@ -94,6 +301,24 @@ func (m *InlineResponse20014EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014EmbeddedLinks) validateService(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Service) { // not required
+		return nil
+	}
+
+	if m.Service != nil {
+		if err := m.Service.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("service")
 			}
 			return err
 		}

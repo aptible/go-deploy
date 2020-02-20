@@ -29,25 +29,21 @@ type InlineResponse2005 struct {
 	// Required: true
 	Links *InlineResponse2004EmbeddedLinks `json:"_links"`
 
+	// aws region
+	// Required: true
+	AwsRegion *string `json:"aws_region"`
+
+	// aws snapshot id
+	// Required: true
+	AwsSnapshotID *string `json:"aws_snapshot_id"`
+
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// git repo
-	// Required: true
-	GitRepo *string `json:"git_repo"`
-
-	// handle
-	// Required: true
-	Handle *string `json:"handle"`
-
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
-
-	// status
-	// Required: true
-	Status *string `json:"status"`
 
 	// updated at
 	// Required: true
@@ -70,23 +66,19 @@ func (m *InlineResponse2005) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateAwsRegion(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAwsSnapshotID(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateGitRepo(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateHandle(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -145,6 +137,24 @@ func (m *InlineResponse2005) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *InlineResponse2005) validateAwsRegion(formats strfmt.Registry) error {
+
+	if err := validate.Required("aws_region", "body", m.AwsRegion); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2005) validateAwsSnapshotID(formats strfmt.Registry) error {
+
+	if err := validate.Required("aws_snapshot_id", "body", m.AwsSnapshotID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *InlineResponse2005) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
@@ -154,36 +164,9 @@ func (m *InlineResponse2005) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse2005) validateGitRepo(formats strfmt.Registry) error {
-
-	if err := validate.Required("git_repo", "body", m.GitRepo); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2005) validateHandle(formats strfmt.Registry) error {
-
-	if err := validate.Required("handle", "body", m.Handle); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *InlineResponse2005) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2005) validateStatus(formats strfmt.Registry) error {
-
-	if err := validate.Required("status", "body", m.Status); err != nil {
 		return err
 	}
 

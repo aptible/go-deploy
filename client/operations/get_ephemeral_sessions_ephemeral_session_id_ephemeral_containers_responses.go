@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetEphemeralSessionsEphemeralSessionIDEphemeralContainersReader is a Reader for the GetEphemeralSessionsEphemeralSessionIDEphemeralContainers structure.
@@ -52,20 +52,20 @@ func NewGetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK() *GetEpheme
 successful
 */
 type GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK struct {
-	Payload *models.InlineResponse20022
+	Payload *models.InlineResponse20017
 }
 
 func (o *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK) Error() string {
 	return fmt.Sprintf("[GET /ephemeral_sessions/{ephemeral_session_id}/ephemeral_containers][%d] getEphemeralSessionsEphemeralSessionIdEphemeralContainersOK  %+v", 200, o.Payload)
 }
 
-func (o *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK) GetPayload() *models.InlineResponse20022 {
+func (o *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK) GetPayload() *models.InlineResponse20017 {
 	return o.Payload
 }
 
 func (o *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20022)
+	o.Payload = new(models.InlineResponse20017)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

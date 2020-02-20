@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetPermissionsReader is a Reader for the GetPermissions structure.
@@ -52,20 +52,20 @@ func NewGetPermissionsOK() *GetPermissionsOK {
 successful
 */
 type GetPermissionsOK struct {
-	Payload *models.InlineResponse20037
+	Payload *models.InlineResponse20030
 }
 
 func (o *GetPermissionsOK) Error() string {
 	return fmt.Sprintf("[GET /permissions][%d] getPermissionsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetPermissionsOK) GetPayload() *models.InlineResponse20037 {
+func (o *GetPermissionsOK) GetPayload() *models.InlineResponse20030 {
 	return o.Payload
 }
 
 func (o *GetPermissionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20037)
+	o.Payload = new(models.InlineResponse20030)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

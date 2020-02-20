@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // PostOperationsOperationIDSSHPortalConnectionsReader is a Reader for the PostOperationsOperationIDSSHPortalConnections structure.
@@ -52,13 +52,25 @@ func NewPostOperationsOperationIDSSHPortalConnectionsCreated() *PostOperationsOp
 successful
 */
 type PostOperationsOperationIDSSHPortalConnectionsCreated struct {
+	Payload *models.InlineResponse2018
 }
 
 func (o *PostOperationsOperationIDSSHPortalConnectionsCreated) Error() string {
-	return fmt.Sprintf("[POST /operations/{operation_id}/ssh_portal_connections][%d] postOperationsOperationIdSshPortalConnectionsCreated ", 201)
+	return fmt.Sprintf("[POST /operations/{operation_id}/ssh_portal_connections][%d] postOperationsOperationIdSshPortalConnectionsCreated  %+v", 201, o.Payload)
+}
+
+func (o *PostOperationsOperationIDSSHPortalConnectionsCreated) GetPayload() *models.InlineResponse2018 {
+	return o.Payload
 }
 
 func (o *PostOperationsOperationIDSSHPortalConnectionsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.InlineResponse2018)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

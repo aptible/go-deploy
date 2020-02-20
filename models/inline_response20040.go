@@ -25,21 +25,33 @@ type InlineResponse20040 struct {
 	// Required: true
 	Links *InlineResponse20039EmbeddedLinks `json:"_links"`
 
+	// connection id
+	// Required: true
+	ConnectionID *string `json:"connection_id"`
+
+	// connection status
+	// Required: true
+	ConnectionStatus *string `json:"connection_status"`
+
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// docker ref
+	// description
 	// Required: true
-	DockerRef *string `json:"docker_ref"`
-
-	// docker repo
-	// Required: true
-	DockerRepo *string `json:"docker_repo"`
+	Description *string `json:"description"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
+
+	// peer account id
+	// Required: true
+	PeerAccountID *string `json:"peer_account_id"`
+
+	// peer vpc id
+	// Required: true
+	PeerVpcID *string `json:"peer_vpc_id"`
 
 	// updated at
 	// Required: true
@@ -58,19 +70,31 @@ func (m *InlineResponse20040) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateConnectionID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConnectionStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDockerRef(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDockerRepo(formats); err != nil {
+	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePeerAccountID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePeerVpcID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -111,6 +135,24 @@ func (m *InlineResponse20040) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *InlineResponse20040) validateConnectionID(formats strfmt.Registry) error {
+
+	if err := validate.Required("connection_id", "body", m.ConnectionID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20040) validateConnectionStatus(formats strfmt.Registry) error {
+
+	if err := validate.Required("connection_status", "body", m.ConnectionStatus); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *InlineResponse20040) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
@@ -120,18 +162,9 @@ func (m *InlineResponse20040) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20040) validateDockerRef(formats strfmt.Registry) error {
+func (m *InlineResponse20040) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.Required("docker_ref", "body", m.DockerRef); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20040) validateDockerRepo(formats strfmt.Registry) error {
-
-	if err := validate.Required("docker_repo", "body", m.DockerRepo); err != nil {
+	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
 	}
 
@@ -141,6 +174,24 @@ func (m *InlineResponse20040) validateDockerRepo(formats strfmt.Registry) error 
 func (m *InlineResponse20040) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20040) validatePeerAccountID(formats strfmt.Registry) error {
+
+	if err := validate.Required("peer_account_id", "body", m.PeerAccountID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20040) validatePeerVpcID(formats strfmt.Registry) error {
+
+	if err := validate.Required("peer_vpc_id", "body", m.PeerVpcID); err != nil {
 		return err
 	}
 

@@ -23,47 +23,71 @@ type InlineResponse20016 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse20016Links `json:"_links"`
+	Links *InlineResponse20014EmbeddedEmbeddedDiskLinks `json:"_links"`
+
+	// attached
+	// Required: true
+	Attached *bool `json:"attached"`
+
+	// availability zone
+	// Required: true
+	AvailabilityZone *string `json:"availability_zone"`
+
+	// baseline iops
+	// Required: true
+	BaselineIops *int64 `json:"baseline_iops"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// default
+	// device
 	// Required: true
-	Default *bool `json:"default"`
+	Device *string `json:"device"`
 
-	// description
+	// ebs volume id
 	// Required: true
-	Description *string `json:"description"`
+	EbsVolumeID *string `json:"ebs_volume_id"`
 
-	// discoverable
+	// ebs volume type
 	// Required: true
-	Discoverable *bool `json:"discoverable"`
+	EbsVolumeType *string `json:"ebs_volume_type"`
 
-	// docker repo
+	// ec2 instance id
 	// Required: true
-	DockerRepo *string `json:"docker_repo"`
+	Ec2InstanceID *string `json:"ec2_instance_id"`
+
+	// filesystem
+	// Required: true
+	Filesystem *string `json:"filesystem"`
+
+	// handle
+	// Required: true
+	Handle *string `json:"handle"`
+
+	// host
+	// Required: true
+	Host *string `json:"host"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// type
+	// key bytes
 	// Required: true
-	Type *string `json:"type"`
+	KeyBytes *int64 `json:"key_bytes"`
+
+	// passphrase
+	// Required: true
+	Passphrase *string `json:"passphrase"`
+
+	// size
+	// Required: true
+	Size *int64 `json:"size"`
 
 	// updated at
 	// Required: true
 	UpdatedAt *string `json:"updated_at"`
-
-	// version
-	// Required: true
-	Version *string `json:"version"`
-
-	// visible
-	// Required: true
-	Visible *bool `json:"visible"`
 }
 
 // Validate validates this inline response 200 16
@@ -78,23 +102,47 @@ func (m *InlineResponse20016) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateAttached(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAvailabilityZone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBaselineIops(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDefault(formats); err != nil {
+	if err := m.validateDevice(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDescription(formats); err != nil {
+	if err := m.validateEbsVolumeID(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDiscoverable(formats); err != nil {
+	if err := m.validateEbsVolumeType(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDockerRepo(formats); err != nil {
+	if err := m.validateEc2InstanceID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFilesystem(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHandle(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHost(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -102,19 +150,19 @@ func (m *InlineResponse20016) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateKeyBytes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePassphrase(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSize(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateUpdatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVersion(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVisible(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -151,6 +199,33 @@ func (m *InlineResponse20016) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *InlineResponse20016) validateAttached(formats strfmt.Registry) error {
+
+	if err := validate.Required("attached", "body", m.Attached); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20016) validateAvailabilityZone(formats strfmt.Registry) error {
+
+	if err := validate.Required("availability_zone", "body", m.AvailabilityZone); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20016) validateBaselineIops(formats strfmt.Registry) error {
+
+	if err := validate.Required("baseline_iops", "body", m.BaselineIops); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *InlineResponse20016) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
@@ -160,36 +235,63 @@ func (m *InlineResponse20016) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20016) validateDefault(formats strfmt.Registry) error {
+func (m *InlineResponse20016) validateDevice(formats strfmt.Registry) error {
 
-	if err := validate.Required("default", "body", m.Default); err != nil {
+	if err := validate.Required("device", "body", m.Device); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20016) validateDescription(formats strfmt.Registry) error {
+func (m *InlineResponse20016) validateEbsVolumeID(formats strfmt.Registry) error {
 
-	if err := validate.Required("description", "body", m.Description); err != nil {
+	if err := validate.Required("ebs_volume_id", "body", m.EbsVolumeID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20016) validateDiscoverable(formats strfmt.Registry) error {
+func (m *InlineResponse20016) validateEbsVolumeType(formats strfmt.Registry) error {
 
-	if err := validate.Required("discoverable", "body", m.Discoverable); err != nil {
+	if err := validate.Required("ebs_volume_type", "body", m.EbsVolumeType); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20016) validateDockerRepo(formats strfmt.Registry) error {
+func (m *InlineResponse20016) validateEc2InstanceID(formats strfmt.Registry) error {
 
-	if err := validate.Required("docker_repo", "body", m.DockerRepo); err != nil {
+	if err := validate.Required("ec2_instance_id", "body", m.Ec2InstanceID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20016) validateFilesystem(formats strfmt.Registry) error {
+
+	if err := validate.Required("filesystem", "body", m.Filesystem); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20016) validateHandle(formats strfmt.Registry) error {
+
+	if err := validate.Required("handle", "body", m.Handle); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20016) validateHost(formats strfmt.Registry) error {
+
+	if err := validate.Required("host", "body", m.Host); err != nil {
 		return err
 	}
 
@@ -205,9 +307,27 @@ func (m *InlineResponse20016) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20016) validateType(formats strfmt.Registry) error {
+func (m *InlineResponse20016) validateKeyBytes(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", m.Type); err != nil {
+	if err := validate.Required("key_bytes", "body", m.KeyBytes); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20016) validatePassphrase(formats strfmt.Registry) error {
+
+	if err := validate.Required("passphrase", "body", m.Passphrase); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20016) validateSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("size", "body", m.Size); err != nil {
 		return err
 	}
 
@@ -217,24 +337,6 @@ func (m *InlineResponse20016) validateType(formats strfmt.Registry) error {
 func (m *InlineResponse20016) validateUpdatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateVersion(formats strfmt.Registry) error {
-
-	if err := validate.Required("version", "body", m.Version); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateVisible(formats strfmt.Registry) error {
-
-	if err := validate.Required("visible", "body", m.Visible); err != nil {
 		return err
 	}
 

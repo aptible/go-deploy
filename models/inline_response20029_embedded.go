@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_29__embedded
 type InlineResponse20029Embedded struct {
 
-	// intrusion detection reports
-	IntrusionDetectionReports []*InlineResponse20029EmbeddedIntrusionDetectionReports `json:"intrusion_detection_reports"`
+	// operations
+	Operations []*InlineResponse2003EmbeddedEmbeddedLastOperation `json:"operations"`
 }
 
 // Validate validates this inline response 200 29 embedded
 func (m *InlineResponse20029Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateIntrusionDetectionReports(formats); err != nil {
+	if err := m.validateOperations(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse20029Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20029Embedded) validateIntrusionDetectionReports(formats strfmt.Registry) error {
+func (m *InlineResponse20029Embedded) validateOperations(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.IntrusionDetectionReports) { // not required
+	if swag.IsZero(m.Operations) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.IntrusionDetectionReports); i++ {
-		if swag.IsZero(m.IntrusionDetectionReports[i]) { // not required
+	for i := 0; i < len(m.Operations); i++ {
+		if swag.IsZero(m.Operations[i]) { // not required
 			continue
 		}
 
-		if m.IntrusionDetectionReports[i] != nil {
-			if err := m.IntrusionDetectionReports[i].Validate(formats); err != nil {
+		if m.Operations[i] != nil {
+			if err := m.Operations[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("intrusion_detection_reports" + "." + strconv.Itoa(i))
+					return ve.ValidateName("operations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

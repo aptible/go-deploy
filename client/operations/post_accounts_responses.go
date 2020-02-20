@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // PostAccountsReader is a Reader for the PostAccounts structure.
@@ -52,13 +52,25 @@ func NewPostAccountsCreated() *PostAccountsCreated {
 successful
 */
 type PostAccountsCreated struct {
+	Payload *models.InlineResponse201
 }
 
 func (o *PostAccountsCreated) Error() string {
-	return fmt.Sprintf("[POST /accounts][%d] postAccountsCreated ", 201)
+	return fmt.Sprintf("[POST /accounts][%d] postAccountsCreated  %+v", 201, o.Payload)
+}
+
+func (o *PostAccountsCreated) GetPayload() *models.InlineResponse201 {
+	return o.Payload
 }
 
 func (o *PostAccountsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.InlineResponse201)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

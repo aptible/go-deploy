@@ -1,27 +1,15 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
-	"path/filepath"
 
-	"github.com/aptible/go-deploy/client/operations"
-	"github.com/go-openapi/strfmt"
-
-	deploy "github.com/aptible/go-deploy/client"
-	"github.com/go-openapi/runtime"
-	httptransport "github.com/go-openapi/runtime/client"
-	"github.com/mitchellh/go-homedir"
+	"github.com/reggregory/go-deploy/aptible"
+	"github.com/reggregory/go-deploy/client/operations"
 )
 
 func main() {
-	token, err := getToken()
-	if err != nil {
-		log.Fatalf("couldn't do it: %s", err)
-	}
-	ops, err := getOperations(token)
+	ops, err := getOperations()
 	if err != nil {
 		log.Fatalf("couldn't do it: %s", err)
 	}
@@ -32,37 +20,11 @@ func main() {
 	}
 }
 
-func getToken() (string, error) {
-	home, err := homedir.Dir()
-	if err != nil {
-		return "", err
-	}
-	dat, err := ioutil.ReadFile(filepath.Join(home, ".aptible", "tokens.json"))
-	if err != nil {
-		return "", err
-	}
-
-	var tokens map[string]string
-	if err := json.Unmarshal(dat, &tokens); err != nil {
-		panic(err)
-	}
-	return tokens["https://auth.aptible.com"], nil
-}
-
-func getOperations(token string) ([]string, error) {
-	rt := httptransport.New(
-		deploy.DefaultHost,
-		deploy.DefaultBasePath,
-		deploy.DefaultSchemes)
-	rt.Consumers["application/hal+json"] = runtime.JSONConsumer()
-	rt.Producers["application/hal+json"] = runtime.JSONProducer()
-	client := deploy.New(rt, strfmt.Default)
-
-	bearerTokenAuth := httptransport.BearerToken(token)
-
+func getOperations() ([]string, error) {
+	c := aptible.SetUpClient()
 	page := int64(1)
-	params := operations.NewGetAccountsAccountIDOperationsParams().WithAccountID(1).WithPage(&page)
-	resp, err := client.Operations.GetAccountsAccountIDOperations(params, bearerTokenAuth)
+	params := operations.NewGetAccountsAccountIDOperationsParams().WithAccountID(2).WithPage(&page)
+	resp, err := c.Client.Operations.GetAccountsAccountIDOperations(params, c.Token)
 	if err != nil {
 		return []string{}, err
 	}
