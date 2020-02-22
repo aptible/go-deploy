@@ -39,19 +39,32 @@ func (c *Client) CreateEndpoint(app_id int64) (*models.InlineResponse2019, error
 	for *payload.Status != "provisioned" {
 		time.Sleep(1 * time.Second)
 		fmt.Println("Endpoint is still not provisioned.")
-		payload, err = c.GetEndpoint(endpoint_id)
+		payload, _, err = c.GetEndpoint(endpoint_id)
 	}
 
 	return payload, nil
 }
 
-func (c *Client) GetEndpoint(endpoint_id int64) (*models.InlineResponse2019, error) {
+// GetEndpoint() returns the response's payload, a bool saying whether or not the endpoint
+// has been deprovisioned, and an error.
+func (c *Client) GetEndpoint(endpoint_id int64) (*models.InlineResponse2019, bool, error) {
 	params := operations.NewGetVhostsIDParams().WithID(endpoint_id)
 	resp, err := c.Client.Operations.GetVhostsID(params, c.Token)
 	if err != nil {
-		return nil, err
+		err_struct := err.(*operations.GetVhostsIDDefault)
+		switch err_struct.Code() {
+		case 404:
+			// If deleted == true, then the endpoint needs to be removed from Terraform.
+			return nil, true, nil
+		case 401:
+			e := fmt.Errorf("Make sure you have the correct auth token.")
+			return nil, false, e
+		default:
+			e := fmt.Errorf("There was an error when completing the request to get the app. \n[ERROR] -%s", err)
+			return nil, false, e
+		}
 	}
-	return resp.Payload, nil
+	return resp.Payload, false, nil
 }
 
 func (c *Client) GetServiceID(app_id int64) (int64, error) {
