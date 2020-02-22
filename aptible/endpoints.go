@@ -2,6 +2,7 @@ package aptible
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/reggregory/go-deploy/client/operations"
 	"github.com/reggregory/go-deploy/models"
@@ -22,17 +23,35 @@ func (c *Client) CreateEndpoint(app_id int64) (int64, error) {
 		return 0, err
 	}
 
+	payload := resp.Payload
+	endpoint_id := *payload.ID
+
 	// Create "provision" operation
-	vhost_id := *resp.Payload.ID
 	req_type = "provision"
 	op_req := models.AppRequest26{Type: &req_type}
-	op_params := operations.NewPostVhostsVhostIDOperationsParams().WithVhostID(vhost_id).WithAppRequest(&op_req)
+	op_params := operations.NewPostVhostsVhostIDOperationsParams().WithVhostID(endpoint_id).WithAppRequest(&op_req)
 	_, err = c.Client.Operations.PostVhostsVhostIDOperations(op_params, c.Token)
 	if err != nil {
 		return 0, err
 	}
 
-	return vhost_id, nil
+	// Wait for endpoint to be provisioned.
+	for *payload.Status != "provisioned" {
+		time.Sleep(1 * time.Second)
+		fmt.Println("Endpoint is still not provisioned.")
+		payload, err = c.GetEndpoint(endpoint_id)
+	}
+
+	return endpoint_id, nil
+}
+
+func (c *Client) GetEndpoint(endpoint_id int64) (*models.InlineResponse2019, error) {
+	params := operations.NewGetVhostsIDParams().WithID(endpoint_id)
+	resp, err := c.Client.Operations.GetVhostsID(params, c.Token)
+	if err != nil {
+		return nil, err
+	}
+	return resp.Payload, nil
 }
 
 func (c *Client) GetServiceID(app_id int64) (int64, error) {
