@@ -8,10 +8,10 @@ import (
 	"github.com/reggregory/go-deploy/models"
 )
 
-func (c *Client) CreateEndpoint(app_id int64) (int64, error) {
+func (c *Client) CreateEndpoint(app_id int64) (*models.InlineResponse2019, error) {
 	service_id, err := c.GetServiceID(app_id)
 	if err != nil {
-		return 0, err
+		return nil, err
 	}
 
 	// Create Vhost API object
@@ -20,7 +20,7 @@ func (c *Client) CreateEndpoint(app_id int64) (int64, error) {
 	params := operations.NewPostServicesServiceIDVhostsParams().WithServiceID(service_id).WithAppRequest(&app_req)
 	resp, err := c.Client.Operations.PostServicesServiceIDVhosts(params, c.Token)
 	if err != nil {
-		return 0, err
+		return nil, err
 	}
 
 	payload := resp.Payload
@@ -32,7 +32,7 @@ func (c *Client) CreateEndpoint(app_id int64) (int64, error) {
 	op_params := operations.NewPostVhostsVhostIDOperationsParams().WithVhostID(endpoint_id).WithAppRequest(&op_req)
 	_, err = c.Client.Operations.PostVhostsVhostIDOperations(op_params, c.Token)
 	if err != nil {
-		return 0, err
+		return nil, err
 	}
 
 	// Wait for endpoint to be provisioned.
@@ -42,7 +42,7 @@ func (c *Client) CreateEndpoint(app_id int64) (int64, error) {
 		payload, err = c.GetEndpoint(endpoint_id)
 	}
 
-	return endpoint_id, nil
+	return payload, nil
 }
 
 func (c *Client) GetEndpoint(endpoint_id int64) (*models.InlineResponse2019, error) {
@@ -65,7 +65,7 @@ func (c *Client) GetServiceID(app_id int64) (int64, error) {
 		return 0, fmt.Errorf("The app has no services.")
 	}
 	// for i := 0; i < len(services); i++ {
-	// TODO: add logic for finding "right" service (whatever that means)
+	// TODO: add logic for finding "right" service
 	// }
 
 	id := services[0].ID
