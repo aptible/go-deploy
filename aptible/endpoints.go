@@ -8,6 +8,7 @@ import (
 	"github.com/reggregory/go-deploy/models"
 )
 
+// CreateEndpoint() creates Vhost API object + provision operation on the app.
 func (c *Client) CreateEndpoint(app_id int64) (*models.InlineResponse2019, error) {
 	service_id, err := c.GetServiceID(app_id)
 	if err != nil {
@@ -38,7 +39,6 @@ func (c *Client) CreateEndpoint(app_id int64) (*models.InlineResponse2019, error
 	// Wait for endpoint to be provisioned.
 	for *payload.Status != "provisioned" {
 		time.Sleep(1 * time.Second)
-		fmt.Println("Endpoint is still not provisioned.")
 		payload, _, err = c.GetEndpoint(endpoint_id)
 	}
 
@@ -67,6 +67,17 @@ func (c *Client) GetEndpoint(endpoint_id int64) (*models.InlineResponse2019, boo
 	return resp.Payload, false, nil
 }
 
+// DeleteEndpoint() deletes the endpoint.
+func (c *Client) DeleteEndpoint(endpoint_id int64) error {
+	params := operations.NewDeleteVhostsIDParams().WithID(endpoint_id)
+	_, err := c.Client.Operations.DeleteVhostsID(params, c.Token)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// GetServiceID() Gets the service ID + acts as a helper for GetEndpoint().
 func (c *Client) GetServiceID(app_id int64) (int64, error) {
 	params := operations.NewGetAppsAppIDServicesParams().WithAppID(app_id)
 	resp, err := c.Client.Operations.GetAppsAppIDServices(params, c.Token)
