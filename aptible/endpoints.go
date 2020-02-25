@@ -67,6 +67,31 @@ func (c *Client) GetEndpoint(endpoint_id int64) (*models.InlineResponse2019, boo
 	return resp.Payload, false, nil
 }
 
+// UpdateEndpoint() takes in an endpoint_id and updates needed, and updates the endpoint.
+func (c *Client) UpdateEndpoint(endpoint_id int64, updates map[string]interface{}) error {
+	app_req := models.AppRequest34{}
+
+	if _, ok := updates["container_port"]; ok {
+		app_req.ContainerPort = updates["container_port"].(int64)
+	}
+
+	if _, ok := updates["ip_filtering"]; ok {
+		app_req.IPWhitelist = updates["ip_filtering"].([]string)
+	}
+
+	if _, ok := updates["platform"]; ok {
+		app_req.Platform = updates["platform"].(string)
+	}
+
+	params := operations.NewPutVhostsIDParams().WithID(endpoint_id).WithAppRequest(&app_req)
+	_, err := c.Client.Operations.PutVhostsID(params, c.Token)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // DeleteEndpoint() deletes the endpoint.
 func (c *Client) DeleteEndpoint(endpoint_id int64) error {
 	params := operations.NewDeleteVhostsIDParams().WithID(endpoint_id)
