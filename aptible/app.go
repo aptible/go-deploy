@@ -3,8 +3,8 @@ package aptible
 import (
 	"fmt"
 
-	"github.com/reggregory/go-deploy/client/operations"
-	"github.com/reggregory/go-deploy/models"
+	"github.com/aptible/go-deploy/client/operations"
+	"github.com/aptible/go-deploy/models"
 )
 
 func (c *Client) CreateApp(handle string, account_id int64) (*models.InlineResponse2011, error) {
