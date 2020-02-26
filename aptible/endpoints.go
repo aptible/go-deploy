@@ -9,7 +9,7 @@ import (
 )
 
 // CreateEndpoint() creates Vhost API object + provision operation on the app.
-func (c *Client) CreateEndpoint(app_id int64) (*models.InlineResponse2019, error) {
+func (c *Client) CreateEndpoint(app_id int64, attrs map[string]interface{}) (*models.InlineResponse2019, error) {
 	service_id, err := c.GetServiceID(app_id)
 	if err != nil {
 		return nil, err
@@ -17,7 +17,15 @@ func (c *Client) CreateEndpoint(app_id int64) (*models.InlineResponse2019, error
 
 	// Create Vhost API object
 	req_type := "http_proxy_protocol"
-	app_req := models.AppRequest33{Type: &req_type, Default: true}
+	app_req := models.AppRequest33{
+		Type:          &req_type,
+		Default:       true,
+		Internal:      attrs["internal"].(bool),
+		ContainerPort: attrs["container_port"].(int64),
+		IPWhitelist:   attrs["ip_filtering"].([]string),
+		Platform:      attrs["platform"].(string),
+	}
+
 	params := operations.NewPostServicesServiceIDVhostsParams().WithServiceID(service_id).WithAppRequest(&app_req)
 	resp, err := c.Client.Operations.PostServicesServiceIDVhosts(params, c.Token)
 	if err != nil {
