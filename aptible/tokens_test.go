@@ -68,6 +68,7 @@ func TestGetToken(t *testing.T) {
 			if err != nil {
 				t.Error("Failed to create the temp tokens.json", err)
 			}
+			os.Unsetenv("APTIBLE_ACCESS_TOKEN")
 			os.Setenv("APTIBLE_AUTH_ROOT_URL", tc.authURL)
 			ans, err := GetToken()
 			// Unexpected error encountered
