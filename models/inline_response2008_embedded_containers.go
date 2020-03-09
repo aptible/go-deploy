@@ -56,7 +56,7 @@ type InlineResponse2008EmbeddedContainers struct {
 	Port int64 `json:"port,omitempty"`
 
 	// port mapping
-	PortMapping []int64 `json:"port_mapping"`
+	PortMapping [][]int64 `json:"port_mapping"`
 
 	// status
 	Status string `json:"status,omitempty"`

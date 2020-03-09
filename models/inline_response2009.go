@@ -71,7 +71,7 @@ type InlineResponse2009 struct {
 
 	// port mapping
 	// Required: true
-	PortMapping []int64 `json:"port_mapping"`
+	PortMapping [][]int64 `json:"port_mapping"`
 
 	// status
 	// Required: true
