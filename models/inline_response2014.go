@@ -63,7 +63,7 @@ type InlineResponse2014 struct {
 
 	// port mapping
 	// Required: true
-	PortMapping []int64 `json:"port_mapping"`
+	PortMapping [][]int64 `json:"port_mapping"`
 
 	// provisioned
 	// Required: true

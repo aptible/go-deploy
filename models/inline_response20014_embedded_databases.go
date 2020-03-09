@@ -50,7 +50,7 @@ type InlineResponse20014EmbeddedDatabases struct {
 	Passphrase *string `json:"passphrase,omitempty"`
 
 	// port mapping
-	PortMapping []int64 `json:"port_mapping"`
+	PortMapping [][]int64 `json:"port_mapping"`
 
 	// provisioned
 	Provisioned bool `json:"provisioned,omitempty"`
