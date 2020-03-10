@@ -13,14 +13,21 @@ type DBUpdates struct {
 	DiskSize      int64
 }
 
-func (c *Client) CreateDatabase(account_id int64, handle string, db_type string) (*models.InlineResponse2014, error) {
+type DBCreateAttrs struct {
+	AccountID     int64
+	Handle        *string
+	Type          string
+	ContainerSize int64
+	DiskSize      int64
+}
+
+func (c *Client) CreateDatabase(attrs DBCreateAttrs) (*models.InlineResponse2014, error) {
 	// creates API object
 	app_req := models.AppRequest12{
-		Handle: &handle,
-		Type:   db_type,
+		Handle: attrs.Handle,
+		Type:   attrs.Type,
 	}
-
-	params := operations.NewPostAccountsAccountIDDatabasesParams().WithAccountID(account_id).WithAppRequest(&app_req)
+	params := operations.NewPostAccountsAccountIDDatabasesParams().WithAccountID(attrs.AccountID).WithAppRequest(&app_req)
 	resp, err := c.Client.Operations.PostAccountsAccountIDDatabases(params, c.Token)
 	if err != nil {
 		return nil, err
@@ -28,11 +35,11 @@ func (c *Client) CreateDatabase(account_id int64, handle string, db_type string)
 
 	// provisions database
 	req_type := "provision"
-
 	prov_req := models.AppRequest23{
-		Type: &req_type,
+		Type:          &req_type,
+		ContainerSize: attrs.ContainerSize,
+		DiskSize:      attrs.DiskSize,
 	}
-
 	db_id := *resp.Payload.ID
 	provision_params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithAppRequest(&prov_req)
 	op_resp, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(provision_params, c.Token)
