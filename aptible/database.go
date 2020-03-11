@@ -87,9 +87,15 @@ func (c *Client) UpdateDatabase(db_id int64, updates DBUpdates) error {
 	req_type := "restart"
 
 	app_req := models.AppRequest23{
-		Type:          &req_type,
-		ContainerSize: updates.ContainerSize,
-		DiskSize:      updates.DiskSize,
+		Type: &req_type,
+	}
+
+	if updates.ContainerSize >= 512 {
+		app_req.ContainerSize = updates.ContainerSize
+	}
+
+	if updates.DiskSize >= 10 {
+		app_req.DiskSize = updates.DiskSize
 	}
 
 	params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithAppRequest(&app_req)
