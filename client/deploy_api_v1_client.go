@@ -11,7 +11,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/reggregory/go-deploy/client/operations"
+	"github.com/aptible/go-deploy/client/operations"
 )
 
 // Default deploy API v1 HTTP client.

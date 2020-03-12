@@ -1,4 +1,4 @@
-module github.com/reggregory/go-deploy
+module github.com/aptible/go-deploy
 
 go 1.13
 

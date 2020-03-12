@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/reggregory/go-deploy/aptible"
-	"github.com/reggregory/go-deploy/client/operations"
+	"github.com/aptible/go-deploy/aptible"
+	"github.com/aptible/go-deploy/client/operations"
 )
 
 func main() {
