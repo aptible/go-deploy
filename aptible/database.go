@@ -48,7 +48,7 @@ func (c *Client) CreateDatabase(attrs DBCreateAttrs) (*models.InlineResponse2014
 	}
 
 	op_id := *op_resp.Payload.ID
-	err = c.WaitOnProvisionStatus(op_id)
+	err = c.WaitForOperation(op_id)
 	if err != nil {
 		return nil, err
 	}
@@ -119,8 +119,8 @@ func (c *Client) DeleteDatabase(db_id int64) error {
 
 // HELPERS //
 
-// Waits for provision operation to succeed.
-func (c *Client) WaitOnProvisionStatus(op_id int64) error {
+// Waits for operation to succeed.
+func (c *Client) WaitForOperation(op_id int64) error {
 
 	params := operations.NewGetOperationsIDParams().WithID(op_id)
 	op, err := c.Client.Operations.GetOperationsID(params, c.Token)
