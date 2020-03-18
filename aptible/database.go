@@ -14,20 +14,19 @@ type DBUpdates struct {
 }
 
 type DBCreateAttrs struct {
-	AccountID     int64
 	Handle        *string
 	Type          string
 	ContainerSize int64
 	DiskSize      int64
 }
 
-func (c *Client) CreateDatabase(attrs DBCreateAttrs) (*models.InlineResponse2014, error) {
+func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.InlineResponse2014, error) {
 	// creates API object
 	app_req := models.AppRequest12{
 		Handle: attrs.Handle,
 		Type:   attrs.Type,
 	}
-	params := operations.NewPostAccountsAccountIDDatabasesParams().WithAccountID(attrs.AccountID).WithAppRequest(&app_req)
+	params := operations.NewPostAccountsAccountIDDatabasesParams().WithAccountID(env_id).WithAppRequest(&app_req)
 	resp, err := c.Client.Operations.PostAccountsAccountIDDatabases(params, c.Token)
 	if err != nil {
 		return nil, err

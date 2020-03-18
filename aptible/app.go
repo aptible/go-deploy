@@ -7,9 +7,9 @@ import (
 	"github.com/aptible/go-deploy/models"
 )
 
-func (c *Client) CreateApp(handle string, account_id int64) (*models.InlineResponse2011, error) {
+func (c *Client) CreateApp(handle string, env_id int64) (*models.InlineResponse2011, error) {
 	appreq := models.AppRequest3{Handle: &handle}
-	params := operations.NewPostAccountsAccountIDAppsParams().WithAccountID(account_id).WithAppRequest(&appreq)
+	params := operations.NewPostAccountsAccountIDAppsParams().WithAccountID(env_id).WithAppRequest(&appreq)
 	resp, err := c.Client.Operations.PostAccountsAccountIDApps(params, c.Token)
 	if err != nil {
 		return nil, err
@@ -17,9 +17,9 @@ func (c *Client) CreateApp(handle string, account_id int64) (*models.InlineRespo
 	return resp.Payload, err
 }
 
-func (c *Client) DeployApp(app_id int64, env map[string]interface{}) error {
+func (c *Client) DeployApp(app_id int64, config map[string]interface{}) error {
 	req_type := "deploy"
-	app_req := models.AppRequest21{Type: &req_type, Env: env, ContainerCount: 1, ContainerSize: 1024}
+	app_req := models.AppRequest21{Type: &req_type, Env: config, ContainerCount: 1, ContainerSize: 1024}
 	app_params := operations.NewPostAppsAppIDOperationsParams().WithAppID(app_id).WithAppRequest(&app_req)
 	_, err := c.Client.Operations.PostAppsAppIDOperations(app_params, c.Token)
 	return err
@@ -46,17 +46,17 @@ func (c *Client) GetApp(app_id int64) (bool, error) {
 	return false, err
 }
 
-// Updates the `env` based on changes made in the config file
-func (c *Client) UpdateEnv(env map[string]interface{}, app_id int64) error {
+// Updates the `config` based on changes made in the config file
+func (c *Client) UpdateApp(config map[string]interface{}, app_id int64) error {
 	app_req := models.AppRequest21{}
-	if _, ok := env["APTIBLE_DOCKER_IMAGE"]; ok {
+	if _, ok := config["APTIBLE_DOCKER_IMAGE"]; ok {
 		// Deploying app
 		req_type := "deploy"
-		app_req = models.AppRequest21{Type: &req_type, Env: env, ContainerCount: 1, ContainerSize: 1024}
+		app_req = models.AppRequest21{Type: &req_type, Env: config, ContainerCount: 1, ContainerSize: 1024}
 	} else {
 		// Configuring app
 		req_type := "configure"
-		app_req = models.AppRequest21{Type: &req_type, Env: env}
+		app_req = models.AppRequest21{Type: &req_type, Env: config}
 	}
 
 	app_params := operations.NewPostAppsAppIDOperationsParams().WithAppID(app_id).WithAppRequest(&app_req)
