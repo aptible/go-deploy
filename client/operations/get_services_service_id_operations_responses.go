@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/reggregory/go-deploy/models"
+	models "github.com/aptible/go-deploy/models"
 )
 
 // GetServicesServiceIDOperationsReader is a Reader for the GetServicesServiceIDOperations structure.
