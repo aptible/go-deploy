@@ -21,7 +21,10 @@ func main() {
 }
 
 func getOperations() ([]string, error) {
-	c := aptible.SetUpClient()
+	c, err := aptible.SetUpClient()
+	if err != nil {
+		return []string{}, err
+	}
 	page := int64(1)
 	params := operations.NewGetAccountsAccountIDOperationsParams().WithAccountID(2).WithPage(&page)
 	resp, err := c.Client.Operations.GetAccountsAccountIDOperations(params, c.Token)
