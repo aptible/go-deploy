@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aptible/go-deploy/client/operations"
-	"github.com/aptible/go-deploy/models"
+	"github.com/reggregory/go-deploy/client/operations"
+	"github.com/reggregory/go-deploy/models"
 )
 
 type DBUpdates struct {
