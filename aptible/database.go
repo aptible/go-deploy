@@ -140,3 +140,21 @@ func (c *Client) WaitForOperation(op_id int64) error {
 
 	return nil
 }
+
+// Gets database with specific handle.
+func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.InlineResponse20014EmbeddedDatabases, error) {
+	params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(env_id)
+	resp, err := c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	databases := resp.Payload.Embedded.Databases
+	for i := range databases {
+		if databases[i].Handle == handle {
+			return databases[i], nil
+		}
+	}
+
+	return nil, fmt.Errorf("There are no databases with handle: %s", handle)
+}
