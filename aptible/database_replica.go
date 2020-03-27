@@ -39,7 +39,7 @@ func (c *Client) CreateReplica(attrs ReplicateAttrs) (*models.InlineResponse2001
 	}
 
 	// waiting for provision operation to complete...
-	for payload.Status != "provisioned" {
+	for payload.Status != "provisioned" && payload.Status != "failed" {
 		payload, err = c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
 		if err != nil {
 			return nil, err

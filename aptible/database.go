@@ -159,3 +159,27 @@ func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.Inl
 
 	return nil, fmt.Errorf("There are no databases with handle: %s", handle)
 }
+
+// Gets latest provision operation for updating databases
+func (c *Client) GetLatestProvisionOperation(db_id int64) (*models.InlineResponse2003EmbeddedEmbeddedLastOperation, error) {
+	params := operations.NewGetDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id)
+	resp, err := c.Client.Operations.GetDatabasesDatabaseIDOperations(params, c.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	// TODO: go page by page through the ops...
+
+	ops := resp.Payload.Embedded.Operations
+	for i := range ops {
+		if IsLatestProvision(ops[i]) {
+			return ops[i], nil
+		}
+	}
+
+	return nil, fmt.Errorf("Could not find a provision operation, unknown error, etc.")
+}
+
+func IsLatestProvision(op *models.InlineResponse2003EmbeddedEmbeddedLastOperation) bool {
+	return (op.Type == "provision" && op.ContainerSize != nil && op.DiskSize != 0)
+}
