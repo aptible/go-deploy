@@ -137,6 +137,7 @@ func (c *Client) WaitForOperation(op_id int64) error {
 		status = *op.Payload.Status
 		fmt.Println("Still creating...")
 	}
+	fmt.Println("Done!")
 
 	return nil
 }

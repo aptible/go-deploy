@@ -1,17 +1,22 @@
 package aptible
 
 import (
+	"fmt"
+	"time"
+
 	"github.com/reggregory/go-deploy/client/operations"
 	"github.com/reggregory/go-deploy/models"
 )
 
 type ReplicateAttrs struct {
+	EnvID         int64
+	DatabaseID    int64
 	ReplicaHandle string
 	ContainerSize int64
 	DiskSize      int64
 }
 
-func (c *Client) CreateReplica(db_id int64, attrs ReplicateAttrs) (*models.InlineResponse20014EmbeddedDatabases, error) {
+func (c *Client) CreateReplica(attrs ReplicateAttrs) (*models.InlineResponse20014EmbeddedDatabases, error) {
 	op_type := "replicate"
 
 	req := models.AppRequest23{
@@ -21,16 +26,28 @@ func (c *Client) CreateReplica(db_id int64, attrs ReplicateAttrs) (*models.Inlin
 		DiskSize:      attrs.DiskSize,
 	}
 
-	op_params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithAppRequest(&req)
+	op_params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(attrs.DatabaseID).WithAppRequest(&req)
 	_, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(op_params, c.Token)
 	if err != nil {
 		return nil, err
 	}
 
-	payload, err := c.GetDatabaseFromHandle(4, attrs.ReplicaHandle)
+	// waiting for provision operation to start...
+	payload, err := c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
 	for payload == nil && err != nil {
-		payload, err = c.GetDatabaseFromHandle(4, attrs.ReplicaHandle)
+		payload, err = c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
 	}
+
+	// waiting for provision operation to complete...
+	for payload.Status != "provisioned" {
+		payload, err = c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
+		if err != nil {
+			return nil, err
+		}
+		time.Sleep(3 * time.Second)
+		fmt.Println("Still creating...")
+	}
+	fmt.Println("Done!")
 	return payload, nil
 }
 
