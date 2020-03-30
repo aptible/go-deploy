@@ -18,6 +18,7 @@ func main() {
 	for _, op := range ops {
 		fmt.Println(op)
 	}
+}
 
 func getOperations() ([]string, error) {
 	c, err := aptible.SetUpClient()
