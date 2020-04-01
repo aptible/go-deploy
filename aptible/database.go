@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aptible/go-deploy/client/operations"
-	"github.com/aptible/go-deploy/models"
+	"github.com/reggregory/go-deploy/client/operations"
+	"github.com/reggregory/go-deploy/models"
 )
 
 type DBUpdates struct {
@@ -20,7 +20,14 @@ type DBCreateAttrs struct {
 	DiskSize      int64
 }
 
-func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.InlineResponse2014, error) {
+type DBCreated struct {
+	ID            int64
+	ConnectionURL string
+	ContainerSize string
+	DiskSize      string
+}
+
+func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.InlineResponse20014EmbeddedDatabases, error) {
 	// creates API object
 	app_req := models.AppRequest12{
 		Handle: attrs.Handle,
@@ -31,7 +38,6 @@ func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.Inli
 	if err != nil {
 		return nil, err
 	}
-
 	// provisions database
 	req_type := "provision"
 	prov_req := models.AppRequest23{
@@ -45,46 +51,65 @@ func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.Inli
 	if err != nil {
 		return nil, err
 	}
-
+	// waits for provision operation to finish
 	op_id := *op_resp.Payload.ID
 	err = c.WaitForOperation(op_id)
 	if err != nil {
 		return nil, err
 	}
-
-	payload, _, err := c.GetDatabase(db_id)
+	// gets database
+	payload, err := c.GetDatabaseFromHandle(env_id, *attrs.Handle)
 	return payload, nil
 }
 
-func (c *Client) GetDatabase(db_id int64) (*models.InlineResponse2014, bool, error) {
-	params := operations.NewGetDatabasesIDParams().WithID(db_id)
-	resp, err := c.Client.Operations.GetDatabasesID(params, c.Token)
+func (c *Client) GetDatabase(db_id int64) (DBUpdates, bool, error) {
+	deleted := false
+	updates := DBUpdates{}
+	page := int64(1)
+	payload, err := c.GetDatabaseOperations(db_id, page)
 	if err != nil {
 		switch err.(type) {
 		case *operations.GetDatabasesIDDefault:
-			err_struct := err.(*operations.GetDatabasesIDDefault)
-			switch err_struct.Code() {
-			case 404:
-				// If deleted == true, then the database needs to be removed from Terraform.
-				return nil, true, nil
-			case 401:
-				e := fmt.Errorf("Make sure you have the correct auth token.")
-				return nil, false, e
-			default:
-				e := fmt.Errorf("There was an error when completing the request to get the database. \n[ERROR] -%s", err)
-				return nil, false, e
+			if err.(*operations.GetDatabasesIDDefault).Code() == 404 {
+				deleted = true
 			}
+			return updates, deleted, err
 		default:
-			e := fmt.Errorf("There was an unknown error. \n[ERROR] -%s", err)
-			return nil, false, e
+			return updates, deleted, err
 		}
 	}
-	return resp.Payload, false, nil
+	// get updates to container size + disk size from operations
+	num_ops := *payload.TotalCount
+	per_pg := *payload.PerPage
+	for num_ops > 0 {
+		ops := payload.Embedded.Operations
+		GetUpdatesFromOperations(ops, &updates)
+		// if more pages left
+		if num_ops-per_pg > 0 {
+			num_ops -= per_pg
+			page += 1
+			// get new page of ops
+			payload, err = c.GetDatabaseOperations(db_id, page)
+			if err != nil {
+				switch err.(type) {
+				case *operations.GetDatabasesDatabaseIDOperationsDefault:
+					if err.(*operations.GetDatabasesDatabaseIDOperationsDefault).Code() == 404 {
+						deleted = true
+					}
+					return updates, deleted, err
+				default:
+					return updates, deleted, err
+				}
+			}
+		} else {
+			return updates, deleted, nil
+		}
+	}
+	return updates, deleted, fmt.Errorf("Unknown error occurred.")
 }
 
 func (c *Client) UpdateDatabase(db_id int64, updates DBUpdates) error {
 	req_type := "restart"
-
 	app_req := models.AppRequest23{
 		Type: &req_type,
 	}
@@ -92,28 +117,19 @@ func (c *Client) UpdateDatabase(db_id int64, updates DBUpdates) error {
 	if updates.ContainerSize >= 512 {
 		app_req.ContainerSize = updates.ContainerSize
 	}
-
 	if updates.DiskSize >= 10 {
 		app_req.DiskSize = updates.DiskSize
 	}
 
 	params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithAppRequest(&app_req)
 	_, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 func (c *Client) DeleteDatabase(db_id int64) error {
 	params := operations.NewDeleteDatabasesIDParams().WithID(db_id)
 	_, err := c.Client.Operations.DeleteDatabasesID(params, c.Token)
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 // HELPERS //
@@ -142,44 +158,26 @@ func (c *Client) WaitForOperation(op_id int64) error {
 	return nil
 }
 
-// Gets database with specific handle.
-func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.InlineResponse20014EmbeddedDatabases, error) {
-	params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(env_id)
-	resp, err := c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
-	if err != nil {
-		return nil, err
-	}
-
-	databases := resp.Payload.Embedded.Databases
-	for i := range databases {
-		if databases[i].Handle == handle {
-			return databases[i], nil
-		}
-	}
-
-	return nil, fmt.Errorf("There are no databases with handle: %s", handle)
-}
-
-// Gets latest provision operation for updating databases
-func (c *Client) GetLatestProvisionOperation(db_id int64) (*models.InlineResponse2003EmbeddedEmbeddedLastOperation, error) {
-	params := operations.NewGetDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id)
+// Gets operations of a database on a per page basis
+func (c *Client) GetDatabaseOperations(db_id int64, page int64) (*models.InlineResponse20029, error) {
+	params := operations.NewGetDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithPage(&page)
 	resp, err := c.Client.Operations.GetDatabasesDatabaseIDOperations(params, c.Token)
 	if err != nil {
 		return nil, err
 	}
-
-	// TODO: go page by page through the ops...
-
-	ops := resp.Payload.Embedded.Operations
-	for i := range ops {
-		if IsLatestProvision(ops[i]) {
-			return ops[i], nil
-		}
-	}
-
-	return nil, fmt.Errorf("Could not find a provision operation, unknown error, etc.")
+	return resp.Payload, nil
 }
 
-func IsLatestProvision(op *models.InlineResponse2003EmbeddedEmbeddedLastOperation) bool {
-	return (op.Type == "provision" && op.ContainerSize != nil && op.DiskSize != 0)
+// Gets updates to container and disk size
+func GetUpdatesFromOperations(ops []*models.InlineResponse2003EmbeddedEmbeddedLastOperation, updates *DBUpdates) {
+	for i := range ops {
+		if ops[i].Type == "provision" || ops[i].Type == "restart" {
+			if ops[i].ContainerSize != nil && updates.ContainerSize == 0 {
+				updates.ContainerSize = *ops[i].ContainerSize
+			}
+			if ops[i].DiskSize != 0 && updates.DiskSize == 0 {
+				updates.DiskSize = ops[i].DiskSize
+			}
+		}
+	}
 }

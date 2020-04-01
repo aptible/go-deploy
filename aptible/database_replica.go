@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aptible/go-deploy/client/operations"
-	"github.com/aptible/go-deploy/models"
+	"github.com/reggregory/go-deploy/client/operations"
+	"github.com/reggregory/go-deploy/models"
 )
 
 type ReplicateAttrs struct {
@@ -51,7 +51,7 @@ func (c *Client) CreateReplica(attrs ReplicateAttrs) (*models.InlineResponse2001
 	return payload, nil
 }
 
-func (c *Client) GetReplica(replica_id int64) (*models.InlineResponse2014, bool, error) {
+func (c *Client) GetReplica(replica_id int64) (DBUpdates, bool, error) {
 	return c.GetDatabase(replica_id)
 }
 
