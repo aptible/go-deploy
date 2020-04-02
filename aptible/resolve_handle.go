@@ -3,8 +3,8 @@ package aptible
 import (
 	"fmt"
 
-	"github.com/reggregory/go-deploy/client/operations"
-	"github.com/reggregory/go-deploy/models"
+	"github.com/aptible/go-deploy/client/operations"
+	"github.com/aptible/go-deploy/models"
 )
 
 // Gets database with specific handle.
@@ -14,8 +14,8 @@ func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.Inl
 	resp, err := c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
 	if err != nil {
 		switch err.(type) {
-		case *operations.GetDatabasesIDDefault:
-			if err.(*operations.GetDatabasesIDDefault).Code() == 404 {
+		case *operations.GetAccountsAccountIDDatabasesDefault:
+			if err.(*operations.GetAccountsAccountIDDatabasesDefault).Code() == 404 {
 				deleted = true
 			}
 			return nil, deleted, err
@@ -45,8 +45,8 @@ func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.Inl
 		resp, err = c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
 		if err != nil {
 			switch err.(type) {
-			case *operations.GetDatabasesIDDefault:
-				if err.(*operations.GetDatabasesIDDefault).Code() == 404 {
+			case *operations.GetAccountsAccountIDDatabasesDefault:
+				if err.(*operations.GetAccountsAccountIDDatabasesDefault).Code() == 404 {
 					deleted = true
 				}
 				return nil, deleted, err
