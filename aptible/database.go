@@ -58,7 +58,7 @@ func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.Inli
 		return nil, err
 	}
 	// gets database
-	payload, err := c.GetDatabaseFromHandle(env_id, *attrs.Handle)
+	payload, _, err := c.GetDatabaseFromHandle(env_id, *attrs.Handle)
 	return payload, nil
 }
 
@@ -69,8 +69,8 @@ func (c *Client) GetDatabase(db_id int64) (DBUpdates, bool, error) {
 	payload, err := c.GetDatabaseOperations(db_id, page)
 	if err != nil {
 		switch err.(type) {
-		case *operations.GetDatabasesIDDefault:
-			if err.(*operations.GetDatabasesIDDefault).Code() == 404 {
+		case *operations.GetDatabasesDatabaseIDOperationsDefault:
+			if err.(*operations.GetDatabasesDatabaseIDOperationsDefault).Code() == 404 {
 				deleted = true
 			}
 			return updates, deleted, err

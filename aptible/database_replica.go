@@ -33,14 +33,17 @@ func (c *Client) CreateReplica(attrs ReplicateAttrs) (*models.InlineResponse2001
 	}
 
 	// waiting for provision operation to start...
-	payload, err := c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
-	for payload == nil && err != nil {
-		payload, err = c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
+	payload, deleted, err := c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
+	for payload == nil && err != nil && !deleted {
+		payload, deleted, err = c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
 	}
 
 	// waiting for provision operation to complete...
-	for payload.Status != "provisioned" && payload.Status != "failed" {
-		payload, err = c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
+	for payload.Status != "provisioned" {
+		if payload.Status == "failed" {
+			return nil, fmt.Errorf("The provision failed.")
+		}
+		payload, _, err = c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
 		if err != nil {
 			return nil, err
 		}

@@ -8,11 +8,20 @@ import (
 )
 
 // Gets database with specific handle.
-func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.InlineResponse20014EmbeddedDatabases, error) {
+func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.InlineResponse20014EmbeddedDatabases, bool, error) {
+	deleted := false
 	params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(env_id)
 	resp, err := c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
 	if err != nil {
-		return nil, err
+		switch err.(type) {
+		case *operations.GetDatabasesIDDefault:
+			if err.(*operations.GetDatabasesIDDefault).Code() == 404 {
+				deleted = true
+			}
+			return nil, deleted, err
+		default:
+			return nil, deleted, err
+		}
 	}
 
 	num_ops := *resp.Payload.TotalCount
@@ -23,20 +32,28 @@ func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.Inl
 		databases := resp.Payload.Embedded.Databases
 		for i := range databases {
 			if databases[i].Handle == handle {
-				return databases[i], nil
+				return databases[i], deleted, nil
 			}
 		}
 		if num_ops-per_pg > 0 {
 			num_ops -= per_pg
 			page += 1
 		} else {
-			return nil, fmt.Errorf("There are no databases with handle: %s", handle)
+			return nil, deleted, fmt.Errorf("There are no databases with handle: %s", handle)
 		}
 		params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(env_id).WithPage(&page)
 		resp, err = c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
 		if err != nil {
-			return nil, err
+			switch err.(type) {
+			case *operations.GetDatabasesIDDefault:
+				if err.(*operations.GetDatabasesIDDefault).Code() == 404 {
+					deleted = true
+				}
+				return nil, deleted, err
+			default:
+				return nil, deleted, err
+			}
 		}
 	}
-	return nil, fmt.Errorf("There are no databases with handle: %s", handle)
+	return nil, deleted, fmt.Errorf("There are no databases with handle: %s", handle)
 }
