@@ -20,13 +20,6 @@ type DBCreateAttrs struct {
 	DiskSize      int64
 }
 
-type DBCreated struct {
-	ID            int64
-	ConnectionURL string
-	ContainerSize string
-	DiskSize      string
-}
-
 func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.InlineResponse20014EmbeddedDatabases, error) {
 	// creates API object
 	app_req := models.AppRequest12{
