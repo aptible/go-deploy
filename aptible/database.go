@@ -2,6 +2,8 @@ package aptible
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/aptible/go-deploy/client/operations"
@@ -58,12 +60,12 @@ func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.Inli
 func (c *Client) GetDatabase(db_id int64) (DBUpdates, bool, error) {
 	deleted := false
 	updates := DBUpdates{}
-	page := int64(1)
-	payload, err := c.GetDatabaseOperations(db_id, page)
+	params := operations.NewGetDatabasesIDParams().WithID(db_id)
+	resp, err := c.Client.Operations.GetDatabasesID(params, c.Token)
 	if err != nil {
 		switch err.(type) {
-		case *operations.GetDatabasesDatabaseIDOperationsDefault:
-			if err.(*operations.GetDatabasesDatabaseIDOperationsDefault).Code() == 404 {
+		case *operations.GetDatabasesIDDefault:
+			if err.(*operations.GetDatabasesIDDefault).Code() == 404 {
 				deleted = true
 			}
 			return updates, deleted, err
@@ -71,34 +73,38 @@ func (c *Client) GetDatabase(db_id int64) (DBUpdates, bool, error) {
 			return updates, deleted, err
 		}
 	}
-	// get updates to container size + disk size from operations
-	num_ops := *payload.TotalCount
-	per_pg := *payload.PerPage
-	for num_ops > 0 {
-		ops := payload.Embedded.Operations
-		GetUpdatesFromOperations(ops, &updates)
-		// if more pages left
-		if num_ops-per_pg > 0 {
-			num_ops -= per_pg
-			page += 1
-			// get new page of ops
-			payload, err = c.GetDatabaseOperations(db_id, page)
-			if err != nil {
-				switch err.(type) {
-				case *operations.GetDatabasesDatabaseIDOperationsDefault:
-					if err.(*operations.GetDatabasesDatabaseIDOperationsDefault).Code() == 404 {
-						deleted = true
-					}
-					return updates, deleted, err
-				default:
-					return updates, deleted, err
-				}
-			}
-		} else {
-			return updates, deleted, nil
-		}
+	// get updates to container size
+	serv_href := resp.Payload.Links.Service.Href.String()
+	serv_str := strings.Split(serv_href, "/")[4]
+	service_id, _ := strconv.Atoi(serv_str)
+
+	serv_params := operations.NewGetServicesIDParams().WithID(int64(service_id))
+	serv_resp, err := c.Client.Operations.GetServicesID(serv_params, c.Token)
+	if err != nil {
+		return updates, false, nil
 	}
-	return updates, deleted, fmt.Errorf("Unknown error occurred.")
+
+	container_ptr := serv_resp.Payload.ContainerMemoryLimitMb
+	if container_ptr != nil {
+		updates.ContainerSize = *container_ptr
+	}
+	// get updates to disk size
+	disk_href := resp.Payload.Links.Disk.Href.String()
+	disk_str := strings.Split(disk_href, "/")[4]
+	disk_id, _ := strconv.Atoi(disk_str)
+
+	disk_params := operations.NewGetDisksIDParams().WithID(int64(disk_id))
+	disk_resp, err := c.Client.Operations.GetDisksID(disk_params, c.Token)
+	if err != nil {
+		return updates, false, nil
+	}
+
+	disk_ptr := disk_resp.Payload.Size
+	if disk_ptr != nil {
+		updates.DiskSize = *disk_ptr
+	}
+
+	return updates, false, nil
 }
 
 func (c *Client) UpdateDatabase(db_id int64, updates DBUpdates) error {
