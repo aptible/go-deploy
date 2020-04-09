@@ -75,10 +75,12 @@ func (c *Client) GetDatabase(db_id int64) (DBUpdates, bool, error) {
 	}
 	// get updates to container size
 	serv_href := resp.Payload.Links.Service.Href.String()
-	serv_str := strings.Split(serv_href, "/")[4]
-	service_id, _ := strconv.Atoi(serv_str)
+	service_id, _ := GetIDFromHref(serv_href)
+	if err != nil {
+		return updates, false, err
+	}
 
-	serv_params := operations.NewGetServicesIDParams().WithID(int64(service_id))
+	serv_params := operations.NewGetServicesIDParams().WithID(service_id)
 	serv_resp, err := c.Client.Operations.GetServicesID(serv_params, c.Token)
 	if err != nil {
 		return updates, false, nil
@@ -88,12 +90,15 @@ func (c *Client) GetDatabase(db_id int64) (DBUpdates, bool, error) {
 	if container_ptr != nil {
 		updates.ContainerSize = *container_ptr
 	}
+
 	// get updates to disk size
 	disk_href := resp.Payload.Links.Disk.Href.String()
-	disk_str := strings.Split(disk_href, "/")[4]
-	disk_id, _ := strconv.Atoi(disk_str)
+	disk_id, err := GetIDFromHref(disk_href)
+	if err != nil {
+		return updates, false, err
+	}
 
-	disk_params := operations.NewGetDisksIDParams().WithID(int64(disk_id))
+	disk_params := operations.NewGetDisksIDParams().WithID(disk_id)
 	disk_resp, err := c.Client.Operations.GetDisksID(disk_params, c.Token)
 	if err != nil {
 		return updates, false, nil
@@ -155,6 +160,21 @@ func (c *Client) WaitForOperation(op_id int64) error {
 	fmt.Println("Done!")
 
 	return nil
+}
+
+// Gets ID from an href
+func GetIDFromHref(href string) (int64, error) {
+	str := ""
+	splits := strings.Split(href, "/")
+	if len(splits) == 5 {
+		str = splits[4]
+		id, err := strconv.Atoi(str)
+		if err != nil {
+			return 0, fmt.Errorf("Failed to convert string to int. \n[ERROR] %s", err)
+		}
+		return int64(id), nil
+	}
+	return 0, fmt.Errorf("Href is shorter than expected. Better parsing is needed.")
 }
 
 // Gets operations of a database on a per page basis
