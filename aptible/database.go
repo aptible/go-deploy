@@ -2,6 +2,8 @@ package aptible
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/aptible/go-deploy/client/operations"
@@ -20,7 +22,7 @@ type DBCreateAttrs struct {
 	DiskSize      int64
 }
 
-func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.InlineResponse2014, error) {
+func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.InlineResponse20014EmbeddedDatabases, error) {
 	// creates API object
 	app_req := models.AppRequest12{
 		Handle: attrs.Handle,
@@ -31,7 +33,6 @@ func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.Inli
 	if err != nil {
 		return nil, err
 	}
-
 	// provisions database
 	req_type := "provision"
 	prov_req := models.AppRequest23{
@@ -45,46 +46,74 @@ func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.Inli
 	if err != nil {
 		return nil, err
 	}
-
+	// waits for provision operation to finish
 	op_id := *op_resp.Payload.ID
 	err = c.WaitForOperation(op_id)
 	if err != nil {
 		return nil, err
 	}
-
-	payload, _, err := c.GetDatabase(db_id)
+	// gets database
+	payload, _, err := c.GetDatabaseFromHandle(env_id, *attrs.Handle)
 	return payload, nil
 }
 
-func (c *Client) GetDatabase(db_id int64) (*models.InlineResponse2014, bool, error) {
+func (c *Client) GetDatabase(db_id int64) (DBUpdates, bool, error) {
+	deleted := false
+	updates := DBUpdates{}
 	params := operations.NewGetDatabasesIDParams().WithID(db_id)
 	resp, err := c.Client.Operations.GetDatabasesID(params, c.Token)
 	if err != nil {
 		switch err.(type) {
 		case *operations.GetDatabasesIDDefault:
-			err_struct := err.(*operations.GetDatabasesIDDefault)
-			switch err_struct.Code() {
-			case 404:
-				// If deleted == true, then the database needs to be removed from Terraform.
-				return nil, true, nil
-			case 401:
-				e := fmt.Errorf("Make sure you have the correct auth token.")
-				return nil, false, e
-			default:
-				e := fmt.Errorf("There was an error when completing the request to get the database. \n[ERROR] -%s", err)
-				return nil, false, e
+			if err.(*operations.GetDatabasesIDDefault).Code() == 404 {
+				deleted = true
 			}
+			return updates, deleted, err
 		default:
-			e := fmt.Errorf("There was an unknown error. \n[ERROR] -%s", err)
-			return nil, false, e
+			return updates, deleted, err
 		}
 	}
-	return resp.Payload, false, nil
+	// get updates to container size
+	serv_href := resp.Payload.Links.Service.Href.String()
+	service_id, _ := GetIDFromHref(serv_href)
+	if err != nil {
+		return updates, false, err
+	}
+
+	serv_params := operations.NewGetServicesIDParams().WithID(service_id)
+	serv_resp, err := c.Client.Operations.GetServicesID(serv_params, c.Token)
+	if err != nil {
+		return updates, false, nil
+	}
+
+	container_ptr := serv_resp.Payload.ContainerMemoryLimitMb
+	if container_ptr != nil {
+		updates.ContainerSize = *container_ptr
+	}
+
+	// get updates to disk size
+	disk_href := resp.Payload.Links.Disk.Href.String()
+	disk_id, err := GetIDFromHref(disk_href)
+	if err != nil {
+		return updates, false, err
+	}
+
+	disk_params := operations.NewGetDisksIDParams().WithID(disk_id)
+	disk_resp, err := c.Client.Operations.GetDisksID(disk_params, c.Token)
+	if err != nil {
+		return updates, false, nil
+	}
+
+	disk_ptr := disk_resp.Payload.Size
+	if disk_ptr != nil {
+		updates.DiskSize = *disk_ptr
+	}
+
+	return updates, false, nil
 }
 
 func (c *Client) UpdateDatabase(db_id int64, updates DBUpdates) error {
 	req_type := "restart"
-
 	app_req := models.AppRequest23{
 		Type: &req_type,
 	}
@@ -92,28 +121,19 @@ func (c *Client) UpdateDatabase(db_id int64, updates DBUpdates) error {
 	if updates.ContainerSize >= 512 {
 		app_req.ContainerSize = updates.ContainerSize
 	}
-
 	if updates.DiskSize >= 10 {
 		app_req.DiskSize = updates.DiskSize
 	}
 
 	params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithAppRequest(&app_req)
 	_, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 func (c *Client) DeleteDatabase(db_id int64) error {
 	params := operations.NewDeleteDatabasesIDParams().WithID(db_id)
 	_, err := c.Client.Operations.DeleteDatabasesID(params, c.Token)
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 // HELPERS //
@@ -142,20 +162,41 @@ func (c *Client) WaitForOperation(op_id int64) error {
 	return nil
 }
 
-// Gets database with specific handle.
-func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.InlineResponse20014EmbeddedDatabases, error) {
-	params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(env_id)
-	resp, err := c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
+// Gets ID from an href
+func GetIDFromHref(href string) (int64, error) {
+	str := ""
+	splits := strings.Split(href, "/")
+	if len(splits) == 5 {
+		str = splits[4]
+		id, err := strconv.Atoi(str)
+		if err != nil {
+			return 0, fmt.Errorf("Failed to convert string to int. \n[ERROR] %s", err)
+		}
+		return int64(id), nil
+	}
+	return 0, fmt.Errorf("Href is shorter than expected. Better parsing is needed.")
+}
+
+// Gets operations of a database on a per page basis
+func (c *Client) GetDatabaseOperations(db_id int64, page int64) (*models.InlineResponse20029, error) {
+	params := operations.NewGetDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithPage(&page)
+	resp, err := c.Client.Operations.GetDatabasesDatabaseIDOperations(params, c.Token)
 	if err != nil {
 		return nil, err
 	}
+	return resp.Payload, nil
+}
 
-	databases := resp.Payload.Embedded.Databases
-	for i := range databases {
-		if databases[i].Handle == handle {
-			return databases[i], nil
+// Gets updates to container and disk size
+func GetUpdatesFromOperations(ops []*models.InlineResponse2003EmbeddedEmbeddedLastOperation, updates *DBUpdates) {
+	for i := range ops {
+		if ops[i].Type == "provision" || ops[i].Type == "restart" {
+			if ops[i].ContainerSize != nil && updates.ContainerSize == 0 {
+				updates.ContainerSize = *ops[i].ContainerSize
+			}
+			if ops[i].DiskSize != 0 && updates.DiskSize == 0 {
+				updates.DiskSize = ops[i].DiskSize
+			}
 		}
 	}
-
-	return nil, fmt.Errorf("There are no databases with handle: %s", handle)
 }
