@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/aptible/go-deploy/client/operations"
-	"github.com/aptible/go-deploy/models"
+	"github.com/reggregory/go-deploy/client/operations"
+	"github.com/reggregory/go-deploy/models"
 )
 
 type DBUpdates struct {
@@ -149,7 +149,7 @@ func (c *Client) WaitForOperation(op_id int64) error {
 	status := *op.Payload.Status
 
 	for status != "succeeded" {
-		time.Sleep(2 * time.Second)
+		time.Sleep(5 * time.Second)
 		op, err = c.Client.Operations.GetOperationsID(params, c.Token)
 		if err != nil {
 			return err
