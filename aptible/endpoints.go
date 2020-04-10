@@ -35,6 +35,7 @@ func (c *Client) CreateEndpoint(resource_id int64, attrs CreateAttrs) (*models.I
 	// Create Vhost API object
 	app_req := models.AppRequest33{
 		Type:        attrs.Type,
+		Default:     attrs.Default,
 		Internal:    attrs.Internal,
 		IPWhitelist: attrs.IPWhitelist,
 		Platform:    attrs.Platform,
