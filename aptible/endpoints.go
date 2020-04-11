@@ -151,8 +151,12 @@ func (c *Client) GetServiceID(resource_id int64, resource_type string) (int64, e
 
 func GetEndpointType(t string) (string, error) {
 	switch t {
-	case "HTTPS":
+	case "HTTPS", "https":
 		return "http_proxy_protocol", nil
+	case "TCP", "tcp":
+		return "tcp", nil
+	case "TLS", "tls":
+		return "tls", nil
 	default:
 		e := fmt.Errorf("Invalid endpoint type. The only valid types are HTTPS, TLS, and TCP.")
 		return "", e
