@@ -2,7 +2,8 @@ package aptible
 
 import (
 	"fmt"
-	"time"
+	"strconv"
+	"strings"
 
 	"github.com/aptible/go-deploy/client/operations"
 	"github.com/aptible/go-deploy/models"
@@ -15,6 +16,7 @@ type Updates struct {
 }
 
 type CreateAttrs struct {
+	ResourceType  string
 	Type          *string
 	Default       bool
 	Internal      bool
@@ -24,22 +26,23 @@ type CreateAttrs struct {
 }
 
 // CreateEndpoint() creates Vhost API object + provision operation on the app.
-func (c *Client) CreateEndpoint(app_id int64, attrs CreateAttrs) (*models.InlineResponse2019, error) {
-	service_id, err := c.GetServiceID(app_id)
+func (c *Client) CreateEndpoint(resource_id int64, attrs CreateAttrs) (*models.InlineResponse2019, error) {
+	service_id, err := c.GetServiceID(resource_id, attrs.ResourceType)
 	if err != nil {
 		return nil, err
 	}
 
 	// Create Vhost API object
 	app_req := models.AppRequest33{
-		Type:          attrs.Type,
-		Default:       attrs.Default,
-		Internal:      attrs.Internal,
-		ContainerPort: attrs.ContainerPort,
-		IPWhitelist:   attrs.IPWhitelist,
-		Platform:      attrs.Platform,
+		Type:        attrs.Type,
+		Default:     attrs.Default,
+		Internal:    attrs.Internal,
+		IPWhitelist: attrs.IPWhitelist,
+		Platform:    attrs.Platform,
 	}
-
+	if *attrs.Type != "tcp" {
+		app_req.ContainerPort = attrs.ContainerPort
+	}
 	params := operations.NewPostServicesServiceIDVhostsParams().WithServiceID(service_id).WithAppRequest(&app_req)
 	resp, err := c.Client.Operations.PostServicesServiceIDVhosts(params, c.Token)
 	if err != nil {
@@ -52,18 +55,19 @@ func (c *Client) CreateEndpoint(app_id int64, attrs CreateAttrs) (*models.Inline
 	req_type := "provision"
 	op_req := models.AppRequest26{Type: &req_type}
 	op_params := operations.NewPostVhostsVhostIDOperationsParams().WithVhostID(endpoint_id).WithAppRequest(&op_req)
-	_, err = c.Client.Operations.PostVhostsVhostIDOperations(op_params, c.Token)
+	op_resp, err := c.Client.Operations.PostVhostsVhostIDOperations(op_params, c.Token)
 	if err != nil {
 		return nil, err
 	}
 
-	// Wait for endpoint to be provisioned
-	for *payload.Status != "provisioned" {
-		time.Sleep(1 * time.Second)
-		payload, _, err = c.GetEndpoint(endpoint_id)
+	// Wait on provision operation to complete.
+	op_id := *op_resp.Payload.ID
+	err = c.WaitForOperation(op_id)
+	if err != nil {
+		return nil, err
 	}
-
-	return payload, nil
+	payload, _, err = c.GetEndpoint(endpoint_id)
+	return payload, err
 }
 
 // GetEndpoint() returns the response's payload, a bool saying whether or not the endpoint
@@ -116,27 +120,43 @@ func (c *Client) DeleteEndpoint(endpoint_id int64) error {
 }
 
 // GetServiceID() Gets the service ID + acts as a helper for GetEndpoint().
-func (c *Client) GetServiceID(app_id int64) (int64, error) {
-	params := operations.NewGetAppsAppIDServicesParams().WithAppID(app_id)
-	resp, err := c.Client.Operations.GetAppsAppIDServices(params, c.Token)
-	if err != nil {
-		return 0, err
+func (c *Client) GetServiceID(resource_id int64, resource_type string) (int64, error) {
+	if resource_type == "app" {
+		params := operations.NewGetAppsAppIDServicesParams().WithAppID(resource_id)
+		resp, err := c.Client.Operations.GetAppsAppIDServices(params, c.Token)
+		if err != nil {
+			return 0, err
+		}
+		services := resp.Payload.Embedded.Services
+		if len(services) <= 0 {
+			return 0, fmt.Errorf("The app has no services.")
+		}
+		// TODO: add logic for finding "right" service
+		return services[0].ID, nil
+	} else if resource_type == "database" {
+		params := operations.NewGetDatabasesIDParams().WithID(resource_id)
+		resp, err := c.Client.Operations.GetDatabasesID(params, c.Token)
+		if err != nil {
+			return 0, err
+		}
+
+		serv_href := resp.Payload.Links.Service.Href.String()
+		serv_str := strings.Split(serv_href, "/")[4]
+		service_id, _ := strconv.Atoi(serv_str)
+		return int64(service_id), nil
 	}
-	services := resp.Payload.Embedded.Services
-	if len(services) <= 0 {
-		return 0, fmt.Errorf("The app has no services.")
-	}
-	// for i := 0; i < len(services); i++ {
-	// TODO: add logic for finding "right" service
-	// }
-	id := services[0].ID
-	return id, err
+
+	return 0, nil
 }
 
 func GetEndpointType(t string) (string, error) {
 	switch t {
-	case "HTTPS":
+	case "HTTPS", "https":
 		return "http_proxy_protocol", nil
+	case "TCP", "tcp":
+		return "tcp", nil
+	case "TLS", "tls":
+		return "tls", nil
 	default:
 		e := fmt.Errorf("Invalid endpoint type. The only valid types are HTTPS, TLS, and TCP.")
 		return "", e
