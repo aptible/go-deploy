@@ -17,7 +17,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // NewPostVhostsVhostIDOperationsParams creates a new PostVhostsVhostIDOperationsParams object
