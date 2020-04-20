@@ -149,6 +149,9 @@ func (c *Client) WaitForOperation(op_id int64) error {
 	status := *op.Payload.Status
 
 	for status != "succeeded" {
+		if status == "failed" {
+			return fmt.Errorf("[ERROR] - Operation failed!")
+		}
 		time.Sleep(5 * time.Second)
 		op, err = c.Client.Operations.GetOperationsID(params, c.Token)
 		if err != nil {
