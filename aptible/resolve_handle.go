@@ -3,8 +3,8 @@ package aptible
 import (
 	"fmt"
 
-	"github.com/aptible/go-deploy/client/operations"
-	"github.com/aptible/go-deploy/models"
+	"github.com/reggregory/go-deploy/client/operations"
+	"github.com/reggregory/go-deploy/models"
 )
 
 // Gets database with specific handle.

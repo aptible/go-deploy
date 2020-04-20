@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // GetDatabasesDatabaseIDDatabaseCredentialsReader is a Reader for the GetDatabasesDatabaseIDDatabaseCredentials structure.
