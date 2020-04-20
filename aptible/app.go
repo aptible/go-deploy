@@ -21,7 +21,9 @@ func (c *Client) DeployApp(app_id int64, config map[string]interface{}) error {
 	req_type := "deploy"
 	app_req := models.AppRequest21{Type: &req_type, Env: config, ContainerCount: 1, ContainerSize: 1024}
 	app_params := operations.NewPostAppsAppIDOperationsParams().WithAppID(app_id).WithAppRequest(&app_req)
-	_, err := c.Client.Operations.PostAppsAppIDOperations(app_params, c.Token)
+	app, err := c.Client.Operations.PostAppsAppIDOperations(app_params, c.Token)
+	op_id := *app.Payload.ID
+	err = c.WaitForOperation(op_id)
 	return err
 }
 
