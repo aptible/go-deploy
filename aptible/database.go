@@ -67,6 +67,7 @@ func (c *Client) GetDatabase(db_id int64) (DBUpdates, bool, error) {
 		case *operations.GetDatabasesIDDefault:
 			if err.(*operations.GetDatabasesIDDefault).Code() == 404 {
 				deleted = true
+				err = nil
 			}
 			return updates, deleted, err
 		default:
