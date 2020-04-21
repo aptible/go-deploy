@@ -127,8 +127,21 @@ func (c *Client) UpdateDatabase(db_id int64, updates DBUpdates) error {
 	}
 
 	params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithAppRequest(&app_req)
-	_, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
-	return err
+	op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
+	if err != nil {
+		return err
+	}
+	if op.Payload.ID != nil {
+		op_id := *op.Payload.ID
+		err = c.WaitForOperation(op_id)
+		if err != nil {
+			return err
+		}
+	} else {
+		return fmt.Errorf("ID is a null pointer.")
+	}
+
+	return nil
 }
 
 func (c *Client) DeleteDatabase(db_id int64) error {
