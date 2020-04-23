@@ -73,6 +73,11 @@ func (c *Client) DestroyApp(app_id int64) error {
 	req_type := "deprovision"
 	app_req := models.AppRequest21{Type: &req_type}
 	app_params := operations.NewPostAppsAppIDOperationsParams().WithAppID(app_id).WithAppRequest(&app_req)
-	_, err := c.Client.Operations.PostAppsAppIDOperations(app_params, c.Token)
+	op, err := c.Client.Operations.PostAppsAppIDOperations(app_params, c.Token)
+	if err != nil {
+		return err
+	}
+	op_id := *op.Payload.ID
+	err = c.WaitForOperation(op_id)
 	return err
 }

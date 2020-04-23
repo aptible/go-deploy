@@ -113,10 +113,7 @@ func (c *Client) UpdateEndpoint(endpoint_id int64, up Updates) error {
 func (c *Client) DeleteEndpoint(endpoint_id int64) error {
 	params := operations.NewDeleteVhostsIDParams().WithID(endpoint_id)
 	_, err := c.Client.Operations.DeleteVhostsID(params, c.Token)
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
 // GetServiceID() Gets the service ID + acts as a helper for GetEndpoint().
@@ -129,7 +126,7 @@ func (c *Client) GetServiceID(resource_id int64, resource_type string) (int64, e
 		}
 		services := resp.Payload.Embedded.Services
 		if len(services) <= 0 {
-			return 0, fmt.Errorf("The app has no services.")
+			return 0, fmt.Errorf("The app has no services. The app must be deployed before creating an endpoint for it.")
 		}
 		// TODO: add logic for finding "right" service
 		return services[0].ID, nil
