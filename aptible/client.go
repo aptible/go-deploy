@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	deploy "github.com/reggregory/go-deploy/client"
+	deploy "github.com/aptible/go-deploy/client"
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
