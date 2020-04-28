@@ -62,7 +62,7 @@ func (c *Client) CreateEndpoint(resource_id int64, attrs CreateAttrs) (*models.I
 
 	// Wait on provision operation to complete.
 	op_id := *op_resp.Payload.ID
-	err = c.WaitForOperation(op_id)
+	_, err = c.WaitForOperation(op_id)
 	if err != nil {
 		return nil, err
 	}
