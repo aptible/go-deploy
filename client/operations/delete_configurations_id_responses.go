@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/aptible/go-deploy/models"
+	models "github.com/reggregory/go-deploy/models"
 )
 
 // DeleteConfigurationsIDReader is a Reader for the DeleteConfigurationsID structure.
