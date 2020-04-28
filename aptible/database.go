@@ -48,7 +48,7 @@ func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (*models.Inli
 	}
 	// waits for provision operation to finish
 	op_id := *op_resp.Payload.ID
-	err = c.WaitForOperation(op_id)
+	_, err = c.WaitForOperation(op_id)
 	if err != nil {
 		return nil, err
 	}
@@ -133,7 +133,7 @@ func (c *Client) UpdateDatabase(db_id int64, updates DBUpdates) error {
 	}
 	if op.Payload.ID != nil {
 		op_id := *op.Payload.ID
-		err = c.WaitForOperation(op_id)
+		_, err = c.WaitForOperation(op_id)
 		if err != nil {
 			return err
 		}
@@ -153,30 +153,38 @@ func (c *Client) DeleteDatabase(db_id int64) error {
 // HELPERS //
 
 // Waits for operation to succeed.
-func (c *Client) WaitForOperation(op_id int64) error {
+func (c *Client) WaitForOperation(op_id int64) (bool, error) {
 
 	params := operations.NewGetOperationsIDParams().WithID(op_id)
 	op, err := c.Client.Operations.GetOperationsID(params, c.Token)
 	if err != nil {
-		return err
+		return false, err
 	}
 	status := *op.Payload.Status
 
 	for status != "succeeded" {
 		if status == "failed" {
-			return fmt.Errorf("[ERROR] - Operation failed!")
+			return false, fmt.Errorf("[ERROR] - Operation failed!")
 		}
 		time.Sleep(5 * time.Second)
 		op, err = c.Client.Operations.GetOperationsID(params, c.Token)
 		if err != nil {
-			return err
+			err_struct := err.(*operations.GetOperationsIDDefault)
+			switch err_struct.Code() {
+			case 404:
+				// If deleted, then the resource needs to be removed from Terraform.
+				return true, nil
+			default:
+				e := fmt.Errorf("There was an error when getting the operation. \n[ERROR] -%s", err)
+				return false, e
+			}
 		}
 		status = *op.Payload.Status
 		fmt.Println("Still creating...")
 	}
 	fmt.Println("Done!")
 
-	return nil
+	return false, nil
 }
 
 // Gets ID from an href

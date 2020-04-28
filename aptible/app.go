@@ -23,7 +23,7 @@ func (c *Client) DeployApp(app_id int64, config map[string]interface{}) error {
 	app_params := operations.NewPostAppsAppIDOperationsParams().WithAppID(app_id).WithAppRequest(&app_req)
 	app, err := c.Client.Operations.PostAppsAppIDOperations(app_params, c.Token)
 	op_id := *app.Payload.ID
-	err = c.WaitForOperation(op_id)
+	_, err = c.WaitForOperation(op_id)
 	return err
 }
 
@@ -69,15 +69,14 @@ func (c *Client) UpdateApp(config map[string]interface{}, app_id int64) error {
 	return nil
 }
 
-func (c *Client) DestroyApp(app_id int64) error {
+func (c *Client) DeleteApp(app_id int64) (bool, error) {
 	req_type := "deprovision"
 	app_req := models.AppRequest21{Type: &req_type}
 	app_params := operations.NewPostAppsAppIDOperationsParams().WithAppID(app_id).WithAppRequest(&app_req)
 	op, err := c.Client.Operations.PostAppsAppIDOperations(app_params, c.Token)
 	if err != nil {
-		return err
+		return false, err
 	}
 	op_id := *op.Payload.ID
-	err = c.WaitForOperation(op_id)
-	return err
+	return c.WaitForOperation(op_id)
 }
