@@ -16,7 +16,12 @@ type ReplicateAttrs struct {
 	DiskSize      int64
 }
 
-func (c *Client) CreateReplica(attrs ReplicateAttrs) (*models.InlineResponse20014EmbeddedDatabases, error) {
+type ReplicaIdentifiers struct {
+	ReplicaID     int64
+	ProvisionOpID int64
+}
+
+func (c *Client) CreateReplica(attrs ReplicateAttrs) (Database, error) {
 	op_type := "replicate"
 
 	req := models.AppRequest23{
@@ -26,35 +31,48 @@ func (c *Client) CreateReplica(attrs ReplicateAttrs) (*models.InlineResponse2001
 		DiskSize:      attrs.DiskSize,
 	}
 
+	// replicate operation
 	op_params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(attrs.DatabaseID).WithAppRequest(&req)
 	_, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(op_params, c.Token)
 	if err != nil {
-		return nil, err
+		return Database{}, err
+	}
+	fmt.Println("The replicate operation has started.")
+
+	repl, err := c.GetReplicaFromHandle(attrs.DatabaseID, attrs.ReplicaHandle)
+	for repl == nil {
+		time.Sleep(5)
+		repl, err = c.GetReplicaFromHandle(attrs.DatabaseID, attrs.ReplicaHandle)
 	}
 
-	// waiting for provision operation to start...
-	payload, deleted, err := c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
-	for payload == nil && err != nil && !deleted {
-		payload, deleted, err = c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
+	repl_id := repl.ID
+
+	// Wait on provision operation
+	op := repl.Embedded.LastOperation
+	if op == nil {
+		return Database{}, fmt.Errorf("Last operation is a nil pointer.")
+	}
+	op_id := (*op).ID
+	deleted, err := c.WaitForOperation(op_id)
+	if deleted {
+		return Database{}, fmt.Errorf("The replica with handle: %s was unexpectedly deleted.", attrs.ReplicaHandle)
+	}
+	if err != nil {
+		return Database{}, err
 	}
 
-	// waiting for provision operation to complete...
-	for payload.Status != "provisioned" {
-		if payload.Status == "failed" {
-			return nil, fmt.Errorf("The provision failed.")
-		}
-		payload, _, err = c.GetDatabaseFromHandle(attrs.EnvID, attrs.ReplicaHandle)
-		if err != nil {
-			return nil, err
-		}
-		time.Sleep(3 * time.Second)
-		fmt.Println("Still creating...")
+	// Get replica attributes
+	r, deleted, err := c.GetReplica(repl_id)
+	if deleted {
+		return Database{}, fmt.Errorf("The replica with handle: %s was unexpectedly deleted.", attrs.ReplicaHandle)
 	}
-	fmt.Println("Done!")
-	return payload, nil
+	if err != nil {
+		return Database{}, err
+	}
+	return r, nil
 }
 
-func (c *Client) GetReplica(replica_id int64) (DBUpdates, bool, error) {
+func (c *Client) GetReplica(replica_id int64) (Database, bool, error) {
 	return c.GetDatabase(replica_id)
 }
 
@@ -64,4 +82,21 @@ func (c *Client) UpdateReplica(replica_id int64, updates DBUpdates) error {
 
 func (c *Client) DeleteReplica(replica_id int64) error {
 	return c.DeleteDatabase(replica_id)
+}
+
+func (c *Client) GetReplicaFromHandle(db_id int64, handle string) (*models.InlineResponse20014EmbeddedDatabases, error) {
+	params := operations.NewGetDatabasesDatabaseIDDependentsParams().WithDatabaseID(db_id)
+	resp, err := c.Client.Operations.GetDatabasesDatabaseIDDependents(params, c.Token)
+	if err != nil {
+		return nil, err
+	}
+
+	replicas := resp.Payload.Embedded.Databases
+	for i := range replicas {
+		r := replicas[i]
+		if r.Handle == handle && r.Embedded.LastOperation != nil && r.Embedded.LastOperation.Type == "provision" {
+			return replicas[i], nil
+		}
+	}
+	return nil, fmt.Errorf("There are no replicas for database %d with handle: `%s`.", db_id, handle)
 }

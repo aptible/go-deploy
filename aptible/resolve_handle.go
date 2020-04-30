@@ -4,11 +4,10 @@ import (
 	"fmt"
 
 	"github.com/reggregory/go-deploy/client/operations"
-	"github.com/reggregory/go-deploy/models"
 )
 
-// Gets database with specific handle.
-func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.InlineResponse20014EmbeddedDatabases, bool, error) {
+// Gets database id associated with a given handle.
+func (c *Client) GetDatabaseIDFromHandle(env_id int64, handle string) (int64, bool, error) {
 	deleted := false
 	params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(env_id)
 	resp, err := c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
@@ -18,9 +17,9 @@ func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.Inl
 			if err.(*operations.GetAccountsAccountIDDatabasesDefault).Code() == 404 {
 				deleted = true
 			}
-			return nil, deleted, err
+			return 0, deleted, err
 		default:
-			return nil, deleted, err
+			return 0, deleted, err
 		}
 	}
 
@@ -32,14 +31,15 @@ func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.Inl
 		databases := resp.Payload.Embedded.Databases
 		for i := range databases {
 			if databases[i].Handle == handle {
-				return databases[i], deleted, nil
+				d := databases[i]
+				return d.ID, deleted, nil
 			}
 		}
 		if num_ops-per_pg > 0 {
 			num_ops -= per_pg
 			page += 1
 		} else {
-			return nil, deleted, fmt.Errorf("There are no databases with handle: %s", handle)
+			return 0, deleted, fmt.Errorf("There are no databases with handle: %s", handle)
 		}
 		params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(env_id).WithPage(&page)
 		resp, err = c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
@@ -49,11 +49,11 @@ func (c *Client) GetDatabaseFromHandle(env_id int64, handle string) (*models.Inl
 				if err.(*operations.GetAccountsAccountIDDatabasesDefault).Code() == 404 {
 					deleted = true
 				}
-				return nil, deleted, err
+				return 0, deleted, err
 			default:
-				return nil, deleted, err
+				return 0, deleted, err
 			}
 		}
 	}
-	return nil, deleted, fmt.Errorf("There are no databases with handle: %s", handle)
+	return 0, deleted, fmt.Errorf("There are no databases with handle: %s", handle)
 }
