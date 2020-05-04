@@ -9,13 +9,21 @@ import (
 	"github.com/reggregory/go-deploy/models"
 )
 
-type Updates struct {
+type EndpointUpdates struct {
 	ContainerPort int64
 	IPWhitelist   []string
 	Platform      string
 }
 
-type CreateAttrs struct {
+type Endpoint struct {
+	ID            int64
+	Hostname      string
+	ContainerPort int64
+	IPWhitelist   []string
+	Platform      string
+}
+
+type EndpointCreateAttrs struct {
 	ResourceType  string
 	Type          *string
 	Default       bool
@@ -26,10 +34,10 @@ type CreateAttrs struct {
 }
 
 // CreateEndpoint() creates Vhost API object + provision operation on the app.
-func (c *Client) CreateEndpoint(resource_id int64, attrs CreateAttrs) (*models.InlineResponse2019, error) {
+func (c *Client) CreateEndpoint(resource_id int64, attrs EndpointCreateAttrs) (Endpoint, error) {
 	service_id, err := c.GetServiceID(resource_id, attrs.ResourceType)
 	if err != nil {
-		return nil, err
+		return Endpoint{}, err
 	}
 
 	// Create Vhost API object
@@ -46,7 +54,7 @@ func (c *Client) CreateEndpoint(resource_id int64, attrs CreateAttrs) (*models.I
 	params := operations.NewPostServicesServiceIDVhostsParams().WithServiceID(service_id).WithAppRequest(&app_req)
 	resp, err := c.Client.Operations.PostServicesServiceIDVhosts(params, c.Token)
 	if err != nil {
-		return nil, err
+		return Endpoint{}, err
 	}
 
 	// Create "provision" operation
@@ -57,22 +65,29 @@ func (c *Client) CreateEndpoint(resource_id int64, attrs CreateAttrs) (*models.I
 	op_params := operations.NewPostVhostsVhostIDOperationsParams().WithVhostID(endpoint_id).WithAppRequest(&op_req)
 	op_resp, err := c.Client.Operations.PostVhostsVhostIDOperations(op_params, c.Token)
 	if err != nil {
-		return nil, err
+		return Endpoint{}, err
 	}
 
 	// Wait on provision operation to complete.
+	if op_resp.Payload.ID == nil {
+		Endpoint{}, fmt.Errorf("Operation ID is a nil pointer")
+	}
 	op_id := *op_resp.Payload.ID
+	
 	_, err = c.WaitForOperation(op_id)
 	if err != nil {
-		return nil, err
+		return Endpoint{}, err
 	}
-	payload, _, err = c.GetEndpoint(endpoint_id)
-	return payload, err
+
+	endpoint, _, err := c.GetEndpoint(endpoint_id, attrs.ResourceType)
+
+	return endpoint, err
 }
 
 // GetEndpoint() returns the response's payload, a bool saying whether or not the endpoint
 // has been deprovisioned, and an error.
-func (c *Client) GetEndpoint(endpoint_id int64) (*models.InlineResponse2019, bool, error) {
+func (c *Client) GetEndpoint(endpoint_id int64, resource_type string) (Endpoint, bool, error) {
+	ep := Endpoint{}
 	params := operations.NewGetVhostsIDParams().WithID(endpoint_id)
 	resp, err := c.Client.Operations.GetVhostsID(params, c.Token)
 	if err != nil {
@@ -80,20 +95,52 @@ func (c *Client) GetEndpoint(endpoint_id int64) (*models.InlineResponse2019, boo
 		switch err_struct.Code() {
 		case 404:
 			// If deleted == true, then the endpoint needs to be removed from Terraform.
-			return nil, true, nil
+			return Endpoint{}, true, nil
 		case 401:
 			e := fmt.Errorf("Make sure you have the correct auth token.")
-			return nil, false, e
+			return Endpoint{}, false, e
 		default:
 			e := fmt.Errorf("There was an error when completing the request to get the app. \n[ERROR] -%s", err)
-			return nil, false, e
+			return Endpoint{}, false, e
 		}
 	}
-	return resp.Payload, false, nil
+	// Setting fields of Endpoint struct
+	payload := resp.Payload
+	// hostname
+	if resource_type == "app" {
+		if payload.VirtualDomain == nil {
+			return Endpoint{}, false, fmt.Errorf("payload.VirtualDomain is a nil pointer")
+		}
+		ep.Hostname = *payload.VirtualDomain
+	} else {
+		if payload.ExternalHost == nil {
+			return Endpoint{}, false, fmt.Errorf("payload.ExternalHost is a nil pointer")
+		}
+		ep.Hostname = *payload.ExternalHost
+	}
+	// id
+	if payload.ID == nil {
+		return Endpoint{}, false, fmt.Errorf("payload.ID is a nil pointer")
+	}
+	ep.ID = *payload.ID
+	// container port
+	if payload.ContainerPort == nil {
+		return Endpoint{}, false, fmt.Errorf("payload.ContainerPort is a nil pointer")
+	}
+	ep.ContainerPort = *payload.ContainerPort
+	// ip whitelist
+	ep.IPWhitelist = payload.IPWhitelist
+	// platform
+	if payload.Platform == nil {
+		return Endpoint{}, false, fmt.Errorf("payload.Platform is a nil pointer")
+	}
+	ep.Platform = *payload.Platform
+
+	return ep, false, nil
 }
 
 // UpdateEndpoint() takes in an endpoint_id and updates needed, and updates the endpoint.
-func (c *Client) UpdateEndpoint(endpoint_id int64, up Updates) error {
+func (c *Client) UpdateEndpoint(endpoint_id int64, up EndpointUpdates) error {
 	app_req := models.AppRequest34{
 		ContainerPort: up.ContainerPort,
 		IPWhitelist:   up.IPWhitelist,

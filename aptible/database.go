@@ -136,7 +136,7 @@ func (c *Client) UpdateDatabase(db_id int64, updates DBUpdates) error {
 			return err
 		}
 	} else {
-		return fmt.Errorf("ID is a null pointer.")
+		return fmt.Errorf("ID is a nil pointer.")
 	}
 
 	return nil

@@ -23,12 +23,12 @@ func (c *Client) CreateApp(handle string, env_id int64) (App, error) {
 
 	payload := resp.Payload
 	if payload.ID == nil {
-		return app, fmt.Errorf("App ID is a null pointer")
+		return app, fmt.Errorf("App ID is a nil pointer")
 	}
 	app.ID = *payload.ID
 
 	if payload.GitRepo == nil {
-		return app, fmt.Errorf("App GitRepo is a null pointer")
+		return app, fmt.Errorf("App GitRepo is a nil pointer")
 	}
 	app.GitRepo = *payload.GitRepo
 
