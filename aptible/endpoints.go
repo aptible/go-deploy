@@ -70,10 +70,10 @@ func (c *Client) CreateEndpoint(resource_id int64, attrs EndpointCreateAttrs) (E
 
 	// Wait on provision operation to complete.
 	if op_resp.Payload.ID == nil {
-		Endpoint{}, fmt.Errorf("Operation ID is a nil pointer")
+		return Endpoint{}, fmt.Errorf("Operation ID is a nil pointer")
 	}
 	op_id := *op_resp.Payload.ID
-	
+
 	_, err = c.WaitForOperation(op_id)
 	if err != nil {
 		return Endpoint{}, err
