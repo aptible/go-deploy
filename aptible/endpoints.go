@@ -106,12 +106,16 @@ func (c *Client) GetEndpoint(endpoint_id int64, resource_type string) (Endpoint,
 	}
 	// Setting fields of Endpoint struct
 	payload := resp.Payload
-	// hostname
+	// hostname, container port
 	if resource_type == "app" {
 		if payload.VirtualDomain == nil {
 			return Endpoint{}, false, fmt.Errorf("payload.VirtualDomain is a nil pointer")
 		}
 		ep.Hostname = *payload.VirtualDomain
+		if payload.ContainerPort == nil {
+			return Endpoint{}, false, fmt.Errorf("payload.ContainerPort is a nil pointer")
+		}
+		ep.ContainerPort = *payload.ContainerPort
 	} else {
 		if payload.ExternalHost == nil {
 			return Endpoint{}, false, fmt.Errorf("payload.ExternalHost is a nil pointer")
@@ -123,11 +127,6 @@ func (c *Client) GetEndpoint(endpoint_id int64, resource_type string) (Endpoint,
 		return Endpoint{}, false, fmt.Errorf("payload.ID is a nil pointer")
 	}
 	ep.ID = *payload.ID
-	// container port
-	if payload.ContainerPort == nil {
-		return Endpoint{}, false, fmt.Errorf("payload.ContainerPort is a nil pointer")
-	}
-	ep.ContainerPort = *payload.ContainerPort
 	// ip whitelist
 	ep.IPWhitelist = payload.IPWhitelist
 	// platform
