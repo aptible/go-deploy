@@ -7,14 +7,32 @@ import (
 	"github.com/aptible/go-deploy/models"
 )
 
-func (c *Client) CreateApp(handle string, env_id int64) (*models.InlineResponse2011, error) {
+type App struct {
+	ID      int64
+	GitRepo string
+}
+
+func (c *Client) CreateApp(handle string, env_id int64) (App, error) {
+	app := App{}
 	appreq := models.AppRequest3{Handle: &handle}
 	params := operations.NewPostAccountsAccountIDAppsParams().WithAccountID(env_id).WithAppRequest(&appreq)
 	resp, err := c.Client.Operations.PostAccountsAccountIDApps(params, c.Token)
 	if err != nil {
-		return nil, err
+		return app, err
 	}
-	return resp.Payload, err
+
+	payload := resp.Payload
+	if payload.ID == nil {
+		return app, fmt.Errorf("App ID is a nil pointer")
+	}
+	app.ID = *payload.ID
+
+	if payload.GitRepo == nil {
+		return app, fmt.Errorf("App GitRepo is a nil pointer")
+	}
+	app.GitRepo = *payload.GitRepo
+
+	return app, err
 }
 
 func (c *Client) DeployApp(app_id int64, config map[string]interface{}) error {
