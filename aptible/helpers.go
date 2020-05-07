@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reggregory/go-deploy/client/operations"
+	"github.com/aptible/go-deploy/client/operations"
 )
 
 // Waits for operation to succeed.

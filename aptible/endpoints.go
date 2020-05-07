@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/reggregory/go-deploy/client/operations"
-	"github.com/reggregory/go-deploy/models"
+	"github.com/aptible/go-deploy/client/operations"
+	"github.com/aptible/go-deploy/models"
 )
 
 type EndpointUpdates struct {
