@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/aptible/go-deploy/client/operations"
-	"github.com/aptible/go-deploy/models"
+	"github.com/reggregory/go-deploy/client/operations"
+	"github.com/reggregory/go-deploy/models"
 )
 
 type EndpointUpdates struct {
@@ -204,12 +204,4 @@ func GetEndpointType(t string) (string, error) {
 		e := fmt.Errorf("Invalid endpoint type. The only valid types are HTTPS, TLS, and TCP.")
 		return "", e
 	}
-}
-
-func MakeStringSlice(if_slice []interface{}) ([]string, error) {
-	str_slice := make([]string, len(if_slice))
-	for i := 0; i < len(if_slice); i++ {
-		str_slice[i] = (if_slice[i].(string))
-	}
-	return str_slice, nil
 }
