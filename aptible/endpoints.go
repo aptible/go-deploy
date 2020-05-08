@@ -205,11 +205,3 @@ func GetEndpointType(t string) (string, error) {
 		return "", e
 	}
 }
-
-func MakeStringSlice(if_slice []interface{}) ([]string, error) {
-	str_slice := make([]string, len(if_slice))
-	for i := 0; i < len(if_slice); i++ {
-		str_slice[i] = (if_slice[i].(string))
-	}
-	return str_slice, nil
-}

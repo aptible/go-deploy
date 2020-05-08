@@ -2,9 +2,6 @@ package aptible
 
 import (
 	"fmt"
-	"strconv"
-	"strings"
-	"time"
 
 	"github.com/aptible/go-deploy/client/operations"
 	"github.com/aptible/go-deploy/models"
@@ -150,56 +147,6 @@ func (c *Client) DeleteDatabase(db_id int64) error {
 
 // HELPERS //
 
-// Waits for operation to succeed.
-func (c *Client) WaitForOperation(op_id int64) (bool, error) {
-
-	params := operations.NewGetOperationsIDParams().WithID(op_id)
-	op, err := c.Client.Operations.GetOperationsID(params, c.Token)
-	if err != nil {
-		return false, err
-	}
-	status := *op.Payload.Status
-
-	for status != "succeeded" {
-		if status == "failed" {
-			return false, fmt.Errorf("[ERROR] - Operation failed!")
-		}
-		time.Sleep(5 * time.Second)
-		op, err = c.Client.Operations.GetOperationsID(params, c.Token)
-		if err != nil {
-			err_struct := err.(*operations.GetOperationsIDDefault)
-			switch err_struct.Code() {
-			case 404:
-				// If deleted, then the resource needs to be removed from Terraform.
-				return true, nil
-			default:
-				e := fmt.Errorf("There was an error when getting the operation. \n[ERROR] -%s", err)
-				return false, e
-			}
-		}
-		status = *op.Payload.Status
-		fmt.Println("Still creating...")
-	}
-	fmt.Println("Done!")
-
-	return false, nil
-}
-
-// Gets ID from an href
-func GetIDFromHref(href string) (int64, error) {
-	str := ""
-	splits := strings.Split(href, "/")
-	if len(splits) == 5 {
-		str = splits[4]
-		id, err := strconv.Atoi(str)
-		if err != nil {
-			return 0, fmt.Errorf("Failed to convert string to int. \n[ERROR] %s", err)
-		}
-		return int64(id), nil
-	}
-	return 0, fmt.Errorf("Href is shorter than expected. Better parsing is needed.")
-}
-
 // Gets operations of a database on a per page basis
 func (c *Client) GetDatabaseOperations(db_id int64, page int64) (*models.InlineResponse20029, error) {
 	params := operations.NewGetDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithPage(&page)
@@ -239,7 +186,7 @@ func (c *Client) GetDiskSize(href string) (int64, error) {
 	}
 	disk_ptr := disk_resp.Payload.Size
 	if disk_ptr == nil {
-		return 0, fmt.Errorf("Container size is a nil pointer.")
+		return 0, fmt.Errorf("Disk size is a nil pointer.")
 	}
 	return *disk_ptr, nil
 }

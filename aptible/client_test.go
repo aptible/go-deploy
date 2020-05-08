@@ -9,7 +9,7 @@ import (
 )
 
 func TestGetHost(t *testing.T) {
-
+	curr_host := os.Getenv("APTIBLE_API_ROOT_URL")
 	var tests = []struct {
 		host     string
 		expected string
@@ -40,6 +40,7 @@ func TestGetHost(t *testing.T) {
 			}
 		})
 	}
+	os.Setenv("APTIBLE_API_ROOT_URL", curr_host)
 }
 
 func TestGetHostWhenNotSet(t *testing.T) {
