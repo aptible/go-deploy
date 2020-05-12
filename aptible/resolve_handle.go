@@ -3,7 +3,7 @@ package aptible
 import (
 	"fmt"
 
-	"github.com/reggregory/go-deploy/client/operations"
+	"github.com/aptible/go-deploy/client/operations"
 )
 
 // Gets environment id associated with a given handle.
