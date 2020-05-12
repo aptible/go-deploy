@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	deploy "github.com/aptible/go-deploy/client"
+	deploy "github.com/reggregory/go-deploy/client"
 )
 
 func TestGetHost(t *testing.T) {

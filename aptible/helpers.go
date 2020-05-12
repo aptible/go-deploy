@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/aptible/go-deploy/client/operations"
+	"github.com/reggregory/go-deploy/client/operations"
 )
 
 // Waits for operation to succeed.
@@ -24,7 +24,7 @@ func (c *Client) WaitForOperation(op_id int64) (bool, error) {
 			// If deleted, then the resource needs to be removed from Terraform.
 			return true, nil
 		default:
-			e := fmt.Errorf("There was an error when getting the operation. \n[ERROR] -%s", err)
+			e := fmt.Errorf("There was an error when getting the operation for op id: %d.\n[ERROR] -%s", op_id, err)
 			return false, e
 		}
 	}
@@ -32,7 +32,7 @@ func (c *Client) WaitForOperation(op_id int64) (bool, error) {
 
 	for status != "succeeded" {
 		if status == "failed" {
-			return false, fmt.Errorf("[ERROR] - Operation failed!")
+			return false, fmt.Errorf("[ERROR] - Operation failed for op id: %d.", op_id)
 		}
 		time.Sleep(5 * time.Second)
 		op, err = c.Client.Operations.GetOperationsID(params, c.Token)
@@ -43,7 +43,7 @@ func (c *Client) WaitForOperation(op_id int64) (bool, error) {
 				// If deleted, then the resource needs to be removed from Terraform.
 				return true, nil
 			default:
-				e := fmt.Errorf("There was an error when getting the operation. \n[ERROR] -%s", err)
+				e := fmt.Errorf("There was an error when getting the operation for op id: %d.\n[ERROR] -%s", op_id, err)
 				return false, e
 			}
 		}
