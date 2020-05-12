@@ -30,7 +30,7 @@ func (c *Client) GetEnvironmentIDFromHandle(handle string) (int64, error) {
 			num_accts -= per_pg
 			page += 1
 		} else {
-			return 0, fmt.Errorf("There are no accounts with handle: %s", handle)
+			return 0, fmt.Errorf("There are no environments with handle: %s", handle)
 		}
 		params := operations.NewGetAccountsParams().WithPage(&page)
 		resp, err = c.Client.Operations.GetAccounts(params, c.Token)
@@ -38,7 +38,7 @@ func (c *Client) GetEnvironmentIDFromHandle(handle string) (int64, error) {
 			return 0, err
 		}
 	}
-	return 0, fmt.Errorf("There are no accounts with handle: %s", handle)
+	return 0, fmt.Errorf("There are no environments with handle: %s", handle)
 }
 
 // Gets database id associated with a given handle.
