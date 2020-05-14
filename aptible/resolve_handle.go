@@ -14,8 +14,19 @@ func (c *Client) GetEnvironmentIDFromHandle(handle string) (int64, error) {
 		return 0, err
 	}
 
+	if resp.Payload.TotalCount == nil {
+		return 0, fmt.Errorf("TotalCount is a nil pointer.")
+	}
 	num_accts := *resp.Payload.TotalCount
+
+	if resp.Payload.PerPage == nil {
+		return 0, fmt.Errorf("PerPage is a nil pointer.")
+	}
 	per_pg := *resp.Payload.PerPage
+
+	if resp.Payload.TotalCount == nil {
+		return 0, fmt.Errorf("CurrentPage is a nil pointer.")
+	}
 	page := *resp.Payload.CurrentPage
 
 	for num_accts > 0 {
@@ -58,8 +69,19 @@ func (c *Client) GetDatabaseIDFromHandle(env_id int64, handle string) (int64, bo
 		}
 	}
 
+	if resp.Payload.TotalCount == nil {
+		return 0, false, fmt.Errorf("TotalCount is a nil pointer.")
+	}
 	num_ops := *resp.Payload.TotalCount
+
+	if resp.Payload.PerPage == nil {
+		return 0, false, fmt.Errorf("PerPage is a nil pointer.")
+	}
 	per_pg := *resp.Payload.PerPage
+
+	if resp.Payload.TotalCount == nil {
+		return 0, false, fmt.Errorf("CurrentPage is a nil pointer.")
+	}
 	page := *resp.Payload.CurrentPage
 
 	for num_ops > 0 {
