@@ -8,7 +8,7 @@ import (
 func TestWaitForOperation(t *testing.T) {
 	var tests = []struct {
 		name    string
-		operationId   int64
+		operationID   int64
 		deleted bool
 		errored bool
 	}{
@@ -24,14 +24,14 @@ func TestWaitForOperation(t *testing.T) {
 		testName := fmt.Sprintf("%s", tc.name)
 		t.Run(testName, func(t *testing.T) {
 
-			deleted, err := c.WaitForOperation(tc.operationId)
+			deleted, err := c.WaitForOperation(tc.operationID)
 
 			if deleted != tc.deleted {
-				t.Errorf("Input: %d should have resulted in a 404.", tc.operationId)
+				t.Errorf("Input: %d should have resulted in a 404.", tc.operationID)
 			}
 
 			if (err != nil) != tc.errored {
-				t.Errorf("Input: %d caused error: %s", tc.operationId, err)
+				t.Errorf("Input: %d caused error: %s", tc.operationID, err)
 			}
 		})
 	}

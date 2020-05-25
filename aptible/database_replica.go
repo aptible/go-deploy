@@ -45,15 +45,15 @@ func (c *Client) CreateReplica(attrs ReplicateAttrs) (Database, error) {
 		repl, err = c.GetReplicaFromHandle(attrs.DatabaseID, attrs.ReplicaHandle)
 	}
 
-	replicaId := repl.ID
+	replicaID := repl.ID
 
 	// Wait on provision operation
 	operation := repl.Embedded.LastOperation
 	if operation == nil {
 		return Database{}, fmt.Errorf("last operation is a nil pointer")
 	}
-	operationId := (*operation).ID
-	deleted, err := c.WaitForOperation(operationId)
+	operationID := (*operation).ID
+	deleted, err := c.WaitForOperation(operationID)
 	if deleted {
 		return Database{}, fmt.Errorf("the replica with handle: %s was unexpectedly deleted", attrs.ReplicaHandle)
 	}
@@ -62,7 +62,7 @@ func (c *Client) CreateReplica(attrs ReplicateAttrs) (Database, error) {
 	}
 
 	// Get replica attributes
-	r, deleted, err := c.GetReplica(replicaId)
+	r, err := c.GetReplica(replicaID)
 	if deleted {
 		return Database{}, fmt.Errorf("the replica with handle: %s was unexpectedly deleted", attrs.ReplicaHandle)
 	}
@@ -72,20 +72,20 @@ func (c *Client) CreateReplica(attrs ReplicateAttrs) (Database, error) {
 	return r, nil
 }
 
-func (c *Client) GetReplica(replicaId int64) (Database, bool, error) {
-	return c.GetDatabase(replicaId)
+func (c *Client) GetReplica(replicaID int64) (Database, error) {
+	return c.GetDatabase(replicaID)
 }
 
-func (c *Client) UpdateReplica(replicaId int64, updates DBUpdates) error {
-	return c.UpdateDatabase(replicaId, updates)
+func (c *Client) UpdateReplica(replicaID int64, updates DBUpdates) error {
+	return c.UpdateDatabase(replicaID, updates)
 }
 
-func (c *Client) DeleteReplica(replicaId int64) error {
-	return c.DeleteDatabase(replicaId)
+func (c *Client) DeleteReplica(replicaID int64) error {
+	return c.DeleteDatabase(replicaID)
 }
 
-func (c *Client) GetReplicaFromHandle(databaseId int64, handle string) (*models.InlineResponse20014EmbeddedDatabases, error) {
-	params := operations.NewGetDatabasesDatabaseIDDependentsParams().WithDatabaseID(databaseId)
+func (c *Client) GetReplicaFromHandle(databaseID int64, handle string) (*models.InlineResponse20014EmbeddedDatabases, error) {
+	params := operations.NewGetDatabasesDatabaseIDDependentsParams().WithDatabaseID(databaseID)
 	resp, err := c.Client.Operations.GetDatabasesDatabaseIDDependents(params, c.Token)
 	if err != nil {
 		return nil, err
@@ -98,5 +98,5 @@ func (c *Client) GetReplicaFromHandle(databaseId int64, handle string) (*models.
 			return replicas[i], nil
 		}
 	}
-	return nil, fmt.Errorf("there are no replicas for database %d with handle: `%s`", databaseId, handle)
+	return nil, fmt.Errorf("there are no replicas for database %d with handle: `%s`", databaseID, handle)
 }

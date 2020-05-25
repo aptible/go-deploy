@@ -11,11 +11,11 @@ import (
 )
 
 // Waits for operation to succeed.
-func (c *Client) WaitForOperation(operationId int64) (bool, error) {
+func (c *Client) WaitForOperation(operationID int64) (bool, error) {
 	if c == nil {
 		return false, fmt.Errorf("client is nil")
 	}
-	params := operations.NewGetOperationsIDParams().WithID(operationId)
+	params := operations.NewGetOperationsIDParams().WithID(operationID)
 	op, err := c.Client.Operations.GetOperationsID(params, c.Token)
 	if err != nil {
 		errStruct := err.(*operations.GetOperationsIDDefault)
@@ -24,7 +24,7 @@ func (c *Client) WaitForOperation(operationId int64) (bool, error) {
 			// If deleted, then the resource needs to be removed from Terraform.
 			return true, nil
 		default:
-			e := fmt.Errorf("there was an error when getting the operation for op id: %d \n[ERROR] -%s", operationId, err)
+			e := fmt.Errorf("there was an error when getting the operation for op id: %d \n[ERROR] -%s", operationID, err)
 			return false, e
 		}
 	}
@@ -32,7 +32,7 @@ func (c *Client) WaitForOperation(operationId int64) (bool, error) {
 
 	for status != "succeeded" {
 		if status == "failed" {
-			return false, fmt.Errorf("[ERROR] - operation failed for op id: %d", operationId)
+			return false, fmt.Errorf("[ERROR] - operation failed for op id: %d", operationID)
 		}
 		time.Sleep(5 * time.Second)
 		op, err = c.Client.Operations.GetOperationsID(params, c.Token)
@@ -43,7 +43,7 @@ func (c *Client) WaitForOperation(operationId int64) (bool, error) {
 				// If deleted, then the resource needs to be removed from Terraform.
 				return true, nil
 			default:
-				e := fmt.Errorf("there was an error when getting the operation for op id: %d \n[ERROR] -%s", operationId, err)
+				e := fmt.Errorf("there was an error when getting the operation for op id: %d \n[ERROR] -%s", operationID, err)
 				return false, e
 			}
 		}

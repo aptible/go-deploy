@@ -10,64 +10,78 @@ import (
 type App struct {
 	ID      int64
 	GitRepo string
+	Deleted bool
 }
 
-func (c *Client) CreateApp(handle string, accountId int64) (App, error) {
+func (c *Client) CreateApp(handle string, accountID int64) (App, error) {
 	app := App{}
 	appRequest := models.AppRequest3{Handle: &handle}
-	params := operations.NewPostAccountsAccountIDAppsParams().WithAccountID(accountId).WithAppRequest(&appRequest)
+	params := operations.NewPostAccountsAccountIDAppsParams().WithAccountID(accountID).WithAppRequest(&appRequest)
 	response, err := c.Client.Operations.PostAccountsAccountIDApps(params, c.Token)
 	if err != nil {
 		return app, err
 	}
 
-	payload := response.Payload
-	if payload.ID == nil {
+	if response.Payload.ID == nil {
 		return app, fmt.Errorf("app ID is a nil pointer")
 	}
-	app.ID = *payload.ID
+	app.ID = *response.Payload.ID
 
-	if payload.GitRepo == nil {
+	if response.Payload.GitRepo == nil {
 		return app, fmt.Errorf("app GitRepo is a nil pointer")
 	}
-	app.GitRepo = *payload.GitRepo
+	app.GitRepo = *response.Payload.GitRepo
 
 	return app, err
 }
 
-func (c *Client) DeployApp(appId int64, config map[string]interface{}) error {
+func (c *Client) DeployApp(appID int64, config map[string]interface{}) error {
 	requestType := "deploy"
-	appRequest := models.AppRequest21{Type: &requestType, Env: config, ContainerCount: 1, ContainerSize: 1024}
-	appParams := operations.NewPostAppsAppIDOperationsParams().WithAppID(appId).WithAppRequest(&appRequest)
-	app, err := c.Client.Operations.PostAppsAppIDOperations(appParams, c.Token)
-	operationId := *app.Payload.ID
-	_, err = c.WaitForOperation(operationId)
+	request := models.AppRequest21{Type: &requestType, Env: config, ContainerCount: 1, ContainerSize: 1024}
+	params := operations.NewPostAppsAppIDOperationsParams().WithAppID(appID).WithAppRequest(&request)
+	response, err := c.Client.Operations.PostAppsAppIDOperations(params, c.Token)
+
+	operationID := *response.Payload.ID
+	_, err = c.WaitForOperation(operationID)
+
 	return err
 }
 
-func (c *Client) GetApp(appId int64) (bool, error) {
-	params := operations.NewGetAppsIDParams().WithID(appId)
-	_, err := c.Client.Operations.GetAppsID(params, c.Token)
+func (c *Client) GetApp(appID int64) (App, error) {
+	app := App{
+		ID: appID,
+		Deleted: false,
+	}
+
+	params := operations.NewGetAppsIDParams().WithID(appID)
+	response, err := c.Client.Operations.GetAppsID(params, c.Token)
 
 	if err != nil {
 		errStruct := err.(*operations.GetAppsIDDefault)
 		switch errStruct.Code() {
 		case 404:
 			// If deleted == true, then the app needs to be removed from Terraform.
-			return true, nil
+			app.Deleted = true
+			return app, nil
 		case 401:
 			e := fmt.Errorf("make sure you have the correct auth token")
-			return false, e
+			return app, e
 		default:
 			e := fmt.Errorf("there was an error when completing the request to get the app \n[ERROR] -%s", err)
-			return false, e
+			return app, e
 		}
 	}
-	return false, err
+
+	if response.Payload.GitRepo == nil {
+		return app, fmt.Errorf("app GitRepo is a nil pointer")
+	}
+	app.GitRepo = *response.Payload.GitRepo
+
+	return app, err
 }
 
 // Updates the `config` based on changes made in the config file
-func (c *Client) UpdateApp(config map[string]interface{}, appId int64) error {
+func (c *Client) UpdateApp(config map[string]interface{}, appID int64) error {
 	appRequest := models.AppRequest21{}
 	if _, ok := config["APTIBLE_DOCKER_IMAGE"]; ok {
 		// Deploying app
@@ -79,7 +93,7 @@ func (c *Client) UpdateApp(config map[string]interface{}, appId int64) error {
 		appRequest = models.AppRequest21{Type: &requestType, Env: config}
 	}
 
-	appParams := operations.NewPostAppsAppIDOperationsParams().WithAppID(appId).WithAppRequest(&appRequest)
+	appParams := operations.NewPostAppsAppIDOperationsParams().WithAppID(appID).WithAppRequest(&appRequest)
 	_, err := c.Client.Operations.PostAppsAppIDOperations(appParams, c.Token)
 	if err != nil {
 		return err
@@ -87,14 +101,14 @@ func (c *Client) UpdateApp(config map[string]interface{}, appId int64) error {
 	return nil
 }
 
-func (c *Client) DeleteApp(appId int64) (bool, error) {
+func (c *Client) DeleteApp(appID int64) (bool, error) {
 	requestType := "deprovision"
 	appRequest := models.AppRequest21{Type: &requestType}
-	appParams := operations.NewPostAppsAppIDOperationsParams().WithAppID(appId).WithAppRequest(&appRequest)
+	appParams := operations.NewPostAppsAppIDOperationsParams().WithAppID(appID).WithAppRequest(&appRequest)
 	op, err := c.Client.Operations.PostAppsAppIDOperations(appParams, c.Token)
 	if err != nil {
 		return false, err
 	}
-	operationId := *op.Payload.ID
-	return c.WaitForOperation(operationId)
+	operationID := *op.Payload.ID
+	return c.WaitForOperation(operationID)
 }

@@ -53,9 +53,9 @@ func (c *Client) GetEnvironmentIDFromHandle(handle string) (int64, error) {
 }
 
 // Gets database id associated with a given handle.
-func (c *Client) GetDatabaseIDFromHandle(accountId int64, handle string) (int64, bool, error) {
+func (c *Client) GetDatabaseIDFromHandle(accountID int64, handle string) (int64, bool, error) {
 	deleted := false
-	params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(accountId)
+	params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(accountID)
 	response, err := c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
 	if err != nil {
 		switch err.(type) {
@@ -98,7 +98,7 @@ func (c *Client) GetDatabaseIDFromHandle(accountId int64, handle string) (int64,
 		} else {
 			return 0, deleted, fmt.Errorf("there are no databases with handle: %s", handle)
 		}
-		params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(accountId).WithPage(&page)
+		params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(accountID).WithPage(&page)
 		response, err = c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
 		if err != nil {
 			switch err.(type) {
