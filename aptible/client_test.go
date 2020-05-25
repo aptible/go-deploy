@@ -9,7 +9,7 @@ import (
 )
 
 func TestGetHost(t *testing.T) {
-	curr_host := os.Getenv("APTIBLE_API_ROOT_URL")
+	currentHost := os.Getenv("APTIBLE_API_ROOT_URL")
 	var tests = []struct {
 		host     string
 		expected string
@@ -24,10 +24,10 @@ func TestGetHost(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		testname := fmt.Sprintf("%s", tc.host)
-		t.Run(testname, func(t *testing.T) {
+		testName := fmt.Sprintf("%s", tc.host)
+		t.Run(testName, func(t *testing.T) {
 
-			os.Setenv("APTIBLE_API_ROOT_URL", tc.host)
+			_ = os.Setenv("APTIBLE_API_ROOT_URL", tc.host)
 
 			host, err := GetHost()
 
@@ -40,12 +40,12 @@ func TestGetHost(t *testing.T) {
 			}
 		})
 	}
-	os.Setenv("APTIBLE_API_ROOT_URL", curr_host)
+	_ = os.Setenv("APTIBLE_API_ROOT_URL", currentHost)
 }
 
 func TestGetHostWhenNotSet(t *testing.T) {
-	curr_host := os.Getenv("APTIBLE_API_ROOT_URL")
-	os.Unsetenv("APTIBLE_API_ROOT_URL")
+	currentHost := os.Getenv("APTIBLE_API_ROOT_URL")
+	_ = os.Unsetenv("APTIBLE_API_ROOT_URL")
 
 	t.Run("Environment variable not set", func(t *testing.T) {
 		host, err := GetHost()
@@ -58,5 +58,5 @@ func TestGetHostWhenNotSet(t *testing.T) {
 		}
 	})
 
-	os.Setenv("APTIBLE_API_ROOT_URL", curr_host)
+	_ = os.Setenv("APTIBLE_API_ROOT_URL", currentHost)
 }

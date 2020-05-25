@@ -8,7 +8,7 @@ import (
 func TestWaitForOperation(t *testing.T) {
 	var tests = []struct {
 		name    string
-		op_id   int64
+		operationId   int64
 		deleted bool
 		errored bool
 	}{
@@ -21,17 +21,17 @@ func TestWaitForOperation(t *testing.T) {
 		if err != nil {
 			t.Errorf("Unable to set up client due to error. \nERROR -- %s", err)
 		}
-		testname := fmt.Sprintf("%s", tc.name)
-		t.Run(testname, func(t *testing.T) {
+		testName := fmt.Sprintf("%s", tc.name)
+		t.Run(testName, func(t *testing.T) {
 
-			deleted, err := c.WaitForOperation(tc.op_id)
+			deleted, err := c.WaitForOperation(tc.operationId)
 
 			if deleted != tc.deleted {
-				t.Errorf("Input: %d should have resulted in a 404.", tc.op_id)
+				t.Errorf("Input: %d should have resulted in a 404.", tc.operationId)
 			}
 
 			if (err != nil) != tc.errored {
-				t.Errorf("Input: %d caused error: %s", tc.op_id, err)
+				t.Errorf("Input: %d caused error: %s", tc.operationId, err)
 			}
 		})
 	}
@@ -51,8 +51,8 @@ func TestGetIDFromHref(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		testname := fmt.Sprintf("%s", tc.name)
-		t.Run(testname, func(t *testing.T) {
+		testName := fmt.Sprintf("%s", tc.name)
+		t.Run(testName, func(t *testing.T) {
 
 			id, err := GetIDFromHref(tc.href)
 
@@ -70,7 +70,7 @@ func TestGetIDFromHref(t *testing.T) {
 func TestMakeStringSlice(t *testing.T) {
 	var tests = []struct {
 		name     string
-		if_slice []interface{}
+		interfaceSlice []interface{}
 		expected []string
 		errored  bool
 	}{
@@ -86,17 +86,17 @@ func TestMakeStringSlice(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		testname := fmt.Sprintf("%s", tc.name)
-		t.Run(testname, func(t *testing.T) {
+		testName := fmt.Sprintf("%s", tc.name)
+		t.Run(testName, func(t *testing.T) {
 
-			slice, err := MakeStringSlice(tc.if_slice)
+			slice, err := MakeStringSlice(tc.interfaceSlice)
 
 			if (err != nil) != tc.errored {
-				t.Errorf("Input: %v caused error: %v", tc.if_slice, err)
+				t.Errorf("Input: %v caused error: %v", tc.interfaceSlice, err)
 			}
 
 			if !isEqual(slice, tc.expected) {
-				t.Errorf("Input: %v should have resulted in slice = %v. It was %v instead.", tc.if_slice, tc.expected, slice)
+				t.Errorf("Input: %v should have resulted in slice = %v. It was %v instead.", tc.interfaceSlice, tc.expected, slice)
 			}
 		})
 	}

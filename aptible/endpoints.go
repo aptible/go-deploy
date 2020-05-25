@@ -34,14 +34,14 @@ type EndpointCreateAttrs struct {
 }
 
 // CreateEndpoint() creates Vhost API object + provision operation on the app.
-func (c *Client) CreateEndpoint(resource_id int64, attrs EndpointCreateAttrs) (Endpoint, error) {
-	service_id, err := c.GetServiceID(resource_id, attrs.ResourceType)
+func (c *Client) CreateEndpoint(resourceId int64, attrs EndpointCreateAttrs) (Endpoint, error) {
+	serviceId, err := c.GetServiceID(resourceId, attrs.ResourceType)
 	if err != nil {
 		return Endpoint{}, err
 	}
 
 	// Create Vhost API object
-	app_req := models.AppRequest33{
+	appRequest := models.AppRequest33{
 		Type:        attrs.Type,
 		Default:     attrs.Default,
 		Internal:    attrs.Internal,
@@ -49,9 +49,9 @@ func (c *Client) CreateEndpoint(resource_id int64, attrs EndpointCreateAttrs) (E
 		Platform:    attrs.Platform,
 	}
 	if *attrs.Type != "tcp" {
-		app_req.ContainerPort = attrs.ContainerPort
+		appRequest.ContainerPort = attrs.ContainerPort
 	}
-	params := operations.NewPostServicesServiceIDVhostsParams().WithServiceID(service_id).WithAppRequest(&app_req)
+	params := operations.NewPostServicesServiceIDVhostsParams().WithServiceID(serviceId).WithAppRequest(&appRequest)
 	resp, err := c.Client.Operations.PostServicesServiceIDVhosts(params, c.Token)
 	if err != nil {
 		return Endpoint{}, err
@@ -59,55 +59,55 @@ func (c *Client) CreateEndpoint(resource_id int64, attrs EndpointCreateAttrs) (E
 
 	// Create "provision" operation
 	payload := resp.Payload
-	endpoint_id := *payload.ID
-	req_type := "provision"
-	op_req := models.AppRequest26{Type: &req_type}
-	op_params := operations.NewPostVhostsVhostIDOperationsParams().WithVhostID(endpoint_id).WithAppRequest(&op_req)
-	op_resp, err := c.Client.Operations.PostVhostsVhostIDOperations(op_params, c.Token)
+	endpointId := *payload.ID
+	requestType := "provision"
+	operationRequest := models.AppRequest26{Type: &requestType}
+	operationParams := operations.NewPostVhostsVhostIDOperationsParams().WithVhostID(endpointId).WithAppRequest(&operationRequest)
+	operationResponse, err := c.Client.Operations.PostVhostsVhostIDOperations(operationParams, c.Token)
 	if err != nil {
 		return Endpoint{}, err
 	}
 
 	// Wait on provision operation to complete.
-	if op_resp.Payload.ID == nil {
-		return Endpoint{}, fmt.Errorf("Operation ID is a nil pointer")
+	if operationResponse.Payload.ID == nil {
+		return Endpoint{}, fmt.Errorf("operation ID is a nil pointer")
 	}
-	op_id := *op_resp.Payload.ID
+	operationId := *operationResponse.Payload.ID
 
-	_, err = c.WaitForOperation(op_id)
+	_, err = c.WaitForOperation(operationId)
 	if err != nil {
 		return Endpoint{}, err
 	}
 
-	endpoint, _, err := c.GetEndpoint(endpoint_id, attrs.ResourceType)
+	endpoint, _, err := c.GetEndpoint(endpointId, attrs.ResourceType)
 
 	return endpoint, err
 }
 
 // GetEndpoint() returns the response's payload, a bool saying whether or not the endpoint
 // has been deprovisioned, and an error.
-func (c *Client) GetEndpoint(endpoint_id int64, resource_type string) (Endpoint, bool, error) {
+func (c *Client) GetEndpoint(endpointId int64, resourceType string) (Endpoint, bool, error) {
 	ep := Endpoint{}
-	params := operations.NewGetVhostsIDParams().WithID(endpoint_id)
+	params := operations.NewGetVhostsIDParams().WithID(endpointId)
 	resp, err := c.Client.Operations.GetVhostsID(params, c.Token)
 	if err != nil {
-		err_struct := err.(*operations.GetVhostsIDDefault)
-		switch err_struct.Code() {
+		errStruct := err.(*operations.GetVhostsIDDefault)
+		switch errStruct.Code() {
 		case 404:
 			// If deleted == true, then the endpoint needs to be removed from Terraform.
 			return Endpoint{}, true, nil
 		case 401:
-			e := fmt.Errorf("Make sure you have the correct auth token.")
+			e := fmt.Errorf("make sure you have the correct auth token")
 			return Endpoint{}, false, e
 		default:
-			e := fmt.Errorf("There was an error when completing the request to get the app. \n[ERROR] -%s", err)
+			e := fmt.Errorf("there was an error when completing the request to get the app \n[ERROR] -%s", err)
 			return Endpoint{}, false, e
 		}
 	}
 	// Setting fields of Endpoint struct
 	payload := resp.Payload
 	// hostname, container port
-	if resource_type == "app" {
+	if resourceType == "app" {
 		if payload.VirtualDomain == nil {
 			return Endpoint{}, false, fmt.Errorf("payload.VirtualDomain is a nil pointer")
 		}
@@ -138,15 +138,15 @@ func (c *Client) GetEndpoint(endpoint_id int64, resource_type string) (Endpoint,
 	return ep, false, nil
 }
 
-// UpdateEndpoint() takes in an endpoint_id and updates needed, and updates the endpoint.
-func (c *Client) UpdateEndpoint(endpoint_id int64, up EndpointUpdates) error {
-	app_req := models.AppRequest34{
+// UpdateEndpoint() takes in an endpointId and updates needed, and updates the endpoint.
+func (c *Client) UpdateEndpoint(endpointId int64, up EndpointUpdates) error {
+	appRequest := models.AppRequest34{
 		ContainerPort: up.ContainerPort,
 		IPWhitelist:   up.IPWhitelist,
 		Platform:      up.Platform,
 	}
 
-	params := operations.NewPutVhostsIDParams().WithID(endpoint_id).WithAppRequest(&app_req)
+	params := operations.NewPutVhostsIDParams().WithID(endpointId).WithAppRequest(&appRequest)
 	_, err := c.Client.Operations.PutVhostsID(params, c.Token)
 	if err != nil {
 		return err
@@ -156,37 +156,37 @@ func (c *Client) UpdateEndpoint(endpoint_id int64, up EndpointUpdates) error {
 }
 
 // DeleteEndpoint() deletes the endpoint.
-func (c *Client) DeleteEndpoint(endpoint_id int64) error {
-	params := operations.NewDeleteVhostsIDParams().WithID(endpoint_id)
+func (c *Client) DeleteEndpoint(endpointId int64) error {
+	params := operations.NewDeleteVhostsIDParams().WithID(endpointId)
 	_, err := c.Client.Operations.DeleteVhostsID(params, c.Token)
 	return err
 }
 
 // GetServiceID() Gets the service ID + acts as a helper for GetEndpoint().
-func (c *Client) GetServiceID(resource_id int64, resource_type string) (int64, error) {
-	if resource_type == "app" {
-		params := operations.NewGetAppsAppIDServicesParams().WithAppID(resource_id)
+func (c *Client) GetServiceID(resourceId int64, resourceType string) (int64, error) {
+	if resourceType == "app" {
+		params := operations.NewGetAppsAppIDServicesParams().WithAppID(resourceId)
 		resp, err := c.Client.Operations.GetAppsAppIDServices(params, c.Token)
 		if err != nil {
 			return 0, err
 		}
 		services := resp.Payload.Embedded.Services
 		if len(services) <= 0 {
-			return 0, fmt.Errorf("The app has no services. The app must be deployed before creating an endpoint for it.")
+			return 0, fmt.Errorf("the app must be deployed before creating an endpoint for it")
 		}
 		// TODO: add logic for finding "right" service
 		return services[0].ID, nil
-	} else if resource_type == "database" {
-		params := operations.NewGetDatabasesIDParams().WithID(resource_id)
+	} else if resourceType == "database" {
+		params := operations.NewGetDatabasesIDParams().WithID(resourceId)
 		resp, err := c.Client.Operations.GetDatabasesID(params, c.Token)
 		if err != nil {
 			return 0, err
 		}
 
-		serv_href := resp.Payload.Links.Service.Href.String()
-		serv_str := strings.Split(serv_href, "/")[4]
-		service_id, _ := strconv.Atoi(serv_str)
-		return int64(service_id), nil
+		serviceHref := resp.Payload.Links.Service.Href.String()
+		serviceString := strings.Split(serviceHref, "/")[4]
+		serviceId, _ := strconv.Atoi(serviceString)
+		return int64(serviceId), nil
 	}
 
 	return 0, nil
@@ -201,7 +201,7 @@ func GetEndpointType(t string) (string, error) {
 	case "TLS", "tls":
 		return "tls", nil
 	default:
-		e := fmt.Errorf("Invalid endpoint type. The only valid types are HTTPS, TLS, and TCP.")
+		e := fmt.Errorf("invalid endpoint type, please use HTTPS, TLS, or TCP")
 		return "", e
 	}
 }

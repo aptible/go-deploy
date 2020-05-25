@@ -11,20 +11,20 @@ import (
 )
 
 // Waits for operation to succeed.
-func (c *Client) WaitForOperation(op_id int64) (bool, error) {
+func (c *Client) WaitForOperation(operationId int64) (bool, error) {
 	if c == nil {
-		return false, fmt.Errorf("Client is nil!")
+		return false, fmt.Errorf("client is nil")
 	}
-	params := operations.NewGetOperationsIDParams().WithID(op_id)
+	params := operations.NewGetOperationsIDParams().WithID(operationId)
 	op, err := c.Client.Operations.GetOperationsID(params, c.Token)
 	if err != nil {
-		err_struct := err.(*operations.GetOperationsIDDefault)
-		switch err_struct.Code() {
+		errStruct := err.(*operations.GetOperationsIDDefault)
+		switch errStruct.Code() {
 		case 404:
 			// If deleted, then the resource needs to be removed from Terraform.
 			return true, nil
 		default:
-			e := fmt.Errorf("There was an error when getting the operation for op id: %d.\n[ERROR] -%s", op_id, err)
+			e := fmt.Errorf("there was an error when getting the operation for op id: %d \n[ERROR] -%s", operationId, err)
 			return false, e
 		}
 	}
@@ -32,18 +32,18 @@ func (c *Client) WaitForOperation(op_id int64) (bool, error) {
 
 	for status != "succeeded" {
 		if status == "failed" {
-			return false, fmt.Errorf("[ERROR] - Operation failed for op id: %d.", op_id)
+			return false, fmt.Errorf("[ERROR] - operation failed for op id: %d", operationId)
 		}
 		time.Sleep(5 * time.Second)
 		op, err = c.Client.Operations.GetOperationsID(params, c.Token)
 		if err != nil {
-			err_struct := err.(*operations.GetOperationsIDDefault)
-			switch err_struct.Code() {
+			errStruct := err.(*operations.GetOperationsIDDefault)
+			switch errStruct.Code() {
 			case 404:
 				// If deleted, then the resource needs to be removed from Terraform.
 				return true, nil
 			default:
-				e := fmt.Errorf("There was an error when getting the operation for op id: %d.\n[ERROR] -%s", op_id, err)
+				e := fmt.Errorf("there was an error when getting the operation for op id: %d \n[ERROR] -%s", operationId, err)
 				return false, e
 			}
 		}
@@ -63,21 +63,21 @@ func GetIDFromHref(href string) (int64, error) {
 		str = splits[4]
 		id, err := strconv.Atoi(str)
 		if err != nil {
-			return 0, fmt.Errorf("Failed to convert string to int for href = %s \n[ERROR] %s", href, err)
+			return 0, fmt.Errorf("failed to convert string to int for href = %s \n[ERROR] %s", href, err)
 		}
 		return int64(id), nil
 	}
-	return 0, fmt.Errorf("Href is shorter than expected. Better parsing is needed.")
+	return 0, fmt.Errorf("href is shorter than expected")
 }
 
 // makes a string slice out of a slice of type interface
-func MakeStringSlice(if_slice []interface{}) ([]string, error) {
-	str_slice := make([]string, len(if_slice))
-	for i := 0; i < len(if_slice); i++ {
-		if (reflect.TypeOf(if_slice[i]).Kind()) != reflect.String {
-			return []string{}, fmt.Errorf("Slice contains non-string elements.")
+func MakeStringSlice(interfaceSlice []interface{}) ([]string, error) {
+	strSlice := make([]string, len(interfaceSlice))
+	for i := 0; i < len(interfaceSlice); i++ {
+		if (reflect.TypeOf(interfaceSlice[i]).Kind()) != reflect.String {
+			return []string{}, fmt.Errorf("slice contains non-string elements")
 		}
-		str_slice[i] = (if_slice[i].(string))
+		strSlice[i] = interfaceSlice[i].(string)
 	}
-	return str_slice, nil
+	return strSlice, nil
 }

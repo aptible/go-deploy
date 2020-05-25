@@ -8,13 +8,13 @@ import (
 	"testing"
 )
 
-func mockEnv(envvar, value string) func() {
-	original := os.Getenv(envvar)
+func mockEnv(envVar, value string) func() {
+	original := os.Getenv(envVar)
 	deferFunc := func() {
-		os.Setenv(envvar, original)
+		_ = os.Setenv(envVar, original)
 	}
 
-	os.Setenv(envvar, value)
+	_ = os.Setenv(envVar, value)
 
 	// Caller should defer on this to revert
 	return deferFunc
@@ -61,15 +61,15 @@ func TestGetToken(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		testname := fmt.Sprintf("%s: %s -- %s", tc.authURL, tc.token, tc.json)
-		t.Run(testname, func(t *testing.T) {
+		testName := fmt.Sprintf("%s: %s -- %s", tc.authURL, tc.token, tc.json)
+		t.Run(testName, func(t *testing.T) {
 			path := filepath.Join(tmpHome, ".aptible", "tokens.json")
 			err := ioutil.WriteFile(path, []byte(tc.json), 0644)
 			if err != nil {
 				t.Error("Failed to create the temp tokens.json", err)
 			}
-			os.Unsetenv("APTIBLE_ACCESS_TOKEN")
-			os.Setenv("APTIBLE_AUTH_ROOT_URL", tc.authURL)
+			_ = os.Unsetenv("APTIBLE_ACCESS_TOKEN")
+			_ = os.Setenv("APTIBLE_AUTH_ROOT_URL", tc.authURL)
 			ans, err := GetToken()
 			// Unexpected error encountered
 			if (err != nil) != tc.errored {

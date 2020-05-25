@@ -45,5 +45,5 @@ func GetToken() (string, error) {
 		return token, nil
 	}
 
-	return "", fmt.Errorf("No token found for %s", auth)
+	return "", fmt.Errorf("no token found for %s", auth)
 }

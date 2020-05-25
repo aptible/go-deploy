@@ -26,48 +26,48 @@ type DBCreateAttrs struct {
 	DiskSize      int64
 }
 
-func (c *Client) CreateDatabase(env_id int64, attrs DBCreateAttrs) (Database, error) {
+func (c *Client) CreateDatabase(accountId int64, attrs DBCreateAttrs) (Database, error) {
 	// creates API object
-	app_req := models.AppRequest12{
+	appRequest := models.AppRequest12{
 		Handle: attrs.Handle,
 		Type:   attrs.Type,
 	}
-	params := operations.NewPostAccountsAccountIDDatabasesParams().WithAccountID(env_id).WithAppRequest(&app_req)
+	params := operations.NewPostAccountsAccountIDDatabasesParams().WithAccountID(accountId).WithAppRequest(&appRequest)
 	resp, err := c.Client.Operations.PostAccountsAccountIDDatabases(params, c.Token)
 	if err != nil {
 		return Database{}, err
 	}
 	// provisions database
-	req_type := "provision"
-	prov_req := models.AppRequest23{
-		Type:          &req_type,
+	requestType := "provision"
+	provisionRequest := models.AppRequest23{
+		Type:          &requestType,
 		ContainerSize: attrs.ContainerSize,
 		DiskSize:      attrs.DiskSize,
 	}
-	db_id := *resp.Payload.ID
-	provision_params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithAppRequest(&prov_req)
-	op_resp, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(provision_params, c.Token)
+	databaseId := *resp.Payload.ID
+	provisionParams := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseId).WithAppRequest(&provisionRequest)
+	operationResponse, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(provisionParams, c.Token)
 	if err != nil {
 		return Database{}, err
 	}
 	// waits for provision operation to finish
-	op_id := *op_resp.Payload.ID
-	_, err = c.WaitForOperation(op_id)
+	operationId := *operationResponse.Payload.ID
+	_, err = c.WaitForOperation(operationId)
 	if err != nil {
 		return Database{}, err
 	}
 	// gets database
-	db, _, err := c.GetDatabase(db_id)
-	return db, nil
+	database, _, err := c.GetDatabase(databaseId)
+	return database, nil
 }
 
-func (c *Client) GetDatabase(db_id int64) (Database, bool, error) {
+func (c *Client) GetDatabase(databaseId int64) (Database, bool, error) {
 	deleted := false
-	db := Database{}
-	db.ID = db_id
+	database := Database{}
+	database.ID = databaseId
 
 	// get database, error checking
-	params := operations.NewGetDatabasesIDParams().WithID(db_id)
+	params := operations.NewGetDatabasesIDParams().WithID(databaseId)
 	resp, err := c.Client.Operations.GetDatabasesID(params, c.Token)
 	if err != nil {
 		switch err.(type) {
@@ -83,64 +83,64 @@ func (c *Client) GetDatabase(db_id int64) (Database, bool, error) {
 	}
 
 	// get ConnectionURL
-	c_url := resp.Payload.ConnectionURL
-	if c_url == nil {
-		return Database{}, deleted, fmt.Errorf("ConnectionURL is a nil pointer.")
+	connectionUrl := resp.Payload.ConnectionURL
+	if connectionUrl == nil {
+		return Database{}, deleted, fmt.Errorf("connectionUrl is a nil pointer")
 	}
-	db.ConnectionURL = *c_url
+	database.ConnectionURL = *connectionUrl
 
 	// get updates to container size
-	serv_href := resp.Payload.Links.Service.Href.String()
-	c_size, err := c.GetContainerSize(serv_href)
+	serviceHref := resp.Payload.Links.Service.Href.String()
+	containerSize, err := c.GetContainerSize(serviceHref)
 	if err != nil {
 		return Database{}, false, err
 	}
-	db.ContainerSize = c_size
+	database.ContainerSize = containerSize
 
 	// get updates to disk size
-	disk_href := resp.Payload.Links.Disk.Href.String()
-	d_size, err := c.GetDiskSize(disk_href)
+	diskHref := resp.Payload.Links.Disk.Href.String()
+	diskSize, err := c.GetDiskSize(diskHref)
 	if err != nil {
 		return Database{}, false, err
 	}
-	db.DiskSize = d_size
+	database.DiskSize = diskSize
 
-	return db, false, nil
+	return database, false, nil
 }
 
-func (c *Client) UpdateDatabase(db_id int64, updates DBUpdates) error {
-	req_type := "restart"
-	app_req := models.AppRequest23{
-		Type: &req_type,
+func (c *Client) UpdateDatabase(databaseId int64, updates DBUpdates) error {
+	requestType := "restart"
+	appRequest := models.AppRequest23{
+		Type: &requestType,
 	}
 
 	if updates.ContainerSize >= 512 {
-		app_req.ContainerSize = updates.ContainerSize
+		appRequest.ContainerSize = updates.ContainerSize
 	}
 	if updates.DiskSize >= 10 {
-		app_req.DiskSize = updates.DiskSize
+		appRequest.DiskSize = updates.DiskSize
 	}
 
-	params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithAppRequest(&app_req)
+	params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseId).WithAppRequest(&appRequest)
 	op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
 	if err != nil {
 		return err
 	}
 	if op.Payload.ID != nil {
-		op_id := *op.Payload.ID
-		_, err = c.WaitForOperation(op_id)
+		operationId := *op.Payload.ID
+		_, err = c.WaitForOperation(operationId)
 		if err != nil {
 			return err
 		}
 	} else {
-		return fmt.Errorf("ID is a nil pointer.")
+		return fmt.Errorf("id is a nil pointer")
 	}
 
 	return nil
 }
 
-func (c *Client) DeleteDatabase(db_id int64) error {
-	params := operations.NewDeleteDatabasesIDParams().WithID(db_id)
+func (c *Client) DeleteDatabase(databaseId int64) error {
+	params := operations.NewDeleteDatabasesIDParams().WithID(databaseId)
 	_, err := c.Client.Operations.DeleteDatabasesID(params, c.Token)
 	return err
 }
@@ -148,8 +148,8 @@ func (c *Client) DeleteDatabase(db_id int64) error {
 // HELPERS //
 
 // Gets operations of a database on a per page basis
-func (c *Client) GetDatabaseOperations(db_id int64, page int64) (*models.InlineResponse20029, error) {
-	params := operations.NewGetDatabasesDatabaseIDOperationsParams().WithDatabaseID(db_id).WithPage(&page)
+func (c *Client) GetDatabaseOperations(databaseId int64, page int64) (*models.InlineResponse20029, error) {
+	params := operations.NewGetDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseId).WithPage(&page)
 	resp, err := c.Client.Operations.GetDatabasesDatabaseIDOperations(params, c.Token)
 	if err != nil {
 		return nil, err
@@ -158,35 +158,35 @@ func (c *Client) GetDatabaseOperations(db_id int64, page int64) (*models.InlineR
 }
 
 func (c *Client) GetContainerSize(href string) (int64, error) {
-	service_id, err := GetIDFromHref(href)
+	serviceId, err := GetIDFromHref(href)
 	if err != nil {
 		return 0, err
 	}
-	serv_params := operations.NewGetServicesIDParams().WithID(service_id)
-	serv_resp, err := c.Client.Operations.GetServicesID(serv_params, c.Token)
+	serviceParams := operations.NewGetServicesIDParams().WithID(serviceId)
+	serviceResponse, err := c.Client.Operations.GetServicesID(serviceParams, c.Token)
 	if err != nil {
 		return 0, err
 	}
-	container_ptr := serv_resp.Payload.ContainerMemoryLimitMb
-	if container_ptr == nil {
-		return 0, fmt.Errorf("Container size is a nil pointer.")
+	containerPtr := serviceResponse.Payload.ContainerMemoryLimitMb
+	if containerPtr == nil {
+		return 0, fmt.Errorf("container size is a nil pointer")
 	}
-	return *container_ptr, nil
+	return *containerPtr, nil
 }
 
 func (c *Client) GetDiskSize(href string) (int64, error) {
-	disk_id, err := GetIDFromHref(href)
+	diskId, err := GetIDFromHref(href)
 	if err != nil {
 		return 0, err
 	}
-	disk_params := operations.NewGetDisksIDParams().WithID(disk_id)
-	disk_resp, err := c.Client.Operations.GetDisksID(disk_params, c.Token)
+	diskParams := operations.NewGetDisksIDParams().WithID(diskId)
+	diskResp, err := c.Client.Operations.GetDisksID(diskParams, c.Token)
 	if err != nil {
 		return 0, err
 	}
-	disk_ptr := disk_resp.Payload.Size
-	if disk_ptr == nil {
-		return 0, fmt.Errorf("Disk size is a nil pointer.")
+	diskPtr := diskResp.Payload.Size
+	if diskPtr == nil {
+		return 0, fmt.Errorf("disk size is a nil pointer")
 	}
-	return *disk_ptr, nil
+	return *diskPtr, nil
 }
