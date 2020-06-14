@@ -8,9 +8,12 @@ import (
 )
 
 type App struct {
-	ID      int64
-	GitRepo string
-	Deleted bool
+	ID            int64
+	GitRepo       string
+	Deleted       bool
+	EnvironmentID int64
+	Handle        string
+	Env           interface{}
 }
 
 func (c *Client) CreateApp(handle string, accountID int64) (App, error) {
@@ -49,7 +52,7 @@ func (c *Client) DeployApp(appID int64, config map[string]interface{}) error {
 
 func (c *Client) GetApp(appID int64) (App, error) {
 	app := App{
-		ID: appID,
+		ID:      appID,
 		Deleted: false,
 	}
 
@@ -60,6 +63,7 @@ func (c *Client) GetApp(appID int64) (App, error) {
 		errStruct := err.(*operations.GetAppsIDDefault)
 		switch errStruct.Code() {
 		case 404:
+
 			// If deleted == true, then the app needs to be removed from Terraform.
 			app.Deleted = true
 			return app, nil
@@ -76,6 +80,25 @@ func (c *Client) GetApp(appID int64) (App, error) {
 		return app, fmt.Errorf("app GitRepo is a nil pointer")
 	}
 	app.GitRepo = *response.Payload.GitRepo
+
+	if response.Payload.Handle == nil {
+		return app, fmt.Errorf("app Handle is a nil pointer")
+	}
+	app.Handle = *response.Payload.Handle
+
+	envHref := response.Payload.Links.Account.Href.String()
+	envID, err := GetIDFromHref(envHref)
+	if err != nil {
+		return app, err
+	}
+	app.EnvironmentID = envID
+
+	configHref := response.Payload.Links.CurrentConfiguration.Href.String()
+	config, err := c.GetConfigurationFromHref(configHref)
+	if err != nil {
+		return app, err
+	}
+	app.Env = config.Env
 
 	return app, err
 }

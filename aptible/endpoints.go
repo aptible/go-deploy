@@ -49,6 +49,7 @@ func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (End
 		IPWhitelist: attrs.IPWhitelist,
 		Platform:    attrs.Platform,
 	}
+
 	if *attrs.Type != "tcp" {
 		request.ContainerPort = attrs.ContainerPort
 	}
@@ -83,9 +84,7 @@ func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (End
 		return Endpoint{}, err
 	}
 
-	endpoint, err := c.GetEndpoint(endpointID)
-
-	return endpoint, err
+	return c.GetEndpoint(endpointID)
 }
 
 // GetEndpoint() returns the response's payload, a bool saying whether or not the endpoint

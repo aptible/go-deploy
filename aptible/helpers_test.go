@@ -7,10 +7,10 @@ import (
 
 func TestWaitForOperation(t *testing.T) {
 	var tests = []struct {
-		name    string
-		operationID   int64
-		deleted bool
-		errored bool
+		name        string
+		operationID int64
+		deleted     bool
+		errored     bool
 	}{
 		{"test_404", 0, true, false},
 		// Add other test cases if we need in the future
@@ -69,10 +69,10 @@ func TestGetIDFromHref(t *testing.T) {
 
 func TestMakeStringSlice(t *testing.T) {
 	var tests = []struct {
-		name     string
+		name           string
 		interfaceSlice []interface{}
-		expected []string
-		errored  bool
+		expected       []string
+		errored        bool
 	}{
 		{"test_vanilla",
 			[]interface{}{"chocolate", "vanilla", "strawberry"},
