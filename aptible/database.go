@@ -7,14 +7,15 @@ import (
 )
 
 type Database struct {
-	ID            int64
-	ConnectionURL string
-	ContainerSize int64
-	DiskSize      int64
-	Deleted       bool
-	Handle        string
-	Type          string
-	EnvironmentID int64
+	ID               int64
+	ConnectionURL    string
+	ContainerSize    int64
+	DiskSize         int64
+	Deleted          bool
+	Handle           string
+	Type             string
+	EnvironmentID    int64
+	InitializeFromID int64
 }
 
 type DBUpdates struct {
@@ -127,6 +128,15 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 		return Database{}, err
 	}
 	database.EnvironmentID = envID
+
+	if resp.Payload.Links.InitializeFrom != nil {
+		initializeFromHref := resp.Payload.Links.InitializeFrom.Href.String()
+		initializeFromID, err := GetIDFromHref(initializeFromHref)
+		if err != nil {
+			return database, err
+		}
+		database.InitializeFromID = initializeFromID
+	}
 
 	return database, nil
 }
