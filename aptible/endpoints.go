@@ -23,6 +23,9 @@ type Endpoint struct {
 	Default       bool
 	UserDomain    string
 	VirtualDomain string
+    Service       Service
+	Type          string
+	Internal      bool
 }
 
 type EndpointCreateAttrs struct {
@@ -137,12 +140,43 @@ func (c *Client) GetEndpoint(endpointID int64) (Endpoint, error) {
 	}
 	endpoint.ExternalHost = *response.Payload.ExternalHost
 
+	if response.Payload.Internal == nil {
+		return endpoint, fmt.Errorf("payload.Internal is a nil pointer")
+	}
+	endpoint.Internal = *response.Payload.Internal
+
+	if response.Payload.Acme == nil {
+		return endpoint, fmt.Errorf("payload.Acme is a nil pointer")
+	}
+	endpoint.Acme = *response.Payload.Acme
+
+	if response.Payload.Default == nil {
+		return endpoint, fmt.Errorf("payload.Default is a nil pointer")
+	}
+	endpoint.Default = *response.Payload.Default
+
 	endpoint.IPWhitelist = response.Payload.IPWhitelist
 
 	if response.Payload.Platform == nil {
 		return endpoint, fmt.Errorf("payload.Platform is a nil pointer")
 	}
 	endpoint.Platform = *response.Payload.Platform
+
+	if response.Payload.Type == nil {
+		return endpoint, fmt.Errorf("payload.Type is a nil pointer")
+	}
+	endpointType, err := GetHumanReadableEndpointType(*response.Payload.Type)
+	if err != nil {
+		return endpoint, err
+	}
+	endpoint.Type = endpointType
+
+	serviceHref := response.Payload.Links.Service.Href.String()
+	service, err := c.GetServiceFromHref(serviceHref)
+	if err != nil {
+		return endpoint, err
+	}
+	endpoint.Service = service
 
 	return endpoint, nil
 }
@@ -181,6 +215,20 @@ func GetEndpointType(t string) (string, error) {
 		return "tls", nil
 	default:
 		e := fmt.Errorf("invalid endpoint type, please use HTTPS, TLS, or TCP")
+		return "", e
+	}
+}
+
+func GetHumanReadableEndpointType(t string) (string, error) {
+	switch t {
+	case "http_proxy_protocol":
+		return "https", nil
+	case "tcp":
+		return "tcp", nil
+	case "tls":
+		return "tls", nil
+	default:
+		e := fmt.Errorf("invalid endpoint type")
 		return "", e
 	}
 }

@@ -12,6 +12,8 @@ type Service struct {
 	ProcessType            string
 	Command                string
 	ResourceType           string
+	ResourceID			   int64
+	EnvironmentID		   int64
 }
 
 func (c *Client) GetService(serviceID int64) (Service, error) {
@@ -49,11 +51,34 @@ func (c *Client) GetService(serviceID int64) (Service, error) {
 		service.Command = *response.Payload.Command
 	}
 
-	if response.Payload.Links.App != nil {
-		service.ResourceType = "app"
-	} else {
-		service.ResourceType = "database"
+	if response.Payload.Links.Database == nil && response.Payload.Links.App == nil {
+		return service, fmt.Errorf("something is wrong: both app and database are nil for service")
 	}
+
+	if response.Payload.Links.Database != nil {
+		service.ResourceType = "database"
+		resourceHref := response.Payload.Links.Database.Href.String()
+		resourceID, err := GetIDFromHref(resourceHref)
+		if err != nil {
+			return service, err
+		}
+		service.ResourceID = resourceID
+	} else {
+		service.ResourceType = "app"
+		resourceHref := response.Payload.Links.App.Href.String()
+		resourceID, err := GetIDFromHref(resourceHref)
+		if err != nil {
+			return service, err
+		}
+		service.ResourceID = resourceID
+	}
+
+	envHref := response.Payload.Links.Account.Href.String()
+	envID, err := GetIDFromHref(envHref)
+	if err != nil {
+		return service, err
+	}
+	service.EnvironmentID = envID
 
 	return service, nil
 }
