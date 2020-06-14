@@ -7,11 +7,11 @@ import (
 
 type Service struct {
 	ID                     int64
-	ContainerCount	       int64
+	ContainerCount         int64
 	ContainerMemoryLimitMb int64
-	ProcessType			   string
+	ProcessType            string
 	Command                string
-	ResourceType		   string
+	ResourceType           string
 }
 
 func (c *Client) GetService(serviceID int64) (Service, error) {
@@ -51,8 +51,8 @@ func (c *Client) GetService(serviceID int64) (Service, error) {
 
 	if response.Payload.Links.App != nil {
 		service.ResourceType = "app"
- 	} else {
- 		service.ResourceType = "database"
+	} else {
+		service.ResourceType = "database"
 	}
 
 	return service, nil
@@ -65,7 +65,6 @@ func (c *Client) GetServiceFromHref(href string) (Service, error) {
 	}
 	return c.GetService(serviceID)
 }
-
 
 func (c *Client) GetServiceForAppByName(appID int64, serviceName string) (Service, error) {
 
@@ -83,11 +82,11 @@ func (c *Client) GetServiceForAppByName(appID int64, serviceName string) (Servic
 	for _, service := range services {
 		if service.ProcessType == serviceName {
 			return Service{
-				ID: service.ID,
-				ContainerCount: service.ContainerCount,
+				ID:                     service.ID,
+				ContainerCount:         service.ContainerCount,
 				ContainerMemoryLimitMb: *service.ContainerMemoryLimitMb,
-				ProcessType: service.ProcessType,
-				Command: service.Command,
+				ProcessType:            service.ProcessType,
+				Command:                service.Command,
 			}, nil
 		}
 	}

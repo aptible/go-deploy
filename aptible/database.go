@@ -13,6 +13,8 @@ type Database struct {
 	DiskSize      int64
 	Deleted       bool
 	Handle        string
+	Type          string
+	EnvironmentID int64
 }
 
 type DBUpdates struct {
@@ -67,7 +69,7 @@ func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database,
 
 func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 	database := Database{
-		ID: databaseID,
+		ID:      databaseID,
 		Deleted: false,
 	}
 
@@ -86,12 +88,17 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 		}
 	}
 
-	// get ConnectionURL
 	connectionUrl := resp.Payload.ConnectionURL
 	if connectionUrl == nil {
 		return Database{}, fmt.Errorf("connectionUrl is a nil pointer")
 	}
 	database.ConnectionURL = *connectionUrl
+
+	databaseType := resp.Payload.Type
+	if databaseType == nil {
+		return Database{}, fmt.Errorf("databaseType is a nil pointer")
+	}
+	database.Type = *databaseType
 
 	handle := resp.Payload.Handle
 	if handle == nil {
@@ -112,8 +119,14 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 	if err != nil {
 		return Database{}, err
 	}
-
 	database.DiskSize = disk.Size
+
+	envHref := resp.Payload.Links.Account.Href.String()
+	envID, err := GetIDFromHref(envHref)
+	if err != nil {
+		return Database{}, err
+	}
+	database.EnvironmentID = envID
 
 	return database, nil
 }
