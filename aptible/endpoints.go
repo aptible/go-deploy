@@ -14,11 +14,15 @@ type EndpointUpdates struct {
 
 type Endpoint struct {
 	ID            int64
-	Hostname      string
+	ExternalHost  string
 	ContainerPort int64
 	IPWhitelist   []string
 	Platform      string
 	Deleted       bool
+	Acme          bool
+	Default       bool
+	UserDomain    string
+	VirtualDomain string
 }
 
 type EndpointCreateAttrs struct {
@@ -30,12 +34,15 @@ type EndpointCreateAttrs struct {
 	ContainerPort      int64
 	IPWhitelist        []string
 	Platform           string
+	Acme               bool
+	UserDomain         string
 }
 
 // CreateEndpoint() creates Vhost API object + provision operation on the app.
 func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (Endpoint, error) {
 	// Create Vhost API object
 	request := models.AppRequest33{
+		Acme:        attrs.Acme,
 		Type:        attrs.Type,
 		Default:     attrs.Default,
 		Internal:    attrs.Internal,
@@ -44,6 +51,9 @@ func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (End
 	}
 	if *attrs.Type != "tcp" {
 		request.ContainerPort = attrs.ContainerPort
+	}
+	if attrs.UserDomain != "" {
+		request.UserDomain = attrs.UserDomain
 	}
 	params := operations.NewPostServicesServiceIDVhostsParams().WithServiceID(service.ID).WithAppRequest(&request)
 	resp, err := c.Client.Operations.PostServicesServiceIDVhosts(params, c.Token)
@@ -102,11 +112,22 @@ func (c *Client) GetEndpoint(endpointID int64) (Endpoint, error) {
 		}
 	}
 
+	if response.Payload.ID == nil {
+		return endpoint, fmt.Errorf("payload.ID is a nil pointer")
+	}
+	endpoint.ID = *response.Payload.ID
+
 	if response.Payload.VirtualDomain == nil {
 		return endpoint, fmt.Errorf("payload.VirtualDomain is a nil pointer")
 	}
+	endpoint.VirtualDomain = *response.Payload.VirtualDomain
 
-	endpoint.Hostname = *response.Payload.VirtualDomain
+	if response.Payload.UserDomain == nil {
+		endpoint.UserDomain = ""
+	} else {
+		endpoint.UserDomain = *response.Payload.UserDomain
+	}
+
 	if response.Payload.ContainerPort == nil {
 		return endpoint, fmt.Errorf("payload.ContainerPort is a nil pointer")
 	}
@@ -115,13 +136,7 @@ func (c *Client) GetEndpoint(endpointID int64) (Endpoint, error) {
 	if response.Payload.ExternalHost == nil {
 		return endpoint, fmt.Errorf("payload.ExternalHost is a nil pointer")
 	}
-	endpoint.Hostname = *response.Payload.ExternalHost
-
-
-	if response.Payload.ID == nil {
-		return endpoint, fmt.Errorf("payload.ID is a nil pointer")
-	}
-	endpoint.ID = *response.Payload.ID
+	endpoint.ExternalHost = *response.Payload.ExternalHost
 
 	endpoint.IPWhitelist = response.Payload.IPWhitelist
 
