@@ -9,54 +9,54 @@ import (
 // Gets environment id associated with a given handle.
 func (c *Client) GetEnvironmentIDFromHandle(handle string) (int64, error) {
 	params := operations.NewGetAccountsParams()
-	resp, err := c.Client.Operations.GetAccounts(params, c.Token)
+	response, err := c.Client.Operations.GetAccounts(params, c.Token)
 	if err != nil {
 		return 0, err
 	}
 
-	if resp.Payload.TotalCount == nil {
-		return 0, fmt.Errorf("TotalCount is a nil pointer.")
+	if response.Payload.TotalCount == nil {
+		return 0, fmt.Errorf("TotalCount is a nil pointer")
 	}
-	num_accts := *resp.Payload.TotalCount
+	numAccounts := *response.Payload.TotalCount
 
-	if resp.Payload.PerPage == nil {
-		return 0, fmt.Errorf("PerPage is a nil pointer.")
+	if response.Payload.PerPage == nil {
+		return 0, fmt.Errorf("PerPage is a nil pointer")
 	}
-	per_pg := *resp.Payload.PerPage
+	perPage := *response.Payload.PerPage
 
-	if resp.Payload.TotalCount == nil {
-		return 0, fmt.Errorf("CurrentPage is a nil pointer.")
+	if response.Payload.TotalCount == nil {
+		return 0, fmt.Errorf("CurrentPage is a nil pointer")
 	}
-	page := *resp.Payload.CurrentPage
+	page := *response.Payload.CurrentPage
 
-	for num_accts > 0 {
-		accounts := resp.Payload.Embedded.Accounts
+	for numAccounts > 0 {
+		accounts := response.Payload.Embedded.Accounts
 		for i := range accounts {
 			if accounts[i].Handle == handle {
 				a := accounts[i]
 				return a.ID, nil
 			}
 		}
-		if num_accts-per_pg > 0 {
-			num_accts -= per_pg
+		if numAccounts-perPage > 0 {
+			numAccounts -= perPage
 			page += 1
 		} else {
-			return 0, fmt.Errorf("There are no environments with handle: %s", handle)
+			return 0, fmt.Errorf("there are no accounts with handle: %s", handle)
 		}
 		params := operations.NewGetAccountsParams().WithPage(&page)
-		resp, err = c.Client.Operations.GetAccounts(params, c.Token)
+		response, err = c.Client.Operations.GetAccounts(params, c.Token)
 		if err != nil {
 			return 0, err
 		}
 	}
-	return 0, fmt.Errorf("There are no environments with handle: %s", handle)
+	return 0, fmt.Errorf("there are no accounts with handle: %s", handle)
 }
 
 // Gets database id associated with a given handle.
-func (c *Client) GetDatabaseIDFromHandle(env_id int64, handle string) (int64, bool, error) {
+func (c *Client) GetDatabaseIDFromHandle(accountID int64, handle string) (int64, bool, error) {
 	deleted := false
-	params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(env_id)
-	resp, err := c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
+	params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(accountID)
+	response, err := c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
 	if err != nil {
 		switch err.(type) {
 		case *operations.GetAccountsAccountIDDatabasesDefault:
@@ -69,37 +69,37 @@ func (c *Client) GetDatabaseIDFromHandle(env_id int64, handle string) (int64, bo
 		}
 	}
 
-	if resp.Payload.TotalCount == nil {
-		return 0, false, fmt.Errorf("TotalCount is a nil pointer.")
+	if response.Payload.TotalCount == nil {
+		return 0, false, fmt.Errorf("TotalCount is a nil pointer")
 	}
-	num_ops := *resp.Payload.TotalCount
+	numOps := *response.Payload.TotalCount
 
-	if resp.Payload.PerPage == nil {
-		return 0, false, fmt.Errorf("PerPage is a nil pointer.")
+	if response.Payload.PerPage == nil {
+		return 0, false, fmt.Errorf("PerPage is a nil pointer")
 	}
-	per_pg := *resp.Payload.PerPage
+	perPage := *response.Payload.PerPage
 
-	if resp.Payload.TotalCount == nil {
-		return 0, false, fmt.Errorf("CurrentPage is a nil pointer.")
+	if response.Payload.TotalCount == nil {
+		return 0, false, fmt.Errorf("CurrentPage is a nil pointer")
 	}
-	page := *resp.Payload.CurrentPage
+	page := *response.Payload.CurrentPage
 
-	for num_ops > 0 {
-		databases := resp.Payload.Embedded.Databases
+	for numOps > 0 {
+		databases := response.Payload.Embedded.Databases
 		for i := range databases {
 			if databases[i].Handle == handle {
 				d := databases[i]
 				return d.ID, deleted, nil
 			}
 		}
-		if num_ops-per_pg > 0 {
-			num_ops -= per_pg
+		if numOps-perPage > 0 {
+			numOps -= perPage
 			page += 1
 		} else {
-			return 0, deleted, fmt.Errorf("There are no databases with handle: %s", handle)
+			return 0, deleted, fmt.Errorf("there are no databases with handle: %s", handle)
 		}
-		params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(env_id).WithPage(&page)
-		resp, err = c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
+		params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(accountID).WithPage(&page)
+		response, err = c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
 		if err != nil {
 			switch err.(type) {
 			case *operations.GetAccountsAccountIDDatabasesDefault:
@@ -112,5 +112,5 @@ func (c *Client) GetDatabaseIDFromHandle(env_id int64, handle string) (int64, bo
 			}
 		}
 	}
-	return 0, deleted, fmt.Errorf("There are no databases with handle: %s", handle)
+	return 0, deleted, fmt.Errorf("there are no databases with handle: %s", handle)
 }

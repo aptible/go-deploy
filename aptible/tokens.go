@@ -18,6 +18,7 @@ func GetToken() (string, error) {
 	}
 
 	home, err := homedir.Dir()
+	fmt.Println(home)
 	if err != nil {
 		return "", err
 	}
@@ -39,11 +40,14 @@ func GetToken() (string, error) {
 		auth = "https://auth.aptible.com"
 	}
 
+	fmt.Println(auth)
+	fmt.Printf("%+v\n", tokens)
+
 	// Checks if there is a token.
 	token = tokens[auth]
 	if token != "" {
 		return token, nil
 	}
 
-	return "", fmt.Errorf("No token found for %s", auth)
+	return "", fmt.Errorf("no token found for %s", auth)
 }
