@@ -2,7 +2,7 @@ package aptible
 
 import (
 	"fmt"
-
+	"log"
 	"github.com/aptible/go-deploy/client/operations"
 	"github.com/aptible/go-deploy/models"
 )
@@ -93,12 +93,16 @@ func (c *Client) GetApp(appID int64) (App, error) {
 	}
 	app.EnvironmentID = envID
 
-	configHref := response.Payload.Links.CurrentConfiguration.Href.String()
-	config, err := c.GetConfigurationFromHref(configHref)
-	if err != nil {
-		return app, err
+	log.Println(response.Payload.Links.CurrentConfiguration)
+
+	if response.Payload.Links.CurrentConfiguration != nil {
+		configHref := response.Payload.Links.CurrentConfiguration.Href.String()
+		config, err := c.GetConfigurationFromHref(configHref)
+		if err != nil {
+			return app, err
+		}
+		app.Env = config.Env
 	}
-	app.Env = config.Env
 
 	return app, err
 }
