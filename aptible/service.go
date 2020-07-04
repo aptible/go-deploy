@@ -3,6 +3,7 @@ package aptible
 import (
 	"fmt"
 	"github.com/aptible/go-deploy/client/operations"
+	"github.com/aptible/go-deploy/models"
 )
 
 type Service struct {
@@ -12,8 +13,8 @@ type Service struct {
 	ProcessType            string
 	Command                string
 	ResourceType           string
-	ResourceID			   int64
-	EnvironmentID		   int64
+	ResourceID             int64
+	EnvironmentID          int64
 }
 
 func (c *Client) GetService(serviceID int64) (Service, error) {
@@ -81,6 +82,25 @@ func (c *Client) GetService(serviceID int64) (Service, error) {
 	service.EnvironmentID = envID
 
 	return service, nil
+}
+
+func (c *Client) ScaleService(serviceID int64, containerCount int64, memoryLimit int64) error {
+	requestType := "scale"
+	request := models.AppRequest25{
+		Type:           &requestType,
+		ContainerSize:  memoryLimit,
+		ContainerCount: containerCount,
+	}
+	appParams := operations.NewPostServicesServiceIDOperationsParams().WithServiceID(serviceID).WithAppRequest(&request)
+	response, err := c.Client.Operations.PostServicesServiceIDOperations(appParams, c.Token)
+	if err != nil {
+		return err
+	}
+
+	operationID := *response.Payload.ID
+	_, err = c.WaitForOperation(operationID)
+
+	return err
 }
 
 func (c *Client) GetServiceFromHref(href string) (Service, error) {
