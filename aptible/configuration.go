@@ -6,8 +6,8 @@ import (
 )
 
 type Configuration struct {
-	ID     int64
-	Env    interface{}
+	ID  int64
+	Env interface{}
 }
 
 func (c *Client) GetConfiguration(configID int64) (Configuration, error) {
@@ -23,7 +23,6 @@ func (c *Client) GetConfiguration(configID int64) (Configuration, error) {
 		return config, fmt.Errorf("env is a nil pointer")
 	}
 	config.Env = response.Payload.Env
-
 
 	return config, nil
 }

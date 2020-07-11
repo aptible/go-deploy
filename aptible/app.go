@@ -2,7 +2,6 @@ package aptible
 
 import (
 	"fmt"
-
 	"github.com/aptible/go-deploy/client/operations"
 	"github.com/aptible/go-deploy/models"
 )
@@ -14,6 +13,7 @@ type App struct {
 	EnvironmentID int64
 	Handle        string
 	Env           interface{}
+	Services      []Service
 }
 
 func (c *Client) CreateApp(handle string, accountID int64) (App, error) {
@@ -36,18 +36,6 @@ func (c *Client) CreateApp(handle string, accountID int64) (App, error) {
 	app.GitRepo = *response.Payload.GitRepo
 
 	return app, err
-}
-
-func (c *Client) DeployApp(appID int64, config map[string]interface{}) error {
-	requestType := "deploy"
-	request := models.AppRequest21{Type: &requestType, Env: config, ContainerCount: 1, ContainerSize: 1024}
-	params := operations.NewPostAppsAppIDOperationsParams().WithAppID(appID).WithAppRequest(&request)
-	response, err := c.Client.Operations.PostAppsAppIDOperations(params, c.Token)
-
-	operationID := *response.Payload.ID
-	_, err = c.WaitForOperation(operationID)
-
-	return err
 }
 
 func (c *Client) GetApp(appID int64) (App, error) {
@@ -93,35 +81,51 @@ func (c *Client) GetApp(appID int64) (App, error) {
 	}
 	app.EnvironmentID = envID
 
-	configHref := response.Payload.Links.CurrentConfiguration.Href.String()
-	config, err := c.GetConfigurationFromHref(configHref)
-	if err != nil {
-		return app, err
+	if response.Payload.Links.CurrentConfiguration != nil {
+		configHref := response.Payload.Links.CurrentConfiguration.Href.String()
+		config, err := c.GetConfigurationFromHref(configHref)
+		if err != nil {
+			return app, err
+		}
+		app.Env = config.Env
 	}
-	app.Env = config.Env
+
+	if response.Payload.Embedded.Services != nil {
+		for _, s := range response.Payload.Embedded.Services {
+			service := Service{
+				ID:                     s.ID,
+				ContainerCount:         s.ContainerCount,
+				ContainerMemoryLimitMb: *s.ContainerMemoryLimitMb,
+				ProcessType:            s.ProcessType,
+				Command:                s.Command,
+				ResourceType:           s.ResourceType,
+				ResourceID:             app.ID,
+				EnvironmentID:          app.EnvironmentID,
+			}
+			app.Services = append(app.Services, service)
+		}
+	}
 
 	return app, err
 }
 
-// Updates the `config` based on changes made in the config file
-func (c *Client) UpdateApp(config map[string]interface{}, appID int64) error {
+func (c *Client) DeployApp(config map[string]interface{}, appID int64) error {
 	appRequest := models.AppRequest21{}
+	requestType := "configure"
 	if _, ok := config["APTIBLE_DOCKER_IMAGE"]; ok {
-		// Deploying app
-		requestType := "deploy"
-		appRequest = models.AppRequest21{Type: &requestType, Env: config, ContainerCount: 1, ContainerSize: 1024}
-	} else {
-		// Configuring app
-		requestType := "configure"
-		appRequest = models.AppRequest21{Type: &requestType, Env: config}
+		requestType = "deploy"
 	}
-
+	appRequest = models.AppRequest21{Type: &requestType, Env: config}
 	appParams := operations.NewPostAppsAppIDOperationsParams().WithAppID(appID).WithAppRequest(&appRequest)
-	_, err := c.Client.Operations.PostAppsAppIDOperations(appParams, c.Token)
+	response, err := c.Client.Operations.PostAppsAppIDOperations(appParams, c.Token)
 	if err != nil {
 		return err
 	}
-	return nil
+
+	operationID := *response.Payload.ID
+	_, err = c.WaitForOperation(operationID)
+
+	return err
 }
 
 func (c *Client) DeleteApp(appID int64) (bool, error) {

@@ -23,7 +23,7 @@ type Endpoint struct {
 	Default       bool
 	UserDomain    string
 	VirtualDomain string
-    Service       Service
+	Service       Service
 	Type          string
 	Internal      bool
 }
