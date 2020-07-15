@@ -120,9 +120,10 @@ func (c *Client) GetEndpoint(endpointID int64) (Endpoint, error) {
 	endpoint.ID = *response.Payload.ID
 
 	if response.Payload.VirtualDomain == nil {
-		return endpoint, fmt.Errorf("payload.VirtualDomain is a nil pointer")
+		endpoint.VirtualDomain = ""
+	} else {
+		endpoint.VirtualDomain = *response.Payload.VirtualDomain
 	}
-	endpoint.VirtualDomain = *response.Payload.VirtualDomain
 
 	if response.Payload.UserDomain == nil {
 		endpoint.UserDomain = ""
@@ -131,9 +132,10 @@ func (c *Client) GetEndpoint(endpointID int64) (Endpoint, error) {
 	}
 
 	if response.Payload.ContainerPort == nil {
-		return endpoint, fmt.Errorf("payload.ContainerPort is a nil pointer")
+		endpoint.ContainerPort = 0
+	} else {
+		endpoint.ContainerPort = *response.Payload.ContainerPort
 	}
-	endpoint.ContainerPort = *response.Payload.ContainerPort
 
 	if response.Payload.ExternalHost == nil {
 		return endpoint, fmt.Errorf("payload.ExternalHost is a nil pointer")
