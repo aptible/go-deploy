@@ -13,10 +13,10 @@ gen:
 	bin/swagger generate client
 
 test: fmtcheck
-	go test $(TEST) $(TESTARGS) -timeout=120s -parallel=4
+	go test $(TEST) -timeout=120s -parallel=4
 
-testacc: fmtcheck
-	TF_ACC=1 go test $(TEST) -v -count $(TEST_COUNT) -parallel 20 $(TESTARGS) -timeout 120m
+testapi: fmtcheck
+	go test $(TEST) -timeout=120s -parallel=4 -tags=api
 
 fmt:
 	gofmt -s -w .
@@ -31,4 +31,4 @@ tools:
 	@curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s v1.24.0
 	@scripts/install-swagger.sh
 
-.PHONY: build gen test testacc fmt fmtcheck lint tools
+.PHONY: build gen test testacc fmt fmtcheck lint tools testapi

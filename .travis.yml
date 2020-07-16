@@ -5,7 +5,8 @@ services:
 language: go
 
 env:
-  global: GOFLAGS=-mod=vendor
+  global:
+    - GOFLAGS=-mod=vendor
 
 matrix:
   fast_finish: true
