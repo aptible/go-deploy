@@ -1,7 +1,6 @@
 package aptible
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -21,7 +20,7 @@ func TestWaitForOperation(t *testing.T) {
 		if err != nil {
 			t.Errorf("Unable to set up client due to error. \nERROR -- %s", err)
 		}
-		testName := fmt.Sprintf("%s", tc.name)
+		testName := tc.name
 		t.Run(testName, func(t *testing.T) {
 
 			deleted, err := c.WaitForOperation(tc.operationID)
@@ -51,7 +50,7 @@ func TestGetIDFromHref(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		testName := fmt.Sprintf("%s", tc.name)
+		testName := tc.name
 		t.Run(testName, func(t *testing.T) {
 
 			id, err := GetIDFromHref(tc.href)
@@ -86,7 +85,7 @@ func TestMakeStringSlice(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		testName := fmt.Sprintf("%s", tc.name)
+		testName := tc.name
 		t.Run(testName, func(t *testing.T) {
 
 			slice, err := MakeStringSlice(tc.interfaceSlice)

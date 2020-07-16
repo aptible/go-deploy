@@ -30,7 +30,7 @@ func GetToken() (string, error) {
 	// Contains tokens from the tokens.json file.
 	var tokens map[string]string
 	if err := json.Unmarshal(dat, &tokens); err != nil {
-		panic(err)
+		return "", err
 	}
 
 	// Gets auth server

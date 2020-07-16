@@ -25,8 +25,7 @@ fmtcheck:
 	@sh -c "'$(CURDIR)/scripts/gofmtcheck.sh'"
 
 lint:
-	@./bin/golangci-lint run ./$(PKG_NAME)/...
-	@docker run -v $(CUR_DIR):/src bflad/tfproviderlint:0.14.0 ./...
+	@./bin/golangci-lint run
 
 tools:
 	@curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s v1.24.0

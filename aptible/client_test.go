@@ -1,7 +1,6 @@
 package aptible
 
 import (
-	"fmt"
 	"os"
 	"testing"
 
@@ -24,7 +23,7 @@ func TestGetHost(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		testName := fmt.Sprintf("%s", tc.host)
+		testName := tc.host
 		t.Run(testName, func(t *testing.T) {
 
 			_ = os.Setenv("APTIBLE_API_ROOT_URL", tc.host)

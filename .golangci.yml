@@ -1,0 +1,29 @@
+run:
+  deadline: 3m
+  modules-download-mode: vendor
+  skip-dirs:
+    - client
+    - models
+
+issues:
+  max-per-linter: 0
+  max-same-issues: 0
+
+linters:
+  disable-all: true
+  enable:
+    - deadcode
+    - errcheck
+    - gofmt
+    - goimports
+    - gosimple
+    - ineffassign
+    - misspell
+    - staticcheck
+    - structcheck
+    - unconvert
+    - unused
+    - unparam
+    - varcheck
+    - vet
+    - gosec
