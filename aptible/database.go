@@ -1,7 +1,9 @@
 package aptible
 
 import (
+	"errors"
 	"fmt"
+
 	"github.com/aptible/go-deploy/client/operations"
 	"github.com/aptible/go-deploy/models"
 )
@@ -77,16 +79,15 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 	params := operations.NewGetDatabasesIDParams().WithID(databaseID)
 	resp, err := c.Client.Operations.GetDatabasesID(params, c.Token)
 	if err != nil {
-		switch err.(type) {
-		case *operations.GetDatabasesIDDefault:
-			if err.(*operations.GetDatabasesIDDefault).Code() == 404 {
+		var e *operations.GetDatabasesIDDefault
+		if errors.As(err, &e) {
+			if e.Code() == 404 {
 				err = nil
 			}
 			database.Deleted = true
 			return database, err
-		default:
-			return Database{}, err
 		}
+		return Database{}, err
 	}
 
 	connectionUrl := resp.Payload.ConnectionURL

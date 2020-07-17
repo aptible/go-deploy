@@ -40,9 +40,15 @@ func (c *Client) CreateReplica(attrs ReplicateAttrs) (Database, error) {
 	fmt.Println("The replicate operation has started.")
 
 	repl, err := c.GetReplicaFromHandle(attrs.DatabaseID, attrs.ReplicaHandle)
+	if err != nil {
+		return Database{}, err
+	}
 	for repl == nil {
-		time.Sleep(5)
+		time.Sleep(5 * time.Second)
 		repl, err = c.GetReplicaFromHandle(attrs.DatabaseID, attrs.ReplicaHandle)
+		if err != nil {
+			return Database{}, err
+		}
 	}
 
 	replicaID := repl.ID

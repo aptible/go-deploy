@@ -52,11 +52,8 @@ func GetHost() (string, error) {
 	}
 	host = strings.Trim(host, " ")
 
-	if strings.HasPrefix(host, "http://") {
-		host = host[7:]
-	} else if strings.HasPrefix(host, "https://") {
-		host = host[8:]
-	}
+	host = strings.TrimPrefix(host, "http://")
+	host = strings.TrimPrefix(host, "https://")
 
 	if !validHost(host) {
 		return "", fmt.Errorf("[ERROR] Host must be of the form xxx.xxx.com. Inputted host: %s", host)

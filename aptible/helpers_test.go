@@ -1,41 +1,8 @@
 package aptible
 
 import (
-	"fmt"
 	"testing"
 )
-
-func TestWaitForOperation(t *testing.T) {
-	var tests = []struct {
-		name        string
-		operationID int64
-		deleted     bool
-		errored     bool
-	}{
-		{"test_404", 0, true, false},
-		// Add other test cases if we need in the future
-	}
-
-	for _, tc := range tests {
-		c, err := SetUpClient()
-		if err != nil {
-			t.Errorf("Unable to set up client due to error. \nERROR -- %s", err)
-		}
-		testName := fmt.Sprintf("%s", tc.name)
-		t.Run(testName, func(t *testing.T) {
-
-			deleted, err := c.WaitForOperation(tc.operationID)
-
-			if deleted != tc.deleted {
-				t.Errorf("Input: %d should have resulted in a 404.", tc.operationID)
-			}
-
-			if (err != nil) != tc.errored {
-				t.Errorf("Input: %d caused error: %s", tc.operationID, err)
-			}
-		})
-	}
-}
 
 func TestGetIDFromHref(t *testing.T) {
 	var tests = []struct {
@@ -44,14 +11,14 @@ func TestGetIDFromHref(t *testing.T) {
 		expected int64
 		errored  bool
 	}{
-		{"test_vanilla", "https://api-rachel.aptible-sandbox.com/disks/46", 46, false},
-		{"test_conversion_err", "https://api-rachel.aptible-sandbox.com/disks/str", 0, true},
-		{"test_too_short", "https://api-rachel.aptible-sandbox.com/2", 0, true},
+		{"test_vanilla", "https://api.aptible.com/disks/46", 46, false},
+		{"test_conversion_err", "https://api.aptible.com/disks/str", 0, true},
+		{"test_too_short", "https://api.aptible.com/2", 0, true},
 		// Add other test cases if we need in the future
 	}
 
 	for _, tc := range tests {
-		testName := fmt.Sprintf("%s", tc.name)
+		testName := tc.name
 		t.Run(testName, func(t *testing.T) {
 
 			id, err := GetIDFromHref(tc.href)
@@ -86,7 +53,7 @@ func TestMakeStringSlice(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		testName := fmt.Sprintf("%s", tc.name)
+		testName := tc.name
 		t.Run(testName, func(t *testing.T) {
 
 			slice, err := MakeStringSlice(tc.interfaceSlice)

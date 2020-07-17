@@ -1,6 +1,7 @@
 package aptible
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/aptible/go-deploy/client/operations"
@@ -58,15 +59,13 @@ func (c *Client) GetDatabaseIDFromHandle(accountID int64, handle string) (int64,
 	params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(accountID)
 	response, err := c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
 	if err != nil {
-		switch err.(type) {
-		case *operations.GetAccountsAccountIDDatabasesDefault:
-			if err.(*operations.GetAccountsAccountIDDatabasesDefault).Code() == 404 {
+		var e *operations.GetAccountsAccountIDDatabasesDefault
+		if errors.As(err, &e) {
+			if e.Code() == 404 {
 				deleted = true
 			}
-			return 0, deleted, err
-		default:
-			return 0, deleted, err
 		}
+		return 0, deleted, err
 	}
 
 	if response.Payload.TotalCount == nil {
@@ -101,15 +100,13 @@ func (c *Client) GetDatabaseIDFromHandle(accountID int64, handle string) (int64,
 		params := operations.NewGetAccountsAccountIDDatabasesParams().WithAccountID(accountID).WithPage(&page)
 		response, err = c.Client.Operations.GetAccountsAccountIDDatabases(params, c.Token)
 		if err != nil {
-			switch err.(type) {
-			case *operations.GetAccountsAccountIDDatabasesDefault:
-				if err.(*operations.GetAccountsAccountIDDatabasesDefault).Code() == 404 {
+			var e *operations.GetAccountsAccountIDDatabasesDefault
+			if errors.As(err, &e) {
+				if e.Code() == 404 {
 					deleted = true
 				}
-				return 0, deleted, err
-			default:
-				return 0, deleted, err
 			}
+			return 0, deleted, err
 		}
 	}
 	return 0, deleted, fmt.Errorf("there are no databases with handle: %s", handle)
