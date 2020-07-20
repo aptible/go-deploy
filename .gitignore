@@ -17,3 +17,8 @@ vendor/
 
 # Tools
 bin/
+
+# local copy of swagger spec
+swagger.yaml
+swagger.json
+swagger.yml

@@ -10,6 +10,9 @@ build: fmtcheck
 	go install
 
 gen:
+	@curl -sSfLO https://documentation-staging.s3.amazonaws.com/swagger/v1/swagger.json
+	docker run --rm -v $(CURDIR):/src -v $(CURDIR):/out/api/ swaggerapi/swagger-codegen-cli generate -i src/swagger.json -l go -o /out
+	@rm swagger.json
 	bin/swagger generate client
 
 test: fmtcheck
