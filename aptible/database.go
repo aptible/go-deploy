@@ -18,6 +18,7 @@ type Database struct {
 	Type             string
 	EnvironmentID    int64
 	InitializeFromID int64
+	Service		     Service
 }
 
 type DBUpdates struct {
@@ -137,6 +138,15 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 			return database, err
 		}
 		database.InitializeFromID = initializeFromID
+	}
+
+	if resp.Payload.Links.Service != nil {
+		serviceHref := resp.Payload.Links.Service.Href.String()
+		service, err := c.GetServiceFromHref(serviceHref)
+		if err != nil {
+			return database, err
+		}
+		database.Service = service
 	}
 
 	return database, nil
