@@ -18,7 +18,7 @@ type Database struct {
 	Type             string
 	EnvironmentID    int64
 	InitializeFromID int64
-	Service		     Service
+	Service          Service
 }
 
 type DBUpdates struct {
