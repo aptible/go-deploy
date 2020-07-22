@@ -184,8 +184,17 @@ func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
 }
 
 func (c *Client) DeleteDatabase(databaseID int64) error {
-	params := operations.NewDeleteDatabasesIDParams().WithID(databaseID)
-	_, err := c.Client.Operations.DeleteDatabasesID(params, c.Token)
+	requestType := "deprovision"
+	request := models.AppRequest23{
+		Type: &requestType,
+	}
+	deprovisionParams := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
+	op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(deprovisionParams, c.Token)
+	if err != nil {
+		return err
+	}
+	operationID := *op.Payload.ID
+	_, err = c.WaitForOperation(operationID)
 	return err
 }
 
