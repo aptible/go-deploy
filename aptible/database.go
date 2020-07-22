@@ -188,8 +188,8 @@ func (c *Client) DeleteDatabase(databaseID int64) error {
 	request := models.AppRequest23{
 		Type: &requestType,
 	}
-	provisionParams := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
-	op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(provisionParams, c.Token)
+	deprovisionParams := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
+	op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(deprovisionParams, c.Token)
 	if err != nil {
 		return err
 	}
