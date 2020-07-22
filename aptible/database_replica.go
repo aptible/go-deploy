@@ -2,7 +2,6 @@ package aptible
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/aptible/go-deploy/client/operations"
 	"github.com/aptible/go-deploy/models"
@@ -33,32 +32,27 @@ func (c *Client) CreateReplica(attrs ReplicateAttrs) (Database, error) {
 
 	// replicate operation
 	operationParams := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(attrs.DatabaseID).WithAppRequest(&req)
-	_, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(operationParams, c.Token)
+	op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(operationParams, c.Token)
 	if err != nil {
 		return Database{}, err
 	}
-	fmt.Println("The replicate operation has started.")
+	operationID := *op.Payload.ID
+	_, err = c.WaitForOperation(operationID)
+	if err != nil {
+		return Database{}, err
+	}
 
 	repl, err := c.GetReplicaFromHandle(attrs.DatabaseID, attrs.ReplicaHandle)
 	if err != nil {
 		return Database{}, err
 	}
-	for repl == nil {
-		time.Sleep(5 * time.Second)
-		repl, err = c.GetReplicaFromHandle(attrs.DatabaseID, attrs.ReplicaHandle)
-		if err != nil {
-			return Database{}, err
-		}
-	}
-
 	replicaID := repl.ID
 
-	// Wait on provision operation
 	operation := repl.Embedded.LastOperation
 	if operation == nil {
 		return Database{}, fmt.Errorf("last operation is a nil pointer")
 	}
-	operationID := (*operation).ID
+	operationID = (*operation).ID
 	deleted, err := c.WaitForOperation(operationID)
 	if deleted {
 		return Database{}, fmt.Errorf("the replica with handle: %s was unexpectedly deleted", attrs.ReplicaHandle)
