@@ -19,6 +19,7 @@ type Database struct {
 	EnvironmentID    int64
 	InitializeFromID int64
 	Service          Service
+	DatabaseImage    DatabaseImage
 }
 
 type DBUpdates struct {
@@ -27,10 +28,11 @@ type DBUpdates struct {
 }
 
 type DBCreateAttrs struct {
-	Handle        *string
-	Type          string
-	ContainerSize int64
-	DiskSize      int64
+	Handle          *string
+	Type            string
+	ContainerSize   int64
+	DiskSize        int64
+	DatabaseImageID int64
 }
 
 func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database, error) {
@@ -39,6 +41,11 @@ func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database,
 		Handle: attrs.Handle,
 		Type:   attrs.Type,
 	}
+
+	if attrs.DatabaseImageID != 0 {
+		request.DatabaseImageID = &attrs.DatabaseImageID
+	}
+
 	params := operations.NewPostAccountsAccountIDDatabasesParams().WithAccountID(accountID).WithAppRequest(&request)
 	resp, err := c.Client.Operations.PostAccountsAccountIDDatabases(params, c.Token)
 	if err != nil {
