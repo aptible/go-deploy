@@ -19,18 +19,18 @@ func GetToken() (string, error) {
 
 	home, err := homedir.Dir()
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("Your token is invalid. Are you logged in? Error: %v", err.Error())
 	}
 
 	dat, err := ioutil.ReadFile(filepath.Join(home, ".aptible", "tokens.json"))
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("Your token is invalid. Are you logged in? Error: %v", err.Error())
 	}
 
 	// Contains tokens from the tokens.json file.
 	var tokens map[string]string
 	if err := json.Unmarshal(dat, &tokens); err != nil {
-		return "", err
+		return "", fmt.Errorf("Your token is invalid. Are you logged in? Error: %v", err.Error())
 	}
 
 	// Gets auth server
@@ -45,5 +45,5 @@ func GetToken() (string, error) {
 		return token, nil
 	}
 
-	return "", fmt.Errorf("no token found for %s", auth)
+	return "", fmt.Errorf("No token can be found for %v. Are you logged in?", auth)
 }
