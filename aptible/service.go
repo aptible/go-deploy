@@ -127,13 +127,16 @@ func (c *Client) GetServiceForAppByName(appID int64, serviceName string) (Servic
 
 	for _, service := range services {
 		if service.ProcessType == serviceName {
-			return Service{
-				ID:                     service.ID,
-				ContainerCount:         service.ContainerCount,
-				ContainerMemoryLimitMb: *service.ContainerMemoryLimitMb,
-				ProcessType:            service.ProcessType,
-				Command:                service.Command,
-			}, nil
+			s := Service{
+				ID:             service.ID,
+				ContainerCount: service.ContainerCount,
+				ProcessType:    service.ProcessType,
+				Command:        service.Command,
+			}
+			if service.ContainerMemoryLimitMb != nil {
+				s.ContainerMemoryLimitMb = *service.ContainerMemoryLimitMb
+			}
+			return s, nil
 		}
 	}
 
