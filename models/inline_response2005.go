@@ -41,6 +41,10 @@ type InlineResponse2005 struct {
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
+	// database handle
+	// Required: true
+	DatabaseHandle *string `json:"database_handle"`
+
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
@@ -75,6 +79,10 @@ func (m *InlineResponse2005) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatabaseHandle(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -158,6 +166,15 @@ func (m *InlineResponse2005) validateAwsSnapshotID(formats strfmt.Registry) erro
 func (m *InlineResponse2005) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2005) validateDatabaseHandle(formats strfmt.Registry) error {
+
+	if err := validate.Required("database_handle", "body", m.DatabaseHandle); err != nil {
 		return err
 	}
 
