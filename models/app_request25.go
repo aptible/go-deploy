@@ -42,6 +42,9 @@ type AppRequest25 struct {
 	// disk size
 	DiskSize int64 `json:"disk_size,omitempty"`
 
+	// docker ref
+	DockerRef string `json:"docker_ref,omitempty"`
+
 	// env
 	Env interface{} `json:"env,omitempty"`
 

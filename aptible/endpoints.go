@@ -203,8 +203,16 @@ func (c *Client) UpdateEndpoint(endpointID int64, up EndpointUpdates) error {
 
 // DeleteEndpoint() deletes the endpoint.
 func (c *Client) DeleteEndpoint(endpointID int64) error {
-	params := operations.NewDeleteVhostsIDParams().WithID(endpointID)
-	_, err := c.Client.Operations.DeleteVhostsID(params, c.Token)
+	requestType := "deprovision"
+	operationRequest := models.AppRequest26{Type: &requestType}
+	operationParams := operations.NewPostVhostsVhostIDOperationsParams().WithVhostID(endpointID).WithAppRequest(&operationRequest)
+	op, err := c.Client.Operations.PostVhostsVhostIDOperations(operationParams, c.Token)
+	if err != nil {
+		return err
+	}
+
+	operationID := *op.Payload.ID
+	_, err = c.WaitForOperation(operationID)
 	return err
 }
 

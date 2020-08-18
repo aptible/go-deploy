@@ -34,6 +34,9 @@ type InlineResponse2004EmbeddedBackups struct {
 	// created at
 	CreatedAt string `json:"created_at,omitempty"`
 
+	// database handle
+	DatabaseHandle string `json:"database_handle,omitempty"`
+
 	// id
 	ID int64 `json:"id,omitempty"`
 
