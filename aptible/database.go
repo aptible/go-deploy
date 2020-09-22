@@ -156,6 +156,19 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 		database.Service = service
 	}
 
+	if resp.Payload.Links.DatabaseImage != nil {
+		imageHref := resp.Payload.Links.DatabaseImage.Href.String()
+		imageID, err := GetIDFromHref(imageHref)
+		if err != nil {
+			return database, err
+		}
+		dbImage, err := c.GetDatabaseImage(imageID)
+		if err != nil {
+			return database, err
+		}
+		database.DatabaseImage = dbImage
+	}
+
 	return database, nil
 }
 
