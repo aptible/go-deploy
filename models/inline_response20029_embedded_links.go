@@ -16,36 +16,43 @@ import (
 // swagger:model inline_response_200_29__embedded__links
 type InlineResponse20029EmbeddedLinks struct {
 
-	// download csv
-	DownloadCsv *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"download_csv,omitempty"`
+	// account
+	Account *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"account,omitempty"`
 
-	// download pdf
-	DownloadPdf *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"download_pdf,omitempty"`
+	// containers
+	Containers *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"containers,omitempty"`
+
+	// database
+	Database *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"database,omitempty"`
+
+	// operations
+	Operations *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"operations,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
-
-	// stack
-	Stack *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"stack,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 }
 
 // Validate validates this inline response 200 29 embedded links
 func (m *InlineResponse20029EmbeddedLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateDownloadCsv(formats); err != nil {
+	if err := m.validateAccount(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDownloadPdf(formats); err != nil {
+	if err := m.validateContainers(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatabase(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOperations(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateSelf(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateStack(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -55,16 +62,16 @@ func (m *InlineResponse20029EmbeddedLinks) Validate(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *InlineResponse20029EmbeddedLinks) validateDownloadCsv(formats strfmt.Registry) error {
+func (m *InlineResponse20029EmbeddedLinks) validateAccount(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.DownloadCsv) { // not required
+	if swag.IsZero(m.Account) { // not required
 		return nil
 	}
 
-	if m.DownloadCsv != nil {
-		if err := m.DownloadCsv.Validate(formats); err != nil {
+	if m.Account != nil {
+		if err := m.Account.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("download_csv")
+				return ve.ValidateName("account")
 			}
 			return err
 		}
@@ -73,16 +80,52 @@ func (m *InlineResponse20029EmbeddedLinks) validateDownloadCsv(formats strfmt.Re
 	return nil
 }
 
-func (m *InlineResponse20029EmbeddedLinks) validateDownloadPdf(formats strfmt.Registry) error {
+func (m *InlineResponse20029EmbeddedLinks) validateContainers(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.DownloadPdf) { // not required
+	if swag.IsZero(m.Containers) { // not required
 		return nil
 	}
 
-	if m.DownloadPdf != nil {
-		if err := m.DownloadPdf.Validate(formats); err != nil {
+	if m.Containers != nil {
+		if err := m.Containers.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("download_pdf")
+				return ve.ValidateName("containers")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20029EmbeddedLinks) validateDatabase(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Database) { // not required
+		return nil
+	}
+
+	if m.Database != nil {
+		if err := m.Database.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("database")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20029EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Operations) { // not required
+		return nil
+	}
+
+	if m.Operations != nil {
+		if err := m.Operations.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("operations")
 			}
 			return err
 		}
@@ -101,24 +144,6 @@ func (m *InlineResponse20029EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20029EmbeddedLinks) validateStack(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Stack) { // not required
-		return nil
-	}
-
-	if m.Stack != nil {
-		if err := m.Stack.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("stack")
 			}
 			return err
 		}

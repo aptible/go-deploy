@@ -17,6 +17,9 @@ import (
 // swagger:model app_request_27
 type AppRequest27 struct {
 
+	// automated
+	Automated bool `json:"automated,omitempty"`
+
 	// certificate
 	Certificate string `json:"certificate,omitempty"`
 
@@ -24,7 +27,7 @@ type AppRequest27 struct {
 	Command string `json:"command,omitempty"`
 
 	// container count
-	ContainerCount int64 `json:"container_count,omitempty"`
+	ContainerCount int64 `json:"container_count"`
 
 	// container size
 	ContainerSize int64 `json:"container_size,omitempty"`
@@ -34,7 +37,7 @@ type AppRequest27 struct {
 	DestinationAccount strfmt.URI `json:"destination_account,omitempty"`
 
 	// destination account id
-	DestinationAccountID string `json:"destination_account_id,omitempty"`
+	DestinationAccountID int64 `json:"destination_account_id,omitempty"`
 
 	// destination region
 	DestinationRegion string `json:"destination_region,omitempty"`
@@ -56,6 +59,9 @@ type AppRequest27 struct {
 
 	// interactive
 	Interactive bool `json:"interactive,omitempty"`
+
+	// key arn
+	KeyArn string `json:"key_arn,omitempty"`
 
 	// private key
 	PrivateKey string `json:"private_key,omitempty"`

@@ -28,6 +28,9 @@ type InlineResponse2003EmbeddedApps struct {
 	// created at
 	CreatedAt string `json:"created_at,omitempty"`
 
+	// deployment method
+	DeploymentMethod *string `json:"deployment_method,omitempty"`
+
 	// git repo
 	GitRepo string `json:"git_repo,omitempty"`
 

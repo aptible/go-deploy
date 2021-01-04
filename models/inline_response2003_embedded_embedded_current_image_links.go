@@ -17,13 +17,13 @@ import (
 type InlineResponse2003EmbeddedEmbeddedCurrentImageLinks struct {
 
 	// app
-	App *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"app,omitempty"`
+	App *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"app,omitempty"`
 
 	// operations
-	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
+	Operations *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"operations,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 }
 
 // Validate validates this inline response 200 3 embedded embedded current image links

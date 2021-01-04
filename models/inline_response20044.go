@@ -23,32 +23,63 @@ type InlineResponse20044 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse20043EmbeddedLinks `json:"_links"`
+	Links *InlineResponse20041EmbeddedLinks `json:"_links"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
+	// handle
+	// Required: true
+	Handle *string `json:"handle"`
+
 	// id
 	// Required: true
-	// Format: uuid
-	ID *strfmt.UUID `json:"id"`
+	ID *int64 `json:"id"`
 
-	// ssh certificate body
+	// our gateway
 	// Required: true
-	SSHCertificateBody *string `json:"ssh_certificate_body"`
+	OurGateway *string `json:"our_gateway"`
 
-	// ssh port forward socket
+	// our networks
 	// Required: true
-	SSHPortForwardSocket *int64 `json:"ssh_port_forward_socket"`
+	OurNetworks [][]string `json:"our_networks"`
 
-	// ssh pty
+	// peer gateway
 	// Required: true
-	SSHPty *bool `json:"ssh_pty"`
+	PeerGateway *string `json:"peer_gateway"`
 
-	// ssh user
+	// peer networks
 	// Required: true
-	SSHUser *string `json:"ssh_user"`
+	PeerNetworks [][]string `json:"peer_networks"`
+
+	// perfect forward secrecy
+	// Required: true
+	PerfectForwardSecrecy *bool `json:"perfect_forward_secrecy"`
+
+	// phase 1 alg
+	// Required: true
+	Phase1Alg *string `json:"phase_1_alg"`
+
+	// phase 1 dh group
+	// Required: true
+	Phase1DhGroup *int64 `json:"phase_1_dh_group"`
+
+	// phase 1 lifetime
+	// Required: true
+	Phase1Lifetime *int64 `json:"phase_1_lifetime"`
+
+	// phase 2 alg
+	// Required: true
+	Phase2Alg *string `json:"phase_2_alg"`
+
+	// phase 2 dh group
+	// Required: true
+	Phase2DhGroup *int64 `json:"phase_2_dh_group"`
+
+	// phase 2 lifetime
+	// Required: true
+	Phase2Lifetime *int64 `json:"phase_2_lifetime"`
 
 	// updated at
 	// Required: true
@@ -71,23 +102,55 @@ func (m *InlineResponse20044) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateHandle(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateSSHCertificateBody(formats); err != nil {
+	if err := m.validateOurGateway(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateSSHPortForwardSocket(formats); err != nil {
+	if err := m.validateOurNetworks(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateSSHPty(formats); err != nil {
+	if err := m.validatePeerGateway(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateSSHUser(formats); err != nil {
+	if err := m.validatePeerNetworks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePerfectForwardSecrecy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase1Alg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase1DhGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase1Lifetime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase2Alg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase2DhGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase2Lifetime(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -137,49 +200,117 @@ func (m *InlineResponse20044) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *InlineResponse20044) validateHandle(formats strfmt.Registry) error {
+
+	if err := validate.Required("handle", "body", m.Handle); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *InlineResponse20044) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
 	}
 
-	if err := validate.FormatOf("id", "body", "uuid", m.ID.String(), formats); err != nil {
+	return nil
+}
+
+func (m *InlineResponse20044) validateOurGateway(formats strfmt.Registry) error {
+
+	if err := validate.Required("our_gateway", "body", m.OurGateway); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20044) validateSSHCertificateBody(formats strfmt.Registry) error {
+func (m *InlineResponse20044) validateOurNetworks(formats strfmt.Registry) error {
 
-	if err := validate.Required("ssh_certificate_body", "body", m.SSHCertificateBody); err != nil {
+	if err := validate.Required("our_networks", "body", m.OurNetworks); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20044) validateSSHPortForwardSocket(formats strfmt.Registry) error {
+func (m *InlineResponse20044) validatePeerGateway(formats strfmt.Registry) error {
 
-	if err := validate.Required("ssh_port_forward_socket", "body", m.SSHPortForwardSocket); err != nil {
+	if err := validate.Required("peer_gateway", "body", m.PeerGateway); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20044) validateSSHPty(formats strfmt.Registry) error {
+func (m *InlineResponse20044) validatePeerNetworks(formats strfmt.Registry) error {
 
-	if err := validate.Required("ssh_pty", "body", m.SSHPty); err != nil {
+	if err := validate.Required("peer_networks", "body", m.PeerNetworks); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20044) validateSSHUser(formats strfmt.Registry) error {
+func (m *InlineResponse20044) validatePerfectForwardSecrecy(formats strfmt.Registry) error {
 
-	if err := validate.Required("ssh_user", "body", m.SSHUser); err != nil {
+	if err := validate.Required("perfect_forward_secrecy", "body", m.PerfectForwardSecrecy); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20044) validatePhase1Alg(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_1_alg", "body", m.Phase1Alg); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20044) validatePhase1DhGroup(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_1_dh_group", "body", m.Phase1DhGroup); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20044) validatePhase1Lifetime(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_1_lifetime", "body", m.Phase1Lifetime); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20044) validatePhase2Alg(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_2_alg", "body", m.Phase2Alg); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20044) validatePhase2DhGroup(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_2_dh_group", "body", m.Phase2DhGroup); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20044) validatePhase2Lifetime(formats strfmt.Registry) error {
+
+	if err := validate.Required("phase_2_lifetime", "body", m.Phase2Lifetime); err != nil {
 		return err
 	}
 

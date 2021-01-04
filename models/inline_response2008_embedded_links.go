@@ -16,35 +16,35 @@ import (
 // swagger:model inline_response_200_8__embedded__links
 type InlineResponse2008EmbeddedLinks struct {
 
-	// log drain
-	LogDrain *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"log_drain,omitempty"`
+	// account
+	Account *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"account,omitempty"`
 
-	// metric drain
-	MetricDrain *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"metric_drain,omitempty"`
+	// apps
+	Apps *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"apps,omitempty"`
 
-	// release
-	Release *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"release,omitempty"`
+	// operations
+	Operations *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"operations,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 
-	// vhost
-	Vhost *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"vhost,omitempty"`
+	// vhosts
+	Vhosts *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"vhosts,omitempty"`
 }
 
 // Validate validates this inline response 200 8 embedded links
 func (m *InlineResponse2008EmbeddedLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateLogDrain(formats); err != nil {
+	if err := m.validateAccount(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateMetricDrain(formats); err != nil {
+	if err := m.validateApps(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateRelease(formats); err != nil {
+	if err := m.validateOperations(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -52,7 +52,7 @@ func (m *InlineResponse2008EmbeddedLinks) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
-	if err := m.validateVhost(formats); err != nil {
+	if err := m.validateVhosts(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -62,16 +62,16 @@ func (m *InlineResponse2008EmbeddedLinks) Validate(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *InlineResponse2008EmbeddedLinks) validateLogDrain(formats strfmt.Registry) error {
+func (m *InlineResponse2008EmbeddedLinks) validateAccount(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.LogDrain) { // not required
+	if swag.IsZero(m.Account) { // not required
 		return nil
 	}
 
-	if m.LogDrain != nil {
-		if err := m.LogDrain.Validate(formats); err != nil {
+	if m.Account != nil {
+		if err := m.Account.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("log_drain")
+				return ve.ValidateName("account")
 			}
 			return err
 		}
@@ -80,16 +80,16 @@ func (m *InlineResponse2008EmbeddedLinks) validateLogDrain(formats strfmt.Regist
 	return nil
 }
 
-func (m *InlineResponse2008EmbeddedLinks) validateMetricDrain(formats strfmt.Registry) error {
+func (m *InlineResponse2008EmbeddedLinks) validateApps(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.MetricDrain) { // not required
+	if swag.IsZero(m.Apps) { // not required
 		return nil
 	}
 
-	if m.MetricDrain != nil {
-		if err := m.MetricDrain.Validate(formats); err != nil {
+	if m.Apps != nil {
+		if err := m.Apps.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("metric_drain")
+				return ve.ValidateName("apps")
 			}
 			return err
 		}
@@ -98,16 +98,16 @@ func (m *InlineResponse2008EmbeddedLinks) validateMetricDrain(formats strfmt.Reg
 	return nil
 }
 
-func (m *InlineResponse2008EmbeddedLinks) validateRelease(formats strfmt.Registry) error {
+func (m *InlineResponse2008EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Release) { // not required
+	if swag.IsZero(m.Operations) { // not required
 		return nil
 	}
 
-	if m.Release != nil {
-		if err := m.Release.Validate(formats); err != nil {
+	if m.Operations != nil {
+		if err := m.Operations.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("release")
+				return ve.ValidateName("operations")
 			}
 			return err
 		}
@@ -134,16 +134,16 @@ func (m *InlineResponse2008EmbeddedLinks) validateSelf(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *InlineResponse2008EmbeddedLinks) validateVhost(formats strfmt.Registry) error {
+func (m *InlineResponse2008EmbeddedLinks) validateVhosts(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Vhost) { // not required
+	if swag.IsZero(m.Vhosts) { // not required
 		return nil
 	}
 
-	if m.Vhost != nil {
-		if err := m.Vhost.Validate(formats); err != nil {
+	if m.Vhosts != nil {
+		if err := m.Vhosts.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vhost")
+				return ve.ValidateName("vhosts")
 			}
 			return err
 		}

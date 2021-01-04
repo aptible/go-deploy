@@ -17,32 +17,44 @@ import (
 // swagger:model inline_response_200_22
 type InlineResponse20022 struct {
 
-	// embedded
+	// resource type
 	// Required: true
-	Embedded *InlineResponse20022Embedded `json:"_embedded"`
+	ResourceType *string `json:"_type"`
 
 	// links
 	// Required: true
-	Links *InlineResponse20022Links `json:"_links"`
+	Links *InlineResponse20021EmbeddedLinks `json:"_links"`
 
-	// current page
+	// aws instance id
 	// Required: true
-	CurrentPage *int64 `json:"current_page"`
+	AwsInstanceID *string `json:"aws_instance_id"`
 
-	// per page
+	// created at
 	// Required: true
-	PerPage *int64 `json:"per_page"`
+	CreatedAt *string `json:"created_at"`
 
-	// total count
+	// host
 	// Required: true
-	TotalCount *int64 `json:"total_count"`
+	Host *string `json:"host"`
+
+	// id
+	// Required: true
+	ID *int64 `json:"id"`
+
+	// name
+	// Required: true
+	Name *string `json:"name"`
+
+	// updated at
+	// Required: true
+	UpdatedAt *string `json:"updated_at"`
 }
 
 // Validate validates this inline response 200 22
 func (m *InlineResponse20022) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEmbedded(formats); err != nil {
+	if err := m.validateResourceType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -50,15 +62,27 @@ func (m *InlineResponse20022) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCurrentPage(formats); err != nil {
+	if err := m.validateAwsInstanceID(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validatePerPage(formats); err != nil {
+	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTotalCount(formats); err != nil {
+	if err := m.validateHost(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -68,19 +92,10 @@ func (m *InlineResponse20022) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20022) validateEmbedded(formats strfmt.Registry) error {
+func (m *InlineResponse20022) validateResourceType(formats strfmt.Registry) error {
 
-	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
+	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
 		return err
-	}
-
-	if m.Embedded != nil {
-		if err := m.Embedded.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("_embedded")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -104,27 +119,54 @@ func (m *InlineResponse20022) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20022) validateCurrentPage(formats strfmt.Registry) error {
+func (m *InlineResponse20022) validateAwsInstanceID(formats strfmt.Registry) error {
 
-	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
+	if err := validate.Required("aws_instance_id", "body", m.AwsInstanceID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20022) validatePerPage(formats strfmt.Registry) error {
+func (m *InlineResponse20022) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
+	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20022) validateTotalCount(formats strfmt.Registry) error {
+func (m *InlineResponse20022) validateHost(formats strfmt.Registry) error {
 
-	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
+	if err := validate.Required("host", "body", m.Host); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20022) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20022) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20022) validateUpdatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
 		return err
 	}
 

@@ -87,7 +87,7 @@ func (c *Client) GetService(serviceID int64) (Service, error) {
 
 func (c *Client) ScaleService(serviceID int64, containerCount int64, memoryLimit int64) error {
 	requestType := "scale"
-	request := models.AppRequest25{
+	request := models.AppRequest26{
 		Type:           &requestType,
 		ContainerSize:  memoryLimit,
 		ContainerCount: containerCount,

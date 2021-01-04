@@ -65,7 +65,7 @@ for the post services service ID vhosts operation typically these are written to
 type PostServicesServiceIDVhostsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest33
+	AppRequest *models.AppRequest34
 	/*ServiceID
 	  service_id
 
@@ -111,13 +111,13 @@ func (o *PostServicesServiceIDVhostsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the post services service ID vhosts params
-func (o *PostServicesServiceIDVhostsParams) WithAppRequest(appRequest *models.AppRequest33) *PostServicesServiceIDVhostsParams {
+func (o *PostServicesServiceIDVhostsParams) WithAppRequest(appRequest *models.AppRequest34) *PostServicesServiceIDVhostsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post services service ID vhosts params
-func (o *PostServicesServiceIDVhostsParams) SetAppRequest(appRequest *models.AppRequest33) {
+func (o *PostServicesServiceIDVhostsParams) SetAppRequest(appRequest *models.AppRequest34) {
 	o.AppRequest = appRequest
 }
 

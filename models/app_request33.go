@@ -17,51 +17,19 @@ import (
 // swagger:model app_request_33
 type AppRequest33 struct {
 
-	// acme
-	Acme bool `json:"acme,omitempty"`
+	// command
+	Command string `json:"command,omitempty"`
 
-	// certificate
+	// ssh public key
 	// Required: true
-	Certificate *int64 `json:"certificate"`
-
-	// container exposed ports
-	ContainerExposedPorts []int64 `json:"container_exposed_ports"`
-
-	// container port
-	ContainerPort int64 `json:"container_port,omitempty"`
-
-	// container ports
-	ContainerPorts []int64 `json:"container_ports"`
-
-	// default
-	Default bool `json:"default,omitempty"`
-
-	// internal
-	Internal bool `json:"internal,omitempty"`
-
-	// ip whitelist
-	IPWhitelist []string `json:"ip_whitelist"`
-
-	// platform
-	Platform string `json:"platform,omitempty"`
-
-	// type
-	// Required: true
-	Type *string `json:"type"`
-
-	// user domain
-	UserDomain string `json:"user_domain,omitempty"`
+	SSHPublicKey *string `json:"ssh_public_key"`
 }
 
 // Validate validates this app request 33
 func (m *AppRequest33) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCertificate(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateSSHPublicKey(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -71,18 +39,9 @@ func (m *AppRequest33) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *AppRequest33) validateCertificate(formats strfmt.Registry) error {
+func (m *AppRequest33) validateSSHPublicKey(formats strfmt.Registry) error {
 
-	if err := validate.Required("certificate", "body", m.Certificate); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AppRequest33) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
+	if err := validate.Required("ssh_public_key", "body", m.SSHPublicKey); err != nil {
 		return err
 	}
 

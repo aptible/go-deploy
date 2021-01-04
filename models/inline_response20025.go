@@ -23,23 +23,51 @@ type InlineResponse20025 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse20024EmbeddedLinks `json:"_links"`
+	Links *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks `json:"_links"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// ends at
+	// docker ref
 	// Required: true
-	EndsAt *string `json:"ends_at"`
+	DockerRef *string `json:"docker_ref"`
+
+	// docker repo
+	// Required: true
+	DockerRepo *string `json:"docker_repo"`
+
+	// dualstack hint
+	// Required: true
+	DualstackHint *int64 `json:"dualstack_hint"`
+
+	// exposed ports
+	// Required: true
+	ExposedPorts []int64 `json:"exposed_ports"`
+
+	// git ref
+	// Required: true
+	GitRef *string `json:"git_ref"`
+
+	// git repo
+	// Required: true
+	GitRepo *string `json:"git_repo"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// starts at
+	// platform
 	// Required: true
-	StartsAt *string `json:"starts_at"`
+	Platform *string `json:"platform"`
+
+	// release
+	// Required: true
+	Release *string `json:"release"`
+
+	// scan
+	// Required: true
+	Scan *string `json:"scan"`
 
 	// updated at
 	// Required: true
@@ -62,7 +90,27 @@ func (m *InlineResponse20025) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateEndsAt(formats); err != nil {
+	if err := m.validateDockerRef(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDockerRepo(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDualstackHint(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateExposedPorts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGitRef(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGitRepo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -70,7 +118,15 @@ func (m *InlineResponse20025) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateStartsAt(formats); err != nil {
+	if err := m.validatePlatform(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRelease(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateScan(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -120,9 +176,54 @@ func (m *InlineResponse20025) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20025) validateEndsAt(formats strfmt.Registry) error {
+func (m *InlineResponse20025) validateDockerRef(formats strfmt.Registry) error {
 
-	if err := validate.Required("ends_at", "body", m.EndsAt); err != nil {
+	if err := validate.Required("docker_ref", "body", m.DockerRef); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20025) validateDockerRepo(formats strfmt.Registry) error {
+
+	if err := validate.Required("docker_repo", "body", m.DockerRepo); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20025) validateDualstackHint(formats strfmt.Registry) error {
+
+	if err := validate.Required("dualstack_hint", "body", m.DualstackHint); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20025) validateExposedPorts(formats strfmt.Registry) error {
+
+	if err := validate.Required("exposed_ports", "body", m.ExposedPorts); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20025) validateGitRef(formats strfmt.Registry) error {
+
+	if err := validate.Required("git_ref", "body", m.GitRef); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20025) validateGitRepo(formats strfmt.Registry) error {
+
+	if err := validate.Required("git_repo", "body", m.GitRepo); err != nil {
 		return err
 	}
 
@@ -138,9 +239,27 @@ func (m *InlineResponse20025) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20025) validateStartsAt(formats strfmt.Registry) error {
+func (m *InlineResponse20025) validatePlatform(formats strfmt.Registry) error {
 
-	if err := validate.Required("starts_at", "body", m.StartsAt); err != nil {
+	if err := validate.Required("platform", "body", m.Platform); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20025) validateRelease(formats strfmt.Registry) error {
+
+	if err := validate.Required("release", "body", m.Release); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20025) validateScan(formats strfmt.Registry) error {
+
+	if err := validate.Required("scan", "body", m.Scan); err != nil {
 		return err
 	}
 

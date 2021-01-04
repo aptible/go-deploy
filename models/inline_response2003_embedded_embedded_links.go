@@ -17,28 +17,28 @@ import (
 type InlineResponse2003EmbeddedEmbeddedLinks struct {
 
 	// account
-	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
+	Account *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"account,omitempty"`
 
 	// app
-	App *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"app,omitempty"`
+	App *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"app,omitempty"`
 
 	// current release
-	CurrentRelease *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"current_release,omitempty"`
+	CurrentRelease *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"current_release,omitempty"`
 
 	// database
-	Database *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database,omitempty"`
+	Database *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"database,omitempty"`
 
 	// operations
-	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
+	Operations *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"operations,omitempty"`
 
 	// releases
-	Releases *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"releases,omitempty"`
+	Releases *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"releases,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 
 	// vhosts
-	Vhosts *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"vhosts,omitempty"`
+	Vhosts *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"vhosts,omitempty"`
 }
 
 // Validate validates this inline response 200 3 embedded embedded links

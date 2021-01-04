@@ -8,40 +8,19 @@ package models
 import (
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // AppRequest10 app request 10
 // swagger:model app_request_10
 type AppRequest10 struct {
 
-	// Mapping of environment variables
-	// Required: true
-	Env interface{} `json:"env"`
+	// handle
+	Handle string `json:"handle,omitempty"`
 }
 
 // Validate validates this app request 10
 func (m *AppRequest10) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateEnv(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AppRequest10) validateEnv(formats strfmt.Registry) error {
-
-	if err := validate.Required("env", "body", m.Env); err != nil {
-		return err
-	}
-
 	return nil
 }
 

@@ -17,19 +17,16 @@ import (
 type InlineResponse20024Links struct {
 
 	// app
-	App *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"app,omitempty"`
+	App *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"app,omitempty"`
 
 	// next
-	Next *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"next,omitempty"`
-
-	// operation
-	Operation *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operation,omitempty"`
+	Next *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"next,omitempty"`
 
 	// prev
-	Prev *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"prev,omitempty"`
+	Prev *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"prev,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 }
 
 // Validate validates this inline response 200 24 links
@@ -41,10 +38,6 @@ func (m *InlineResponse20024Links) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNext(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateOperation(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -90,24 +83,6 @@ func (m *InlineResponse20024Links) validateNext(formats strfmt.Registry) error {
 		if err := m.Next.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("next")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20024Links) validateOperation(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Operation) { // not required
-		return nil
-	}
-
-	if m.Operation != nil {
-		if err := m.Operation.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("operation")
 			}
 			return err
 		}

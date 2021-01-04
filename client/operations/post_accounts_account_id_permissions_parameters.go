@@ -70,7 +70,7 @@ type PostAccountsAccountIDPermissionsParams struct {
 	*/
 	AccountID int64
 	/*AppRequest*/
-	AppRequest *models.AppRequest31
+	AppRequest *models.AppRequest32
 
 	timeout    time.Duration
 	Context    context.Context
@@ -122,13 +122,13 @@ func (o *PostAccountsAccountIDPermissionsParams) SetAccountID(accountID int64) {
 }
 
 // WithAppRequest adds the appRequest to the post accounts account ID permissions params
-func (o *PostAccountsAccountIDPermissionsParams) WithAppRequest(appRequest *models.AppRequest31) *PostAccountsAccountIDPermissionsParams {
+func (o *PostAccountsAccountIDPermissionsParams) WithAppRequest(appRequest *models.AppRequest32) *PostAccountsAccountIDPermissionsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post accounts account ID permissions params
-func (o *PostAccountsAccountIDPermissionsParams) SetAppRequest(appRequest *models.AppRequest31) {
+func (o *PostAccountsAccountIDPermissionsParams) SetAppRequest(appRequest *models.AppRequest32) {
 	o.AppRequest = appRequest
 }
 

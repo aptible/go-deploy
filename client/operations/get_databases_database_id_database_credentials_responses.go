@@ -52,20 +52,20 @@ func NewGetDatabasesDatabaseIDDatabaseCredentialsOK() *GetDatabasesDatabaseIDDat
 successful
 */
 type GetDatabasesDatabaseIDDatabaseCredentialsOK struct {
-	Payload *models.InlineResponse20010
+	Payload *models.InlineResponse20012
 }
 
 func (o *GetDatabasesDatabaseIDDatabaseCredentialsOK) Error() string {
 	return fmt.Sprintf("[GET /databases/{database_id}/database_credentials][%d] getDatabasesDatabaseIdDatabaseCredentialsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetDatabasesDatabaseIDDatabaseCredentialsOK) GetPayload() *models.InlineResponse20010 {
+func (o *GetDatabasesDatabaseIDDatabaseCredentialsOK) GetPayload() *models.InlineResponse20012 {
 	return o.Payload
 }
 
 func (o *GetDatabasesDatabaseIDDatabaseCredentialsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20010)
+	o.Payload = new(models.InlineResponse20012)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

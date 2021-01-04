@@ -65,7 +65,7 @@ for the patch vhosts ID operation typically these are written to a http.Request
 type PatchVhostsIDParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest35
+	AppRequest *models.AppRequest36
 	/*ID
 	  id
 
@@ -111,13 +111,13 @@ func (o *PatchVhostsIDParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the patch vhosts ID params
-func (o *PatchVhostsIDParams) WithAppRequest(appRequest *models.AppRequest35) *PatchVhostsIDParams {
+func (o *PatchVhostsIDParams) WithAppRequest(appRequest *models.AppRequest36) *PatchVhostsIDParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the patch vhosts ID params
-func (o *PatchVhostsIDParams) SetAppRequest(appRequest *models.AppRequest35) {
+func (o *PatchVhostsIDParams) SetAppRequest(appRequest *models.AppRequest36) {
 	o.AppRequest = appRequest
 }
 

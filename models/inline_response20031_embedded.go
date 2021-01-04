@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_31__embedded
 type InlineResponse20031Embedded struct {
 
-	// releases
-	Releases []*InlineResponse20031EmbeddedReleases `json:"releases"`
+	// operations
+	Operations []*InlineResponse2003EmbeddedEmbeddedLastOperation `json:"operations"`
 }
 
 // Validate validates this inline response 200 31 embedded
 func (m *InlineResponse20031Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateReleases(formats); err != nil {
+	if err := m.validateOperations(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse20031Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20031Embedded) validateReleases(formats strfmt.Registry) error {
+func (m *InlineResponse20031Embedded) validateOperations(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Releases) { // not required
+	if swag.IsZero(m.Operations) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Releases); i++ {
-		if swag.IsZero(m.Releases[i]) { // not required
+	for i := 0; i < len(m.Operations); i++ {
+		if swag.IsZero(m.Operations[i]) { // not required
 			continue
 		}
 
-		if m.Releases[i] != nil {
-			if err := m.Releases[i].Validate(formats); err != nil {
+		if m.Operations[i] != nil {
+			if err := m.Operations[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("releases" + "." + strconv.Itoa(i))
+					return ve.ValidateName("operations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -17,52 +17,32 @@ import (
 // swagger:model inline_response_200_40
 type InlineResponse20040 struct {
 
-	// resource type
+	// embedded
 	// Required: true
-	ResourceType *string `json:"_type"`
+	Embedded *InlineResponse20040Embedded `json:"_embedded"`
 
 	// links
 	// Required: true
-	Links *InlineResponse20039EmbeddedLinks `json:"_links"`
+	Links *InlineResponse20040Links `json:"_links"`
 
-	// connection id
+	// current page
 	// Required: true
-	ConnectionID *string `json:"connection_id"`
+	CurrentPage *int64 `json:"current_page"`
 
-	// connection status
+	// per page
 	// Required: true
-	ConnectionStatus *string `json:"connection_status"`
+	PerPage *int64 `json:"per_page"`
 
-	// created at
+	// total count
 	// Required: true
-	CreatedAt *string `json:"created_at"`
-
-	// description
-	// Required: true
-	Description *string `json:"description"`
-
-	// id
-	// Required: true
-	ID *int64 `json:"id"`
-
-	// peer account id
-	// Required: true
-	PeerAccountID *string `json:"peer_account_id"`
-
-	// peer vpc id
-	// Required: true
-	PeerVpcID *string `json:"peer_vpc_id"`
-
-	// updated at
-	// Required: true
-	UpdatedAt *string `json:"updated_at"`
+	TotalCount *int64 `json:"total_count"`
 }
 
 // Validate validates this inline response 200 40
 func (m *InlineResponse20040) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateResourceType(formats); err != nil {
+	if err := m.validateEmbedded(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -70,35 +50,15 @@ func (m *InlineResponse20040) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateConnectionID(formats); err != nil {
+	if err := m.validateCurrentPage(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateConnectionStatus(formats); err != nil {
+	if err := m.validatePerPage(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateCreatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDescription(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePeerAccountID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePeerVpcID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUpdatedAt(formats); err != nil {
+	if err := m.validateTotalCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -108,10 +68,19 @@ func (m *InlineResponse20040) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20040) validateResourceType(formats strfmt.Registry) error {
+func (m *InlineResponse20040) validateEmbedded(formats strfmt.Registry) error {
 
-	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
+	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
 		return err
+	}
+
+	if m.Embedded != nil {
+		if err := m.Embedded.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_embedded")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -135,72 +104,27 @@ func (m *InlineResponse20040) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20040) validateConnectionID(formats strfmt.Registry) error {
+func (m *InlineResponse20040) validateCurrentPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("connection_id", "body", m.ConnectionID); err != nil {
+	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20040) validateConnectionStatus(formats strfmt.Registry) error {
+func (m *InlineResponse20040) validatePerPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("connection_status", "body", m.ConnectionStatus); err != nil {
+	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20040) validateCreatedAt(formats strfmt.Registry) error {
+func (m *InlineResponse20040) validateTotalCount(formats strfmt.Registry) error {
 
-	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20040) validateDescription(formats strfmt.Registry) error {
-
-	if err := validate.Required("description", "body", m.Description); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20040) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20040) validatePeerAccountID(formats strfmt.Registry) error {
-
-	if err := validate.Required("peer_account_id", "body", m.PeerAccountID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20040) validatePeerVpcID(formats strfmt.Registry) error {
-
-	if err := validate.Required("peer_vpc_id", "body", m.PeerVpcID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20040) validateUpdatedAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
 		return err
 	}
 

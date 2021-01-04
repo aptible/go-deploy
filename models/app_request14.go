@@ -18,6 +18,12 @@ type AppRequest14 struct {
 	// current configuration
 	CurrentConfiguration int64 `json:"current_configuration,omitempty"`
 
+	// current kms arn
+	CurrentKmsArn int64 `json:"current_kms_arn,omitempty"`
+
+	// database image id
+	DatabaseImageID int64 `json:"database_image_id,omitempty"`
+
 	// initial continer size
 	InitialContinerSize int64 `json:"initial_continer_size,omitempty"`
 

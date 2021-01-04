@@ -65,7 +65,7 @@ for the post operations operation ID SSH portal connections operation typically 
 type PostOperationsOperationIDSSHPortalConnectionsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest32
+	AppRequest *models.AppRequest33
 	/*OperationID
 	  operation_id
 
@@ -111,13 +111,13 @@ func (o *PostOperationsOperationIDSSHPortalConnectionsParams) SetHTTPClient(clie
 }
 
 // WithAppRequest adds the appRequest to the post operations operation ID SSH portal connections params
-func (o *PostOperationsOperationIDSSHPortalConnectionsParams) WithAppRequest(appRequest *models.AppRequest32) *PostOperationsOperationIDSSHPortalConnectionsParams {
+func (o *PostOperationsOperationIDSSHPortalConnectionsParams) WithAppRequest(appRequest *models.AppRequest33) *PostOperationsOperationIDSSHPortalConnectionsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post operations operation ID SSH portal connections params
-func (o *PostOperationsOperationIDSSHPortalConnectionsParams) SetAppRequest(appRequest *models.AppRequest32) {
+func (o *PostOperationsOperationIDSSHPortalConnectionsParams) SetAppRequest(appRequest *models.AppRequest33) {
 	o.AppRequest = appRequest
 }
 

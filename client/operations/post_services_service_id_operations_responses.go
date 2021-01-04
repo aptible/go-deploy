@@ -52,20 +52,20 @@ func NewPostServicesServiceIDOperationsCreated() *PostServicesServiceIDOperation
 successful
 */
 type PostServicesServiceIDOperationsCreated struct {
-	Payload *models.InlineResponse20028
+	Payload *models.InlineResponse20030
 }
 
 func (o *PostServicesServiceIDOperationsCreated) Error() string {
 	return fmt.Sprintf("[POST /services/{service_id}/operations][%d] postServicesServiceIdOperationsCreated  %+v", 201, o.Payload)
 }
 
-func (o *PostServicesServiceIDOperationsCreated) GetPayload() *models.InlineResponse20028 {
+func (o *PostServicesServiceIDOperationsCreated) GetPayload() *models.InlineResponse20030 {
 	return o.Payload
 }
 
 func (o *PostServicesServiceIDOperationsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20028)
+	o.Payload = new(models.InlineResponse20030)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

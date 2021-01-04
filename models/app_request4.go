@@ -8,60 +8,28 @@ package models
 import (
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // AppRequest4 app request 4
 // swagger:model app_request_4
 type AppRequest4 struct {
 
-	// acme
-	Acme bool `json:"acme,omitempty"`
+	// daily
+	Daily int64 `json:"daily,omitempty"`
 
-	// certificate body
-	// Required: true
-	CertificateBody *string `json:"certificate_body"`
+	// keep final
+	KeepFinal bool `json:"keep_final,omitempty"`
 
-	// private key
-	// Required: true
-	PrivateKey *string `json:"private_key"`
+	// make copy
+	MakeCopy bool `json:"make_copy,omitempty"`
+
+	// monthly
+	Monthly int64 `json:"monthly,omitempty"`
 }
 
 // Validate validates this app request 4
 func (m *AppRequest4) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCertificateBody(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePrivateKey(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AppRequest4) validateCertificateBody(formats strfmt.Registry) error {
-
-	if err := validate.Required("certificate_body", "body", m.CertificateBody); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AppRequest4) validatePrivateKey(formats strfmt.Registry) error {
-
-	if err := validate.Required("private_key", "body", m.PrivateKey); err != nil {
-		return err
-	}
-
 	return nil
 }
 

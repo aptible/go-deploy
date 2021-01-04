@@ -16,29 +16,43 @@ import (
 // swagger:model inline_response_200_10__embedded__links
 type InlineResponse20010EmbeddedLinks struct {
 
-	// database
-	Database *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database,omitempty"`
+	// log drain
+	LogDrain *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"log_drain,omitempty"`
 
-	// operations
-	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
+	// metric drain
+	MetricDrain *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"metric_drain,omitempty"`
+
+	// release
+	Release *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"release,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
+
+	// vhost
+	Vhost *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"vhost,omitempty"`
 }
 
 // Validate validates this inline response 200 10 embedded links
 func (m *InlineResponse20010EmbeddedLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateDatabase(formats); err != nil {
+	if err := m.validateLogDrain(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateOperations(formats); err != nil {
+	if err := m.validateMetricDrain(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRelease(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateSelf(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVhost(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -48,16 +62,16 @@ func (m *InlineResponse20010EmbeddedLinks) Validate(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *InlineResponse20010EmbeddedLinks) validateDatabase(formats strfmt.Registry) error {
+func (m *InlineResponse20010EmbeddedLinks) validateLogDrain(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Database) { // not required
+	if swag.IsZero(m.LogDrain) { // not required
 		return nil
 	}
 
-	if m.Database != nil {
-		if err := m.Database.Validate(formats); err != nil {
+	if m.LogDrain != nil {
+		if err := m.LogDrain.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("database")
+				return ve.ValidateName("log_drain")
 			}
 			return err
 		}
@@ -66,16 +80,34 @@ func (m *InlineResponse20010EmbeddedLinks) validateDatabase(formats strfmt.Regis
 	return nil
 }
 
-func (m *InlineResponse20010EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
+func (m *InlineResponse20010EmbeddedLinks) validateMetricDrain(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Operations) { // not required
+	if swag.IsZero(m.MetricDrain) { // not required
 		return nil
 	}
 
-	if m.Operations != nil {
-		if err := m.Operations.Validate(formats); err != nil {
+	if m.MetricDrain != nil {
+		if err := m.MetricDrain.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("operations")
+				return ve.ValidateName("metric_drain")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010EmbeddedLinks) validateRelease(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Release) { // not required
+		return nil
+	}
+
+	if m.Release != nil {
+		if err := m.Release.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("release")
 			}
 			return err
 		}
@@ -94,6 +126,24 @@ func (m *InlineResponse20010EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010EmbeddedLinks) validateVhost(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Vhost) { // not required
+		return nil
+	}
+
+	if m.Vhost != nil {
+		if err := m.Vhost.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vhost")
 			}
 			return err
 		}

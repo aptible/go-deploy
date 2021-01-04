@@ -65,7 +65,7 @@ for the put certificates ID operation typically these are written to a http.Requ
 type PutCertificatesIDParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest5
+	AppRequest *models.AppRequest6
 	/*ID
 	  id
 
@@ -111,13 +111,13 @@ func (o *PutCertificatesIDParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the put certificates ID params
-func (o *PutCertificatesIDParams) WithAppRequest(appRequest *models.AppRequest5) *PutCertificatesIDParams {
+func (o *PutCertificatesIDParams) WithAppRequest(appRequest *models.AppRequest6) *PutCertificatesIDParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the put certificates ID params
-func (o *PutCertificatesIDParams) SetAppRequest(appRequest *models.AppRequest5) {
+func (o *PutCertificatesIDParams) SetAppRequest(appRequest *models.AppRequest6) {
 	o.AppRequest = appRequest
 }
 

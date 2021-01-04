@@ -17,16 +17,16 @@ import (
 type InlineResponse200Links struct {
 
 	// next
-	Next *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"next,omitempty"`
+	Next *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"next,omitempty"`
 
 	// prev
-	Prev *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"prev,omitempty"`
+	Prev *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"prev,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 
 	// stack
-	Stack *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"stack,omitempty"`
+	Stack *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"stack,omitempty"`
 }
 
 // Validate validates this inline response 200 links

@@ -16,39 +16,25 @@ import (
 // swagger:model inline_response_200_19__embedded__links
 type InlineResponse20019EmbeddedLinks struct {
 
-	// app
-	App *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"app,omitempty"`
+	// ephemeral session
+	EphemeralSession *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"ephemeral_session,omitempty"`
 
-	// ephemeral containers
-	EphemeralContainers *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"ephemeral_containers,omitempty"`
-
-	// operation
-	Operation *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operation,omitempty"`
-
-	// operations
-	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
+	// log drain
+	LogDrain *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"log_drain,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 }
 
 // Validate validates this inline response 200 19 embedded links
 func (m *InlineResponse20019EmbeddedLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateApp(formats); err != nil {
+	if err := m.validateEphemeralSession(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateEphemeralContainers(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateOperation(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateOperations(formats); err != nil {
+	if err := m.validateLogDrain(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -62,16 +48,16 @@ func (m *InlineResponse20019EmbeddedLinks) Validate(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *InlineResponse20019EmbeddedLinks) validateApp(formats strfmt.Registry) error {
+func (m *InlineResponse20019EmbeddedLinks) validateEphemeralSession(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.App) { // not required
+	if swag.IsZero(m.EphemeralSession) { // not required
 		return nil
 	}
 
-	if m.App != nil {
-		if err := m.App.Validate(formats); err != nil {
+	if m.EphemeralSession != nil {
+		if err := m.EphemeralSession.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("app")
+				return ve.ValidateName("ephemeral_session")
 			}
 			return err
 		}
@@ -80,52 +66,16 @@ func (m *InlineResponse20019EmbeddedLinks) validateApp(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *InlineResponse20019EmbeddedLinks) validateEphemeralContainers(formats strfmt.Registry) error {
+func (m *InlineResponse20019EmbeddedLinks) validateLogDrain(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.EphemeralContainers) { // not required
+	if swag.IsZero(m.LogDrain) { // not required
 		return nil
 	}
 
-	if m.EphemeralContainers != nil {
-		if err := m.EphemeralContainers.Validate(formats); err != nil {
+	if m.LogDrain != nil {
+		if err := m.LogDrain.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("ephemeral_containers")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019EmbeddedLinks) validateOperation(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Operation) { // not required
-		return nil
-	}
-
-	if m.Operation != nil {
-		if err := m.Operation.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("operation")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20019EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Operations) { // not required
-		return nil
-	}
-
-	if m.Operations != nil {
-		if err := m.Operations.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("operations")
+				return ve.ValidateName("log_drain")
 			}
 			return err
 		}

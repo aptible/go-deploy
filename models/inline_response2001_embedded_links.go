@@ -17,13 +17,13 @@ import (
 type InlineResponse2001EmbeddedLinks struct {
 
 	// account
-	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
+	Account *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"account,omitempty"`
 
 	// download
-	Download *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"download,omitempty"`
+	Download *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"download,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 }
 
 // Validate validates this inline response 200 1 embedded links

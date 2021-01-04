@@ -65,7 +65,7 @@ for the patch log drains ID operation typically these are written to a http.Requ
 type PatchLogDrainsIDParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest17
+	AppRequest *models.AppRequest18
 	/*ID
 	  id
 
@@ -111,13 +111,13 @@ func (o *PatchLogDrainsIDParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the patch log drains ID params
-func (o *PatchLogDrainsIDParams) WithAppRequest(appRequest *models.AppRequest17) *PatchLogDrainsIDParams {
+func (o *PatchLogDrainsIDParams) WithAppRequest(appRequest *models.AppRequest18) *PatchLogDrainsIDParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the patch log drains ID params
-func (o *PatchLogDrainsIDParams) SetAppRequest(appRequest *models.AppRequest17) {
+func (o *PatchLogDrainsIDParams) SetAppRequest(appRequest *models.AppRequest18) {
 	o.AppRequest = appRequest
 }
 

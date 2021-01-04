@@ -6,8 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
-
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -19,26 +17,69 @@ import (
 // swagger:model app_request_31
 type AppRequest31 struct {
 
-	// role
-	// Required: true
-	// Format: uuid
-	Role *strfmt.UUID `json:"role"`
+	// automated
+	Automated bool `json:"automated,omitempty"`
 
-	// scope
+	// certificate
+	Certificate string `json:"certificate,omitempty"`
+
+	// command
+	Command string `json:"command,omitempty"`
+
+	// container count
+	ContainerCount int64 `json:"container_count"`
+
+	// container size
+	ContainerSize int64 `json:"container_size,omitempty"`
+
+	// destination account
+	// Format: uri
+	DestinationAccount strfmt.URI `json:"destination_account,omitempty"`
+
+	// destination account id
+	DestinationAccountID int64 `json:"destination_account_id,omitempty"`
+
+	// destination region
+	DestinationRegion string `json:"destination_region,omitempty"`
+
+	// disk size
+	DiskSize int64 `json:"disk_size,omitempty"`
+
+	// docker ref
+	DockerRef string `json:"docker_ref,omitempty"`
+
+	// env
+	Env interface{} `json:"env,omitempty"`
+
+	// git ref
+	GitRef string `json:"git_ref,omitempty"`
+
+	// handle
+	Handle string `json:"handle,omitempty"`
+
+	// interactive
+	Interactive bool `json:"interactive,omitempty"`
+
+	// key arn
+	KeyArn string `json:"key_arn,omitempty"`
+
+	// private key
+	PrivateKey string `json:"private_key,omitempty"`
+
+	// type
 	// Required: true
-	// Enum: [read manage]
-	Scope *string `json:"scope"`
+	Type *string `json:"type"`
 }
 
 // Validate validates this app request 31
 func (m *AppRequest31) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateRole(formats); err != nil {
+	if err := m.validateDestinationAccount(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateScope(formats); err != nil {
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -48,56 +89,22 @@ func (m *AppRequest31) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *AppRequest31) validateRole(formats strfmt.Registry) error {
+func (m *AppRequest31) validateDestinationAccount(formats strfmt.Registry) error {
 
-	if err := validate.Required("role", "body", m.Role); err != nil {
-		return err
+	if swag.IsZero(m.DestinationAccount) { // not required
+		return nil
 	}
 
-	if err := validate.FormatOf("role", "body", "uuid", m.Role.String(), formats); err != nil {
+	if err := validate.FormatOf("destination_account", "body", "uri", m.DestinationAccount.String(), formats); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var appRequest31TypeScopePropEnum []interface{}
+func (m *AppRequest31) validateType(formats strfmt.Registry) error {
 
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["read","manage"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		appRequest31TypeScopePropEnum = append(appRequest31TypeScopePropEnum, v)
-	}
-}
-
-const (
-
-	// AppRequest31ScopeRead captures enum value "read"
-	AppRequest31ScopeRead string = "read"
-
-	// AppRequest31ScopeManage captures enum value "manage"
-	AppRequest31ScopeManage string = "manage"
-)
-
-// prop value enum
-func (m *AppRequest31) validateScopeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, appRequest31TypeScopePropEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *AppRequest31) validateScope(formats strfmt.Registry) error {
-
-	if err := validate.Required("scope", "body", m.Scope); err != nil {
-		return err
-	}
-
-	// value enum
-	if err := m.validateScopeEnum("scope", "body", *m.Scope); err != nil {
+	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 

@@ -37,7 +37,7 @@ type DBCreateAttrs struct {
 
 func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database, error) {
 	// creates API object
-	request := models.AppRequest12{
+	request := models.AppRequest13{
 		Handle: attrs.Handle,
 		Type:   attrs.Type,
 	}
@@ -54,7 +54,7 @@ func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database,
 
 	// provisions database
 	requestType := "provision"
-	provisionRequest := models.AppRequest23{
+	provisionRequest := models.AppRequest24{
 		Type:          &requestType,
 		ContainerSize: attrs.ContainerSize,
 		DiskSize:      attrs.DiskSize,
@@ -170,7 +170,7 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 
 func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
 	requestType := "restart"
-	request := models.AppRequest23{
+	request := models.AppRequest24{
 		Type: &requestType,
 	}
 
@@ -201,7 +201,7 @@ func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
 
 func (c *Client) DeleteDatabase(databaseID int64) error {
 	requestType := "deprovision"
-	request := models.AppRequest23{
+	request := models.AppRequest24{
 		Type: &requestType,
 	}
 	deprovisionParams := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
@@ -214,7 +214,7 @@ func (c *Client) DeleteDatabase(databaseID int64) error {
 	return err
 }
 
-func (c *Client) GetDatabaseOperations(databaseID int64, page int64) (*models.InlineResponse20029, error) {
+func (c *Client) GetDatabaseOperations(databaseID int64, page int64) (*models.InlineResponse20031, error) {
 	params := operations.NewGetDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithPage(&page)
 	resp, err := c.Client.Operations.GetDatabasesDatabaseIDOperations(params, c.Token)
 	if err != nil {

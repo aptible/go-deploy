@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_15__embedded
 type InlineResponse20015Embedded struct {
 
-	// disks
-	Disks []*InlineResponse20014EmbeddedEmbeddedDisk `json:"disks"`
+	// database images
+	DatabaseImages []*InlineResponse20015EmbeddedDatabaseImages `json:"database_images"`
 }
 
 // Validate validates this inline response 200 15 embedded
 func (m *InlineResponse20015Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateDisks(formats); err != nil {
+	if err := m.validateDatabaseImages(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse20015Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20015Embedded) validateDisks(formats strfmt.Registry) error {
+func (m *InlineResponse20015Embedded) validateDatabaseImages(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Disks) { // not required
+	if swag.IsZero(m.DatabaseImages) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Disks); i++ {
-		if swag.IsZero(m.Disks[i]) { // not required
+	for i := 0; i < len(m.DatabaseImages); i++ {
+		if swag.IsZero(m.DatabaseImages[i]) { // not required
 			continue
 		}
 
-		if m.Disks[i] != nil {
-			if err := m.Disks[i].Validate(formats); err != nil {
+		if m.DatabaseImages[i] != nil {
+			if err := m.DatabaseImages[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+					return ve.ValidateName("database_images" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

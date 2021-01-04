@@ -16,25 +16,18 @@ import (
 // swagger:model inline_response_200_37__embedded__links
 type InlineResponse20037EmbeddedLinks struct {
 
-	// account
-	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
-
-	// role
-	Role *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"role,omitempty"`
+	// operation
+	Operation *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"operation,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 }
 
 // Validate validates this inline response 200 37 embedded links
 func (m *InlineResponse20037EmbeddedLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAccount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRole(formats); err != nil {
+	if err := m.validateOperation(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -48,34 +41,16 @@ func (m *InlineResponse20037EmbeddedLinks) Validate(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *InlineResponse20037EmbeddedLinks) validateAccount(formats strfmt.Registry) error {
+func (m *InlineResponse20037EmbeddedLinks) validateOperation(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Account) { // not required
+	if swag.IsZero(m.Operation) { // not required
 		return nil
 	}
 
-	if m.Account != nil {
-		if err := m.Account.Validate(formats); err != nil {
+	if m.Operation != nil {
+		if err := m.Operation.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("account")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20037EmbeddedLinks) validateRole(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Role) { // not required
-		return nil
-	}
-
-	if m.Role != nil {
-		if err := m.Role.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("role")
+				return ve.ValidateName("operation")
 			}
 			return err
 		}

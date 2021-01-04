@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -17,19 +19,26 @@ import (
 // swagger:model app_request_32
 type AppRequest32 struct {
 
-	// command
-	Command string `json:"command,omitempty"`
-
-	// ssh public key
+	// role
 	// Required: true
-	SSHPublicKey *string `json:"ssh_public_key"`
+	// Format: uuid
+	Role *strfmt.UUID `json:"role"`
+
+	// scope
+	// Required: true
+	// Enum: [read manage]
+	Scope *string `json:"scope"`
 }
 
 // Validate validates this app request 32
 func (m *AppRequest32) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateSSHPublicKey(formats); err != nil {
+	if err := m.validateRole(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateScope(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -39,9 +48,56 @@ func (m *AppRequest32) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *AppRequest32) validateSSHPublicKey(formats strfmt.Registry) error {
+func (m *AppRequest32) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.Required("ssh_public_key", "body", m.SSHPublicKey); err != nil {
+	if err := validate.Required("role", "body", m.Role); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("role", "body", "uuid", m.Role.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var appRequest32TypeScopePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["read","manage"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		appRequest32TypeScopePropEnum = append(appRequest32TypeScopePropEnum, v)
+	}
+}
+
+const (
+
+	// AppRequest32ScopeRead captures enum value "read"
+	AppRequest32ScopeRead string = "read"
+
+	// AppRequest32ScopeManage captures enum value "manage"
+	AppRequest32ScopeManage string = "manage"
+)
+
+// prop value enum
+func (m *AppRequest32) validateScopeEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, appRequest32TypeScopePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *AppRequest32) validateScope(formats strfmt.Registry) error {
+
+	if err := validate.Required("scope", "body", m.Scope); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateScopeEnum("scope", "body", *m.Scope); err != nil {
 		return err
 	}
 

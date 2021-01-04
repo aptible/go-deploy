@@ -17,19 +17,25 @@ import (
 type InlineResponse2006EmbeddedLinks struct {
 
 	// account
-	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
+	Account *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"account,omitempty"`
 
-	// apps
-	Apps *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"apps,omitempty"`
+	// copied from
+	CopiedFrom *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"copied_from,omitempty"`
+
+	// copies
+	Copies *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"copies,omitempty"`
+
+	// database
+	Database *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"database,omitempty"`
+
+	// database image
+	DatabaseImage *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"database_image,omitempty"`
 
 	// operations
-	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
+	Operations *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"operations,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
-
-	// vhosts
-	Vhosts *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"vhosts,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 }
 
 // Validate validates this inline response 200 6 embedded links
@@ -40,7 +46,19 @@ func (m *InlineResponse2006EmbeddedLinks) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
-	if err := m.validateApps(formats); err != nil {
+	if err := m.validateCopiedFrom(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCopies(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatabase(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatabaseImage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -49,10 +67,6 @@ func (m *InlineResponse2006EmbeddedLinks) Validate(formats strfmt.Registry) erro
 	}
 
 	if err := m.validateSelf(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVhosts(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -80,16 +94,70 @@ func (m *InlineResponse2006EmbeddedLinks) validateAccount(formats strfmt.Registr
 	return nil
 }
 
-func (m *InlineResponse2006EmbeddedLinks) validateApps(formats strfmt.Registry) error {
+func (m *InlineResponse2006EmbeddedLinks) validateCopiedFrom(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Apps) { // not required
+	if swag.IsZero(m.CopiedFrom) { // not required
 		return nil
 	}
 
-	if m.Apps != nil {
-		if err := m.Apps.Validate(formats); err != nil {
+	if m.CopiedFrom != nil {
+		if err := m.CopiedFrom.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("apps")
+				return ve.ValidateName("copied_from")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedLinks) validateCopies(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Copies) { // not required
+		return nil
+	}
+
+	if m.Copies != nil {
+		if err := m.Copies.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("copies")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedLinks) validateDatabase(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Database) { // not required
+		return nil
+	}
+
+	if m.Database != nil {
+		if err := m.Database.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("database")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedLinks) validateDatabaseImage(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DatabaseImage) { // not required
+		return nil
+	}
+
+	if m.DatabaseImage != nil {
+		if err := m.DatabaseImage.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("database_image")
 			}
 			return err
 		}
@@ -126,24 +194,6 @@ func (m *InlineResponse2006EmbeddedLinks) validateSelf(formats strfmt.Registry) 
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2006EmbeddedLinks) validateVhosts(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Vhosts) { // not required
-		return nil
-	}
-
-	if m.Vhosts != nil {
-		if err := m.Vhosts.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vhosts")
 			}
 			return err
 		}

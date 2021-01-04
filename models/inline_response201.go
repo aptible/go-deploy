@@ -47,6 +47,14 @@ type InlineResponse201 struct {
 	// Required: true
 	BastionPort *int64 `json:"bastion_port"`
 
+	// ca body
+	// Required: true
+	CaBody *string `json:"ca_body"`
+
+	// ca private key
+	// Required: true
+	CaPrivateKey *string `json:"ca_private_key"`
+
 	// container count
 	// Required: true
 	ContainerCount *int64 `json:"container_count"`
@@ -166,6 +174,14 @@ func (m *InlineResponse201) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateBastionPort(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCaBody(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCaPrivateKey(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -338,6 +354,24 @@ func (m *InlineResponse201) validateBastionHost(formats strfmt.Registry) error {
 func (m *InlineResponse201) validateBastionPort(formats strfmt.Registry) error {
 
 	if err := validate.Required("bastion_port", "body", m.BastionPort); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse201) validateCaBody(formats strfmt.Registry) error {
+
+	if err := validate.Required("ca_body", "body", m.CaBody); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse201) validateCaPrivateKey(formats strfmt.Registry) error {
+
+	if err := validate.Required("ca_private_key", "body", m.CaPrivateKey); err != nil {
 		return err
 	}
 

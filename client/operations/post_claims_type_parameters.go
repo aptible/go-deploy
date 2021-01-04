@@ -64,7 +64,7 @@ for the post claims type operation typically these are written to a http.Request
 type PostClaimsTypeParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest9
+	AppRequest *models.AppRequest10
 	/*Type
 	  type
 
@@ -110,13 +110,13 @@ func (o *PostClaimsTypeParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the post claims type params
-func (o *PostClaimsTypeParams) WithAppRequest(appRequest *models.AppRequest9) *PostClaimsTypeParams {
+func (o *PostClaimsTypeParams) WithAppRequest(appRequest *models.AppRequest10) *PostClaimsTypeParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post claims type params
-func (o *PostClaimsTypeParams) SetAppRequest(appRequest *models.AppRequest9) {
+func (o *PostClaimsTypeParams) SetAppRequest(appRequest *models.AppRequest10) {
 	o.AppRequest = appRequest
 }
 

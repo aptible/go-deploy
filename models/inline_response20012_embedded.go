@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_12__embedded
 type InlineResponse20012Embedded struct {
 
-	// containers
-	Containers []*InlineResponse20012EmbeddedContainers `json:"containers"`
+	// database credentials
+	DatabaseCredentials []*InlineResponse20012EmbeddedDatabaseCredentials `json:"database_credentials"`
 }
 
 // Validate validates this inline response 200 12 embedded
 func (m *InlineResponse20012Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateContainers(formats); err != nil {
+	if err := m.validateDatabaseCredentials(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse20012Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20012Embedded) validateContainers(formats strfmt.Registry) error {
+func (m *InlineResponse20012Embedded) validateDatabaseCredentials(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Containers) { // not required
+	if swag.IsZero(m.DatabaseCredentials) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Containers); i++ {
-		if swag.IsZero(m.Containers[i]) { // not required
+	for i := 0; i < len(m.DatabaseCredentials); i++ {
+		if swag.IsZero(m.DatabaseCredentials[i]) { // not required
 			continue
 		}
 
-		if m.Containers[i] != nil {
-			if err := m.Containers[i].Validate(formats); err != nil {
+		if m.DatabaseCredentials[i] != nil {
+			if err := m.DatabaseCredentials[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("containers" + "." + strconv.Itoa(i))
+					return ve.ValidateName("database_credentials" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

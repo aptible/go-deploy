@@ -25,25 +25,57 @@ type InlineResponse20011 struct {
 	// Required: true
 	Links *InlineResponse20010EmbeddedLinks `json:"_links"`
 
-	// connection url
+	// allocation
 	// Required: true
-	ConnectionURL *string `json:"connection_url"`
+	Allocation []string `json:"allocation"`
+
+	// aws instance id
+	// Required: true
+	AwsInstanceID *string `json:"aws_instance_id"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// default
+	// docker name
 	// Required: true
-	Default *bool `json:"default"`
+	DockerName *string `json:"docker_name"`
+
+	// host
+	// Required: true
+	Host *string `json:"host"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// type
+	// instance class
 	// Required: true
-	Type *string `json:"type"`
+	InstanceClass *string `json:"instance_class"`
+
+	// layer
+	// Required: true
+	Layer *string `json:"layer"`
+
+	// memory limit
+	// Required: true
+	MemoryLimit *int64 `json:"memory_limit"`
+
+	// mounts
+	// Required: true
+	Mounts [][]string `json:"mounts"`
+
+	// port
+	// Required: true
+	Port *int64 `json:"port"`
+
+	// port mapping
+	// Required: true
+	PortMapping [][]int64 `json:"port_mapping"`
+
+	// status
+	// Required: true
+	Status *string `json:"status"`
 
 	// updated at
 	// Required: true
@@ -62,7 +94,11 @@ func (m *InlineResponse20011) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateConnectionURL(formats); err != nil {
+	if err := m.validateAllocation(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAwsInstanceID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -70,7 +106,11 @@ func (m *InlineResponse20011) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateDefault(formats); err != nil {
+	if err := m.validateDockerName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHost(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -78,7 +118,31 @@ func (m *InlineResponse20011) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateInstanceClass(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLayer(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMemoryLimit(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMounts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePort(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePortMapping(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -119,9 +183,18 @@ func (m *InlineResponse20011) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20011) validateConnectionURL(formats strfmt.Registry) error {
+func (m *InlineResponse20011) validateAllocation(formats strfmt.Registry) error {
 
-	if err := validate.Required("connection_url", "body", m.ConnectionURL); err != nil {
+	if err := validate.Required("allocation", "body", m.Allocation); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20011) validateAwsInstanceID(formats strfmt.Registry) error {
+
+	if err := validate.Required("aws_instance_id", "body", m.AwsInstanceID); err != nil {
 		return err
 	}
 
@@ -137,9 +210,18 @@ func (m *InlineResponse20011) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20011) validateDefault(formats strfmt.Registry) error {
+func (m *InlineResponse20011) validateDockerName(formats strfmt.Registry) error {
 
-	if err := validate.Required("default", "body", m.Default); err != nil {
+	if err := validate.Required("docker_name", "body", m.DockerName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20011) validateHost(formats strfmt.Registry) error {
+
+	if err := validate.Required("host", "body", m.Host); err != nil {
 		return err
 	}
 
@@ -155,9 +237,63 @@ func (m *InlineResponse20011) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20011) validateType(formats strfmt.Registry) error {
+func (m *InlineResponse20011) validateInstanceClass(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", m.Type); err != nil {
+	if err := validate.Required("instance_class", "body", m.InstanceClass); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20011) validateLayer(formats strfmt.Registry) error {
+
+	if err := validate.Required("layer", "body", m.Layer); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20011) validateMemoryLimit(formats strfmt.Registry) error {
+
+	if err := validate.Required("memory_limit", "body", m.MemoryLimit); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20011) validateMounts(formats strfmt.Registry) error {
+
+	if err := validate.Required("mounts", "body", m.Mounts); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20011) validatePort(formats strfmt.Registry) error {
+
+	if err := validate.Required("port", "body", m.Port); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20011) validatePortMapping(formats strfmt.Registry) error {
+
+	if err := validate.Required("port_mapping", "body", m.PortMapping); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20011) validateStatus(formats strfmt.Registry) error {
+
+	if err := validate.Required("status", "body", m.Status); err != nil {
 		return err
 	}
 

@@ -16,24 +16,27 @@ import (
 // swagger:model inline_response_200_10__links
 type InlineResponse20010Links struct {
 
-	// database
-	Database *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database,omitempty"`
+	// log drain
+	LogDrain *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"log_drain,omitempty"`
 
 	// next
-	Next *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"next,omitempty"`
+	Next *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"next,omitempty"`
 
 	// prev
-	Prev *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"prev,omitempty"`
+	Prev *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"prev,omitempty"`
+
+	// release
+	Release *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"release,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 }
 
 // Validate validates this inline response 200 10 links
 func (m *InlineResponse20010Links) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateDatabase(formats); err != nil {
+	if err := m.validateLogDrain(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -42,6 +45,10 @@ func (m *InlineResponse20010Links) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePrev(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRelease(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -55,16 +62,16 @@ func (m *InlineResponse20010Links) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20010Links) validateDatabase(formats strfmt.Registry) error {
+func (m *InlineResponse20010Links) validateLogDrain(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Database) { // not required
+	if swag.IsZero(m.LogDrain) { // not required
 		return nil
 	}
 
-	if m.Database != nil {
-		if err := m.Database.Validate(formats); err != nil {
+	if m.LogDrain != nil {
+		if err := m.LogDrain.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("database")
+				return ve.ValidateName("log_drain")
 			}
 			return err
 		}
@@ -101,6 +108,24 @@ func (m *InlineResponse20010Links) validatePrev(formats strfmt.Registry) error {
 		if err := m.Prev.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("prev")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010Links) validateRelease(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Release) { // not required
+		return nil
+	}
+
+	if m.Release != nil {
+		if err := m.Release.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("release")
 			}
 			return err
 		}

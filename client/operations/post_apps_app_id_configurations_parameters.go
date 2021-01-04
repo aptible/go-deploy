@@ -70,7 +70,7 @@ type PostAppsAppIDConfigurationsParams struct {
 	*/
 	AppID int64
 	/*AppRequest*/
-	AppRequest *models.AppRequest10
+	AppRequest *models.AppRequest11
 
 	timeout    time.Duration
 	Context    context.Context
@@ -122,13 +122,13 @@ func (o *PostAppsAppIDConfigurationsParams) SetAppID(appID int64) {
 }
 
 // WithAppRequest adds the appRequest to the post apps app ID configurations params
-func (o *PostAppsAppIDConfigurationsParams) WithAppRequest(appRequest *models.AppRequest10) *PostAppsAppIDConfigurationsParams {
+func (o *PostAppsAppIDConfigurationsParams) WithAppRequest(appRequest *models.AppRequest11) *PostAppsAppIDConfigurationsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post apps app ID configurations params
-func (o *PostAppsAppIDConfigurationsParams) SetAppRequest(appRequest *models.AppRequest10) {
+func (o *PostAppsAppIDConfigurationsParams) SetAppRequest(appRequest *models.AppRequest11) {
 	o.AppRequest = appRequest
 }
 

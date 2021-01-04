@@ -17,30 +17,62 @@ import (
 // swagger:model inline_response_200_7
 type InlineResponse2007 struct {
 
+	// resource type
+	// Required: true
+	ResourceType *string `json:"_type"`
+
 	// embedded
 	// Required: true
-	Embedded *InlineResponse2007Embedded `json:"_embedded"`
+	Embedded *InlineResponse2006EmbeddedEmbedded `json:"_embedded"`
 
 	// links
 	// Required: true
-	Links *InlineResponse2007Links `json:"_links"`
+	Links *InlineResponse2006EmbeddedLinks `json:"_links"`
 
-	// current page
+	// aws region
 	// Required: true
-	CurrentPage *int64 `json:"current_page"`
+	AwsRegion *string `json:"aws_region"`
 
-	// per page
+	// aws snapshot id
 	// Required: true
-	PerPage *int64 `json:"per_page"`
+	AwsSnapshotID *string `json:"aws_snapshot_id"`
 
-	// total count
+	// created at
 	// Required: true
-	TotalCount *int64 `json:"total_count"`
+	CreatedAt *string `json:"created_at"`
+
+	// database handle
+	// Required: true
+	DatabaseHandle *string `json:"database_handle"`
+
+	// id
+	// Required: true
+	ID *int64 `json:"id"`
+
+	// kms arn
+	// Required: true
+	KmsArn *string `json:"kms_arn"`
+
+	// manual
+	// Required: true
+	Manual *bool `json:"manual"`
+
+	// size
+	// Required: true
+	Size *int64 `json:"size"`
+
+	// updated at
+	// Required: true
+	UpdatedAt *string `json:"updated_at"`
 }
 
 // Validate validates this inline response 200 7
 func (m *InlineResponse2007) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateResourceType(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateEmbedded(formats); err != nil {
 		res = append(res, err)
@@ -50,21 +82,54 @@ func (m *InlineResponse2007) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCurrentPage(formats); err != nil {
+	if err := m.validateAwsRegion(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validatePerPage(formats); err != nil {
+	if err := m.validateAwsSnapshotID(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTotalCount(formats); err != nil {
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatabaseHandle(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateKmsArn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateManual(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSize(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *InlineResponse2007) validateResourceType(formats strfmt.Registry) error {
+
+	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -104,27 +169,81 @@ func (m *InlineResponse2007) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse2007) validateCurrentPage(formats strfmt.Registry) error {
+func (m *InlineResponse2007) validateAwsRegion(formats strfmt.Registry) error {
 
-	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
+	if err := validate.Required("aws_region", "body", m.AwsRegion); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse2007) validatePerPage(formats strfmt.Registry) error {
+func (m *InlineResponse2007) validateAwsSnapshotID(formats strfmt.Registry) error {
 
-	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
+	if err := validate.Required("aws_snapshot_id", "body", m.AwsSnapshotID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse2007) validateTotalCount(formats strfmt.Registry) error {
+func (m *InlineResponse2007) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
+	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2007) validateDatabaseHandle(formats strfmt.Registry) error {
+
+	if err := validate.Required("database_handle", "body", m.DatabaseHandle); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2007) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2007) validateKmsArn(formats strfmt.Registry) error {
+
+	if err := validate.Required("kms_arn", "body", m.KmsArn); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2007) validateManual(formats strfmt.Registry) error {
+
+	if err := validate.Required("manual", "body", m.Manual); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2007) validateSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("size", "body", m.Size); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2007) validateUpdatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
 		return err
 	}
 

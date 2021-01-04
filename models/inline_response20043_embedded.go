@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_43__embedded
 type InlineResponse20043Embedded struct {
 
-	// ssh portal connections
-	SSHPortalConnections []*InlineResponse20043EmbeddedSSHPortalConnections `json:"ssh_portal_connections"`
+	// vpn tunnels
+	VpnTunnels []*InlineResponse20043EmbeddedVpnTunnels `json:"vpn_tunnels"`
 }
 
 // Validate validates this inline response 200 43 embedded
 func (m *InlineResponse20043Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateSSHPortalConnections(formats); err != nil {
+	if err := m.validateVpnTunnels(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse20043Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20043Embedded) validateSSHPortalConnections(formats strfmt.Registry) error {
+func (m *InlineResponse20043Embedded) validateVpnTunnels(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.SSHPortalConnections) { // not required
+	if swag.IsZero(m.VpnTunnels) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.SSHPortalConnections); i++ {
-		if swag.IsZero(m.SSHPortalConnections[i]) { // not required
+	for i := 0; i < len(m.VpnTunnels); i++ {
+		if swag.IsZero(m.VpnTunnels[i]) { // not required
 			continue
 		}
 
-		if m.SSHPortalConnections[i] != nil {
-			if err := m.SSHPortalConnections[i].Validate(formats); err != nil {
+		if m.VpnTunnels[i] != nil {
+			if err := m.VpnTunnels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("ssh_portal_connections" + "." + strconv.Itoa(i))
+					return ve.ValidateName("vpn_tunnels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

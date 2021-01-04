@@ -65,7 +65,7 @@ for the post backups backup ID operations operation typically these are written 
 type PostBackupsBackupIDOperationsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest30
+	AppRequest *models.AppRequest31
 	/*BackupID
 	  backup_id
 
@@ -111,13 +111,13 @@ func (o *PostBackupsBackupIDOperationsParams) SetHTTPClient(client *http.Client)
 }
 
 // WithAppRequest adds the appRequest to the post backups backup ID operations params
-func (o *PostBackupsBackupIDOperationsParams) WithAppRequest(appRequest *models.AppRequest30) *PostBackupsBackupIDOperationsParams {
+func (o *PostBackupsBackupIDOperationsParams) WithAppRequest(appRequest *models.AppRequest31) *PostBackupsBackupIDOperationsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post backups backup ID operations params
-func (o *PostBackupsBackupIDOperationsParams) SetAppRequest(appRequest *models.AppRequest30) {
+func (o *PostBackupsBackupIDOperationsParams) SetAppRequest(appRequest *models.AppRequest31) {
 	o.AppRequest = appRequest
 }
 

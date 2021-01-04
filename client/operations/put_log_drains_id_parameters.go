@@ -65,7 +65,7 @@ for the put log drains ID operation typically these are written to a http.Reques
 type PutLogDrainsIDParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest16
+	AppRequest *models.AppRequest17
 	/*ID
 	  id
 
@@ -111,13 +111,13 @@ func (o *PutLogDrainsIDParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the put log drains ID params
-func (o *PutLogDrainsIDParams) WithAppRequest(appRequest *models.AppRequest16) *PutLogDrainsIDParams {
+func (o *PutLogDrainsIDParams) WithAppRequest(appRequest *models.AppRequest17) *PutLogDrainsIDParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the put log drains ID params
-func (o *PutLogDrainsIDParams) SetAppRequest(appRequest *models.AppRequest16) {
+func (o *PutLogDrainsIDParams) SetAppRequest(appRequest *models.AppRequest17) {
 	o.AppRequest = appRequest
 }
 

@@ -65,7 +65,7 @@ for the put operations ID operation typically these are written to a http.Reques
 type PutOperationsIDParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest19
+	AppRequest *models.AppRequest20
 	/*ID
 	  id
 
@@ -111,13 +111,13 @@ func (o *PutOperationsIDParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the put operations ID params
-func (o *PutOperationsIDParams) WithAppRequest(appRequest *models.AppRequest19) *PutOperationsIDParams {
+func (o *PutOperationsIDParams) WithAppRequest(appRequest *models.AppRequest20) *PutOperationsIDParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the put operations ID params
-func (o *PutOperationsIDParams) SetAppRequest(appRequest *models.AppRequest19) {
+func (o *PutOperationsIDParams) SetAppRequest(appRequest *models.AppRequest20) {
 	o.AppRequest = appRequest
 }
 

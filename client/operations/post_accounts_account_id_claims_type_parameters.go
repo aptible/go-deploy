@@ -70,7 +70,7 @@ type PostAccountsAccountIDClaimsTypeParams struct {
 	*/
 	AccountID int64
 	/*AppRequest*/
-	AppRequest *models.AppRequest7
+	AppRequest *models.AppRequest8
 	/*Type
 	  type
 
@@ -127,13 +127,13 @@ func (o *PostAccountsAccountIDClaimsTypeParams) SetAccountID(accountID int64) {
 }
 
 // WithAppRequest adds the appRequest to the post accounts account ID claims type params
-func (o *PostAccountsAccountIDClaimsTypeParams) WithAppRequest(appRequest *models.AppRequest7) *PostAccountsAccountIDClaimsTypeParams {
+func (o *PostAccountsAccountIDClaimsTypeParams) WithAppRequest(appRequest *models.AppRequest8) *PostAccountsAccountIDClaimsTypeParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post accounts account ID claims type params
-func (o *PostAccountsAccountIDClaimsTypeParams) SetAppRequest(appRequest *models.AppRequest7) {
+func (o *PostAccountsAccountIDClaimsTypeParams) SetAppRequest(appRequest *models.AppRequest8) {
 	o.AppRequest = appRequest
 }
 

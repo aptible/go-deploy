@@ -65,7 +65,7 @@ for the post databases database ID configurations operation typically these are 
 type PostDatabasesDatabaseIDConfigurationsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest11
+	AppRequest *models.AppRequest12
 	/*DatabaseID
 	  database_id
 
@@ -111,13 +111,13 @@ func (o *PostDatabasesDatabaseIDConfigurationsParams) SetHTTPClient(client *http
 }
 
 // WithAppRequest adds the appRequest to the post databases database ID configurations params
-func (o *PostDatabasesDatabaseIDConfigurationsParams) WithAppRequest(appRequest *models.AppRequest11) *PostDatabasesDatabaseIDConfigurationsParams {
+func (o *PostDatabasesDatabaseIDConfigurationsParams) WithAppRequest(appRequest *models.AppRequest12) *PostDatabasesDatabaseIDConfigurationsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post databases database ID configurations params
-func (o *PostDatabasesDatabaseIDConfigurationsParams) SetAppRequest(appRequest *models.AppRequest11) {
+func (o *PostDatabasesDatabaseIDConfigurationsParams) SetAppRequest(appRequest *models.AppRequest12) {
 	o.AppRequest = appRequest
 }
 

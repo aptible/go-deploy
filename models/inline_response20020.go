@@ -25,25 +25,33 @@ type InlineResponse20020 struct {
 	// Required: true
 	Links *InlineResponse20019EmbeddedLinks `json:"_links"`
 
-	// aws instance id
+	// allocation
 	// Required: true
-	AwsInstanceID *string `json:"aws_instance_id"`
+	Allocation []string `json:"allocation"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// host
+	// docker name
 	// Required: true
-	Host *string `json:"host"`
+	DockerName *string `json:"docker_name"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// name
+	// interactive
 	// Required: true
-	Name *string `json:"name"`
+	Interactive *bool `json:"interactive"`
+
+	// layer
+	// Required: true
+	Layer *string `json:"layer"`
+
+	// memory limit
+	// Required: true
+	MemoryLimit *int64 `json:"memory_limit"`
 
 	// updated at
 	// Required: true
@@ -62,7 +70,7 @@ func (m *InlineResponse20020) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAwsInstanceID(formats); err != nil {
+	if err := m.validateAllocation(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -70,7 +78,7 @@ func (m *InlineResponse20020) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateHost(formats); err != nil {
+	if err := m.validateDockerName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -78,7 +86,15 @@ func (m *InlineResponse20020) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateName(formats); err != nil {
+	if err := m.validateInteractive(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLayer(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMemoryLimit(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -119,9 +135,9 @@ func (m *InlineResponse20020) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20020) validateAwsInstanceID(formats strfmt.Registry) error {
+func (m *InlineResponse20020) validateAllocation(formats strfmt.Registry) error {
 
-	if err := validate.Required("aws_instance_id", "body", m.AwsInstanceID); err != nil {
+	if err := validate.Required("allocation", "body", m.Allocation); err != nil {
 		return err
 	}
 
@@ -137,9 +153,9 @@ func (m *InlineResponse20020) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20020) validateHost(formats strfmt.Registry) error {
+func (m *InlineResponse20020) validateDockerName(formats strfmt.Registry) error {
 
-	if err := validate.Required("host", "body", m.Host); err != nil {
+	if err := validate.Required("docker_name", "body", m.DockerName); err != nil {
 		return err
 	}
 
@@ -155,9 +171,27 @@ func (m *InlineResponse20020) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20020) validateName(formats strfmt.Registry) error {
+func (m *InlineResponse20020) validateInteractive(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", m.Name); err != nil {
+	if err := validate.Required("interactive", "body", m.Interactive); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20020) validateLayer(formats strfmt.Registry) error {
+
+	if err := validate.Required("layer", "body", m.Layer); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20020) validateMemoryLimit(formats strfmt.Registry) error {
+
+	if err := validate.Required("memory_limit", "body", m.MemoryLimit); err != nil {
 		return err
 	}
 

@@ -21,37 +21,33 @@ type InlineResponse2005 struct {
 	// Required: true
 	ResourceType *string `json:"_type"`
 
-	// embedded
-	// Required: true
-	Embedded *InlineResponse2004EmbeddedEmbedded `json:"_embedded"`
-
 	// links
 	// Required: true
 	Links *InlineResponse2004EmbeddedLinks `json:"_links"`
-
-	// aws region
-	// Required: true
-	AwsRegion *string `json:"aws_region"`
-
-	// aws snapshot id
-	// Required: true
-	AwsSnapshotID *string `json:"aws_snapshot_id"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// database handle
+	// daily
 	// Required: true
-	DatabaseHandle *string `json:"database_handle"`
+	Daily *int64 `json:"daily"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// updated at
+	// keep final
 	// Required: true
-	UpdatedAt *string `json:"updated_at"`
+	KeepFinal *bool `json:"keep_final"`
+
+	// make copy
+	// Required: true
+	MakeCopy *bool `json:"make_copy"`
+
+	// monthly
+	// Required: true
+	Monthly *int64 `json:"monthly"`
 }
 
 // Validate validates this inline response 200 5
@@ -62,19 +58,7 @@ func (m *InlineResponse2005) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateEmbedded(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateLinks(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAwsRegion(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAwsSnapshotID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -82,7 +66,7 @@ func (m *InlineResponse2005) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateDatabaseHandle(formats); err != nil {
+	if err := m.validateDaily(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -90,7 +74,15 @@ func (m *InlineResponse2005) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateUpdatedAt(formats); err != nil {
+	if err := m.validateKeepFinal(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMakeCopy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMonthly(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -104,24 +96,6 @@ func (m *InlineResponse2005) validateResourceType(formats strfmt.Registry) error
 
 	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2005) validateEmbedded(formats strfmt.Registry) error {
-
-	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
-		return err
-	}
-
-	if m.Embedded != nil {
-		if err := m.Embedded.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("_embedded")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -145,24 +119,6 @@ func (m *InlineResponse2005) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse2005) validateAwsRegion(formats strfmt.Registry) error {
-
-	if err := validate.Required("aws_region", "body", m.AwsRegion); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2005) validateAwsSnapshotID(formats strfmt.Registry) error {
-
-	if err := validate.Required("aws_snapshot_id", "body", m.AwsSnapshotID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *InlineResponse2005) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
@@ -172,9 +128,9 @@ func (m *InlineResponse2005) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse2005) validateDatabaseHandle(formats strfmt.Registry) error {
+func (m *InlineResponse2005) validateDaily(formats strfmt.Registry) error {
 
-	if err := validate.Required("database_handle", "body", m.DatabaseHandle); err != nil {
+	if err := validate.Required("daily", "body", m.Daily); err != nil {
 		return err
 	}
 
@@ -190,9 +146,27 @@ func (m *InlineResponse2005) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse2005) validateUpdatedAt(formats strfmt.Registry) error {
+func (m *InlineResponse2005) validateKeepFinal(formats strfmt.Registry) error {
 
-	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("keep_final", "body", m.KeepFinal); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2005) validateMakeCopy(formats strfmt.Registry) error {
+
+	if err := validate.Required("make_copy", "body", m.MakeCopy); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2005) validateMonthly(formats strfmt.Registry) error {
+
+	if err := validate.Required("monthly", "body", m.Monthly); err != nil {
 		return err
 	}
 

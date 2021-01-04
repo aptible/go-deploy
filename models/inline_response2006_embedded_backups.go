@@ -34,8 +34,20 @@ type InlineResponse2006EmbeddedBackups struct {
 	// created at
 	CreatedAt string `json:"created_at,omitempty"`
 
+	// database handle
+	DatabaseHandle string `json:"database_handle,omitempty"`
+
 	// id
 	ID int64 `json:"id,omitempty"`
+
+	// kms arn
+	KmsArn *string `json:"kms_arn,omitempty"`
+
+	// manual
+	Manual *bool `json:"manual,omitempty"`
+
+	// size
+	Size *int64 `json:"size,omitempty"`
 
 	// updated at
 	UpdatedAt string `json:"updated_at,omitempty"`

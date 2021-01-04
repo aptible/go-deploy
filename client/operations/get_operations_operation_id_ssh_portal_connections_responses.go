@@ -52,20 +52,20 @@ func NewGetOperationsOperationIDSSHPortalConnectionsOK() *GetOperationsOperation
 successful
 */
 type GetOperationsOperationIDSSHPortalConnectionsOK struct {
-	Payload *models.InlineResponse20035
+	Payload *models.InlineResponse20037
 }
 
 func (o *GetOperationsOperationIDSSHPortalConnectionsOK) Error() string {
 	return fmt.Sprintf("[GET /operations/{operation_id}/ssh_portal_connections][%d] getOperationsOperationIdSshPortalConnectionsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOperationsOperationIDSSHPortalConnectionsOK) GetPayload() *models.InlineResponse20035 {
+func (o *GetOperationsOperationIDSSHPortalConnectionsOK) GetPayload() *models.InlineResponse20037 {
 	return o.Payload
 }
 
 func (o *GetOperationsOperationIDSSHPortalConnectionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20035)
+	o.Payload = new(models.InlineResponse20037)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

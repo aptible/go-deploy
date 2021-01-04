@@ -8,40 +8,19 @@ package models
 import (
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // AppRequest7 app request 7
 // swagger:model app_request_7
 type AppRequest7 struct {
 
-	// handle
-	// Required: true
-	Handle *string `json:"handle"`
+	// certificate arn
+	CertificateArn string `json:"certificate_arn,omitempty"`
 }
 
 // Validate validates this app request 7
 func (m *AppRequest7) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateHandle(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AppRequest7) validateHandle(formats strfmt.Registry) error {
-
-	if err := validate.Required("handle", "body", m.Handle); err != nil {
-		return err
-	}
-
 	return nil
 }
 

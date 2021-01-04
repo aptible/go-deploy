@@ -17,84 +17,32 @@ import (
 // swagger:model inline_response_200_16
 type InlineResponse20016 struct {
 
-	// resource type
+	// embedded
 	// Required: true
-	ResourceType *string `json:"_type"`
+	Embedded *InlineResponse20016Embedded `json:"_embedded"`
 
 	// links
 	// Required: true
-	Links *InlineResponse20014EmbeddedEmbeddedDiskLinks `json:"_links"`
+	Links *InlineResponse2001Links `json:"_links"`
 
-	// attached
+	// current page
 	// Required: true
-	Attached *bool `json:"attached"`
+	CurrentPage *int64 `json:"current_page"`
 
-	// availability zone
+	// per page
 	// Required: true
-	AvailabilityZone *string `json:"availability_zone"`
+	PerPage *int64 `json:"per_page"`
 
-	// baseline iops
+	// total count
 	// Required: true
-	BaselineIops *int64 `json:"baseline_iops"`
-
-	// created at
-	// Required: true
-	CreatedAt *string `json:"created_at"`
-
-	// device
-	// Required: true
-	Device *string `json:"device"`
-
-	// ebs volume id
-	// Required: true
-	EbsVolumeID *string `json:"ebs_volume_id"`
-
-	// ebs volume type
-	// Required: true
-	EbsVolumeType *string `json:"ebs_volume_type"`
-
-	// ec2 instance id
-	// Required: true
-	Ec2InstanceID *string `json:"ec2_instance_id"`
-
-	// filesystem
-	// Required: true
-	Filesystem *string `json:"filesystem"`
-
-	// handle
-	// Required: true
-	Handle *string `json:"handle"`
-
-	// host
-	// Required: true
-	Host *string `json:"host"`
-
-	// id
-	// Required: true
-	ID *int64 `json:"id"`
-
-	// key bytes
-	// Required: true
-	KeyBytes *int64 `json:"key_bytes"`
-
-	// passphrase
-	// Required: true
-	Passphrase *string `json:"passphrase"`
-
-	// size
-	// Required: true
-	Size *int64 `json:"size"`
-
-	// updated at
-	// Required: true
-	UpdatedAt *string `json:"updated_at"`
+	TotalCount *int64 `json:"total_count"`
 }
 
 // Validate validates this inline response 200 16
 func (m *InlineResponse20016) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateResourceType(formats); err != nil {
+	if err := m.validateEmbedded(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -102,67 +50,15 @@ func (m *InlineResponse20016) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAttached(formats); err != nil {
+	if err := m.validateCurrentPage(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateAvailabilityZone(formats); err != nil {
+	if err := m.validatePerPage(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateBaselineIops(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCreatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDevice(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateEbsVolumeID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateEbsVolumeType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateEc2InstanceID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateFilesystem(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateHandle(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateHost(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateKeyBytes(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePassphrase(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSize(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUpdatedAt(formats); err != nil {
+	if err := m.validateTotalCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -172,10 +68,19 @@ func (m *InlineResponse20016) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20016) validateResourceType(formats strfmt.Registry) error {
+func (m *InlineResponse20016) validateEmbedded(formats strfmt.Registry) error {
 
-	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
+	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
 		return err
+	}
+
+	if m.Embedded != nil {
+		if err := m.Embedded.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_embedded")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -199,144 +104,27 @@ func (m *InlineResponse20016) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20016) validateAttached(formats strfmt.Registry) error {
+func (m *InlineResponse20016) validateCurrentPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("attached", "body", m.Attached); err != nil {
+	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20016) validateAvailabilityZone(formats strfmt.Registry) error {
+func (m *InlineResponse20016) validatePerPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("availability_zone", "body", m.AvailabilityZone); err != nil {
+	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20016) validateBaselineIops(formats strfmt.Registry) error {
+func (m *InlineResponse20016) validateTotalCount(formats strfmt.Registry) error {
 
-	if err := validate.Required("baseline_iops", "body", m.BaselineIops); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateCreatedAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateDevice(formats strfmt.Registry) error {
-
-	if err := validate.Required("device", "body", m.Device); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateEbsVolumeID(formats strfmt.Registry) error {
-
-	if err := validate.Required("ebs_volume_id", "body", m.EbsVolumeID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateEbsVolumeType(formats strfmt.Registry) error {
-
-	if err := validate.Required("ebs_volume_type", "body", m.EbsVolumeType); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateEc2InstanceID(formats strfmt.Registry) error {
-
-	if err := validate.Required("ec2_instance_id", "body", m.Ec2InstanceID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateFilesystem(formats strfmt.Registry) error {
-
-	if err := validate.Required("filesystem", "body", m.Filesystem); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateHandle(formats strfmt.Registry) error {
-
-	if err := validate.Required("handle", "body", m.Handle); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateHost(formats strfmt.Registry) error {
-
-	if err := validate.Required("host", "body", m.Host); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateKeyBytes(formats strfmt.Registry) error {
-
-	if err := validate.Required("key_bytes", "body", m.KeyBytes); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validatePassphrase(formats strfmt.Registry) error {
-
-	if err := validate.Required("passphrase", "body", m.Passphrase); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateSize(formats strfmt.Registry) error {
-
-	if err := validate.Required("size", "body", m.Size); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20016) validateUpdatedAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
 		return err
 	}
 
