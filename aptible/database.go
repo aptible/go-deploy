@@ -9,17 +9,18 @@ import (
 )
 
 type Database struct {
-	ID               int64
-	ConnectionURL    string
-	ContainerSize    int64
-	DiskSize         int64
-	Deleted          bool
-	Handle           string
-	Type             string
-	EnvironmentID    int64
-	InitializeFromID int64
-	Service          Service
-	DatabaseImage    DatabaseImage
+	ID                int64
+	DefaultConnection string
+	ConnectionURLs    []string
+	ContainerSize     int64
+	DiskSize          int64
+	Deleted           bool
+	Handle            string
+	Type              string
+	EnvironmentID     int64
+	InitializeFromID  int64
+	Service           Service
+	DatabaseImage     DatabaseImage
 }
 
 type DBUpdates struct {
@@ -98,11 +99,20 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 		return Database{}, err
 	}
 
-	connectionUrl := resp.Payload.ConnectionURL
-	if connectionUrl == nil {
-		return Database{}, fmt.Errorf("connectionUrl is a nil pointer")
+	defaultConnection := resp.Payload.ConnectionURL
+	if defaultConnection == nil {
+		return Database{}, fmt.Errorf("defaultConnection is a nil pointer")
 	}
-	database.ConnectionURL = *connectionUrl
+	database.DefaultConnection = *defaultConnection
+
+	connectionUrls := resp.Payload.Embedded.DatabaseCredentials
+	for _, u := range connectionUrls {
+		if u == nil {
+			continue
+		}
+
+		database.ConnectionURLs = append(database.ConnectionURLs, u.ConnectionURL)
+	}
 
 	databaseType := resp.Payload.Type
 	if databaseType == nil {
