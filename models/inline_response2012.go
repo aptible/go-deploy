@@ -23,7 +23,7 @@ type InlineResponse2012 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse2006EmbeddedLinks `json:"_links"`
+	Links *InlineResponse2008EmbeddedLinks `json:"_links"`
 
 	// acme
 	// Required: true

@@ -52,20 +52,20 @@ func NewGetVpcPeersIDOK() *GetVpcPeersIDOK {
 successful
 */
 type GetVpcPeersIDOK struct {
-	Payload *models.InlineResponse20040
+	Payload *models.InlineResponse20042
 }
 
 func (o *GetVpcPeersIDOK) Error() string {
 	return fmt.Sprintf("[GET /vpc_peers/{id}][%d] getVpcPeersIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetVpcPeersIDOK) GetPayload() *models.InlineResponse20040 {
+func (o *GetVpcPeersIDOK) GetPayload() *models.InlineResponse20042 {
 	return o.Payload
 }
 
 func (o *GetVpcPeersIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20040)
+	o.Payload = new(models.InlineResponse20042)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

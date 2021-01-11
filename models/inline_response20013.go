@@ -17,32 +17,44 @@ import (
 // swagger:model inline_response_200_13
 type InlineResponse20013 struct {
 
-	// embedded
+	// resource type
 	// Required: true
-	Embedded *InlineResponse20013Embedded `json:"_embedded"`
+	ResourceType *string `json:"_type"`
 
 	// links
 	// Required: true
-	Links *InlineResponse20013Links `json:"_links"`
+	Links *InlineResponse20012EmbeddedLinks `json:"_links"`
 
-	// current page
+	// connection url
 	// Required: true
-	CurrentPage *int64 `json:"current_page"`
+	ConnectionURL *string `json:"connection_url"`
 
-	// per page
+	// created at
 	// Required: true
-	PerPage *int64 `json:"per_page"`
+	CreatedAt *string `json:"created_at"`
 
-	// total count
+	// default
 	// Required: true
-	TotalCount *int64 `json:"total_count"`
+	Default *bool `json:"default"`
+
+	// id
+	// Required: true
+	ID *int64 `json:"id"`
+
+	// type
+	// Required: true
+	Type *string `json:"type"`
+
+	// updated at
+	// Required: true
+	UpdatedAt *string `json:"updated_at"`
 }
 
 // Validate validates this inline response 200 13
 func (m *InlineResponse20013) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEmbedded(formats); err != nil {
+	if err := m.validateResourceType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -50,15 +62,27 @@ func (m *InlineResponse20013) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCurrentPage(formats); err != nil {
+	if err := m.validateConnectionURL(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validatePerPage(formats); err != nil {
+	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTotalCount(formats); err != nil {
+	if err := m.validateDefault(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -68,19 +92,10 @@ func (m *InlineResponse20013) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20013) validateEmbedded(formats strfmt.Registry) error {
+func (m *InlineResponse20013) validateResourceType(formats strfmt.Registry) error {
 
-	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
+	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
 		return err
-	}
-
-	if m.Embedded != nil {
-		if err := m.Embedded.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("_embedded")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -104,27 +119,54 @@ func (m *InlineResponse20013) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20013) validateCurrentPage(formats strfmt.Registry) error {
+func (m *InlineResponse20013) validateConnectionURL(formats strfmt.Registry) error {
 
-	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
+	if err := validate.Required("connection_url", "body", m.ConnectionURL); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20013) validatePerPage(formats strfmt.Registry) error {
+func (m *InlineResponse20013) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
+	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20013) validateTotalCount(formats strfmt.Registry) error {
+func (m *InlineResponse20013) validateDefault(formats strfmt.Registry) error {
 
-	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
+	if err := validate.Required("default", "body", m.Default); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20013) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20013) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20013) validateUpdatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
 		return err
 	}
 

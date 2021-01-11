@@ -70,7 +70,7 @@ type PostAccountsAccountIDMetricDrainsParams struct {
 	*/
 	AccountID int64
 	/*AppRequest*/
-	AppRequest *models.AppRequest18
+	AppRequest *models.AppRequest19
 
 	timeout    time.Duration
 	Context    context.Context
@@ -122,13 +122,13 @@ func (o *PostAccountsAccountIDMetricDrainsParams) SetAccountID(accountID int64) 
 }
 
 // WithAppRequest adds the appRequest to the post accounts account ID metric drains params
-func (o *PostAccountsAccountIDMetricDrainsParams) WithAppRequest(appRequest *models.AppRequest18) *PostAccountsAccountIDMetricDrainsParams {
+func (o *PostAccountsAccountIDMetricDrainsParams) WithAppRequest(appRequest *models.AppRequest19) *PostAccountsAccountIDMetricDrainsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post accounts account ID metric drains params
-func (o *PostAccountsAccountIDMetricDrainsParams) SetAppRequest(appRequest *models.AppRequest18) {
+func (o *PostAccountsAccountIDMetricDrainsParams) SetAppRequest(appRequest *models.AppRequest19) {
 	o.AppRequest = appRequest
 }
 

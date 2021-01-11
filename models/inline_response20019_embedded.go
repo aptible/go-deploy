@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_19__embedded
 type InlineResponse20019Embedded struct {
 
-	// ephemeral sessions
-	EphemeralSessions []*InlineResponse20019EmbeddedEphemeralSessions `json:"ephemeral_sessions"`
+	// ephemeral containers
+	EphemeralContainers []*InlineResponse20019EmbeddedEphemeralContainers `json:"ephemeral_containers"`
 }
 
 // Validate validates this inline response 200 19 embedded
 func (m *InlineResponse20019Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEphemeralSessions(formats); err != nil {
+	if err := m.validateEphemeralContainers(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse20019Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20019Embedded) validateEphemeralSessions(formats strfmt.Registry) error {
+func (m *InlineResponse20019Embedded) validateEphemeralContainers(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.EphemeralSessions) { // not required
+	if swag.IsZero(m.EphemeralContainers) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.EphemeralSessions); i++ {
-		if swag.IsZero(m.EphemeralSessions[i]) { // not required
+	for i := 0; i < len(m.EphemeralContainers); i++ {
+		if swag.IsZero(m.EphemeralContainers[i]) { // not required
 			continue
 		}
 
-		if m.EphemeralSessions[i] != nil {
-			if err := m.EphemeralSessions[i].Validate(formats); err != nil {
+		if m.EphemeralContainers[i] != nil {
+			if err := m.EphemeralContainers[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("ephemeral_sessions" + "." + strconv.Itoa(i))
+					return ve.ValidateName("ephemeral_containers" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

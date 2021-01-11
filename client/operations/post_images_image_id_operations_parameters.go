@@ -65,7 +65,7 @@ for the post images image ID operations operation typically these are written to
 type PostImagesImageIDOperationsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest27
+	AppRequest *models.AppRequest28
 	/*ImageID
 	  image_id
 
@@ -111,13 +111,13 @@ func (o *PostImagesImageIDOperationsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the post images image ID operations params
-func (o *PostImagesImageIDOperationsParams) WithAppRequest(appRequest *models.AppRequest27) *PostImagesImageIDOperationsParams {
+func (o *PostImagesImageIDOperationsParams) WithAppRequest(appRequest *models.AppRequest28) *PostImagesImageIDOperationsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post images image ID operations params
-func (o *PostImagesImageIDOperationsParams) SetAppRequest(appRequest *models.AppRequest27) {
+func (o *PostImagesImageIDOperationsParams) SetAppRequest(appRequest *models.AppRequest28) {
 	o.AppRequest = appRequest
 }
 

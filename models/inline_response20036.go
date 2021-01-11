@@ -17,32 +17,60 @@ import (
 // swagger:model inline_response_200_36
 type InlineResponse20036 struct {
 
-	// embedded
+	// resource type
 	// Required: true
-	Embedded *InlineResponse20036Embedded `json:"_embedded"`
+	ResourceType *string `json:"_type"`
 
 	// links
 	// Required: true
-	Links *InlineResponse20013Links `json:"_links"`
+	Links *InlineResponse2003EmbeddedEmbeddedLinks `json:"_links"`
 
-	// current page
+	// command
 	// Required: true
-	CurrentPage *int64 `json:"current_page"`
+	Command *string `json:"command"`
 
-	// per page
+	// container count
 	// Required: true
-	PerPage *int64 `json:"per_page"`
+	ContainerCount *int64 `json:"container_count"`
 
-	// total count
+	// container memory limit mb
 	// Required: true
-	TotalCount *int64 `json:"total_count"`
+	ContainerMemoryLimitMb *int64 `json:"container_memory_limit_mb"`
+
+	// created at
+	// Required: true
+	CreatedAt *string `json:"created_at"`
+
+	// docker ref
+	// Required: true
+	DockerRef *string `json:"docker_ref"`
+
+	// docker repo
+	// Required: true
+	DockerRepo *string `json:"docker_repo"`
+
+	// handle
+	// Required: true
+	Handle *string `json:"handle"`
+
+	// id
+	// Required: true
+	ID *int64 `json:"id"`
+
+	// process type
+	// Required: true
+	ProcessType *string `json:"process_type"`
+
+	// updated at
+	// Required: true
+	UpdatedAt *string `json:"updated_at"`
 }
 
 // Validate validates this inline response 200 36
 func (m *InlineResponse20036) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEmbedded(formats); err != nil {
+	if err := m.validateResourceType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -50,15 +78,43 @@ func (m *InlineResponse20036) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCurrentPage(formats); err != nil {
+	if err := m.validateCommand(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validatePerPage(formats); err != nil {
+	if err := m.validateContainerCount(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTotalCount(formats); err != nil {
+	if err := m.validateContainerMemoryLimitMb(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDockerRef(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDockerRepo(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHandle(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateProcessType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -68,19 +124,10 @@ func (m *InlineResponse20036) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20036) validateEmbedded(formats strfmt.Registry) error {
+func (m *InlineResponse20036) validateResourceType(formats strfmt.Registry) error {
 
-	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
+	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
 		return err
-	}
-
-	if m.Embedded != nil {
-		if err := m.Embedded.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("_embedded")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -104,27 +151,90 @@ func (m *InlineResponse20036) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20036) validateCurrentPage(formats strfmt.Registry) error {
+func (m *InlineResponse20036) validateCommand(formats strfmt.Registry) error {
 
-	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
+	if err := validate.Required("command", "body", m.Command); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20036) validatePerPage(formats strfmt.Registry) error {
+func (m *InlineResponse20036) validateContainerCount(formats strfmt.Registry) error {
 
-	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
+	if err := validate.Required("container_count", "body", m.ContainerCount); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20036) validateTotalCount(formats strfmt.Registry) error {
+func (m *InlineResponse20036) validateContainerMemoryLimitMb(formats strfmt.Registry) error {
 
-	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
+	if err := validate.Required("container_memory_limit_mb", "body", m.ContainerMemoryLimitMb); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20036) validateCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20036) validateDockerRef(formats strfmt.Registry) error {
+
+	if err := validate.Required("docker_ref", "body", m.DockerRef); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20036) validateDockerRepo(formats strfmt.Registry) error {
+
+	if err := validate.Required("docker_repo", "body", m.DockerRepo); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20036) validateHandle(formats strfmt.Registry) error {
+
+	if err := validate.Required("handle", "body", m.Handle); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20036) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20036) validateProcessType(formats strfmt.Registry) error {
+
+	if err := validate.Required("process_type", "body", m.ProcessType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20036) validateUpdatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
 		return err
 	}
 

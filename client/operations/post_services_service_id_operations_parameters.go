@@ -65,7 +65,7 @@ for the post services service ID operations operation typically these are writte
 type PostServicesServiceIDOperationsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest25
+	AppRequest *models.AppRequest26
 	/*ServiceID
 	  service_id
 
@@ -111,13 +111,13 @@ func (o *PostServicesServiceIDOperationsParams) SetHTTPClient(client *http.Clien
 }
 
 // WithAppRequest adds the appRequest to the post services service ID operations params
-func (o *PostServicesServiceIDOperationsParams) WithAppRequest(appRequest *models.AppRequest25) *PostServicesServiceIDOperationsParams {
+func (o *PostServicesServiceIDOperationsParams) WithAppRequest(appRequest *models.AppRequest26) *PostServicesServiceIDOperationsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post services service ID operations params
-func (o *PostServicesServiceIDOperationsParams) SetAppRequest(appRequest *models.AppRequest25) {
+func (o *PostServicesServiceIDOperationsParams) SetAppRequest(appRequest *models.AppRequest26) {
 	o.AppRequest = appRequest
 }
 

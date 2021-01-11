@@ -17,32 +17,60 @@ import (
 // swagger:model inline_response_200_14
 type InlineResponse20014 struct {
 
-	// embedded
+	// resource type
 	// Required: true
-	Embedded *InlineResponse20014Embedded `json:"_embedded"`
+	ResourceType *string `json:"_type"`
 
 	// links
 	// Required: true
-	Links *InlineResponse2001Links `json:"_links"`
+	Links *InlineResponse20014Links `json:"_links"`
 
-	// current page
+	// created at
 	// Required: true
-	CurrentPage *int64 `json:"current_page"`
+	CreatedAt *string `json:"created_at"`
 
-	// per page
+	// default
 	// Required: true
-	PerPage *int64 `json:"per_page"`
+	Default *bool `json:"default"`
 
-	// total count
+	// description
 	// Required: true
-	TotalCount *int64 `json:"total_count"`
+	Description *string `json:"description"`
+
+	// discoverable
+	// Required: true
+	Discoverable *bool `json:"discoverable"`
+
+	// docker repo
+	// Required: true
+	DockerRepo *string `json:"docker_repo"`
+
+	// id
+	// Required: true
+	ID *int64 `json:"id"`
+
+	// type
+	// Required: true
+	Type *string `json:"type"`
+
+	// updated at
+	// Required: true
+	UpdatedAt *string `json:"updated_at"`
+
+	// version
+	// Required: true
+	Version *string `json:"version"`
+
+	// visible
+	// Required: true
+	Visible *bool `json:"visible"`
 }
 
 // Validate validates this inline response 200 14
 func (m *InlineResponse20014) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEmbedded(formats); err != nil {
+	if err := m.validateResourceType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -50,15 +78,43 @@ func (m *InlineResponse20014) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCurrentPage(formats); err != nil {
+	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validatePerPage(formats); err != nil {
+	if err := m.validateDefault(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTotalCount(formats); err != nil {
+	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDiscoverable(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDockerRepo(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVersion(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVisible(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -68,19 +124,10 @@ func (m *InlineResponse20014) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20014) validateEmbedded(formats strfmt.Registry) error {
+func (m *InlineResponse20014) validateResourceType(formats strfmt.Registry) error {
 
-	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
+	if err := validate.Required("_type", "body", m.ResourceType); err != nil {
 		return err
-	}
-
-	if m.Embedded != nil {
-		if err := m.Embedded.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("_embedded")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -104,27 +151,90 @@ func (m *InlineResponse20014) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20014) validateCurrentPage(formats strfmt.Registry) error {
+func (m *InlineResponse20014) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
+	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20014) validatePerPage(formats strfmt.Registry) error {
+func (m *InlineResponse20014) validateDefault(formats strfmt.Registry) error {
 
-	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
+	if err := validate.Required("default", "body", m.Default); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20014) validateTotalCount(formats strfmt.Registry) error {
+func (m *InlineResponse20014) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
+	if err := validate.Required("description", "body", m.Description); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014) validateDiscoverable(formats strfmt.Registry) error {
+
+	if err := validate.Required("discoverable", "body", m.Discoverable); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014) validateDockerRepo(formats strfmt.Registry) error {
+
+	if err := validate.Required("docker_repo", "body", m.DockerRepo); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014) validateUpdatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014) validateVersion(formats strfmt.Registry) error {
+
+	if err := validate.Required("version", "body", m.Version); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014) validateVisible(formats strfmt.Registry) error {
+
+	if err := validate.Required("visible", "body", m.Visible); err != nil {
 		return err
 	}
 

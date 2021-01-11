@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_41__embedded
 type InlineResponse20041Embedded struct {
 
-	// vpn tunnels
-	VpnTunnels []*InlineResponse20041EmbeddedVpnTunnels `json:"vpn_tunnels"`
+	// vpc peers
+	VpcPeers []*InlineResponse20041EmbeddedVpcPeers `json:"vpc_peers"`
 }
 
 // Validate validates this inline response 200 41 embedded
 func (m *InlineResponse20041Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateVpnTunnels(formats); err != nil {
+	if err := m.validateVpcPeers(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse20041Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20041Embedded) validateVpnTunnels(formats strfmt.Registry) error {
+func (m *InlineResponse20041Embedded) validateVpcPeers(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.VpnTunnels) { // not required
+	if swag.IsZero(m.VpcPeers) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.VpnTunnels); i++ {
-		if swag.IsZero(m.VpnTunnels[i]) { // not required
+	for i := 0; i < len(m.VpcPeers); i++ {
+		if swag.IsZero(m.VpcPeers[i]) { // not required
 			continue
 		}
 
-		if m.VpnTunnels[i] != nil {
-			if err := m.VpnTunnels[i].Validate(formats); err != nil {
+		if m.VpcPeers[i] != nil {
+			if err := m.VpcPeers[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("vpn_tunnels" + "." + strconv.Itoa(i))
+					return ve.ValidateName("vpc_peers" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

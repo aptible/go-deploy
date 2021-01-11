@@ -22,7 +22,7 @@ type InlineResponse200EmbeddedEmbedded struct {
 	LogDrains []*InlineResponse200EmbeddedEmbeddedLogDrains `json:"log_drains"`
 
 	// permissions
-	Permissions []*InlineResponse200EmbeddedEmbeddedLogDrains `json:"permissions"`
+	Permissions []*InlineResponse200EmbeddedEmbeddedPermissions `json:"permissions"`
 }
 
 // Validate validates this inline response 200 embedded embedded

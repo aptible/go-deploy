@@ -52,20 +52,20 @@ func NewPostAppsAppIDOperationsCreated() *PostAppsAppIDOperationsCreated {
 successful
 */
 type PostAppsAppIDOperationsCreated struct {
-	Payload *models.InlineResponse20028
+	Payload *models.InlineResponse20030
 }
 
 func (o *PostAppsAppIDOperationsCreated) Error() string {
 	return fmt.Sprintf("[POST /apps/{app_id}/operations][%d] postAppsAppIdOperationsCreated  %+v", 201, o.Payload)
 }
 
-func (o *PostAppsAppIDOperationsCreated) GetPayload() *models.InlineResponse20028 {
+func (o *PostAppsAppIDOperationsCreated) GetPayload() *models.InlineResponse20030 {
 	return o.Payload
 }
 
 func (o *PostAppsAppIDOperationsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20028)
+	o.Payload = new(models.InlineResponse20030)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

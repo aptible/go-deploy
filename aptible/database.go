@@ -9,17 +9,18 @@ import (
 )
 
 type Database struct {
-	ID               int64
-	ConnectionURL    string
-	ContainerSize    int64
-	DiskSize         int64
-	Deleted          bool
-	Handle           string
-	Type             string
-	EnvironmentID    int64
-	InitializeFromID int64
-	Service          Service
-	DatabaseImage    DatabaseImage
+	ID                int64
+	DefaultConnection string
+	ConnectionURLs    []string
+	ContainerSize     int64
+	DiskSize          int64
+	Deleted           bool
+	Handle            string
+	Type              string
+	EnvironmentID     int64
+	InitializeFromID  int64
+	Service           Service
+	DatabaseImage     DatabaseImage
 }
 
 type DBUpdates struct {
@@ -37,7 +38,7 @@ type DBCreateAttrs struct {
 
 func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database, error) {
 	// creates API object
-	request := models.AppRequest12{
+	request := models.AppRequest13{
 		Handle: attrs.Handle,
 		Type:   attrs.Type,
 	}
@@ -54,7 +55,7 @@ func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database,
 
 	// provisions database
 	requestType := "provision"
-	provisionRequest := models.AppRequest23{
+	provisionRequest := models.AppRequest24{
 		Type:          &requestType,
 		ContainerSize: attrs.ContainerSize,
 		DiskSize:      attrs.DiskSize,
@@ -98,11 +99,20 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 		return Database{}, err
 	}
 
-	connectionUrl := resp.Payload.ConnectionURL
-	if connectionUrl == nil {
-		return Database{}, fmt.Errorf("connectionUrl is a nil pointer")
+	defaultConnection := resp.Payload.ConnectionURL
+	if defaultConnection == nil {
+		return Database{}, fmt.Errorf("defaultConnection is a nil pointer")
 	}
-	database.ConnectionURL = *connectionUrl
+	database.DefaultConnection = *defaultConnection
+
+	connectionUrls := resp.Payload.Embedded.DatabaseCredentials
+	for _, u := range connectionUrls {
+		if u == nil {
+			continue
+		}
+
+		database.ConnectionURLs = append(database.ConnectionURLs, u.ConnectionURL)
+	}
 
 	databaseType := resp.Payload.Type
 	if databaseType == nil {
@@ -170,7 +180,7 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 
 func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
 	requestType := "restart"
-	request := models.AppRequest23{
+	request := models.AppRequest24{
 		Type: &requestType,
 	}
 
@@ -201,7 +211,7 @@ func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
 
 func (c *Client) DeleteDatabase(databaseID int64) error {
 	requestType := "deprovision"
-	request := models.AppRequest23{
+	request := models.AppRequest24{
 		Type: &requestType,
 	}
 	deprovisionParams := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
@@ -214,7 +224,7 @@ func (c *Client) DeleteDatabase(databaseID int64) error {
 	return err
 }
 
-func (c *Client) GetDatabaseOperations(databaseID int64, page int64) (*models.InlineResponse20029, error) {
+func (c *Client) GetDatabaseOperations(databaseID int64, page int64) (*models.InlineResponse20031, error) {
 	params := operations.NewGetDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithPage(&page)
 	resp, err := c.Client.Operations.GetDatabasesDatabaseIDOperations(params, c.Token)
 	if err != nil {

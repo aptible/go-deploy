@@ -23,63 +23,35 @@ type InlineResponse20042 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse20039EmbeddedLinks `json:"_links"`
+	Links *InlineResponse20041EmbeddedLinks `json:"_links"`
+
+	// connection id
+	// Required: true
+	ConnectionID *string `json:"connection_id"`
+
+	// connection status
+	// Required: true
+	ConnectionStatus *string `json:"connection_status"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// handle
+	// description
 	// Required: true
-	Handle *string `json:"handle"`
+	Description *string `json:"description"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// our gateway
+	// peer account id
 	// Required: true
-	OurGateway *string `json:"our_gateway"`
+	PeerAccountID *string `json:"peer_account_id"`
 
-	// our networks
+	// peer vpc id
 	// Required: true
-	OurNetworks [][]string `json:"our_networks"`
-
-	// peer gateway
-	// Required: true
-	PeerGateway *string `json:"peer_gateway"`
-
-	// peer networks
-	// Required: true
-	PeerNetworks [][]string `json:"peer_networks"`
-
-	// perfect forward secrecy
-	// Required: true
-	PerfectForwardSecrecy *bool `json:"perfect_forward_secrecy"`
-
-	// phase 1 alg
-	// Required: true
-	Phase1Alg *string `json:"phase_1_alg"`
-
-	// phase 1 dh group
-	// Required: true
-	Phase1DhGroup *int64 `json:"phase_1_dh_group"`
-
-	// phase 1 lifetime
-	// Required: true
-	Phase1Lifetime *int64 `json:"phase_1_lifetime"`
-
-	// phase 2 alg
-	// Required: true
-	Phase2Alg *string `json:"phase_2_alg"`
-
-	// phase 2 dh group
-	// Required: true
-	Phase2DhGroup *int64 `json:"phase_2_dh_group"`
-
-	// phase 2 lifetime
-	// Required: true
-	Phase2Lifetime *int64 `json:"phase_2_lifetime"`
+	PeerVpcID *string `json:"peer_vpc_id"`
 
 	// updated at
 	// Required: true
@@ -98,11 +70,19 @@ func (m *InlineResponse20042) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateConnectionID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConnectionStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateHandle(formats); err != nil {
+	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -110,47 +90,11 @@ func (m *InlineResponse20042) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateOurGateway(formats); err != nil {
+	if err := m.validatePeerAccountID(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateOurNetworks(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePeerGateway(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePeerNetworks(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePerfectForwardSecrecy(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePhase1Alg(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePhase1DhGroup(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePhase1Lifetime(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePhase2Alg(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePhase2DhGroup(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePhase2Lifetime(formats); err != nil {
+	if err := m.validatePeerVpcID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -191,6 +135,24 @@ func (m *InlineResponse20042) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *InlineResponse20042) validateConnectionID(formats strfmt.Registry) error {
+
+	if err := validate.Required("connection_id", "body", m.ConnectionID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20042) validateConnectionStatus(formats strfmt.Registry) error {
+
+	if err := validate.Required("connection_status", "body", m.ConnectionStatus); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *InlineResponse20042) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
@@ -200,9 +162,9 @@ func (m *InlineResponse20042) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20042) validateHandle(formats strfmt.Registry) error {
+func (m *InlineResponse20042) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.Required("handle", "body", m.Handle); err != nil {
+	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
 	}
 
@@ -218,99 +180,18 @@ func (m *InlineResponse20042) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20042) validateOurGateway(formats strfmt.Registry) error {
+func (m *InlineResponse20042) validatePeerAccountID(formats strfmt.Registry) error {
 
-	if err := validate.Required("our_gateway", "body", m.OurGateway); err != nil {
+	if err := validate.Required("peer_account_id", "body", m.PeerAccountID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20042) validateOurNetworks(formats strfmt.Registry) error {
+func (m *InlineResponse20042) validatePeerVpcID(formats strfmt.Registry) error {
 
-	if err := validate.Required("our_networks", "body", m.OurNetworks); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validatePeerGateway(formats strfmt.Registry) error {
-
-	if err := validate.Required("peer_gateway", "body", m.PeerGateway); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validatePeerNetworks(formats strfmt.Registry) error {
-
-	if err := validate.Required("peer_networks", "body", m.PeerNetworks); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validatePerfectForwardSecrecy(formats strfmt.Registry) error {
-
-	if err := validate.Required("perfect_forward_secrecy", "body", m.PerfectForwardSecrecy); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validatePhase1Alg(formats strfmt.Registry) error {
-
-	if err := validate.Required("phase_1_alg", "body", m.Phase1Alg); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validatePhase1DhGroup(formats strfmt.Registry) error {
-
-	if err := validate.Required("phase_1_dh_group", "body", m.Phase1DhGroup); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validatePhase1Lifetime(formats strfmt.Registry) error {
-
-	if err := validate.Required("phase_1_lifetime", "body", m.Phase1Lifetime); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validatePhase2Alg(formats strfmt.Registry) error {
-
-	if err := validate.Required("phase_2_alg", "body", m.Phase2Alg); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validatePhase2DhGroup(formats strfmt.Registry) error {
-
-	if err := validate.Required("phase_2_dh_group", "body", m.Phase2DhGroup); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20042) validatePhase2Lifetime(formats strfmt.Registry) error {
-
-	if err := validate.Required("phase_2_lifetime", "body", m.Phase2Lifetime); err != nil {
+	if err := validate.Required("peer_vpc_id", "body", m.PeerVpcID); err != nil {
 		return err
 	}
 

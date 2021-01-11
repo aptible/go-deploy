@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_6__embedded
 type InlineResponse2006Embedded struct {
 
-	// certificates
-	Certificates []*InlineResponse2006EmbeddedCertificates `json:"certificates"`
+	// backups
+	Backups []*InlineResponse2006EmbeddedBackups `json:"backups"`
 }
 
 // Validate validates this inline response 200 6 embedded
 func (m *InlineResponse2006Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCertificates(formats); err != nil {
+	if err := m.validateBackups(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse2006Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse2006Embedded) validateCertificates(formats strfmt.Registry) error {
+func (m *InlineResponse2006Embedded) validateBackups(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Certificates) { // not required
+	if swag.IsZero(m.Backups) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Certificates); i++ {
-		if swag.IsZero(m.Certificates[i]) { // not required
+	for i := 0; i < len(m.Backups); i++ {
+		if swag.IsZero(m.Backups[i]) { // not required
 			continue
 		}
 
-		if m.Certificates[i] != nil {
-			if err := m.Certificates[i].Validate(formats); err != nil {
+		if m.Backups[i] != nil {
+			if err := m.Backups[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("certificates" + "." + strconv.Itoa(i))
+					return ve.ValidateName("backups" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -6,9 +6,13 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	strfmt "github.com/go-openapi/strfmt"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // AppRequest9 app request 9
@@ -17,10 +21,69 @@ type AppRequest9 struct {
 
 	// handle
 	Handle string `json:"handle,omitempty"`
+
+	// type
+	// Enum: [app database account]
+	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this app request 9
 func (m *AppRequest9) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var appRequest9TypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["app","database","account"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		appRequest9TypeTypePropEnum = append(appRequest9TypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// AppRequest9TypeApp captures enum value "app"
+	AppRequest9TypeApp string = "app"
+
+	// AppRequest9TypeDatabase captures enum value "database"
+	AppRequest9TypeDatabase string = "database"
+
+	// AppRequest9TypeAccount captures enum value "account"
+	AppRequest9TypeAccount string = "account"
+)
+
+// prop value enum
+func (m *AppRequest9) validateTypeEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, appRequest9TypeTypePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *AppRequest9) validateType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -70,7 +70,7 @@ type PostAccountsAccountIDCertificatesParams struct {
 	*/
 	AccountID int64
 	/*AppRequest*/
-	AppRequest *models.AppRequest4
+	AppRequest *models.AppRequest5
 
 	timeout    time.Duration
 	Context    context.Context
@@ -122,13 +122,13 @@ func (o *PostAccountsAccountIDCertificatesParams) SetAccountID(accountID int64) 
 }
 
 // WithAppRequest adds the appRequest to the post accounts account ID certificates params
-func (o *PostAccountsAccountIDCertificatesParams) WithAppRequest(appRequest *models.AppRequest4) *PostAccountsAccountIDCertificatesParams {
+func (o *PostAccountsAccountIDCertificatesParams) WithAppRequest(appRequest *models.AppRequest5) *PostAccountsAccountIDCertificatesParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post accounts account ID certificates params
-func (o *PostAccountsAccountIDCertificatesParams) SetAppRequest(appRequest *models.AppRequest4) {
+func (o *PostAccountsAccountIDCertificatesParams) SetAppRequest(appRequest *models.AppRequest5) {
 	o.AppRequest = appRequest
 }
 

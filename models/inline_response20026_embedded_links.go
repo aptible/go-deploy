@@ -16,50 +16,36 @@ import (
 // swagger:model inline_response_200_26__embedded__links
 type InlineResponse20026EmbeddedLinks struct {
 
-	// account
-	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
+	// download csv
+	DownloadCsv *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"download_csv,omitempty"`
 
-	// containers
-	Containers *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"containers,omitempty"`
-
-	// database
-	Database *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database,omitempty"`
-
-	// ephemeral containers
-	EphemeralContainers *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"ephemeral_containers,omitempty"`
-
-	// operations
-	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
+	// download pdf
+	DownloadPdf *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"download_pdf,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
+
+	// stack
+	Stack *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"stack,omitempty"`
 }
 
 // Validate validates this inline response 200 26 embedded links
 func (m *InlineResponse20026EmbeddedLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAccount(formats); err != nil {
+	if err := m.validateDownloadCsv(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateContainers(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDatabase(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateEphemeralContainers(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateOperations(formats); err != nil {
+	if err := m.validateDownloadPdf(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateSelf(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStack(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -69,16 +55,16 @@ func (m *InlineResponse20026EmbeddedLinks) Validate(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *InlineResponse20026EmbeddedLinks) validateAccount(formats strfmt.Registry) error {
+func (m *InlineResponse20026EmbeddedLinks) validateDownloadCsv(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Account) { // not required
+	if swag.IsZero(m.DownloadCsv) { // not required
 		return nil
 	}
 
-	if m.Account != nil {
-		if err := m.Account.Validate(formats); err != nil {
+	if m.DownloadCsv != nil {
+		if err := m.DownloadCsv.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("account")
+				return ve.ValidateName("download_csv")
 			}
 			return err
 		}
@@ -87,70 +73,16 @@ func (m *InlineResponse20026EmbeddedLinks) validateAccount(formats strfmt.Regist
 	return nil
 }
 
-func (m *InlineResponse20026EmbeddedLinks) validateContainers(formats strfmt.Registry) error {
+func (m *InlineResponse20026EmbeddedLinks) validateDownloadPdf(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Containers) { // not required
+	if swag.IsZero(m.DownloadPdf) { // not required
 		return nil
 	}
 
-	if m.Containers != nil {
-		if err := m.Containers.Validate(formats); err != nil {
+	if m.DownloadPdf != nil {
+		if err := m.DownloadPdf.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("containers")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20026EmbeddedLinks) validateDatabase(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Database) { // not required
-		return nil
-	}
-
-	if m.Database != nil {
-		if err := m.Database.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("database")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20026EmbeddedLinks) validateEphemeralContainers(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.EphemeralContainers) { // not required
-		return nil
-	}
-
-	if m.EphemeralContainers != nil {
-		if err := m.EphemeralContainers.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("ephemeral_containers")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20026EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Operations) { // not required
-		return nil
-	}
-
-	if m.Operations != nil {
-		if err := m.Operations.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("operations")
+				return ve.ValidateName("download_pdf")
 			}
 			return err
 		}
@@ -169,6 +101,24 @@ func (m *InlineResponse20026EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20026EmbeddedLinks) validateStack(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Stack) { // not required
+		return nil
+	}
+
+	if m.Stack != nil {
+		if err := m.Stack.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("stack")
 			}
 			return err
 		}

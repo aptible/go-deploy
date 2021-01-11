@@ -45,7 +45,7 @@ type EndpointCreateAttrs struct {
 // CreateEndpoint() creates Vhost API object + provision operation on the app.
 func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (Endpoint, error) {
 	// Create Vhost API object
-	request := models.AppRequest33{
+	request := models.AppRequest34{
 		Acme:        attrs.Acme,
 		Type:        attrs.Type,
 		Default:     attrs.Default,
@@ -70,7 +70,7 @@ func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (End
 	payload := resp.Payload
 	endpointID := *payload.ID
 	requestType := "provision"
-	operationRequest := models.AppRequest26{Type: &requestType}
+	operationRequest := models.AppRequest27{Type: &requestType}
 	operationParams := operations.NewPostVhostsVhostIDOperationsParams().WithVhostID(endpointID).WithAppRequest(&operationRequest)
 	operationResponse, err := c.Client.Operations.PostVhostsVhostIDOperations(operationParams, c.Token)
 	if err != nil {
@@ -186,7 +186,7 @@ func (c *Client) GetEndpoint(endpointID int64) (Endpoint, error) {
 
 // UpdateEndpoint() takes in an endpointID and updates needed, and updates the endpoint.
 func (c *Client) UpdateEndpoint(endpointID int64, up EndpointUpdates) error {
-	appRequest := models.AppRequest34{
+	appRequest := models.AppRequest35{
 		ContainerPort: up.ContainerPort,
 		IPWhitelist:   up.IPWhitelist,
 		Platform:      up.Platform,
@@ -204,7 +204,7 @@ func (c *Client) UpdateEndpoint(endpointID int64, up EndpointUpdates) error {
 // DeleteEndpoint() deletes the endpoint.
 func (c *Client) DeleteEndpoint(endpointID int64) error {
 	requestType := "deprovision"
-	operationRequest := models.AppRequest26{Type: &requestType}
+	operationRequest := models.AppRequest27{Type: &requestType}
 	operationParams := operations.NewPostVhostsVhostIDOperationsParams().WithVhostID(endpointID).WithAppRequest(&operationRequest)
 	op, err := c.Client.Operations.PostVhostsVhostIDOperations(operationParams, c.Token)
 	if err != nil {

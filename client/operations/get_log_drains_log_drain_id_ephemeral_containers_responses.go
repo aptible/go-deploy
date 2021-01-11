@@ -52,20 +52,20 @@ func NewGetLogDrainsLogDrainIDEphemeralContainersOK() *GetLogDrainsLogDrainIDEph
 successful
 */
 type GetLogDrainsLogDrainIDEphemeralContainersOK struct {
-	Payload *models.InlineResponse20017
+	Payload *models.InlineResponse20019
 }
 
 func (o *GetLogDrainsLogDrainIDEphemeralContainersOK) Error() string {
 	return fmt.Sprintf("[GET /log_drains/{log_drain_id}/ephemeral_containers][%d] getLogDrainsLogDrainIdEphemeralContainersOK  %+v", 200, o.Payload)
 }
 
-func (o *GetLogDrainsLogDrainIDEphemeralContainersOK) GetPayload() *models.InlineResponse20017 {
+func (o *GetLogDrainsLogDrainIDEphemeralContainersOK) GetPayload() *models.InlineResponse20019 {
 	return o.Payload
 }
 
 func (o *GetLogDrainsLogDrainIDEphemeralContainersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20017)
+	o.Payload = new(models.InlineResponse20019)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

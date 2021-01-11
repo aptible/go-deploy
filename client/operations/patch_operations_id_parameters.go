@@ -65,7 +65,7 @@ for the patch operations ID operation typically these are written to a http.Requ
 type PatchOperationsIDParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest20
+	AppRequest *models.AppRequest21
 	/*ID
 	  id
 
@@ -111,13 +111,13 @@ func (o *PatchOperationsIDParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the patch operations ID params
-func (o *PatchOperationsIDParams) WithAppRequest(appRequest *models.AppRequest20) *PatchOperationsIDParams {
+func (o *PatchOperationsIDParams) WithAppRequest(appRequest *models.AppRequest21) *PatchOperationsIDParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the patch operations ID params
-func (o *PatchOperationsIDParams) SetAppRequest(appRequest *models.AppRequest20) {
+func (o *PatchOperationsIDParams) SetAppRequest(appRequest *models.AppRequest21) {
 	o.AppRequest = appRequest
 }
 

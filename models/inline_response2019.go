@@ -23,7 +23,7 @@ type InlineResponse2019 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse20038EmbeddedLinks `json:"_links"`
+	Links *InlineResponse20040EmbeddedLinks `json:"_links"`
 
 	// acme
 	// Required: true
@@ -31,7 +31,7 @@ type InlineResponse2019 struct {
 
 	// acme configuration
 	// Required: true
-	AcmeConfiguration *InlineResponse20038EmbeddedAcmeConfiguration `json:"acme_configuration"`
+	AcmeConfiguration *InlineResponse20040EmbeddedAcmeConfiguration `json:"acme_configuration"`
 
 	// acme dns challenge host
 	// Required: true

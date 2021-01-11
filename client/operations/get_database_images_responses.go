@@ -52,20 +52,20 @@ func NewGetDatabaseImagesOK() *GetDatabaseImagesOK {
 successful
 */
 type GetDatabaseImagesOK struct {
-	Payload *models.InlineResponse20013
+	Payload *models.InlineResponse20015
 }
 
 func (o *GetDatabaseImagesOK) Error() string {
 	return fmt.Sprintf("[GET /database_images][%d] getDatabaseImagesOK  %+v", 200, o.Payload)
 }
 
-func (o *GetDatabaseImagesOK) GetPayload() *models.InlineResponse20013 {
+func (o *GetDatabaseImagesOK) GetPayload() *models.InlineResponse20015 {
 	return o.Payload
 }
 
 func (o *GetDatabaseImagesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20013)
+	o.Payload = new(models.InlineResponse20015)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

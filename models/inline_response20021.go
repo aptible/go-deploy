@@ -17,22 +17,72 @@ import (
 // swagger:model inline_response_200_21
 type InlineResponse20021 struct {
 
+	// embedded
+	// Required: true
+	Embedded *InlineResponse20021Embedded `json:"_embedded"`
+
 	// links
 	// Required: true
 	Links *InlineResponse20021Links `json:"_links"`
+
+	// current page
+	// Required: true
+	CurrentPage *int64 `json:"current_page"`
+
+	// per page
+	// Required: true
+	PerPage *int64 `json:"per_page"`
+
+	// total count
+	// Required: true
+	TotalCount *int64 `json:"total_count"`
 }
 
 // Validate validates this inline response 200 21
 func (m *InlineResponse20021) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEmbedded(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCurrentPage(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePerPage(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCount(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *InlineResponse20021) validateEmbedded(formats strfmt.Registry) error {
+
+	if err := validate.Required("_embedded", "body", m.Embedded); err != nil {
+		return err
+	}
+
+	if m.Embedded != nil {
+		if err := m.Embedded.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_embedded")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -49,6 +99,33 @@ func (m *InlineResponse20021) validateLinks(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20021) validateCurrentPage(formats strfmt.Registry) error {
+
+	if err := validate.Required("current_page", "body", m.CurrentPage); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20021) validatePerPage(formats strfmt.Registry) error {
+
+	if err := validate.Required("per_page", "body", m.PerPage); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20021) validateTotalCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
+		return err
 	}
 
 	return nil

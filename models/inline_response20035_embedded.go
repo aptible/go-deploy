@@ -18,15 +18,15 @@ import (
 // swagger:model inline_response_200_35__embedded
 type InlineResponse20035Embedded struct {
 
-	// ssh portal connections
-	SSHPortalConnections []*InlineResponse20035EmbeddedSSHPortalConnections `json:"ssh_portal_connections"`
+	// services
+	Services []*InlineResponse2003EmbeddedEmbeddedServices `json:"services"`
 }
 
 // Validate validates this inline response 200 35 embedded
 func (m *InlineResponse20035Embedded) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateSSHPortalConnections(formats); err != nil {
+	if err := m.validateServices(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,21 +36,21 @@ func (m *InlineResponse20035Embedded) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20035Embedded) validateSSHPortalConnections(formats strfmt.Registry) error {
+func (m *InlineResponse20035Embedded) validateServices(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.SSHPortalConnections) { // not required
+	if swag.IsZero(m.Services) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.SSHPortalConnections); i++ {
-		if swag.IsZero(m.SSHPortalConnections[i]) { // not required
+	for i := 0; i < len(m.Services); i++ {
+		if swag.IsZero(m.Services[i]) { // not required
 			continue
 		}
 
-		if m.SSHPortalConnections[i] != nil {
-			if err := m.SSHPortalConnections[i].Validate(formats); err != nil {
+		if m.Services[i] != nil {
+			if err := m.Services[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("ssh_portal_connections" + "." + strconv.Itoa(i))
+					return ve.ValidateName("services" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

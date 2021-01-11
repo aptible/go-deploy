@@ -65,7 +65,7 @@ for the post log drains log drain ID operations operation typically these are wr
 type PostLogDrainsLogDrainIDOperationsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest28
+	AppRequest *models.AppRequest29
 	/*LogDrainID
 	  log_drain_id
 
@@ -111,13 +111,13 @@ func (o *PostLogDrainsLogDrainIDOperationsParams) SetHTTPClient(client *http.Cli
 }
 
 // WithAppRequest adds the appRequest to the post log drains log drain ID operations params
-func (o *PostLogDrainsLogDrainIDOperationsParams) WithAppRequest(appRequest *models.AppRequest28) *PostLogDrainsLogDrainIDOperationsParams {
+func (o *PostLogDrainsLogDrainIDOperationsParams) WithAppRequest(appRequest *models.AppRequest29) *PostLogDrainsLogDrainIDOperationsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post log drains log drain ID operations params
-func (o *PostLogDrainsLogDrainIDOperationsParams) SetAppRequest(appRequest *models.AppRequest28) {
+func (o *PostLogDrainsLogDrainIDOperationsParams) SetAppRequest(appRequest *models.AppRequest29) {
 	o.AppRequest = appRequest
 }
 

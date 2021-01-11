@@ -23,7 +23,7 @@ type ReplicaIdentifiers struct {
 func (c *Client) CreateReplica(attrs ReplicateAttrs) (Database, error) {
 	operationType := "replicate"
 
-	req := models.AppRequest23{
+	req := models.AppRequest24{
 		Type:          &operationType,
 		Handle:        attrs.ReplicaHandle,
 		ContainerSize: attrs.ContainerSize,
@@ -84,7 +84,7 @@ func (c *Client) DeleteReplica(replicaID int64) error {
 	return c.DeleteDatabase(replicaID)
 }
 
-func (c *Client) GetReplicaFromHandle(databaseID int64, handle string) (*models.InlineResponse20014EmbeddedDatabases, error) {
+func (c *Client) GetReplicaFromHandle(databaseID int64, handle string) (*models.InlineResponse20016EmbeddedDatabases, error) {
 	params := operations.NewGetDatabasesDatabaseIDDependentsParams().WithDatabaseID(databaseID)
 	resp, err := c.Client.Operations.GetDatabasesDatabaseIDDependents(params, c.Token)
 	if err != nil {

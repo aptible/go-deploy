@@ -8,100 +8,19 @@ package models
 import (
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // AppRequest21 app request 21
 // swagger:model app_request_21
 type AppRequest21 struct {
 
-	// certificate
-	Certificate string `json:"certificate,omitempty"`
-
-	// command
-	Command string `json:"command,omitempty"`
-
-	// container count
-	ContainerCount int64 `json:"container_count,omitempty"`
-
-	// container size
-	ContainerSize int64 `json:"container_size,omitempty"`
-
-	// destination account
-	// Format: uri
-	DestinationAccount strfmt.URI `json:"destination_account,omitempty"`
-
-	// destination account id
-	DestinationAccountID string `json:"destination_account_id,omitempty"`
-
-	// destination region
-	DestinationRegion string `json:"destination_region,omitempty"`
-
-	// disk size
-	DiskSize int64 `json:"disk_size,omitempty"`
-
-	// docker ref
-	DockerRef string `json:"docker_ref,omitempty"`
-
-	// env
-	Env interface{} `json:"env,omitempty"`
-
-	// git ref
-	GitRef string `json:"git_ref,omitempty"`
-
-	// handle
-	Handle string `json:"handle,omitempty"`
-
-	// interactive
-	Interactive bool `json:"interactive,omitempty"`
-
-	// private key
-	PrivateKey string `json:"private_key,omitempty"`
-
-	// type
-	// Required: true
-	Type *string `json:"type"`
+	// cancelled
+	Cancelled bool `json:"cancelled,omitempty"`
 }
 
 // Validate validates this app request 21
 func (m *AppRequest21) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateDestinationAccount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AppRequest21) validateDestinationAccount(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.DestinationAccount) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("destination_account", "body", "uri", m.DestinationAccount.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AppRequest21) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
 	return nil
 }
 

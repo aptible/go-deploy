@@ -65,7 +65,7 @@ for the post vhosts vhost ID operations operation typically these are written to
 type PostVhostsVhostIDOperationsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest26
+	AppRequest *models.AppRequest27
 	/*VhostID
 	  vhost_id
 
@@ -111,13 +111,13 @@ func (o *PostVhostsVhostIDOperationsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the post vhosts vhost ID operations params
-func (o *PostVhostsVhostIDOperationsParams) WithAppRequest(appRequest *models.AppRequest26) *PostVhostsVhostIDOperationsParams {
+func (o *PostVhostsVhostIDOperationsParams) WithAppRequest(appRequest *models.AppRequest27) *PostVhostsVhostIDOperationsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post vhosts vhost ID operations params
-func (o *PostVhostsVhostIDOperationsParams) SetAppRequest(appRequest *models.AppRequest26) {
+func (o *PostVhostsVhostIDOperationsParams) SetAppRequest(appRequest *models.AppRequest27) {
 	o.AppRequest = appRequest
 }
 

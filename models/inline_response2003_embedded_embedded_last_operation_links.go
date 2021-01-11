@@ -17,25 +17,25 @@ import (
 type InlineResponse2003EmbeddedEmbeddedLastOperationLinks struct {
 
 	// account
-	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
+	Account *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"account,omitempty"`
 
 	// destination account
-	DestinationAccount *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"destination_account,omitempty"`
+	DestinationAccount *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"destination_account,omitempty"`
 
 	// ephemeral sessions
-	EphemeralSessions *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"ephemeral_sessions,omitempty"`
+	EphemeralSessions *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"ephemeral_sessions,omitempty"`
 
 	// resource
-	Resource *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"resource,omitempty"`
+	Resource *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"resource,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 
 	// ssh portal connections
-	SSHPortalConnections *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"ssh_portal_connections,omitempty"`
+	SSHPortalConnections *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"ssh_portal_connections,omitempty"`
 
 	// user
-	User *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"user,omitempty"`
+	User *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"user,omitempty"`
 }
 
 // Validate validates this inline response 200 3 embedded embedded last operation links

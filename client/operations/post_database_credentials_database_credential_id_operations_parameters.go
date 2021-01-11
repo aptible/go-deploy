@@ -65,7 +65,7 @@ for the post database credentials database credential ID operations operation ty
 type PostDatabaseCredentialsDatabaseCredentialIDOperationsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest24
+	AppRequest *models.AppRequest25
 	/*DatabaseCredentialID
 	  database_credential_id
 
@@ -111,13 +111,13 @@ func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams) SetHTTPCli
 }
 
 // WithAppRequest adds the appRequest to the post database credentials database credential ID operations params
-func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams) WithAppRequest(appRequest *models.AppRequest24) *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams {
+func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams) WithAppRequest(appRequest *models.AppRequest25) *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post database credentials database credential ID operations params
-func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams) SetAppRequest(appRequest *models.AppRequest24) {
+func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams) SetAppRequest(appRequest *models.AppRequest25) {
 	o.AppRequest = appRequest
 }
 

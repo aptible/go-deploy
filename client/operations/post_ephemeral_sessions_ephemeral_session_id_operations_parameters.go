@@ -65,7 +65,7 @@ for the post ephemeral sessions ephemeral session ID operations operation typica
 type PostEphemeralSessionsEphemeralSessionIDOperationsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest22
+	AppRequest *models.AppRequest23
 	/*EphemeralSessionID
 	  ephemeral_session_id
 
@@ -111,13 +111,13 @@ func (o *PostEphemeralSessionsEphemeralSessionIDOperationsParams) SetHTTPClient(
 }
 
 // WithAppRequest adds the appRequest to the post ephemeral sessions ephemeral session ID operations params
-func (o *PostEphemeralSessionsEphemeralSessionIDOperationsParams) WithAppRequest(appRequest *models.AppRequest22) *PostEphemeralSessionsEphemeralSessionIDOperationsParams {
+func (o *PostEphemeralSessionsEphemeralSessionIDOperationsParams) WithAppRequest(appRequest *models.AppRequest23) *PostEphemeralSessionsEphemeralSessionIDOperationsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post ephemeral sessions ephemeral session ID operations params
-func (o *PostEphemeralSessionsEphemeralSessionIDOperationsParams) SetAppRequest(appRequest *models.AppRequest22) {
+func (o *PostEphemeralSessionsEphemeralSessionIDOperationsParams) SetAppRequest(appRequest *models.AppRequest23) {
 	o.AppRequest = appRequest
 }
 

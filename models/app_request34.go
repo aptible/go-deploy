@@ -8,15 +8,24 @@ package models
 import (
 	strfmt "github.com/go-openapi/strfmt"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // AppRequest34 app request 34
 // swagger:model app_request_34
 type AppRequest34 struct {
 
+	// acme
+	Acme bool `json:"acme,omitempty"`
+
 	// certificate
-	Certificate int64 `json:"certificate,omitempty"`
+	// Required: true
+	Certificate *int64 `json:"certificate"`
+
+	// container exposed ports
+	ContainerExposedPorts []int64 `json:"container_exposed_ports"`
 
 	// container port
 	ContainerPort int64 `json:"container_port,omitempty"`
@@ -24,11 +33,21 @@ type AppRequest34 struct {
 	// container ports
 	ContainerPorts []int64 `json:"container_ports"`
 
+	// default
+	Default bool `json:"default,omitempty"`
+
+	// internal
+	Internal bool `json:"internal,omitempty"`
+
 	// ip whitelist
 	IPWhitelist []string `json:"ip_whitelist"`
 
 	// platform
 	Platform string `json:"platform,omitempty"`
+
+	// type
+	// Required: true
+	Type *string `json:"type"`
 
 	// user domain
 	UserDomain string `json:"user_domain,omitempty"`
@@ -36,6 +55,37 @@ type AppRequest34 struct {
 
 // Validate validates this app request 34
 func (m *AppRequest34) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCertificate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AppRequest34) validateCertificate(formats strfmt.Registry) error {
+
+	if err := validate.Required("certificate", "body", m.Certificate); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AppRequest34) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
 	return nil
 }
 

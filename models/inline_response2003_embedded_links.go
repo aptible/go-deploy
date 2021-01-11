@@ -17,34 +17,34 @@ import (
 type InlineResponse2003EmbeddedLinks struct {
 
 	// account
-	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
+	Account *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"account,omitempty"`
 
 	// configurations
-	Configurations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"configurations,omitempty"`
+	Configurations *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"configurations,omitempty"`
 
 	// current configuration
-	CurrentConfiguration *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"current_configuration,omitempty"`
+	CurrentConfiguration *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"current_configuration,omitempty"`
 
 	// current image
-	CurrentImage *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"current_image,omitempty"`
+	CurrentImage *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"current_image,omitempty"`
 
 	// ephemeral sessions
-	EphemeralSessions *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"ephemeral_sessions,omitempty"`
+	EphemeralSessions *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"ephemeral_sessions,omitempty"`
 
 	// images
-	Images *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"images,omitempty"`
+	Images *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"images,omitempty"`
 
 	// operations
-	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
+	Operations *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"operations,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 
 	// services
-	Services *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"services,omitempty"`
+	Services *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"services,omitempty"`
 
 	// vhosts
-	Vhosts *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"vhosts,omitempty"`
+	Vhosts *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"vhosts,omitempty"`
 }
 
 // Validate validates this inline response 200 3 embedded links

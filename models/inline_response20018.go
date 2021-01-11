@@ -23,35 +23,71 @@ type InlineResponse20018 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse20017EmbeddedLinks `json:"_links"`
+	Links *InlineResponse20016EmbeddedEmbeddedDiskLinks `json:"_links"`
 
-	// allocation
+	// attached
 	// Required: true
-	Allocation []string `json:"allocation"`
+	Attached *bool `json:"attached"`
+
+	// availability zone
+	// Required: true
+	AvailabilityZone *string `json:"availability_zone"`
+
+	// baseline iops
+	// Required: true
+	BaselineIops *int64 `json:"baseline_iops"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
-	// docker name
+	// current kms arn
 	// Required: true
-	DockerName *string `json:"docker_name"`
+	CurrentKmsArn *string `json:"current_kms_arn"`
+
+	// device
+	// Required: true
+	Device *string `json:"device"`
+
+	// ebs volume id
+	// Required: true
+	EbsVolumeID *string `json:"ebs_volume_id"`
+
+	// ebs volume type
+	// Required: true
+	EbsVolumeType *string `json:"ebs_volume_type"`
+
+	// ec2 instance id
+	// Required: true
+	Ec2InstanceID *string `json:"ec2_instance_id"`
+
+	// filesystem
+	// Required: true
+	Filesystem *string `json:"filesystem"`
+
+	// handle
+	// Required: true
+	Handle *string `json:"handle"`
+
+	// host
+	// Required: true
+	Host *string `json:"host"`
 
 	// id
 	// Required: true
 	ID *int64 `json:"id"`
 
-	// interactive
+	// key bytes
 	// Required: true
-	Interactive *bool `json:"interactive"`
+	KeyBytes *int64 `json:"key_bytes"`
 
-	// layer
+	// passphrase
 	// Required: true
-	Layer *string `json:"layer"`
+	Passphrase *string `json:"passphrase"`
 
-	// memory limit
+	// size
 	// Required: true
-	MemoryLimit *int64 `json:"memory_limit"`
+	Size *int64 `json:"size"`
 
 	// updated at
 	// Required: true
@@ -70,7 +106,15 @@ func (m *InlineResponse20018) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAllocation(formats); err != nil {
+	if err := m.validateAttached(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAvailabilityZone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBaselineIops(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -78,7 +122,35 @@ func (m *InlineResponse20018) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateDockerName(formats); err != nil {
+	if err := m.validateCurrentKmsArn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDevice(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEbsVolumeID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEbsVolumeType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEc2InstanceID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFilesystem(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHandle(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHost(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -86,15 +158,15 @@ func (m *InlineResponse20018) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateInteractive(formats); err != nil {
+	if err := m.validateKeyBytes(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateLayer(formats); err != nil {
+	if err := m.validatePassphrase(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateMemoryLimit(formats); err != nil {
+	if err := m.validateSize(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -135,9 +207,27 @@ func (m *InlineResponse20018) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20018) validateAllocation(formats strfmt.Registry) error {
+func (m *InlineResponse20018) validateAttached(formats strfmt.Registry) error {
 
-	if err := validate.Required("allocation", "body", m.Allocation); err != nil {
+	if err := validate.Required("attached", "body", m.Attached); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20018) validateAvailabilityZone(formats strfmt.Registry) error {
+
+	if err := validate.Required("availability_zone", "body", m.AvailabilityZone); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20018) validateBaselineIops(formats strfmt.Registry) error {
+
+	if err := validate.Required("baseline_iops", "body", m.BaselineIops); err != nil {
 		return err
 	}
 
@@ -153,9 +243,72 @@ func (m *InlineResponse20018) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20018) validateDockerName(formats strfmt.Registry) error {
+func (m *InlineResponse20018) validateCurrentKmsArn(formats strfmt.Registry) error {
 
-	if err := validate.Required("docker_name", "body", m.DockerName); err != nil {
+	if err := validate.Required("current_kms_arn", "body", m.CurrentKmsArn); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20018) validateDevice(formats strfmt.Registry) error {
+
+	if err := validate.Required("device", "body", m.Device); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20018) validateEbsVolumeID(formats strfmt.Registry) error {
+
+	if err := validate.Required("ebs_volume_id", "body", m.EbsVolumeID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20018) validateEbsVolumeType(formats strfmt.Registry) error {
+
+	if err := validate.Required("ebs_volume_type", "body", m.EbsVolumeType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20018) validateEc2InstanceID(formats strfmt.Registry) error {
+
+	if err := validate.Required("ec2_instance_id", "body", m.Ec2InstanceID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20018) validateFilesystem(formats strfmt.Registry) error {
+
+	if err := validate.Required("filesystem", "body", m.Filesystem); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20018) validateHandle(formats strfmt.Registry) error {
+
+	if err := validate.Required("handle", "body", m.Handle); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20018) validateHost(formats strfmt.Registry) error {
+
+	if err := validate.Required("host", "body", m.Host); err != nil {
 		return err
 	}
 
@@ -171,27 +324,27 @@ func (m *InlineResponse20018) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20018) validateInteractive(formats strfmt.Registry) error {
+func (m *InlineResponse20018) validateKeyBytes(formats strfmt.Registry) error {
 
-	if err := validate.Required("interactive", "body", m.Interactive); err != nil {
+	if err := validate.Required("key_bytes", "body", m.KeyBytes); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20018) validateLayer(formats strfmt.Registry) error {
+func (m *InlineResponse20018) validatePassphrase(formats strfmt.Registry) error {
 
-	if err := validate.Required("layer", "body", m.Layer); err != nil {
+	if err := validate.Required("passphrase", "body", m.Passphrase); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InlineResponse20018) validateMemoryLimit(formats strfmt.Registry) error {
+func (m *InlineResponse20018) validateSize(formats strfmt.Registry) error {
 
-	if err := validate.Required("memory_limit", "body", m.MemoryLimit); err != nil {
+	if err := validate.Required("size", "body", m.Size); err != nil {
 		return err
 	}
 

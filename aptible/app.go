@@ -111,12 +111,11 @@ func (c *Client) GetApp(appID int64) (App, error) {
 }
 
 func (c *Client) DeployApp(config map[string]interface{}, appID int64) error {
-	appRequest := models.AppRequest21{}
 	requestType := "configure"
 	if _, ok := config["APTIBLE_DOCKER_IMAGE"]; ok {
 		requestType = "deploy"
 	}
-	appRequest = models.AppRequest21{Type: &requestType, Env: config}
+	appRequest := models.AppRequest22{Type: &requestType, Env: config}
 	appParams := operations.NewPostAppsAppIDOperationsParams().WithAppID(appID).WithAppRequest(&appRequest)
 	response, err := c.Client.Operations.PostAppsAppIDOperations(appParams, c.Token)
 	if err != nil {
@@ -131,7 +130,7 @@ func (c *Client) DeployApp(config map[string]interface{}, appID int64) error {
 
 func (c *Client) DeleteApp(appID int64) (bool, error) {
 	requestType := "deprovision"
-	appRequest := models.AppRequest21{Type: &requestType}
+	appRequest := models.AppRequest22{Type: &requestType}
 	appParams := operations.NewPostAppsAppIDOperationsParams().WithAppID(appID).WithAppRequest(&appRequest)
 	op, err := c.Client.Operations.PostAppsAppIDOperations(appParams, c.Token)
 	if err != nil {

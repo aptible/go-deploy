@@ -65,7 +65,7 @@ for the post databases database ID operations operation typically these are writ
 type PostDatabasesDatabaseIDOperationsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest23
+	AppRequest *models.AppRequest24
 	/*DatabaseID
 	  database_id
 
@@ -111,13 +111,13 @@ func (o *PostDatabasesDatabaseIDOperationsParams) SetHTTPClient(client *http.Cli
 }
 
 // WithAppRequest adds the appRequest to the post databases database ID operations params
-func (o *PostDatabasesDatabaseIDOperationsParams) WithAppRequest(appRequest *models.AppRequest23) *PostDatabasesDatabaseIDOperationsParams {
+func (o *PostDatabasesDatabaseIDOperationsParams) WithAppRequest(appRequest *models.AppRequest24) *PostDatabasesDatabaseIDOperationsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post databases database ID operations params
-func (o *PostDatabasesDatabaseIDOperationsParams) SetAppRequest(appRequest *models.AppRequest23) {
+func (o *PostDatabasesDatabaseIDOperationsParams) SetAppRequest(appRequest *models.AppRequest24) {
 	o.AppRequest = appRequest
 }
 

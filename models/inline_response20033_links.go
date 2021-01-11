@@ -16,33 +16,22 @@ import (
 // swagger:model inline_response_200_33__links
 type InlineResponse20033Links struct {
 
-	// account
-	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
-
-	// app
-	App *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"app,omitempty"`
-
 	// next
-	Next *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"next,omitempty"`
+	Next *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"next,omitempty"`
 
 	// prev
-	Prev *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"prev,omitempty"`
+	Prev *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"prev,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
+
+	// service
+	Service *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"service,omitempty"`
 }
 
 // Validate validates this inline response 200 33 links
 func (m *InlineResponse20033Links) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateAccount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateApp(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateNext(formats); err != nil {
 		res = append(res, err)
@@ -56,45 +45,13 @@ func (m *InlineResponse20033Links) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateService(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *InlineResponse20033Links) validateAccount(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Account) { // not required
-		return nil
-	}
-
-	if m.Account != nil {
-		if err := m.Account.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("account")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse20033Links) validateApp(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.App) { // not required
-		return nil
-	}
-
-	if m.App != nil {
-		if err := m.App.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("app")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -144,6 +101,24 @@ func (m *InlineResponse20033Links) validateSelf(formats strfmt.Registry) error {
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20033Links) validateService(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Service) { // not required
+		return nil
+	}
+
+	if m.Service != nil {
+		if err := m.Service.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("service")
 			}
 			return err
 		}

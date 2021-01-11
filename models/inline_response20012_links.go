@@ -17,10 +17,16 @@ import (
 type InlineResponse20012Links struct {
 
 	// database
-	Database *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database,omitempty"`
+	Database *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"database,omitempty"`
+
+	// next
+	Next *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"next,omitempty"`
+
+	// prev
+	Prev *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"prev,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 }
 
 // Validate validates this inline response 200 12 links
@@ -28,6 +34,14 @@ func (m *InlineResponse20012Links) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDatabase(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNext(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePrev(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -51,6 +65,42 @@ func (m *InlineResponse20012Links) validateDatabase(formats strfmt.Registry) err
 		if err := m.Database.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("database")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20012Links) validateNext(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Next) { // not required
+		return nil
+	}
+
+	if m.Next != nil {
+		if err := m.Next.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("next")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20012Links) validatePrev(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Prev) { // not required
+		return nil
+	}
+
+	if m.Prev != nil {
+		if err := m.Prev.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("prev")
 			}
 			return err
 		}

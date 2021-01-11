@@ -65,7 +65,7 @@ for the patch certificates ID operation typically these are written to a http.Re
 type PatchCertificatesIDParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest6
+	AppRequest *models.AppRequest7
 	/*ID
 	  id
 
@@ -111,13 +111,13 @@ func (o *PatchCertificatesIDParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the patch certificates ID params
-func (o *PatchCertificatesIDParams) WithAppRequest(appRequest *models.AppRequest6) *PatchCertificatesIDParams {
+func (o *PatchCertificatesIDParams) WithAppRequest(appRequest *models.AppRequest7) *PatchCertificatesIDParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the patch certificates ID params
-func (o *PatchCertificatesIDParams) SetAppRequest(appRequest *models.AppRequest6) {
+func (o *PatchCertificatesIDParams) SetAppRequest(appRequest *models.AppRequest7) {
 	o.AppRequest = appRequest
 }
 

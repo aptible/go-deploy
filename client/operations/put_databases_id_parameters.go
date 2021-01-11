@@ -65,7 +65,7 @@ for the put databases ID operation typically these are written to a http.Request
 type PutDatabasesIDParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest13
+	AppRequest *models.AppRequest14
 	/*ID
 	  id
 
@@ -111,13 +111,13 @@ func (o *PutDatabasesIDParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the put databases ID params
-func (o *PutDatabasesIDParams) WithAppRequest(appRequest *models.AppRequest13) *PutDatabasesIDParams {
+func (o *PutDatabasesIDParams) WithAppRequest(appRequest *models.AppRequest14) *PutDatabasesIDParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the put databases ID params
-func (o *PutDatabasesIDParams) SetAppRequest(appRequest *models.AppRequest13) {
+func (o *PutDatabasesIDParams) SetAppRequest(appRequest *models.AppRequest14) {
 	o.AppRequest = appRequest
 }
 

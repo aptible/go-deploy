@@ -52,20 +52,20 @@ func NewGetPermissionsOK() *GetPermissionsOK {
 successful
 */
 type GetPermissionsOK struct {
-	Payload *models.InlineResponse20030
+	Payload *models.InlineResponse20032
 }
 
 func (o *GetPermissionsOK) Error() string {
 	return fmt.Sprintf("[GET /permissions][%d] getPermissionsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetPermissionsOK) GetPayload() *models.InlineResponse20030 {
+func (o *GetPermissionsOK) GetPayload() *models.InlineResponse20032 {
 	return o.Payload
 }
 
 func (o *GetPermissionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse20030)
+	o.Payload = new(models.InlineResponse20032)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

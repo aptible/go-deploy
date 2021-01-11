@@ -65,7 +65,7 @@ for the post metric drains metric drain ID operations operation typically these 
 type PostMetricDrainsMetricDrainIDOperationsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest29
+	AppRequest *models.AppRequest30
 	/*MetricDrainID
 	  metric_drain_id
 
@@ -111,13 +111,13 @@ func (o *PostMetricDrainsMetricDrainIDOperationsParams) SetHTTPClient(client *ht
 }
 
 // WithAppRequest adds the appRequest to the post metric drains metric drain ID operations params
-func (o *PostMetricDrainsMetricDrainIDOperationsParams) WithAppRequest(appRequest *models.AppRequest29) *PostMetricDrainsMetricDrainIDOperationsParams {
+func (o *PostMetricDrainsMetricDrainIDOperationsParams) WithAppRequest(appRequest *models.AppRequest30) *PostMetricDrainsMetricDrainIDOperationsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post metric drains metric drain ID operations params
-func (o *PostMetricDrainsMetricDrainIDOperationsParams) SetAppRequest(appRequest *models.AppRequest29) {
+func (o *PostMetricDrainsMetricDrainIDOperationsParams) SetAppRequest(appRequest *models.AppRequest30) {
 	o.AppRequest = appRequest
 }
 

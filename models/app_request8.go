@@ -6,8 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
-
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -20,18 +18,15 @@ import (
 type AppRequest8 struct {
 
 	// handle
-	Handle string `json:"handle,omitempty"`
-
-	// type
-	// Enum: [app database account]
-	Type string `json:"type,omitempty"`
+	// Required: true
+	Handle *string `json:"handle"`
 }
 
 // Validate validates this app request 8
 func (m *AppRequest8) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateHandle(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -41,46 +36,9 @@ func (m *AppRequest8) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var appRequest8TypeTypePropEnum []interface{}
+func (m *AppRequest8) validateHandle(formats strfmt.Registry) error {
 
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["app","database","account"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		appRequest8TypeTypePropEnum = append(appRequest8TypeTypePropEnum, v)
-	}
-}
-
-const (
-
-	// AppRequest8TypeApp captures enum value "app"
-	AppRequest8TypeApp string = "app"
-
-	// AppRequest8TypeDatabase captures enum value "database"
-	AppRequest8TypeDatabase string = "database"
-
-	// AppRequest8TypeAccount captures enum value "account"
-	AppRequest8TypeAccount string = "account"
-)
-
-// prop value enum
-func (m *AppRequest8) validateTypeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, appRequest8TypeTypePropEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *AppRequest8) validateType(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Type) { // not required
-		return nil
-	}
-
-	// value enum
-	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+	if err := validate.Required("handle", "body", m.Handle); err != nil {
 		return err
 	}
 

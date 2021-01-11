@@ -16,43 +16,43 @@ import (
 // swagger:model inline_response_200_21__links
 type InlineResponse20021Links struct {
 
-	// accounts
-	Accounts *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"accounts,omitempty"`
+	// app
+	App *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"app,omitempty"`
 
-	// apps
-	Apps *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"apps,omitempty"`
+	// next
+	Next *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"next,omitempty"`
 
-	// database images
-	DatabaseImages *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database_images,omitempty"`
+	// operation
+	Operation *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"operation,omitempty"`
 
-	// databases
-	Databases *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"databases,omitempty"`
+	// prev
+	Prev *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"prev,omitempty"`
 
-	// stacks
-	Stacks *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"stacks,omitempty"`
+	// self
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 }
 
 // Validate validates this inline response 200 21 links
 func (m *InlineResponse20021Links) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAccounts(formats); err != nil {
+	if err := m.validateApp(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateApps(formats); err != nil {
+	if err := m.validateNext(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDatabaseImages(formats); err != nil {
+	if err := m.validateOperation(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDatabases(formats); err != nil {
+	if err := m.validatePrev(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateStacks(formats); err != nil {
+	if err := m.validateSelf(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -62,16 +62,16 @@ func (m *InlineResponse20021Links) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20021Links) validateAccounts(formats strfmt.Registry) error {
+func (m *InlineResponse20021Links) validateApp(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Accounts) { // not required
+	if swag.IsZero(m.App) { // not required
 		return nil
 	}
 
-	if m.Accounts != nil {
-		if err := m.Accounts.Validate(formats); err != nil {
+	if m.App != nil {
+		if err := m.App.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("accounts")
+				return ve.ValidateName("app")
 			}
 			return err
 		}
@@ -80,16 +80,16 @@ func (m *InlineResponse20021Links) validateAccounts(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *InlineResponse20021Links) validateApps(formats strfmt.Registry) error {
+func (m *InlineResponse20021Links) validateNext(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Apps) { // not required
+	if swag.IsZero(m.Next) { // not required
 		return nil
 	}
 
-	if m.Apps != nil {
-		if err := m.Apps.Validate(formats); err != nil {
+	if m.Next != nil {
+		if err := m.Next.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("apps")
+				return ve.ValidateName("next")
 			}
 			return err
 		}
@@ -98,16 +98,16 @@ func (m *InlineResponse20021Links) validateApps(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InlineResponse20021Links) validateDatabaseImages(formats strfmt.Registry) error {
+func (m *InlineResponse20021Links) validateOperation(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.DatabaseImages) { // not required
+	if swag.IsZero(m.Operation) { // not required
 		return nil
 	}
 
-	if m.DatabaseImages != nil {
-		if err := m.DatabaseImages.Validate(formats); err != nil {
+	if m.Operation != nil {
+		if err := m.Operation.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("database_images")
+				return ve.ValidateName("operation")
 			}
 			return err
 		}
@@ -116,16 +116,16 @@ func (m *InlineResponse20021Links) validateDatabaseImages(formats strfmt.Registr
 	return nil
 }
 
-func (m *InlineResponse20021Links) validateDatabases(formats strfmt.Registry) error {
+func (m *InlineResponse20021Links) validatePrev(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Databases) { // not required
+	if swag.IsZero(m.Prev) { // not required
 		return nil
 	}
 
-	if m.Databases != nil {
-		if err := m.Databases.Validate(formats); err != nil {
+	if m.Prev != nil {
+		if err := m.Prev.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("databases")
+				return ve.ValidateName("prev")
 			}
 			return err
 		}
@@ -134,16 +134,16 @@ func (m *InlineResponse20021Links) validateDatabases(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *InlineResponse20021Links) validateStacks(formats strfmt.Registry) error {
+func (m *InlineResponse20021Links) validateSelf(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Stacks) { // not required
+	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
 
-	if m.Stacks != nil {
-		if err := m.Stacks.Validate(formats); err != nil {
+	if m.Self != nil {
+		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("stacks")
+				return ve.ValidateName("self")
 			}
 			return err
 		}

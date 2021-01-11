@@ -40,6 +40,12 @@ type InlineResponse200EmbeddedAccounts struct {
 	// bastion port
 	BastionPort int64 `json:"bastion_port,omitempty"`
 
+	// ca body
+	CaBody *string `json:"ca_body,omitempty"`
+
+	// ca private key
+	CaPrivateKey *string `json:"ca_private_key,omitempty"`
+
 	// container count
 	ContainerCount int64 `json:"container_count,omitempty"`
 

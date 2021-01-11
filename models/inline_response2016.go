@@ -23,7 +23,7 @@ type InlineResponse2016 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse20027EmbeddedLinks `json:"_links"`
+	Links *InlineResponse20029EmbeddedLinks `json:"_links"`
 
 	// aggregator allocation
 	// Required: true
@@ -59,7 +59,7 @@ type InlineResponse2016 struct {
 
 	// drain configuration
 	// Required: true
-	DrainConfiguration *InlineResponse20027EmbeddedDrainConfiguration `json:"drain_configuration"`
+	DrainConfiguration *InlineResponse20029EmbeddedDrainConfiguration `json:"drain_configuration"`
 
 	// drain type
 	// Required: true

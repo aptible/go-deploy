@@ -64,7 +64,7 @@ for the post claims operation typically these are written to a http.Request
 type PostClaimsParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest8
+	AppRequest *models.AppRequest9
 
 	timeout    time.Duration
 	Context    context.Context
@@ -105,13 +105,13 @@ func (o *PostClaimsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the post claims params
-func (o *PostClaimsParams) WithAppRequest(appRequest *models.AppRequest8) *PostClaimsParams {
+func (o *PostClaimsParams) WithAppRequest(appRequest *models.AppRequest9) *PostClaimsParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the post claims params
-func (o *PostClaimsParams) SetAppRequest(appRequest *models.AppRequest8) {
+func (o *PostClaimsParams) SetAppRequest(appRequest *models.AppRequest9) {
 	o.AppRequest = appRequest
 }
 

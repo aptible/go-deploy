@@ -65,7 +65,7 @@ for the put vhosts ID operation typically these are written to a http.Request
 type PutVhostsIDParams struct {
 
 	/*AppRequest*/
-	AppRequest *models.AppRequest34
+	AppRequest *models.AppRequest35
 	/*ID
 	  id
 
@@ -111,13 +111,13 @@ func (o *PutVhostsIDParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAppRequest adds the appRequest to the put vhosts ID params
-func (o *PutVhostsIDParams) WithAppRequest(appRequest *models.AppRequest34) *PutVhostsIDParams {
+func (o *PutVhostsIDParams) WithAppRequest(appRequest *models.AppRequest35) *PutVhostsIDParams {
 	o.SetAppRequest(appRequest)
 	return o
 }
 
 // SetAppRequest adds the appRequest to the put vhosts ID params
-func (o *PutVhostsIDParams) SetAppRequest(appRequest *models.AppRequest34) {
+func (o *PutVhostsIDParams) SetAppRequest(appRequest *models.AppRequest35) {
 	o.AppRequest = appRequest
 }
 

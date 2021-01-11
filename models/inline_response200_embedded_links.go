@@ -17,49 +17,49 @@ import (
 type InlineResponse200EmbeddedLinks struct {
 
 	// activity reports
-	ActivityReports *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"activity_reports,omitempty"`
+	ActivityReports *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"activity_reports,omitempty"`
 
 	// apps
-	Apps *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"apps,omitempty"`
+	Apps *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"apps,omitempty"`
 
 	// backups
-	Backups *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"backups,omitempty"`
+	Backups *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"backups,omitempty"`
 
 	// certificates
-	Certificates *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"certificates,omitempty"`
+	Certificates *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"certificates,omitempty"`
 
 	// databases
-	Databases *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"databases,omitempty"`
+	Databases *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"databases,omitempty"`
 
 	// disks
-	Disks *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"disks,omitempty"`
+	Disks *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"disks,omitempty"`
 
 	// log drains
-	LogDrains *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"log_drains,omitempty"`
+	LogDrains *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"log_drains,omitempty"`
 
 	// metric drains
-	MetricDrains *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"metric_drains,omitempty"`
+	MetricDrains *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"metric_drains,omitempty"`
 
 	// operations
-	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
+	Operations *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"operations,omitempty"`
 
 	// organization
-	Organization *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"organization,omitempty"`
+	Organization *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"organization,omitempty"`
 
 	// permissions
-	Permissions *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"permissions,omitempty"`
+	Permissions *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"permissions,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 
 	// services
-	Services *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"services,omitempty"`
+	Services *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"services,omitempty"`
 
 	// stack
-	Stack *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"stack,omitempty"`
+	Stack *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"stack,omitempty"`
 
 	// vhosts
-	Vhosts *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"vhosts,omitempty"`
+	Vhosts *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"vhosts,omitempty"`
 }
 
 // Validate validates this inline response 200 embedded links

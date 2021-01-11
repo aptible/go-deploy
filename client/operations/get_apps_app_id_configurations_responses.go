@@ -52,20 +52,20 @@ func NewGetAppsAppIDConfigurationsOK() *GetAppsAppIDConfigurationsOK {
 successful
 */
 type GetAppsAppIDConfigurationsOK struct {
-	Payload *models.InlineResponse2007
+	Payload *models.InlineResponse2009
 }
 
 func (o *GetAppsAppIDConfigurationsOK) Error() string {
 	return fmt.Sprintf("[GET /apps/{app_id}/configurations][%d] getAppsAppIdConfigurationsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAppsAppIDConfigurationsOK) GetPayload() *models.InlineResponse2007 {
+func (o *GetAppsAppIDConfigurationsOK) GetPayload() *models.InlineResponse2009 {
 	return o.Payload
 }
 
 func (o *GetAppsAppIDConfigurationsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InlineResponse2007)
+	o.Payload = new(models.InlineResponse2009)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

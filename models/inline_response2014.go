@@ -23,11 +23,11 @@ type InlineResponse2014 struct {
 
 	// embedded
 	// Required: true
-	Embedded *InlineResponse20014EmbeddedEmbedded `json:"_embedded"`
+	Embedded *InlineResponse20016EmbeddedEmbedded `json:"_embedded"`
 
 	// links
 	// Required: true
-	Links *InlineResponse20014EmbeddedLinks `json:"_links"`
+	Links *InlineResponse20016EmbeddedLinks `json:"_links"`
 
 	// connection url
 	// Required: true
@@ -36,6 +36,10 @@ type InlineResponse2014 struct {
 	// created at
 	// Required: true
 	CreatedAt *string `json:"created_at"`
+
+	// current kms arn
+	// Required: true
+	CurrentKmsArn *string `json:"current_kms_arn"`
 
 	// docker repo
 	// Required: true
@@ -103,6 +107,10 @@ func (m *InlineResponse2014) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCurrentKmsArn(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -213,6 +221,15 @@ func (m *InlineResponse2014) validateConnectionURL(formats strfmt.Registry) erro
 func (m *InlineResponse2014) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2014) validateCurrentKmsArn(formats strfmt.Registry) error {
+
+	if err := validate.Required("current_kms_arn", "body", m.CurrentKmsArn); err != nil {
 		return err
 	}
 

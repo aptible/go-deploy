@@ -95,6 +95,40 @@ func (a *Client) DeleteAppsID(params *DeleteAppsIDParams, authInfo runtime.Clien
 }
 
 /*
+DeleteBackupRetentionPoliciesID deletes backup retention policy
+*/
+func (a *Client) DeleteBackupRetentionPoliciesID(params *DeleteBackupRetentionPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBackupRetentionPoliciesIDNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteBackupRetentionPoliciesIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteBackupRetentionPoliciesID",
+		Method:             "DELETE",
+		PathPattern:        "/backup_retention_policies/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/hal+json", "application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteBackupRetentionPoliciesIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteBackupRetentionPoliciesIDNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*DeleteBackupRetentionPoliciesIDDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
 DeleteCertificatesID deletes certificate
 */
 func (a *Client) DeleteCertificatesID(params *DeleteCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCertificatesIDNoContent, error) {
@@ -432,6 +466,40 @@ func (a *Client) GetAccountsAccountIDApps(params *GetAccountsAccountIDAppsParams
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*GetAccountsAccountIDAppsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+GetAccountsAccountIDBackupRetentionPolicies lists backup retention policies
+*/
+func (a *Client) GetAccountsAccountIDBackupRetentionPolicies(params *GetAccountsAccountIDBackupRetentionPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDBackupRetentionPoliciesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAccountsAccountIDBackupRetentionPoliciesParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAccountsAccountIDBackupRetentionPolicies",
+		Method:             "GET",
+		PathPattern:        "/accounts/{account_id}/backup_retention_policies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/hal+json", "application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAccountsAccountIDBackupRetentionPoliciesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetAccountsAccountIDBackupRetentionPoliciesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*GetAccountsAccountIDBackupRetentionPoliciesDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -1140,6 +1208,40 @@ func (a *Client) GetAppsID(params *GetAppsIDParams, authInfo runtime.ClientAuthI
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*GetAppsIDDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+GetBackupRetentionPoliciesID shows backup retention policy
+*/
+func (a *Client) GetBackupRetentionPoliciesID(params *GetBackupRetentionPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackupRetentionPoliciesIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetBackupRetentionPoliciesIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetBackupRetentionPoliciesID",
+		Method:             "GET",
+		PathPattern:        "/backup_retention_policies/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/hal+json", "application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetBackupRetentionPoliciesIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetBackupRetentionPoliciesIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*GetBackupRetentionPoliciesIDDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -3440,6 +3542,40 @@ func (a *Client) PostAccountsAccountIDApps(params *PostAccountsAccountIDAppsPara
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*PostAccountsAccountIDAppsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+PostAccountsAccountIDBackupRetentionPolicies creates backup retention policy
+*/
+func (a *Client) PostAccountsAccountIDBackupRetentionPolicies(params *PostAccountsAccountIDBackupRetentionPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*PostAccountsAccountIDBackupRetentionPoliciesCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostAccountsAccountIDBackupRetentionPoliciesParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostAccountsAccountIDBackupRetentionPolicies",
+		Method:             "POST",
+		PathPattern:        "/accounts/{account_id}/backup_retention_policies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/hal+json", "application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostAccountsAccountIDBackupRetentionPoliciesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostAccountsAccountIDBackupRetentionPoliciesCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*PostAccountsAccountIDBackupRetentionPoliciesDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

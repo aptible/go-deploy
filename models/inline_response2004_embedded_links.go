@@ -17,25 +17,10 @@ import (
 type InlineResponse2004EmbeddedLinks struct {
 
 	// account
-	Account *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"account,omitempty"`
-
-	// copied from
-	CopiedFrom *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"copied_from,omitempty"`
-
-	// copies
-	Copies *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"copies,omitempty"`
-
-	// database
-	Database *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database,omitempty"`
-
-	// database image
-	DatabaseImage *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"database_image,omitempty"`
-
-	// operations
-	Operations *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"operations,omitempty"`
+	Account *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"account,omitempty"`
 
 	// self
-	Self *InlineResponse200EmbeddedEmbeddedLinksSelf `json:"self,omitempty"`
+	Self *InlineResponse200EmbeddedEmbeddedLinksAccount `json:"self,omitempty"`
 }
 
 // Validate validates this inline response 200 4 embedded links
@@ -43,26 +28,6 @@ func (m *InlineResponse2004EmbeddedLinks) Validate(formats strfmt.Registry) erro
 	var res []error
 
 	if err := m.validateAccount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCopiedFrom(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCopies(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDatabase(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDatabaseImage(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateOperations(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -86,96 +51,6 @@ func (m *InlineResponse2004EmbeddedLinks) validateAccount(formats strfmt.Registr
 		if err := m.Account.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2004EmbeddedLinks) validateCopiedFrom(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.CopiedFrom) { // not required
-		return nil
-	}
-
-	if m.CopiedFrom != nil {
-		if err := m.CopiedFrom.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("copied_from")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2004EmbeddedLinks) validateCopies(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Copies) { // not required
-		return nil
-	}
-
-	if m.Copies != nil {
-		if err := m.Copies.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("copies")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2004EmbeddedLinks) validateDatabase(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Database) { // not required
-		return nil
-	}
-
-	if m.Database != nil {
-		if err := m.Database.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("database")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2004EmbeddedLinks) validateDatabaseImage(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.DatabaseImage) { // not required
-		return nil
-	}
-
-	if m.DatabaseImage != nil {
-		if err := m.DatabaseImage.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("database_image")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InlineResponse2004EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Operations) { // not required
-		return nil
-	}
-
-	if m.Operations != nil {
-		if err := m.Operations.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("operations")
 			}
 			return err
 		}

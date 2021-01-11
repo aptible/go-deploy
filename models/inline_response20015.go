@@ -23,7 +23,7 @@ type InlineResponse20015 struct {
 
 	// links
 	// Required: true
-	Links *InlineResponse2001Links `json:"_links"`
+	Links *InlineResponse20015Links `json:"_links"`
 
 	// current page
 	// Required: true
