@@ -1,8 +1,7 @@
-# THIS REPO IS PRE-ALPHA. DO NOT USE!!
+This repo is currently in beta and under development. We expect frequent, unannounced, breaking changes to occur. In particular,
+the generated code should be considered unstable. We suggest that you use the wrappers provided in the `aptible` package instead because
+those expose a more stable interface.
 
-This repo is pre-alpha and under heavy development. We expect frequent, unannounced, breaking changes to occur.
-
-Please do not use this library for any purpose until we release an initial, tagged beta, appropriate for importing via Go modules.
-
-Use of this library against your Deploy resources may cause unexpected issues or statuses to occur! It is known to be buggy
-at this point.
+This library has been experimentally used in production, primarily through the Aptible Terraform provider, without significant issues for the
+past few months. We would still suggest caution because that has only exercised a subset of the functionality and critical bugs may not have
+been discovered in the other portions.
