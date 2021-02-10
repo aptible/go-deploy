@@ -14,19 +14,26 @@ type EndpointUpdates struct {
 }
 
 type Endpoint struct {
-	ID            int64
-	ExternalHost  string
-	ContainerPort int64
-	IPWhitelist   []string
-	Platform      string
-	Deleted       bool
-	Acme          bool
-	Default       bool
-	UserDomain    string
-	VirtualDomain string
-	Service       Service
-	Type          string
-	Internal      bool
+	ID             int64
+	ExternalHost   string
+	ContainerPort  int64
+	IPWhitelist    []string
+	Platform       string
+	Deleted        bool
+	Acme           bool
+	Default        bool
+	UserDomain     string
+	VirtualDomain  string
+	Service        Service
+	Type           string
+	Internal       bool
+	AcmeChallenges []AcmeChallenge
+}
+
+type AcmeChallenge struct {
+	Method string
+	From   string
+	To     string
 }
 
 type EndpointCreateAttrs struct {
@@ -173,6 +180,26 @@ func (c *Client) GetEndpoint(endpointID int64) (Endpoint, error) {
 		return endpoint, err
 	}
 	endpoint.Type = endpointType
+
+	// Optional parameter we process if available
+	if response.Payload.AcmeConfiguration != nil {
+		var cs []AcmeChallenge
+		for _, challenge := range (*response.Payload.AcmeConfiguration).Challenges {
+			if challenge != nil && (*challenge).From != nil && (*challenge).To != nil {
+				c := *challenge
+				for _, to := range c.To {
+					// These are deprecated challenge names so we aren't returning them
+					if to.Legacy {
+						continue
+					}
+					cs = append(cs, AcmeChallenge{Method: c.Method, From: c.From.Name, To: to.Name})
+				}
+			}
+		}
+		if len(cs) > 0 {
+			endpoint.AcmeChallenges = cs
+		}
+	}
 
 	serviceHref := response.Payload.Links.Service.Href.String()
 	service, err := c.GetServiceFromHref(serviceHref)
