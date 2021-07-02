@@ -31,7 +31,7 @@ type LogDrainCreateAttrs struct {
 	URL                    strfmt.URI
 }
 
-func (c *Client) CreateLogDrain(handle *string, accountID int64, attrs *LogDrainCreateAttrs) (*LogDrain, error) {
+func (c *Client) CreateLogDrain(handle string, accountID int64, attrs *LogDrainCreateAttrs) (*LogDrain, error) {
 	request := &models.AppRequest16{
 		Database:               attrs.Database,
 		DatabaseID:             attrs.DatabaseID,
@@ -42,7 +42,7 @@ func (c *Client) CreateLogDrain(handle *string, accountID int64, attrs *LogDrain
 		DrainPassword:          attrs.DrainPassword,
 		DrainPort:              attrs.DrainPort,
 		DrainType:              attrs.DrainType,
-		Handle:                 handle,
+		Handle:                 &handle,
 		LoggingToken:           attrs.LoggingToken,
 		URL:                    attrs.URL,
 	}
