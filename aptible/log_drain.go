@@ -3,9 +3,9 @@ package aptible
 import (
 	"fmt"
 
-	strfmt "github.com/go-openapi/strfmt"
 	"github.com/aptible/go-deploy/client/operations"
 	"github.com/aptible/go-deploy/models"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 type LogDrain struct {
