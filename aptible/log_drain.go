@@ -2,8 +2,8 @@ package aptible
 
 import (
 	"fmt"
-	strfmt "github.com/go-openapi/strfmt"
 
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/aptible/go-deploy/client/operations"
 	"github.com/aptible/go-deploy/models"
 )
