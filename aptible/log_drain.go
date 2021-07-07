@@ -9,10 +9,18 @@ import (
 )
 
 type LogDrain struct {
-	Deleted   bool
-	ID        int64
-	Handle    string
-	DrainType string
+	Deleted                bool
+	ID                     int64
+	Handle                 string
+	DrainType              string
+	DrainApps              bool
+	DrainDatabases         bool
+	DrainEphemeralSessions bool
+	DrainProxies           bool
+	DrainHost              string
+	DrainPort              int64
+	LoggingToken           string
+	URL                    string
 }
 
 type LogDrainCreateAttrs struct {
@@ -21,12 +29,11 @@ type LogDrainCreateAttrs struct {
 	DrainApps              bool
 	DrainDatabases         bool
 	DrainEphemeralSessions bool
+	DrainProxies           bool
 	DrainHost              strfmt.URI
 	DrainPassword          string
 	DrainPort              int64
-	DrainProxies           bool
 	DrainType              *string
-	Handle                 *string
 	LoggingToken           string
 	URL                    strfmt.URI
 }
@@ -59,6 +66,14 @@ func (c *Client) CreateLogDrain(handle string, accountID int64, attrs *LogDrainC
 	logDrain.ID = *response.Payload.ID
 	logDrain.Handle = *response.Payload.Handle
 	logDrain.DrainType = *response.Payload.DrainType
+	logDrain.DrainHost = *response.Payload.DrainHost
+	logDrain.DrainPort = *response.Payload.DrainPort
+	logDrain.LoggingToken = *response.Payload.LoggingToken
+	logDrain.URL = *response.Payload.URL
+	logDrain.DrainApps = *response.Payload.DrainApps
+	logDrain.DrainDatabases = *response.Payload.DrainDatabases
+	logDrain.DrainEphemeralSessions = *response.Payload.DrainEphemeralSessions
+	logDrain.DrainProxies = *response.Payload.DrainProxies
 	logDrain.Deleted = false
 
 	return logDrain, nil
@@ -93,6 +108,15 @@ func (c *Client) GetLogDrain(logDrainID int64) (*LogDrain, error) {
 	logDrain.ID = *response.Payload.ID
 	logDrain.DrainType = *response.Payload.DrainType
 	logDrain.Handle = *response.Payload.Handle
+	logDrain.DrainType = *response.Payload.DrainType
+	logDrain.DrainHost = *response.Payload.DrainHost
+	logDrain.DrainPort = *response.Payload.DrainPort
+	logDrain.LoggingToken = *response.Payload.LoggingToken
+	logDrain.URL = *response.Payload.URL
+	logDrain.DrainApps = *response.Payload.DrainApps
+	logDrain.DrainDatabases = *response.Payload.DrainDatabases
+	logDrain.DrainEphemeralSessions = *response.Payload.DrainEphemeralSessions
+	logDrain.DrainProxies = *response.Payload.DrainProxies
 	return logDrain, nil
 }
 
