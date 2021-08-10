@@ -16,16 +16,16 @@ import (
 type AppRequest17 struct {
 
 	// drain apps
-	DrainApps bool `json:"drain_apps,omitempty"`
+	DrainApps bool `json:"drain_apps"`
 
 	// drain databases
-	DrainDatabases bool `json:"drain_databases,omitempty"`
+	DrainDatabases bool `json:"drain_databases"`
 
 	// drain ephemeral sessions
-	DrainEphemeralSessions bool `json:"drain_ephemeral_sessions,omitempty"`
+	DrainEphemeralSessions bool `json:"drain_ephemeral_sessions"`
 
 	// drain proxies
-	DrainProxies bool `json:"drain_proxies,omitempty"`
+	DrainProxies bool `json:"drain_proxies"`
 }
 
 // Validate validates this app request 17
