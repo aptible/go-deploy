@@ -25,13 +25,13 @@ type AppRequest16 struct {
 	DatabaseID int64 `json:"database_id,omitempty"`
 
 	// drain apps
-	DrainApps bool `json:"drain_apps,omitempty"`
+	DrainApps bool `json:"drain_apps"`
 
 	// drain databases
-	DrainDatabases bool `json:"drain_databases,omitempty"`
+	DrainDatabases bool `json:"drain_databases"`
 
 	// drain ephemeral sessions
-	DrainEphemeralSessions bool `json:"drain_ephemeral_sessions,omitempty"`
+	DrainEphemeralSessions bool `json:"drain_ephemeral_sessions"`
 
 	// For syslog-tls-tcp drains
 	// Format: uri
@@ -44,7 +44,7 @@ type AppRequest16 struct {
 	DrainPort int64 `json:"drain_port,omitempty"`
 
 	// drain proxies
-	DrainProxies bool `json:"drain_proxies,omitempty"`
+	DrainProxies bool `json:"drain_proxies"`
 
 	// drain type
 	// Required: true

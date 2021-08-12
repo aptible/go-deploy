@@ -18,7 +18,7 @@ import (
 type AppRequest34 struct {
 
 	// acme
-	Acme bool `json:"acme,omitempty"`
+	Acme bool `json:"acme"`
 
 	// certificate
 	// Required: true
@@ -34,10 +34,10 @@ type AppRequest34 struct {
 	ContainerPorts []int64 `json:"container_ports"`
 
 	// default
-	Default bool `json:"default,omitempty"`
+	Default bool `json:"default"`
 
 	// internal
-	Internal bool `json:"internal,omitempty"`
+	Internal bool `json:"internal"`
 
 	// ip whitelist
 	IPWhitelist []string `json:"ip_whitelist"`

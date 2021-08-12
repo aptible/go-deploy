@@ -16,16 +16,16 @@ import (
 type AppRequest4 struct {
 
 	// daily
-	Daily int64 `json:"daily,omitempty"`
+	Daily int64 `json:"daily"`
 
 	// keep final
-	KeepFinal bool `json:"keep_final,omitempty"`
+	KeepFinal bool `json:"keep_final"`
 
 	// make copy
-	MakeCopy bool `json:"make_copy,omitempty"`
+	MakeCopy bool `json:"make_copy"`
 
 	// monthly
-	Monthly int64 `json:"monthly,omitempty"`
+	Monthly int64 `json:"monthly"`
 }
 
 // Validate validates this app request 4

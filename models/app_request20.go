@@ -16,7 +16,7 @@ import (
 type AppRequest20 struct {
 
 	// cancelled
-	Cancelled bool `json:"cancelled,omitempty"`
+	Cancelled bool `json:"cancelled"`
 }
 
 // Validate validates this app request 20
