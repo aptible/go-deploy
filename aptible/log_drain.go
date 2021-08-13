@@ -48,6 +48,7 @@ func (c *Client) CreateLogDrain(handle string, accountID int64, attrs *LogDrainC
 		DrainApps:              attrs.DrainApps,
 		DrainDatabases:         attrs.DrainDatabases,
 		DrainEphemeralSessions: attrs.DrainEphemeralSessions,
+		DrainProxies:           attrs.DrainProxies,
 		DrainHost:              attrs.DrainHost,
 		DrainPassword:          attrs.DrainPassword,
 		DrainPort:              attrs.DrainPort,
