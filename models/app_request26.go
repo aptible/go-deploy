@@ -18,7 +18,7 @@ import (
 type AppRequest26 struct {
 
 	// automated
-	Automated bool `json:"automated,omitempty"`
+	Automated bool `json:"automated"`
 
 	// certificate
 	Certificate string `json:"certificate,omitempty"`
@@ -58,7 +58,7 @@ type AppRequest26 struct {
 	Handle string `json:"handle,omitempty"`
 
 	// interactive
-	Interactive bool `json:"interactive,omitempty"`
+	Interactive bool `json:"interactive"`
 
 	// key arn
 	KeyArn string `json:"key_arn,omitempty"`

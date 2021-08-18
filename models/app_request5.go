@@ -18,7 +18,7 @@ import (
 type AppRequest5 struct {
 
 	// acme
-	Acme bool `json:"acme,omitempty"`
+	Acme bool `json:"acme"`
 
 	// certificate body
 	// Required: true
