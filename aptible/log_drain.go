@@ -48,6 +48,7 @@ func (c *Client) CreateLogDrain(handle string, accountID int64, attrs *LogDrainC
 		DrainApps:              attrs.DrainApps,
 		DrainDatabases:         attrs.DrainDatabases,
 		DrainEphemeralSessions: attrs.DrainEphemeralSessions,
+		DrainProxies:           attrs.DrainProxies,
 		DrainHost:              attrs.DrainHost,
 		DrainPassword:          attrs.DrainPassword,
 		DrainPort:              attrs.DrainPort,
@@ -124,8 +125,12 @@ func (c *Client) GetLogDrain(logDrainID int64) (*LogDrain, error) {
 	logDrain.DrainDatabases = swag.BoolValue(response.Payload.DrainDatabases)
 	logDrain.DrainEphemeralSessions = swag.BoolValue(response.Payload.DrainEphemeralSessions)
 	logDrain.DrainProxies = swag.BoolValue(response.Payload.DrainProxies)
-	logDrain.DatabaseID, _ = GetIDFromHref(response.Payload.Links.Database.Href.String())
 	logDrain.AccountID, _ = GetIDFromHref(response.Payload.Links.Account.Href.String())
+
+	// This will be unset for syslog and https drains
+	if response.Payload.Links.Database != nil {
+		logDrain.DatabaseID, _ = GetIDFromHref(response.Payload.Links.Database.Href.String())
+	}
 	return logDrain, nil
 }
 
