@@ -111,3 +111,62 @@ func (c *Client) GetDatabaseIDFromHandle(accountID int64, handle string) (int64,
 	}
 	return 0, deleted, fmt.Errorf("there are no databases with handle: %s", handle)
 }
+
+// Gets app id associated with a given handle.
+func (c *Client) GetAppIDFromHandle(accountID int64, handle string) (int64, bool, error) {
+	deleted := false
+	params := operations.NewGetAccountsAccountIDAppsParams().WithAccountID(accountID)
+	response, err := c.Client.Operations.GetAccountsAccountIDApps(params, c.Token)
+	if err != nil {
+		var e *operations.GetAccountsAccountIDAppsDefault
+		if errors.As(err, &e) {
+			if e.Code() == 404 {
+				deleted = true
+			}
+		}
+		return 0, deleted, err
+	}
+
+	if response.Payload.TotalCount == nil {
+		return 0, false, fmt.Errorf("TotalCount is a nil pointer")
+	}
+	numOps := *response.Payload.TotalCount
+
+	if response.Payload.PerPage == nil {
+		return 0, false, fmt.Errorf("PerPage is a nil pointer")
+	}
+	perPage := *response.Payload.PerPage
+
+	if response.Payload.TotalCount == nil {
+		return 0, false, fmt.Errorf("CurrentPage is a nil pointer")
+	}
+	page := *response.Payload.CurrentPage
+
+	for numOps > 0 {
+		apps := response.Payload.Embedded.Apps
+		for i := range apps {
+			if apps[i].Handle == handle {
+				a := apps[i]
+				return a.ID, deleted, nil
+			}
+		}
+		if numOps-perPage > 0 {
+			numOps -= perPage
+			page += 1
+		} else {
+			return 0, deleted, fmt.Errorf("there are no apps with handle: %s", handle)
+		}
+		params := operations.NewGetAccountsAccountIDAppsParams().WithAccountID(accountID).WithPage(&page)
+		response, err = c.Client.Operations.GetAccountsAccountIDApps(params, c.Token)
+		if err != nil {
+			var e *operations.GetAccountsAccountIDAppsDefault
+			if errors.As(err, &e) {
+				if e.Code() == 404 {
+					deleted = true
+				}
+			}
+			return 0, deleted, err
+		}
+	}
+	return 0, deleted, fmt.Errorf("there are no apps with handle: %s", handle)
+}

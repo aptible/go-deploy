@@ -128,6 +128,19 @@ func (c *Client) DeployApp(config map[string]interface{}, appID int64) error {
 	return err
 }
 
+func (c *Client) DeployGitApp(appID int64, commitish string) (int64, error) {
+	requestType := "deploy"
+	appRequest := models.AppRequest22{Type: &requestType, GitRef: commitish}
+	appParams := operations.NewPostAppsAppIDOperationsParams().WithAppID(appID).WithAppRequest(&appRequest)
+	response, err := c.Client.Operations.PostAppsAppIDOperations(appParams, c.Token)
+	if err != nil {
+		return 0, err
+	}
+
+	operationID := *response.Payload.ID
+	return operationID, nil
+}
+
 func (c *Client) DeleteApp(appID int64) (bool, error) {
 	requestType := "deprovision"
 	appRequest := models.AppRequest22{Type: &requestType}
