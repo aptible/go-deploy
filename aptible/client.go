@@ -19,6 +19,15 @@ type Client struct {
 
 // sets up client and gets auth token used for API requests
 func SetUpClient() (*Client, error) {
+	token, err := GetToken()
+	if err != nil {
+		return nil, err
+	}
+
+	return NewClient(token)
+}
+
+func NewClient(token string) (*Client, error) {
 	host, err := GetHost()
 	if err != nil {
 		return nil, err
@@ -32,10 +41,6 @@ func SetUpClient() (*Client, error) {
 	rt.Producers["application/hal+json"] = runtime.JSONProducer()
 	client := deploy.New(rt, strfmt.Default)
 
-	token, err := GetToken()
-	if err != nil {
-		return nil, err
-	}
 	bearerTokenAuth := httptransport.BearerToken(token)
 
 	c := Client{}
