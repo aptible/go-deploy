@@ -24,12 +24,12 @@ type GetActivityReportsActivityReportIDDownloadReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetActivityReportsActivityReportIDDownloadReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 302:
-		result := NewGetActivityReportsActivityReportIDDownloadFound()
+	case 200:
+		result := NewGetActivityReportsActivityReportIDDownloadOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	default:
 		result := NewGetActivityReportsActivityReportIDDownloadDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -42,23 +42,23 @@ func (o *GetActivityReportsActivityReportIDDownloadReader) ReadResponse(response
 	}
 }
 
-// NewGetActivityReportsActivityReportIDDownloadFound creates a GetActivityReportsActivityReportIDDownloadFound with default headers values
-func NewGetActivityReportsActivityReportIDDownloadFound() *GetActivityReportsActivityReportIDDownloadFound {
-	return &GetActivityReportsActivityReportIDDownloadFound{}
+// NewGetActivityReportsActivityReportIDDownloadOK creates a GetActivityReportsActivityReportIDDownloadOK with default headers values
+func NewGetActivityReportsActivityReportIDDownloadOK() *GetActivityReportsActivityReportIDDownloadOK {
+	return &GetActivityReportsActivityReportIDDownloadOK{}
 }
 
-/*GetActivityReportsActivityReportIDDownloadFound handles this case with default header values.
+/*GetActivityReportsActivityReportIDDownloadOK handles this case with default header values.
 
-Redirection to file download URL
+Presigned download URL
 */
-type GetActivityReportsActivityReportIDDownloadFound struct {
+type GetActivityReportsActivityReportIDDownloadOK struct {
 }
 
-func (o *GetActivityReportsActivityReportIDDownloadFound) Error() string {
-	return fmt.Sprintf("[GET /activity_reports/{activity_report_id}/download][%d] getActivityReportsActivityReportIdDownloadFound ", 302)
+func (o *GetActivityReportsActivityReportIDDownloadOK) Error() string {
+	return fmt.Sprintf("[GET /activity_reports/{activity_report_id}/download][%d] getActivityReportsActivityReportIdDownloadOK ", 200)
 }
 
-func (o *GetActivityReportsActivityReportIDDownloadFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetActivityReportsActivityReportIDDownloadOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
