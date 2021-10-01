@@ -1,3 +1,4 @@
+//go:build api
 // +build api
 
 // These tests call SetUpClient and require a valid client
