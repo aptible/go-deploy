@@ -14,6 +14,8 @@ type LogDrain struct {
 	ID                     int64
 	Handle                 string
 	DrainType              string
+	DrainUsername          string
+	DrainPassword          string
 	DrainApps              bool
 	DrainDatabases         bool
 	DrainEphemeralSessions bool
@@ -35,6 +37,7 @@ type LogDrainCreateAttrs struct {
 	DrainProxies           bool
 	DrainHost              strfmt.URI
 	DrainPassword          string
+	DrainUsername          string
 	DrainPort              int64
 	DrainType              *string
 	LoggingToken           string
@@ -51,6 +54,7 @@ func (c *Client) CreateLogDrain(handle string, accountID int64, attrs *LogDrainC
 		DrainProxies:           attrs.DrainProxies,
 		DrainHost:              attrs.DrainHost,
 		DrainPassword:          attrs.DrainPassword,
+		DrainUsername:          attrs.DrainUsername,
 		DrainPort:              attrs.DrainPort,
 		DrainType:              attrs.DrainType,
 		Handle:                 &handle,
@@ -122,6 +126,8 @@ func (c *Client) GetLogDrain(logDrainID int64) (*LogDrain, error) {
 	logDrain.LoggingToken = swag.StringValue(response.Payload.LoggingToken)
 	logDrain.URL = swag.StringValue(response.Payload.URL)
 	logDrain.DrainApps = swag.BoolValue(response.Payload.DrainApps)
+	logDrain.DrainUsername = swag.StringValue(response.Payload.DrainUsername)
+	logDrain.DrainPassword = swag.StringValue(response.Payload.DrainPassword)
 	logDrain.DrainDatabases = swag.BoolValue(response.Payload.DrainDatabases)
 	logDrain.DrainEphemeralSessions = swag.BoolValue(response.Payload.DrainEphemeralSessions)
 	logDrain.DrainProxies = swag.BoolValue(response.Payload.DrainProxies)
