@@ -4,4 +4,4 @@ those expose a more stable interface.
 
 This library has been experimentally used in production, primarily through the Aptible Terraform provider, without significant issues for the
 past few months. We would still suggest caution because that has only exercised a subset of the functionality and critical bugs may not have
-been discovered in the other portions.
+been discovered in other portions.
