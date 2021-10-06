@@ -24,12 +24,12 @@ type GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 302:
-		result := NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvFound()
+	case 200:
+		result := NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	default:
 		result := NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -42,23 +42,23 @@ func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvReader) ReadRes
 	}
 }
 
-// NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvFound creates a GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvFound with default headers values
-func NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvFound() *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvFound {
-	return &GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvFound{}
+// NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK creates a GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK with default headers values
+func NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK() *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK {
+	return &GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK{}
 }
 
-/*GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvFound handles this case with default header values.
+/*GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK handles this case with default header values.
 
-redirect to download link
+Presigned URL
 */
-type GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvFound struct {
+type GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK struct {
 }
 
-func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvFound) Error() string {
-	return fmt.Sprintf("[GET /intrusion_detection_reports/{intrusion_report_id}/download_csv][%d] getIntrusionDetectionReportsIntrusionReportIdDownloadCsvFound ", 302)
+func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK) Error() string {
+	return fmt.Sprintf("[GET /intrusion_detection_reports/{intrusion_report_id}/download_csv][%d] getIntrusionDetectionReportsIntrusionReportIdDownloadCsvOK ", 200)
 }
 
-func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

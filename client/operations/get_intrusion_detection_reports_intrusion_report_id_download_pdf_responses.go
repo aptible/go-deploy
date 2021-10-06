@@ -24,12 +24,12 @@ type GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 302:
-		result := NewGetIntrusionDetectionReportsIntrusionReportIDDownloadPdfFound()
+	case 200:
+		result := NewGetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	default:
 		result := NewGetIntrusionDetectionReportsIntrusionReportIDDownloadPdfDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -42,23 +42,23 @@ func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfReader) ReadRes
 	}
 }
 
-// NewGetIntrusionDetectionReportsIntrusionReportIDDownloadPdfFound creates a GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfFound with default headers values
-func NewGetIntrusionDetectionReportsIntrusionReportIDDownloadPdfFound() *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfFound {
-	return &GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfFound{}
+// NewGetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK creates a GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK with default headers values
+func NewGetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK() *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK {
+	return &GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK{}
 }
 
-/*GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfFound handles this case with default header values.
+/*GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK handles this case with default header values.
 
-redirect to download link
+Presigned URL
 */
-type GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfFound struct {
+type GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK struct {
 }
 
-func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfFound) Error() string {
-	return fmt.Sprintf("[GET /intrusion_detection_reports/{intrusion_report_id}/download_pdf][%d] getIntrusionDetectionReportsIntrusionReportIdDownloadPdfFound ", 302)
+func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK) Error() string {
+	return fmt.Sprintf("[GET /intrusion_detection_reports/{intrusion_report_id}/download_pdf][%d] getIntrusionDetectionReportsIntrusionReportIdDownloadPdfOK ", 200)
 }
 
-func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

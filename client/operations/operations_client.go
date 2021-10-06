@@ -880,13 +880,13 @@ func (a *Client) GetAccountsID(params *GetAccountsIDParams, authInfo runtime.Cli
 /*
 GetActivityReportsActivityReportIDDownload downloads activity report
 */
-func (a *Client) GetActivityReportsActivityReportIDDownload(params *GetActivityReportsActivityReportIDDownloadParams, authInfo runtime.ClientAuthInfoWriter) error {
+func (a *Client) GetActivityReportsActivityReportIDDownload(params *GetActivityReportsActivityReportIDDownloadParams, authInfo runtime.ClientAuthInfoWriter) (*GetActivityReportsActivityReportIDDownloadOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetActivityReportsActivityReportIDDownloadParams()
 	}
 
-	_, err := a.transport.Submit(&runtime.ClientOperation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetActivityReportsActivityReportIDDownload",
 		Method:             "GET",
 		PathPattern:        "/activity_reports/{activity_report_id}/download",
@@ -900,9 +900,15 @@ func (a *Client) GetActivityReportsActivityReportIDDownload(params *GetActivityR
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	success, ok := result.(*GetActivityReportsActivityReportIDDownloadOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*GetActivityReportsActivityReportIDDownloadDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
@@ -2200,13 +2206,13 @@ func (a *Client) GetIntrusionDetectionReportsID(params *GetIntrusionDetectionRep
 /*
 GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv downloads csv intrusion detection report
 */
-func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv(params *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvParams, authInfo runtime.ClientAuthInfoWriter) error {
+func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv(params *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvParams, authInfo runtime.ClientAuthInfoWriter) (*GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvParams()
 	}
 
-	_, err := a.transport.Submit(&runtime.ClientOperation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv",
 		Method:             "GET",
 		PathPattern:        "/intrusion_detection_reports/{intrusion_report_id}/download_csv",
@@ -2220,21 +2226,27 @@ func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv(params
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	success, ok := result.(*GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
 GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf downloads pdf intrusion detection report
 */
-func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf(params *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfParams, authInfo runtime.ClientAuthInfoWriter) error {
+func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf(params *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfParams, authInfo runtime.ClientAuthInfoWriter) (*GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetIntrusionDetectionReportsIntrusionReportIDDownloadPdfParams()
 	}
 
-	_, err := a.transport.Submit(&runtime.ClientOperation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf",
 		Method:             "GET",
 		PathPattern:        "/intrusion_detection_reports/{intrusion_report_id}/download_pdf",
@@ -2248,9 +2260,15 @@ func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf(params
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	success, ok := result.(*GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
