@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetStacksStackIDVpcPeersReader is a Reader for the GetStacksStackIDVpcPeers structure.
@@ -47,7 +46,7 @@ func NewGetStacksStackIDVpcPeersOK() *GetStacksStackIDVpcPeersOK {
 	return &GetStacksStackIDVpcPeersOK{}
 }
 
-/*GetStacksStackIDVpcPeersOK handles this case with default header values.
+/* GetStacksStackIDVpcPeersOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetStacksStackIDVpcPeersOK struct {
 func (o *GetStacksStackIDVpcPeersOK) Error() string {
 	return fmt.Sprintf("[GET /stacks/{stack_id}/vpc_peers][%d] getStacksStackIdVpcPeersOK  %+v", 200, o.Payload)
 }
-
 func (o *GetStacksStackIDVpcPeersOK) GetPayload() *models.InlineResponse20041 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetStacksStackIDVpcPeersDefault(code int) *GetStacksStackIDVpcPeersDefau
 	}
 }
 
-/*GetStacksStackIDVpcPeersDefault handles this case with default header values.
+/* GetStacksStackIDVpcPeersDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetStacksStackIDVpcPeersDefault) Code() int {
 func (o *GetStacksStackIDVpcPeersDefault) Error() string {
 	return fmt.Sprintf("[GET /stacks/{stack_id}/vpc_peers][%d] GetStacksStackIDVpcPeers default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetStacksStackIDVpcPeersDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

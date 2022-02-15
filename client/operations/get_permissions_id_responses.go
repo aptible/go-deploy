@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetPermissionsIDReader is a Reader for the GetPermissionsID structure.
@@ -47,7 +46,7 @@ func NewGetPermissionsIDOK() *GetPermissionsIDOK {
 	return &GetPermissionsIDOK{}
 }
 
-/*GetPermissionsIDOK handles this case with default header values.
+/* GetPermissionsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetPermissionsIDOK struct {
 func (o *GetPermissionsIDOK) Error() string {
 	return fmt.Sprintf("[GET /permissions/{id}][%d] getPermissionsIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetPermissionsIDOK) GetPayload() *models.InlineResponse2017 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetPermissionsIDDefault(code int) *GetPermissionsIDDefault {
 	}
 }
 
-/*GetPermissionsIDDefault handles this case with default header values.
+/* GetPermissionsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetPermissionsIDDefault) Code() int {
 func (o *GetPermissionsIDDefault) Error() string {
 	return fmt.Sprintf("[GET /permissions/{id}][%d] GetPermissionsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetPermissionsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

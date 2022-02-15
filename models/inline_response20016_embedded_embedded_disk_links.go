@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20016EmbeddedEmbeddedDiskLinks inline response 200 16 embedded embedded disk links
+//
 // swagger:model inline_response_200_16__embedded__embedded_disk__links
 type InlineResponse20016EmbeddedEmbeddedDiskLinks struct {
 
@@ -56,7 +58,6 @@ func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) Validate(formats strfmt.R
 }
 
 func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) validateAccount(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Account) { // not required
 		return nil
 	}
@@ -65,6 +66,8 @@ func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) validateAccount(formats s
 		if err := m.Account.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
 			}
 			return err
 		}
@@ -74,7 +77,6 @@ func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) validateAccount(formats s
 }
 
 func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) validateDatabase(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Database) { // not required
 		return nil
 	}
@@ -83,6 +85,8 @@ func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) validateDatabase(formats 
 		if err := m.Database.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("database")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("database")
 			}
 			return err
 		}
@@ -92,7 +96,6 @@ func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) validateDatabase(formats 
 }
 
 func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) validateOperations(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Operations) { // not required
 		return nil
 	}
@@ -101,6 +104,8 @@ func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) validateOperations(format
 		if err := m.Operations.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
 			}
 			return err
 		}
@@ -110,7 +115,6 @@ func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) validateOperations(format
 }
 
 func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -119,6 +123,98 @@ func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) validateSelf(formats strf
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 16 embedded embedded disk links based on the context it is used
+func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatabase(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOperations(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) contextValidateAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Account != nil {
+		if err := m.Account.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) contextValidateDatabase(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Database != nil {
+		if err := m.Database.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("database")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("database")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) contextValidateOperations(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Operations != nil {
+		if err := m.Operations.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20016EmbeddedEmbeddedDiskLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}

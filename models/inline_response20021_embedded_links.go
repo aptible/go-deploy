@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20021EmbeddedLinks inline response 200 21 embedded links
+//
 // swagger:model inline_response_200_21__embedded__links
 type InlineResponse20021EmbeddedLinks struct {
 
@@ -63,7 +65,6 @@ func (m *InlineResponse20021EmbeddedLinks) Validate(formats strfmt.Registry) err
 }
 
 func (m *InlineResponse20021EmbeddedLinks) validateApp(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.App) { // not required
 		return nil
 	}
@@ -72,6 +73,8 @@ func (m *InlineResponse20021EmbeddedLinks) validateApp(formats strfmt.Registry) 
 		if err := m.App.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("app")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("app")
 			}
 			return err
 		}
@@ -81,7 +84,6 @@ func (m *InlineResponse20021EmbeddedLinks) validateApp(formats strfmt.Registry) 
 }
 
 func (m *InlineResponse20021EmbeddedLinks) validateEphemeralContainers(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.EphemeralContainers) { // not required
 		return nil
 	}
@@ -90,6 +92,8 @@ func (m *InlineResponse20021EmbeddedLinks) validateEphemeralContainers(formats s
 		if err := m.EphemeralContainers.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ephemeral_containers")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ephemeral_containers")
 			}
 			return err
 		}
@@ -99,7 +103,6 @@ func (m *InlineResponse20021EmbeddedLinks) validateEphemeralContainers(formats s
 }
 
 func (m *InlineResponse20021EmbeddedLinks) validateOperation(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Operation) { // not required
 		return nil
 	}
@@ -108,6 +111,8 @@ func (m *InlineResponse20021EmbeddedLinks) validateOperation(formats strfmt.Regi
 		if err := m.Operation.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("operation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operation")
 			}
 			return err
 		}
@@ -117,7 +122,6 @@ func (m *InlineResponse20021EmbeddedLinks) validateOperation(formats strfmt.Regi
 }
 
 func (m *InlineResponse20021EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Operations) { // not required
 		return nil
 	}
@@ -126,6 +130,8 @@ func (m *InlineResponse20021EmbeddedLinks) validateOperations(formats strfmt.Reg
 		if err := m.Operations.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
 			}
 			return err
 		}
@@ -135,7 +141,6 @@ func (m *InlineResponse20021EmbeddedLinks) validateOperations(formats strfmt.Reg
 }
 
 func (m *InlineResponse20021EmbeddedLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -144,6 +149,118 @@ func (m *InlineResponse20021EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 21 embedded links based on the context it is used
+func (m *InlineResponse20021EmbeddedLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateApp(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEphemeralContainers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOperation(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOperations(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20021EmbeddedLinks) contextValidateApp(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.App != nil {
+		if err := m.App.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("app")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("app")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20021EmbeddedLinks) contextValidateEphemeralContainers(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EphemeralContainers != nil {
+		if err := m.EphemeralContainers.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ephemeral_containers")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ephemeral_containers")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20021EmbeddedLinks) contextValidateOperation(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Operation != nil {
+		if err := m.Operation.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("operation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operation")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20021EmbeddedLinks) contextValidateOperations(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Operations != nil {
+		if err := m.Operations.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20021EmbeddedLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetOperationsIDReader is a Reader for the GetOperationsID structure.
@@ -47,7 +46,7 @@ func NewGetOperationsIDOK() *GetOperationsIDOK {
 	return &GetOperationsIDOK{}
 }
 
-/*GetOperationsIDOK handles this case with default header values.
+/* GetOperationsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetOperationsIDOK struct {
 func (o *GetOperationsIDOK) Error() string {
 	return fmt.Sprintf("[GET /operations/{id}][%d] getOperationsIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetOperationsIDOK) GetPayload() *models.InlineResponse20030 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetOperationsIDDefault(code int) *GetOperationsIDDefault {
 	}
 }
 
-/*GetOperationsIDDefault handles this case with default header values.
+/* GetOperationsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetOperationsIDDefault) Code() int {
 func (o *GetOperationsIDDefault) Error() string {
 	return fmt.Sprintf("[GET /operations/{id}][%d] GetOperationsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetOperationsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

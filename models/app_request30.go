@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // AppRequest30 app request 30
+//
 // swagger:model app_request_30
 type AppRequest30 struct {
 
@@ -90,7 +92,6 @@ func (m *AppRequest30) Validate(formats strfmt.Registry) error {
 }
 
 func (m *AppRequest30) validateDestinationAccount(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DestinationAccount) { // not required
 		return nil
 	}
@@ -108,6 +109,11 @@ func (m *AppRequest30) validateType(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this app request 30 based on context it is used
+func (m *AppRequest30) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetEphemeralSessionsEphemeralSessionIDEphemeralContainersReader is a Reader for the GetEphemeralSessionsEphemeralSessionIDEphemeralContainers structure.
@@ -47,7 +46,7 @@ func NewGetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK() *GetEpheme
 	return &GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK{}
 }
 
-/*GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK handles this case with default header values.
+/* GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK struct {
 func (o *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK) Error() string {
 	return fmt.Sprintf("[GET /ephemeral_sessions/{ephemeral_session_id}/ephemeral_containers][%d] getEphemeralSessionsEphemeralSessionIdEphemeralContainersOK  %+v", 200, o.Payload)
 }
-
 func (o *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK) GetPayload() *models.InlineResponse20019 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetEphemeralSessionsEphemeralSessionIDEphemeralContainersDefault(code in
 	}
 }
 
-/*GetEphemeralSessionsEphemeralSessionIDEphemeralContainersDefault handles this case with default header values.
+/* GetEphemeralSessionsEphemeralSessionIDEphemeralContainersDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersDefault) Code(
 func (o *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersDefault) Error() string {
 	return fmt.Sprintf("[GET /ephemeral_sessions/{ephemeral_session_id}/ephemeral_containers][%d] GetEphemeralSessionsEphemeralSessionIDEphemeralContainers default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetAccountsReader is a Reader for the GetAccounts structure.
@@ -47,7 +46,7 @@ func NewGetAccountsOK() *GetAccountsOK {
 	return &GetAccountsOK{}
 }
 
-/*GetAccountsOK handles this case with default header values.
+/* GetAccountsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetAccountsOK struct {
 func (o *GetAccountsOK) Error() string {
 	return fmt.Sprintf("[GET /accounts][%d] getAccountsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAccountsOK) GetPayload() *models.InlineResponse200 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetAccountsDefault(code int) *GetAccountsDefault {
 	}
 }
 
-/*GetAccountsDefault handles this case with default header values.
+/* GetAccountsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetAccountsDefault) Code() int {
 func (o *GetAccountsDefault) Error() string {
 	return fmt.Sprintf("[GET /accounts][%d] GetAccounts default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetAccountsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

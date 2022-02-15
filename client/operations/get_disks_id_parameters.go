@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetDisksIDParams creates a new GetDisksIDParams object
-// with the default values initialized.
+// NewGetDisksIDParams creates a new GetDisksIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetDisksIDParams() *GetDisksIDParams {
-	var ()
 	return &GetDisksIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetDisksIDParamsWithTimeout creates a new GetDisksIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetDisksIDParamsWithTimeout(timeout time.Duration) *GetDisksIDParams {
-	var ()
 	return &GetDisksIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetDisksIDParamsWithContext creates a new GetDisksIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetDisksIDParamsWithContext(ctx context.Context) *GetDisksIDParams {
-	var ()
 	return &GetDisksIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetDisksIDParamsWithHTTPClient creates a new GetDisksIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetDisksIDParamsWithHTTPClient(client *http.Client) *GetDisksIDParams {
-	var ()
 	return &GetDisksIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetDisksIDParams contains all the parameters to send to the API endpoint
-for the get disks ID operation typically these are written to a http.Request
+/* GetDisksIDParams contains all the parameters to send to the API endpoint
+   for the get disks ID operation.
+
+   Typically these are written to a http.Request.
 */
 type GetDisksIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get disks ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDisksIDParams) WithDefaults() *GetDisksIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get disks ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDisksIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get disks ID params

@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPostDatabasesDatabaseIDOperationsParams creates a new PostDatabasesDatabaseIDOperationsParams object
-// with the default values initialized.
+// NewPostDatabasesDatabaseIDOperationsParams creates a new PostDatabasesDatabaseIDOperationsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostDatabasesDatabaseIDOperationsParams() *PostDatabasesDatabaseIDOperationsParams {
-	var ()
 	return &PostDatabasesDatabaseIDOperationsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostDatabasesDatabaseIDOperationsParamsWithTimeout creates a new PostDatabasesDatabaseIDOperationsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostDatabasesDatabaseIDOperationsParamsWithTimeout(timeout time.Duration) *PostDatabasesDatabaseIDOperationsParams {
-	var ()
 	return &PostDatabasesDatabaseIDOperationsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostDatabasesDatabaseIDOperationsParamsWithContext creates a new PostDatabasesDatabaseIDOperationsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostDatabasesDatabaseIDOperationsParamsWithContext(ctx context.Context) *PostDatabasesDatabaseIDOperationsParams {
-	var ()
 	return &PostDatabasesDatabaseIDOperationsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostDatabasesDatabaseIDOperationsParamsWithHTTPClient creates a new PostDatabasesDatabaseIDOperationsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostDatabasesDatabaseIDOperationsParamsWithHTTPClient(client *http.Client) *PostDatabasesDatabaseIDOperationsParams {
-	var ()
 	return &PostDatabasesDatabaseIDOperationsParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostDatabasesDatabaseIDOperationsParams contains all the parameters to send to the API endpoint
-for the post databases database ID operations operation typically these are written to a http.Request
+/* PostDatabasesDatabaseIDOperationsParams contains all the parameters to send to the API endpoint
+   for the post databases database ID operations operation.
+
+   Typically these are written to a http.Request.
 */
 type PostDatabasesDatabaseIDOperationsParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest24
-	/*DatabaseID
-	  database_id
 
+	/* DatabaseID.
+
+	   database_id
 	*/
 	DatabaseID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post databases database ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostDatabasesDatabaseIDOperationsParams) WithDefaults() *PostDatabasesDatabaseIDOperationsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post databases database ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostDatabasesDatabaseIDOperationsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post databases database ID operations params
@@ -139,7 +153,6 @@ func (o *PostDatabasesDatabaseIDOperationsParams) WriteToRequest(r runtime.Clien
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

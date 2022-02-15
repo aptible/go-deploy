@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // InlineResponse200EmbeddedEmbeddedLinksAccount inline response 200 embedded embedded links account
+//
 // swagger:model inline_response_200__embedded__embedded__links_account
 type InlineResponse200EmbeddedEmbeddedLinksAccount struct {
 
@@ -37,7 +39,6 @@ func (m *InlineResponse200EmbeddedEmbeddedLinksAccount) Validate(formats strfmt.
 }
 
 func (m *InlineResponse200EmbeddedEmbeddedLinksAccount) validateHref(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Href) { // not required
 		return nil
 	}
@@ -46,6 +47,11 @@ func (m *InlineResponse200EmbeddedEmbeddedLinksAccount) validateHref(formats str
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this inline response 200 embedded embedded links account based on context it is used
+func (m *InlineResponse200EmbeddedEmbeddedLinksAccount) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

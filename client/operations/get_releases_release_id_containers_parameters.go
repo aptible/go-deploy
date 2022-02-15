@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetReleasesReleaseIDContainersParams creates a new GetReleasesReleaseIDContainersParams object
-// with the default values initialized.
+// NewGetReleasesReleaseIDContainersParams creates a new GetReleasesReleaseIDContainersParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetReleasesReleaseIDContainersParams() *GetReleasesReleaseIDContainersParams {
-	var ()
 	return &GetReleasesReleaseIDContainersParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetReleasesReleaseIDContainersParamsWithTimeout creates a new GetReleasesReleaseIDContainersParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetReleasesReleaseIDContainersParamsWithTimeout(timeout time.Duration) *GetReleasesReleaseIDContainersParams {
-	var ()
 	return &GetReleasesReleaseIDContainersParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetReleasesReleaseIDContainersParamsWithContext creates a new GetReleasesReleaseIDContainersParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetReleasesReleaseIDContainersParamsWithContext(ctx context.Context) *GetReleasesReleaseIDContainersParams {
-	var ()
 	return &GetReleasesReleaseIDContainersParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetReleasesReleaseIDContainersParamsWithHTTPClient creates a new GetReleasesReleaseIDContainersParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetReleasesReleaseIDContainersParamsWithHTTPClient(client *http.Client) *GetReleasesReleaseIDContainersParams {
-	var ()
 	return &GetReleasesReleaseIDContainersParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetReleasesReleaseIDContainersParams contains all the parameters to send to the API endpoint
-for the get releases release ID containers operation typically these are written to a http.Request
+/* GetReleasesReleaseIDContainersParams contains all the parameters to send to the API endpoint
+   for the get releases release ID containers operation.
+
+   Typically these are written to a http.Request.
 */
 type GetReleasesReleaseIDContainersParams struct {
 
-	/*Page
-	  current page of results for pagination
+	/* Page.
 
+	   current page of results for pagination
 	*/
 	Page *int64
-	/*ReleaseID
-	  release_id
 
+	/* ReleaseID.
+
+	   release_id
 	*/
 	ReleaseID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get releases release ID containers params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetReleasesReleaseIDContainersParams) WithDefaults() *GetReleasesReleaseIDContainersParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get releases release ID containers params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetReleasesReleaseIDContainersParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get releases release ID containers params
@@ -145,16 +159,17 @@ func (o *GetReleasesReleaseIDContainersParams) WriteToRequest(r runtime.ClientRe
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param release_id

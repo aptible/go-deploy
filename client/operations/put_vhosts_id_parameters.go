@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPutVhostsIDParams creates a new PutVhostsIDParams object
-// with the default values initialized.
+// NewPutVhostsIDParams creates a new PutVhostsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPutVhostsIDParams() *PutVhostsIDParams {
-	var ()
 	return &PutVhostsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPutVhostsIDParamsWithTimeout creates a new PutVhostsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPutVhostsIDParamsWithTimeout(timeout time.Duration) *PutVhostsIDParams {
-	var ()
 	return &PutVhostsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPutVhostsIDParamsWithContext creates a new PutVhostsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPutVhostsIDParamsWithContext(ctx context.Context) *PutVhostsIDParams {
-	var ()
 	return &PutVhostsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPutVhostsIDParamsWithHTTPClient creates a new PutVhostsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPutVhostsIDParamsWithHTTPClient(client *http.Client) *PutVhostsIDParams {
-	var ()
 	return &PutVhostsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*PutVhostsIDParams contains all the parameters to send to the API endpoint
-for the put vhosts ID operation typically these are written to a http.Request
+/* PutVhostsIDParams contains all the parameters to send to the API endpoint
+   for the put vhosts ID operation.
+
+   Typically these are written to a http.Request.
 */
 type PutVhostsIDParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest35
-	/*ID
-	  id
 
+	/* ID.
+
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the put vhosts ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PutVhostsIDParams) WithDefaults() *PutVhostsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the put vhosts ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PutVhostsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the put vhosts ID params
@@ -139,7 +153,6 @@ func (o *PutVhostsIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

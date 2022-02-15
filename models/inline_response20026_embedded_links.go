@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20026EmbeddedLinks inline response 200 26 embedded links
+//
 // swagger:model inline_response_200_26__embedded__links
 type InlineResponse20026EmbeddedLinks struct {
 
@@ -56,7 +58,6 @@ func (m *InlineResponse20026EmbeddedLinks) Validate(formats strfmt.Registry) err
 }
 
 func (m *InlineResponse20026EmbeddedLinks) validateDownloadCsv(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DownloadCsv) { // not required
 		return nil
 	}
@@ -65,6 +66,8 @@ func (m *InlineResponse20026EmbeddedLinks) validateDownloadCsv(formats strfmt.Re
 		if err := m.DownloadCsv.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("download_csv")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("download_csv")
 			}
 			return err
 		}
@@ -74,7 +77,6 @@ func (m *InlineResponse20026EmbeddedLinks) validateDownloadCsv(formats strfmt.Re
 }
 
 func (m *InlineResponse20026EmbeddedLinks) validateDownloadPdf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DownloadPdf) { // not required
 		return nil
 	}
@@ -83,6 +85,8 @@ func (m *InlineResponse20026EmbeddedLinks) validateDownloadPdf(formats strfmt.Re
 		if err := m.DownloadPdf.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("download_pdf")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("download_pdf")
 			}
 			return err
 		}
@@ -92,7 +96,6 @@ func (m *InlineResponse20026EmbeddedLinks) validateDownloadPdf(formats strfmt.Re
 }
 
 func (m *InlineResponse20026EmbeddedLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -101,6 +104,8 @@ func (m *InlineResponse20026EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}
@@ -110,7 +115,6 @@ func (m *InlineResponse20026EmbeddedLinks) validateSelf(formats strfmt.Registry)
 }
 
 func (m *InlineResponse20026EmbeddedLinks) validateStack(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Stack) { // not required
 		return nil
 	}
@@ -119,6 +123,98 @@ func (m *InlineResponse20026EmbeddedLinks) validateStack(formats strfmt.Registry
 		if err := m.Stack.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("stack")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("stack")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 26 embedded links based on the context it is used
+func (m *InlineResponse20026EmbeddedLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDownloadCsv(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDownloadPdf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStack(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20026EmbeddedLinks) contextValidateDownloadCsv(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DownloadCsv != nil {
+		if err := m.DownloadCsv.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("download_csv")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("download_csv")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20026EmbeddedLinks) contextValidateDownloadPdf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DownloadPdf != nil {
+		if err := m.DownloadPdf.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("download_pdf")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("download_pdf")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20026EmbeddedLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20026EmbeddedLinks) contextValidateStack(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Stack != nil {
+		if err := m.Stack.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("stack")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("stack")
 			}
 			return err
 		}

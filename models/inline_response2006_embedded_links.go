@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse2006EmbeddedLinks inline response 200 6 embedded links
+//
 // swagger:model inline_response_200_6__embedded__links
 type InlineResponse2006EmbeddedLinks struct {
 
@@ -77,7 +79,6 @@ func (m *InlineResponse2006EmbeddedLinks) Validate(formats strfmt.Registry) erro
 }
 
 func (m *InlineResponse2006EmbeddedLinks) validateAccount(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Account) { // not required
 		return nil
 	}
@@ -86,6 +87,8 @@ func (m *InlineResponse2006EmbeddedLinks) validateAccount(formats strfmt.Registr
 		if err := m.Account.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
 			}
 			return err
 		}
@@ -95,7 +98,6 @@ func (m *InlineResponse2006EmbeddedLinks) validateAccount(formats strfmt.Registr
 }
 
 func (m *InlineResponse2006EmbeddedLinks) validateCopiedFrom(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CopiedFrom) { // not required
 		return nil
 	}
@@ -104,6 +106,8 @@ func (m *InlineResponse2006EmbeddedLinks) validateCopiedFrom(formats strfmt.Regi
 		if err := m.CopiedFrom.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("copied_from")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("copied_from")
 			}
 			return err
 		}
@@ -113,7 +117,6 @@ func (m *InlineResponse2006EmbeddedLinks) validateCopiedFrom(formats strfmt.Regi
 }
 
 func (m *InlineResponse2006EmbeddedLinks) validateCopies(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Copies) { // not required
 		return nil
 	}
@@ -122,6 +125,8 @@ func (m *InlineResponse2006EmbeddedLinks) validateCopies(formats strfmt.Registry
 		if err := m.Copies.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("copies")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("copies")
 			}
 			return err
 		}
@@ -131,7 +136,6 @@ func (m *InlineResponse2006EmbeddedLinks) validateCopies(formats strfmt.Registry
 }
 
 func (m *InlineResponse2006EmbeddedLinks) validateDatabase(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Database) { // not required
 		return nil
 	}
@@ -140,6 +144,8 @@ func (m *InlineResponse2006EmbeddedLinks) validateDatabase(formats strfmt.Regist
 		if err := m.Database.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("database")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("database")
 			}
 			return err
 		}
@@ -149,7 +155,6 @@ func (m *InlineResponse2006EmbeddedLinks) validateDatabase(formats strfmt.Regist
 }
 
 func (m *InlineResponse2006EmbeddedLinks) validateDatabaseImage(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DatabaseImage) { // not required
 		return nil
 	}
@@ -158,6 +163,8 @@ func (m *InlineResponse2006EmbeddedLinks) validateDatabaseImage(formats strfmt.R
 		if err := m.DatabaseImage.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("database_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("database_image")
 			}
 			return err
 		}
@@ -167,7 +174,6 @@ func (m *InlineResponse2006EmbeddedLinks) validateDatabaseImage(formats strfmt.R
 }
 
 func (m *InlineResponse2006EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Operations) { // not required
 		return nil
 	}
@@ -176,6 +182,8 @@ func (m *InlineResponse2006EmbeddedLinks) validateOperations(formats strfmt.Regi
 		if err := m.Operations.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
 			}
 			return err
 		}
@@ -185,7 +193,6 @@ func (m *InlineResponse2006EmbeddedLinks) validateOperations(formats strfmt.Regi
 }
 
 func (m *InlineResponse2006EmbeddedLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -194,6 +201,158 @@ func (m *InlineResponse2006EmbeddedLinks) validateSelf(formats strfmt.Registry) 
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 6 embedded links based on the context it is used
+func (m *InlineResponse2006EmbeddedLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCopiedFrom(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCopies(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatabase(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatabaseImage(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOperations(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedLinks) contextValidateAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Account != nil {
+		if err := m.Account.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedLinks) contextValidateCopiedFrom(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CopiedFrom != nil {
+		if err := m.CopiedFrom.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("copied_from")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("copied_from")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedLinks) contextValidateCopies(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Copies != nil {
+		if err := m.Copies.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("copies")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("copies")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedLinks) contextValidateDatabase(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Database != nil {
+		if err := m.Database.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("database")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("database")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedLinks) contextValidateDatabaseImage(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DatabaseImage != nil {
+		if err := m.DatabaseImage.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("database_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("database_image")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedLinks) contextValidateOperations(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Operations != nil {
+		if err := m.Operations.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}

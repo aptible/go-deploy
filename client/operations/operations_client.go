@@ -9,12 +9,11 @@ import (
 	"fmt"
 
 	"github.com/go-openapi/runtime"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new operations API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -26,16 +25,291 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
+// ClientService is the interface for Client methods
+type ClientService interface {
+	DeleteAccountsID(params *DeleteAccountsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAccountsIDNoContent, error)
+
+	DeleteAppsID(params *DeleteAppsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAppsIDNoContent, error)
+
+	DeleteBackupRetentionPoliciesID(params *DeleteBackupRetentionPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteBackupRetentionPoliciesIDNoContent, error)
+
+	DeleteCertificatesID(params *DeleteCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteCertificatesIDNoContent, error)
+
+	DeleteConfigurationsID(params *DeleteConfigurationsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteConfigurationsIDNoContent, error)
+
+	DeleteDatabasesID(params *DeleteDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDatabasesIDNoContent, error)
+
+	DeleteLogDrainsID(params *DeleteLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteLogDrainsIDNoContent, error)
+
+	DeletePermissionsID(params *DeletePermissionsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeletePermissionsIDNoContent, error)
+
+	DeleteVhostsID(params *DeleteVhostsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVhostsIDNoContent, error)
+
+	Get(params *GetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOK, error)
+
+	GetAccounts(params *GetAccountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsOK, error)
+
+	GetAccountsAccountIDActivityReports(params *GetAccountsAccountIDActivityReportsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDActivityReportsOK, error)
+
+	GetAccountsAccountIDApps(params *GetAccountsAccountIDAppsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDAppsOK, error)
+
+	GetAccountsAccountIDBackupRetentionPolicies(params *GetAccountsAccountIDBackupRetentionPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDBackupRetentionPoliciesOK, error)
+
+	GetAccountsAccountIDBackups(params *GetAccountsAccountIDBackupsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDBackupsOK, error)
+
+	GetAccountsAccountIDCertificates(params *GetAccountsAccountIDCertificatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDCertificatesOK, error)
+
+	GetAccountsAccountIDDatabases(params *GetAccountsAccountIDDatabasesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDDatabasesOK, error)
+
+	GetAccountsAccountIDDisks(params *GetAccountsAccountIDDisksParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDDisksOK, error)
+
+	GetAccountsAccountIDLogDrains(params *GetAccountsAccountIDLogDrainsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDLogDrainsOK, error)
+
+	GetAccountsAccountIDMetricDrains(params *GetAccountsAccountIDMetricDrainsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDMetricDrainsOK, error)
+
+	GetAccountsAccountIDOperations(params *GetAccountsAccountIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDOperationsOK, error)
+
+	GetAccountsAccountIDPermissions(params *GetAccountsAccountIDPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDPermissionsOK, error)
+
+	GetAccountsAccountIDServices(params *GetAccountsAccountIDServicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDServicesOK, error)
+
+	GetAccountsAccountIDVhosts(params *GetAccountsAccountIDVhostsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDVhostsOK, error)
+
+	GetAccountsID(params *GetAccountsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsIDOK, error)
+
+	GetActivityReportsActivityReportIDDownload(params *GetActivityReportsActivityReportIDDownloadParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetActivityReportsActivityReportIDDownloadOK, error)
+
+	GetActivityReportsID(params *GetActivityReportsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetActivityReportsIDOK, error)
+
+	GetApps(params *GetAppsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsOK, error)
+
+	GetAppsAppIDConfigurations(params *GetAppsAppIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDConfigurationsOK, error)
+
+	GetAppsAppIDEphemeralSessions(params *GetAppsAppIDEphemeralSessionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDEphemeralSessionsOK, error)
+
+	GetAppsAppIDImages(params *GetAppsAppIDImagesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDImagesOK, error)
+
+	GetAppsAppIDOperations(params *GetAppsAppIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDOperationsOK, error)
+
+	GetAppsAppIDServices(params *GetAppsAppIDServicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDServicesOK, error)
+
+	GetAppsAppIDVhosts(params *GetAppsAppIDVhostsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDVhostsOK, error)
+
+	GetAppsID(params *GetAppsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsIDOK, error)
+
+	GetBackupRetentionPoliciesID(params *GetBackupRetentionPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetBackupRetentionPoliciesIDOK, error)
+
+	GetBackupsBackupIDCopies(params *GetBackupsBackupIDCopiesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetBackupsBackupIDCopiesOK, error)
+
+	GetBackupsBackupIDOperations(params *GetBackupsBackupIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetBackupsBackupIDOperationsOK, error)
+
+	GetBackupsID(params *GetBackupsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetBackupsIDOK, error)
+
+	GetCertificatesCertificateIDApps(params *GetCertificatesCertificateIDAppsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCertificatesCertificateIDAppsOK, error)
+
+	GetCertificatesCertificateIDVhosts(params *GetCertificatesCertificateIDVhostsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCertificatesCertificateIDVhostsOK, error)
+
+	GetCertificatesID(params *GetCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCertificatesIDOK, error)
+
+	GetConfigurationsID(params *GetConfigurationsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConfigurationsIDOK, error)
+
+	GetContainersID(params *GetContainersIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetContainersIDOK, error)
+
+	GetDatabaseCredentialsDatabaseCredentialIDOperations(params *GetDatabaseCredentialsDatabaseCredentialIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabaseCredentialsDatabaseCredentialIDOperationsOK, error)
+
+	GetDatabaseCredentialsID(params *GetDatabaseCredentialsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabaseCredentialsIDOK, error)
+
+	GetDatabaseImages(params *GetDatabaseImagesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabaseImagesOK, error)
+
+	GetDatabaseImagesID(params *GetDatabaseImagesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabaseImagesIDOK, error)
+
+	GetDatabases(params *GetDatabasesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesOK, error)
+
+	GetDatabasesDatabaseIDBackups(params *GetDatabasesDatabaseIDBackupsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDBackupsOK, error)
+
+	GetDatabasesDatabaseIDConfigurations(params *GetDatabasesDatabaseIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDConfigurationsOK, error)
+
+	GetDatabasesDatabaseIDDatabaseCredentials(params *GetDatabasesDatabaseIDDatabaseCredentialsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDDatabaseCredentialsOK, error)
+
+	GetDatabasesDatabaseIDDatabaseImagesID(params *GetDatabasesDatabaseIDDatabaseImagesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDDatabaseImagesIDOK, error)
+
+	GetDatabasesDatabaseIDDependents(params *GetDatabasesDatabaseIDDependentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDDependentsOK, error)
+
+	GetDatabasesDatabaseIDOperations(params *GetDatabasesDatabaseIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDOperationsOK, error)
+
+	GetDatabasesID(params *GetDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesIDOK, error)
+
+	GetDisksID(params *GetDisksIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDisksIDOK, error)
+
+	GetEphemeralContainersID(params *GetEphemeralContainersIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetEphemeralContainersIDOK, error)
+
+	GetEphemeralSessionsEphemeralSessionIDEphemeralContainers(params *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK, error)
+
+	GetEphemeralSessionsEphemeralSessionIDOperations(params *GetEphemeralSessionsEphemeralSessionIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetEphemeralSessionsEphemeralSessionIDOperationsOK, error)
+
+	GetEphemeralSessionsID(params *GetEphemeralSessionsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetEphemeralSessionsIDOK, error)
+
+	GetImagesID(params *GetImagesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetImagesIDOK, error)
+
+	GetImagesImageIDOperations(params *GetImagesImageIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetImagesImageIDOperationsOK, error)
+
+	GetIntrusionDetectionReportsID(params *GetIntrusionDetectionReportsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntrusionDetectionReportsIDOK, error)
+
+	GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv(params *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK, error)
+
+	GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf(params *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK, error)
+
+	GetLogDrainsID(params *GetLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLogDrainsIDOK, error)
+
+	GetLogDrainsLogDrainIDContainers(params *GetLogDrainsLogDrainIDContainersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLogDrainsLogDrainIDContainersOK, error)
+
+	GetLogDrainsLogDrainIDEphemeralContainers(params *GetLogDrainsLogDrainIDEphemeralContainersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLogDrainsLogDrainIDEphemeralContainersOK, error)
+
+	GetLogDrainsLogDrainIDOperations(params *GetLogDrainsLogDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLogDrainsLogDrainIDOperationsOK, error)
+
+	GetMetricDrainsID(params *GetMetricDrainsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetricDrainsIDOK, error)
+
+	GetMetricDrainsMetricDrainIDContainers(params *GetMetricDrainsMetricDrainIDContainersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetricDrainsMetricDrainIDContainersOK, error)
+
+	GetMetricDrainsMetricDrainIDOperations(params *GetMetricDrainsMetricDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetricDrainsMetricDrainIDOperationsOK, error)
+
+	GetOperationsID(params *GetOperationsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOperationsIDOK, error)
+
+	GetOperationsOperationIDEphemeralSessions(params *GetOperationsOperationIDEphemeralSessionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOperationsOperationIDEphemeralSessionsOK, error)
+
+	GetOperationsOperationIDSSHPortalConnections(params *GetOperationsOperationIDSSHPortalConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOperationsOperationIDSSHPortalConnectionsOK, error)
+
+	GetPermissions(params *GetPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPermissionsOK, error)
+
+	GetPermissionsID(params *GetPermissionsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPermissionsIDOK, error)
+
+	GetReleasesID(params *GetReleasesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetReleasesIDOK, error)
+
+	GetReleasesReleaseIDContainers(params *GetReleasesReleaseIDContainersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetReleasesReleaseIDContainersOK, error)
+
+	GetSSHPortalConnectionsID(params *GetSSHPortalConnectionsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSSHPortalConnectionsIDOK, error)
+
+	GetServicesID(params *GetServicesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServicesIDOK, error)
+
+	GetServicesServiceIDOperations(params *GetServicesServiceIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServicesServiceIDOperationsOK, error)
+
+	GetServicesServiceIDReleases(params *GetServicesServiceIDReleasesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServicesServiceIDReleasesOK, error)
+
+	GetServicesServiceIDVhosts(params *GetServicesServiceIDVhostsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServicesServiceIDVhostsOK, error)
+
+	GetStacks(params *GetStacksParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksOK, error)
+
+	GetStacksID(params *GetStacksIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksIDOK, error)
+
+	GetStacksStackIDAccounts(params *GetStacksStackIDAccountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksStackIDAccountsOK, error)
+
+	GetStacksStackIDIntrusionDetectionReports(params *GetStacksStackIDIntrusionDetectionReportsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksStackIDIntrusionDetectionReportsOK, error)
+
+	GetStacksStackIDVpcPeers(params *GetStacksStackIDVpcPeersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksStackIDVpcPeersOK, error)
+
+	GetStacksStackIDVpnTunnels(params *GetStacksStackIDVpnTunnelsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksStackIDVpnTunnelsOK, error)
+
+	GetVhostsID(params *GetVhostsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetVhostsIDOK, error)
+
+	GetVhostsVhostIDOperations(params *GetVhostsVhostIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetVhostsVhostIDOperationsOK, error)
+
+	GetVpcPeersID(params *GetVpcPeersIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetVpcPeersIDOK, error)
+
+	GetVpnTunnelsID(params *GetVpnTunnelsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetVpnTunnelsIDOK, error)
+
+	PatchAccountsID(params *PatchAccountsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchAccountsIDOK, error)
+
+	PatchAppsID(params *PatchAppsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchAppsIDOK, error)
+
+	PatchCertificatesID(params *PatchCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchCertificatesIDOK, error)
+
+	PatchDatabasesID(params *PatchDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchDatabasesIDOK, error)
+
+	PatchLogDrainsID(params *PatchLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchLogDrainsIDOK, error)
+
+	PatchOperationsID(params *PatchOperationsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchOperationsIDOK, error)
+
+	PatchVhostsID(params *PatchVhostsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchVhostsIDOK, error)
+
+	PostAccounts(params *PostAccountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsCreated, error)
+
+	PostAccountsAccountIDApps(params *PostAccountsAccountIDAppsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDAppsCreated, error)
+
+	PostAccountsAccountIDBackupRetentionPolicies(params *PostAccountsAccountIDBackupRetentionPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDBackupRetentionPoliciesCreated, error)
+
+	PostAccountsAccountIDCertificates(params *PostAccountsAccountIDCertificatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDCertificatesCreated, error)
+
+	PostAccountsAccountIDClaimsType(params *PostAccountsAccountIDClaimsTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDClaimsTypeNoContent, error)
+
+	PostAccountsAccountIDDatabases(params *PostAccountsAccountIDDatabasesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDDatabasesCreated, error)
+
+	PostAccountsAccountIDLogDrains(params *PostAccountsAccountIDLogDrainsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDLogDrainsCreated, error)
+
+	PostAccountsAccountIDMetricDrains(params *PostAccountsAccountIDMetricDrainsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDMetricDrainsCreated, error)
+
+	PostAccountsAccountIDPermissions(params *PostAccountsAccountIDPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDPermissionsCreated, error)
+
+	PostAppsAppIDConfigurations(params *PostAppsAppIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAppsAppIDConfigurationsCreated, error)
+
+	PostAppsAppIDOperations(params *PostAppsAppIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAppsAppIDOperationsCreated, error)
+
+	PostBackupsBackupIDOperations(params *PostBackupsBackupIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostBackupsBackupIDOperationsCreated, error)
+
+	PostClaims(params *PostClaimsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostClaimsNoContent, error)
+
+	PostClaimsType(params *PostClaimsTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostClaimsTypeNoContent, error)
+
+	PostDatabaseCredentialsDatabaseCredentialIDOperations(params *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated, error)
+
+	PostDatabasesDatabaseIDConfigurations(params *PostDatabasesDatabaseIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostDatabasesDatabaseIDConfigurationsCreated, error)
+
+	PostDatabasesDatabaseIDOperations(params *PostDatabasesDatabaseIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostDatabasesDatabaseIDOperationsCreated, error)
+
+	PostEphemeralSessionsEphemeralSessionIDOperations(params *PostEphemeralSessionsEphemeralSessionIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostEphemeralSessionsEphemeralSessionIDOperationsCreated, error)
+
+	PostImagesImageIDOperations(params *PostImagesImageIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostImagesImageIDOperationsCreated, error)
+
+	PostLogDrainsLogDrainIDOperations(params *PostLogDrainsLogDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostLogDrainsLogDrainIDOperationsCreated, error)
+
+	PostMetricDrainsMetricDrainIDOperations(params *PostMetricDrainsMetricDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostMetricDrainsMetricDrainIDOperationsCreated, error)
+
+	PostOperationsOperationIDSSHPortalConnections(params *PostOperationsOperationIDSSHPortalConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOperationsOperationIDSSHPortalConnectionsCreated, error)
+
+	PostServicesServiceIDOperations(params *PostServicesServiceIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostServicesServiceIDOperationsCreated, error)
+
+	PostServicesServiceIDVhosts(params *PostServicesServiceIDVhostsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostServicesServiceIDVhostsCreated, error)
+
+	PostVhostsVhostIDOperations(params *PostVhostsVhostIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostVhostsVhostIDOperationsCreated, error)
+
+	PutAccountsID(params *PutAccountsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAccountsIDOK, error)
+
+	PutAppsID(params *PutAppsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAppsIDOK, error)
+
+	PutCertificatesID(params *PutCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutCertificatesIDOK, error)
+
+	PutDatabasesID(params *PutDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutDatabasesIDOK, error)
+
+	PutLogDrainsID(params *PutLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutLogDrainsIDOK, error)
+
+	PutOperationsID(params *PutOperationsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutOperationsIDOK, error)
+
+	PutVhostsID(params *PutVhostsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutVhostsIDOK, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
 /*
-DeleteAccountsID deletes account
+  DeleteAccountsID deletes account
 */
-func (a *Client) DeleteAccountsID(params *DeleteAccountsIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAccountsIDNoContent, error) {
+func (a *Client) DeleteAccountsID(params *DeleteAccountsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAccountsIDNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteAccountsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteAccountsID",
 		Method:             "DELETE",
 		PathPattern:        "/accounts/{id}",
@@ -47,7 +321,12 @@ func (a *Client) DeleteAccountsID(params *DeleteAccountsIDParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -61,15 +340,14 @@ func (a *Client) DeleteAccountsID(params *DeleteAccountsIDParams, authInfo runti
 }
 
 /*
-DeleteAppsID deletes app
+  DeleteAppsID deletes app
 */
-func (a *Client) DeleteAppsID(params *DeleteAppsIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppsIDNoContent, error) {
+func (a *Client) DeleteAppsID(params *DeleteAppsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAppsIDNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteAppsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteAppsID",
 		Method:             "DELETE",
 		PathPattern:        "/apps/{id}",
@@ -81,7 +359,12 @@ func (a *Client) DeleteAppsID(params *DeleteAppsIDParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -95,15 +378,14 @@ func (a *Client) DeleteAppsID(params *DeleteAppsIDParams, authInfo runtime.Clien
 }
 
 /*
-DeleteBackupRetentionPoliciesID deletes backup retention policy
+  DeleteBackupRetentionPoliciesID deletes backup retention policy
 */
-func (a *Client) DeleteBackupRetentionPoliciesID(params *DeleteBackupRetentionPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBackupRetentionPoliciesIDNoContent, error) {
+func (a *Client) DeleteBackupRetentionPoliciesID(params *DeleteBackupRetentionPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteBackupRetentionPoliciesIDNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteBackupRetentionPoliciesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteBackupRetentionPoliciesID",
 		Method:             "DELETE",
 		PathPattern:        "/backup_retention_policies/{id}",
@@ -115,7 +397,12 @@ func (a *Client) DeleteBackupRetentionPoliciesID(params *DeleteBackupRetentionPo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -129,15 +416,14 @@ func (a *Client) DeleteBackupRetentionPoliciesID(params *DeleteBackupRetentionPo
 }
 
 /*
-DeleteCertificatesID deletes certificate
+  DeleteCertificatesID deletes certificate
 */
-func (a *Client) DeleteCertificatesID(params *DeleteCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCertificatesIDNoContent, error) {
+func (a *Client) DeleteCertificatesID(params *DeleteCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteCertificatesIDNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteCertificatesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteCertificatesID",
 		Method:             "DELETE",
 		PathPattern:        "/certificates/{id}",
@@ -149,7 +435,12 @@ func (a *Client) DeleteCertificatesID(params *DeleteCertificatesIDParams, authIn
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -163,15 +454,14 @@ func (a *Client) DeleteCertificatesID(params *DeleteCertificatesIDParams, authIn
 }
 
 /*
-DeleteConfigurationsID deletes configuration
+  DeleteConfigurationsID deletes configuration
 */
-func (a *Client) DeleteConfigurationsID(params *DeleteConfigurationsIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigurationsIDNoContent, error) {
+func (a *Client) DeleteConfigurationsID(params *DeleteConfigurationsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteConfigurationsIDNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteConfigurationsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteConfigurationsID",
 		Method:             "DELETE",
 		PathPattern:        "/configurations/{id}",
@@ -183,7 +473,12 @@ func (a *Client) DeleteConfigurationsID(params *DeleteConfigurationsIDParams, au
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -197,15 +492,14 @@ func (a *Client) DeleteConfigurationsID(params *DeleteConfigurationsIDParams, au
 }
 
 /*
-DeleteDatabasesID deletes database
+  DeleteDatabasesID deletes database
 */
-func (a *Client) DeleteDatabasesID(params *DeleteDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDatabasesIDNoContent, error) {
+func (a *Client) DeleteDatabasesID(params *DeleteDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDatabasesIDNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteDatabasesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteDatabasesID",
 		Method:             "DELETE",
 		PathPattern:        "/databases/{id}",
@@ -217,7 +511,12 @@ func (a *Client) DeleteDatabasesID(params *DeleteDatabasesIDParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -231,15 +530,14 @@ func (a *Client) DeleteDatabasesID(params *DeleteDatabasesIDParams, authInfo run
 }
 
 /*
-DeleteLogDrainsID deletes log drain
+  DeleteLogDrainsID deletes log drain
 */
-func (a *Client) DeleteLogDrainsID(params *DeleteLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLogDrainsIDNoContent, error) {
+func (a *Client) DeleteLogDrainsID(params *DeleteLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteLogDrainsIDNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteLogDrainsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteLogDrainsID",
 		Method:             "DELETE",
 		PathPattern:        "/log_drains/{id}",
@@ -251,7 +549,12 @@ func (a *Client) DeleteLogDrainsID(params *DeleteLogDrainsIDParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -265,15 +568,14 @@ func (a *Client) DeleteLogDrainsID(params *DeleteLogDrainsIDParams, authInfo run
 }
 
 /*
-DeletePermissionsID deletes permission
+  DeletePermissionsID deletes permission
 */
-func (a *Client) DeletePermissionsID(params *DeletePermissionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePermissionsIDNoContent, error) {
+func (a *Client) DeletePermissionsID(params *DeletePermissionsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeletePermissionsIDNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeletePermissionsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeletePermissionsID",
 		Method:             "DELETE",
 		PathPattern:        "/permissions/{id}",
@@ -285,7 +587,12 @@ func (a *Client) DeletePermissionsID(params *DeletePermissionsIDParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -299,15 +606,14 @@ func (a *Client) DeletePermissionsID(params *DeletePermissionsIDParams, authInfo
 }
 
 /*
-DeleteVhostsID deletes vhost
+  DeleteVhostsID deletes vhost
 */
-func (a *Client) DeleteVhostsID(params *DeleteVhostsIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteVhostsIDNoContent, error) {
+func (a *Client) DeleteVhostsID(params *DeleteVhostsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVhostsIDNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteVhostsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "DeleteVhostsID",
 		Method:             "DELETE",
 		PathPattern:        "/vhosts/{id}",
@@ -319,7 +625,12 @@ func (a *Client) DeleteVhostsID(params *DeleteVhostsIDParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -333,15 +644,14 @@ func (a *Client) DeleteVhostsID(params *DeleteVhostsIDParams, authInfo runtime.C
 }
 
 /*
-Get shows home
+  Get shows home
 */
-func (a *Client) Get(params *GetParams, authInfo runtime.ClientAuthInfoWriter) (*GetOK, error) {
+func (a *Client) Get(params *GetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "Get",
 		Method:             "GET",
 		PathPattern:        "/",
@@ -353,7 +663,12 @@ func (a *Client) Get(params *GetParams, authInfo runtime.ClientAuthInfoWriter) (
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -368,15 +683,14 @@ func (a *Client) Get(params *GetParams, authInfo runtime.ClientAuthInfoWriter) (
 }
 
 /*
-GetAccounts lists accounts
+  GetAccounts lists accounts
 */
-func (a *Client) GetAccounts(params *GetAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsOK, error) {
+func (a *Client) GetAccounts(params *GetAccountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccounts",
 		Method:             "GET",
 		PathPattern:        "/accounts",
@@ -388,7 +702,12 @@ func (a *Client) GetAccounts(params *GetAccountsParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -402,15 +721,14 @@ func (a *Client) GetAccounts(params *GetAccountsParams, authInfo runtime.ClientA
 }
 
 /*
-GetAccountsAccountIDActivityReports lists activity reports
+  GetAccountsAccountIDActivityReports lists activity reports
 */
-func (a *Client) GetAccountsAccountIDActivityReports(params *GetAccountsAccountIDActivityReportsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDActivityReportsOK, error) {
+func (a *Client) GetAccountsAccountIDActivityReports(params *GetAccountsAccountIDActivityReportsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDActivityReportsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDActivityReportsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDActivityReports",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/activity_reports",
@@ -422,7 +740,12 @@ func (a *Client) GetAccountsAccountIDActivityReports(params *GetAccountsAccountI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -436,15 +759,14 @@ func (a *Client) GetAccountsAccountIDActivityReports(params *GetAccountsAccountI
 }
 
 /*
-GetAccountsAccountIDApps lists apps
+  GetAccountsAccountIDApps lists apps
 */
-func (a *Client) GetAccountsAccountIDApps(params *GetAccountsAccountIDAppsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDAppsOK, error) {
+func (a *Client) GetAccountsAccountIDApps(params *GetAccountsAccountIDAppsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDAppsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDAppsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDApps",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/apps",
@@ -456,7 +778,12 @@ func (a *Client) GetAccountsAccountIDApps(params *GetAccountsAccountIDAppsParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -470,15 +797,14 @@ func (a *Client) GetAccountsAccountIDApps(params *GetAccountsAccountIDAppsParams
 }
 
 /*
-GetAccountsAccountIDBackupRetentionPolicies lists backup retention policies
+  GetAccountsAccountIDBackupRetentionPolicies lists backup retention policies
 */
-func (a *Client) GetAccountsAccountIDBackupRetentionPolicies(params *GetAccountsAccountIDBackupRetentionPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDBackupRetentionPoliciesOK, error) {
+func (a *Client) GetAccountsAccountIDBackupRetentionPolicies(params *GetAccountsAccountIDBackupRetentionPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDBackupRetentionPoliciesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDBackupRetentionPoliciesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDBackupRetentionPolicies",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/backup_retention_policies",
@@ -490,7 +816,12 @@ func (a *Client) GetAccountsAccountIDBackupRetentionPolicies(params *GetAccounts
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -504,15 +835,14 @@ func (a *Client) GetAccountsAccountIDBackupRetentionPolicies(params *GetAccounts
 }
 
 /*
-GetAccountsAccountIDBackups lists backups
+  GetAccountsAccountIDBackups lists backups
 */
-func (a *Client) GetAccountsAccountIDBackups(params *GetAccountsAccountIDBackupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDBackupsOK, error) {
+func (a *Client) GetAccountsAccountIDBackups(params *GetAccountsAccountIDBackupsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDBackupsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDBackupsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDBackups",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/backups",
@@ -524,7 +854,12 @@ func (a *Client) GetAccountsAccountIDBackups(params *GetAccountsAccountIDBackups
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -538,15 +873,14 @@ func (a *Client) GetAccountsAccountIDBackups(params *GetAccountsAccountIDBackups
 }
 
 /*
-GetAccountsAccountIDCertificates lists certificates
+  GetAccountsAccountIDCertificates lists certificates
 */
-func (a *Client) GetAccountsAccountIDCertificates(params *GetAccountsAccountIDCertificatesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDCertificatesOK, error) {
+func (a *Client) GetAccountsAccountIDCertificates(params *GetAccountsAccountIDCertificatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDCertificatesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDCertificatesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDCertificates",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/certificates",
@@ -558,7 +892,12 @@ func (a *Client) GetAccountsAccountIDCertificates(params *GetAccountsAccountIDCe
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -572,15 +911,14 @@ func (a *Client) GetAccountsAccountIDCertificates(params *GetAccountsAccountIDCe
 }
 
 /*
-GetAccountsAccountIDDatabases lists databases
+  GetAccountsAccountIDDatabases lists databases
 */
-func (a *Client) GetAccountsAccountIDDatabases(params *GetAccountsAccountIDDatabasesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDDatabasesOK, error) {
+func (a *Client) GetAccountsAccountIDDatabases(params *GetAccountsAccountIDDatabasesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDDatabasesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDDatabasesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDDatabases",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/databases",
@@ -592,7 +930,12 @@ func (a *Client) GetAccountsAccountIDDatabases(params *GetAccountsAccountIDDatab
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -606,15 +949,14 @@ func (a *Client) GetAccountsAccountIDDatabases(params *GetAccountsAccountIDDatab
 }
 
 /*
-GetAccountsAccountIDDisks lists disks
+  GetAccountsAccountIDDisks lists disks
 */
-func (a *Client) GetAccountsAccountIDDisks(params *GetAccountsAccountIDDisksParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDDisksOK, error) {
+func (a *Client) GetAccountsAccountIDDisks(params *GetAccountsAccountIDDisksParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDDisksOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDDisksParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDDisks",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/disks",
@@ -626,7 +968,12 @@ func (a *Client) GetAccountsAccountIDDisks(params *GetAccountsAccountIDDisksPara
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -640,15 +987,14 @@ func (a *Client) GetAccountsAccountIDDisks(params *GetAccountsAccountIDDisksPara
 }
 
 /*
-GetAccountsAccountIDLogDrains lists log drains
+  GetAccountsAccountIDLogDrains lists log drains
 */
-func (a *Client) GetAccountsAccountIDLogDrains(params *GetAccountsAccountIDLogDrainsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDLogDrainsOK, error) {
+func (a *Client) GetAccountsAccountIDLogDrains(params *GetAccountsAccountIDLogDrainsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDLogDrainsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDLogDrainsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDLogDrains",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/log_drains",
@@ -660,7 +1006,12 @@ func (a *Client) GetAccountsAccountIDLogDrains(params *GetAccountsAccountIDLogDr
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -674,15 +1025,14 @@ func (a *Client) GetAccountsAccountIDLogDrains(params *GetAccountsAccountIDLogDr
 }
 
 /*
-GetAccountsAccountIDMetricDrains lists metric drains
+  GetAccountsAccountIDMetricDrains lists metric drains
 */
-func (a *Client) GetAccountsAccountIDMetricDrains(params *GetAccountsAccountIDMetricDrainsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDMetricDrainsOK, error) {
+func (a *Client) GetAccountsAccountIDMetricDrains(params *GetAccountsAccountIDMetricDrainsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDMetricDrainsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDMetricDrainsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDMetricDrains",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/metric_drains",
@@ -694,7 +1044,12 @@ func (a *Client) GetAccountsAccountIDMetricDrains(params *GetAccountsAccountIDMe
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -708,15 +1063,14 @@ func (a *Client) GetAccountsAccountIDMetricDrains(params *GetAccountsAccountIDMe
 }
 
 /*
-GetAccountsAccountIDOperations lists operations
+  GetAccountsAccountIDOperations lists operations
 */
-func (a *Client) GetAccountsAccountIDOperations(params *GetAccountsAccountIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDOperationsOK, error) {
+func (a *Client) GetAccountsAccountIDOperations(params *GetAccountsAccountIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDOperationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDOperations",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/operations",
@@ -728,7 +1082,12 @@ func (a *Client) GetAccountsAccountIDOperations(params *GetAccountsAccountIDOper
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -742,15 +1101,14 @@ func (a *Client) GetAccountsAccountIDOperations(params *GetAccountsAccountIDOper
 }
 
 /*
-GetAccountsAccountIDPermissions lists permissions
+  GetAccountsAccountIDPermissions lists permissions
 */
-func (a *Client) GetAccountsAccountIDPermissions(params *GetAccountsAccountIDPermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDPermissionsOK, error) {
+func (a *Client) GetAccountsAccountIDPermissions(params *GetAccountsAccountIDPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDPermissionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDPermissionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDPermissions",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/permissions",
@@ -762,7 +1120,12 @@ func (a *Client) GetAccountsAccountIDPermissions(params *GetAccountsAccountIDPer
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -776,15 +1139,14 @@ func (a *Client) GetAccountsAccountIDPermissions(params *GetAccountsAccountIDPer
 }
 
 /*
-GetAccountsAccountIDServices lists services
+  GetAccountsAccountIDServices lists services
 */
-func (a *Client) GetAccountsAccountIDServices(params *GetAccountsAccountIDServicesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDServicesOK, error) {
+func (a *Client) GetAccountsAccountIDServices(params *GetAccountsAccountIDServicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDServicesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDServicesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDServices",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/services",
@@ -796,7 +1158,12 @@ func (a *Client) GetAccountsAccountIDServices(params *GetAccountsAccountIDServic
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -810,15 +1177,14 @@ func (a *Client) GetAccountsAccountIDServices(params *GetAccountsAccountIDServic
 }
 
 /*
-GetAccountsAccountIDVhosts lists vhosts
+  GetAccountsAccountIDVhosts lists vhosts
 */
-func (a *Client) GetAccountsAccountIDVhosts(params *GetAccountsAccountIDVhostsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsAccountIDVhostsOK, error) {
+func (a *Client) GetAccountsAccountIDVhosts(params *GetAccountsAccountIDVhostsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsAccountIDVhostsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsAccountIDVhostsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsAccountIDVhosts",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account_id}/vhosts",
@@ -830,7 +1196,12 @@ func (a *Client) GetAccountsAccountIDVhosts(params *GetAccountsAccountIDVhostsPa
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -844,15 +1215,14 @@ func (a *Client) GetAccountsAccountIDVhosts(params *GetAccountsAccountIDVhostsPa
 }
 
 /*
-GetAccountsID shows account
+  GetAccountsID shows account
 */
-func (a *Client) GetAccountsID(params *GetAccountsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsIDOK, error) {
+func (a *Client) GetAccountsID(params *GetAccountsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAccountsID",
 		Method:             "GET",
 		PathPattern:        "/accounts/{id}",
@@ -864,7 +1234,12 @@ func (a *Client) GetAccountsID(params *GetAccountsIDParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -878,15 +1253,14 @@ func (a *Client) GetAccountsID(params *GetAccountsIDParams, authInfo runtime.Cli
 }
 
 /*
-GetActivityReportsActivityReportIDDownload downloads activity report
+  GetActivityReportsActivityReportIDDownload downloads activity report
 */
-func (a *Client) GetActivityReportsActivityReportIDDownload(params *GetActivityReportsActivityReportIDDownloadParams, authInfo runtime.ClientAuthInfoWriter) (*GetActivityReportsActivityReportIDDownloadOK, error) {
+func (a *Client) GetActivityReportsActivityReportIDDownload(params *GetActivityReportsActivityReportIDDownloadParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetActivityReportsActivityReportIDDownloadOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetActivityReportsActivityReportIDDownloadParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetActivityReportsActivityReportIDDownload",
 		Method:             "GET",
 		PathPattern:        "/activity_reports/{activity_report_id}/download",
@@ -898,7 +1272,12 @@ func (a *Client) GetActivityReportsActivityReportIDDownload(params *GetActivityR
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -912,15 +1291,14 @@ func (a *Client) GetActivityReportsActivityReportIDDownload(params *GetActivityR
 }
 
 /*
-GetActivityReportsID shows activity report
+  GetActivityReportsID shows activity report
 */
-func (a *Client) GetActivityReportsID(params *GetActivityReportsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetActivityReportsIDOK, error) {
+func (a *Client) GetActivityReportsID(params *GetActivityReportsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetActivityReportsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetActivityReportsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetActivityReportsID",
 		Method:             "GET",
 		PathPattern:        "/activity_reports/{id}",
@@ -932,7 +1310,12 @@ func (a *Client) GetActivityReportsID(params *GetActivityReportsIDParams, authIn
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -946,15 +1329,14 @@ func (a *Client) GetActivityReportsID(params *GetActivityReportsIDParams, authIn
 }
 
 /*
-GetApps lists apps
+  GetApps lists apps
 */
-func (a *Client) GetApps(params *GetAppsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppsOK, error) {
+func (a *Client) GetApps(params *GetAppsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAppsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetApps",
 		Method:             "GET",
 		PathPattern:        "/apps",
@@ -966,7 +1348,12 @@ func (a *Client) GetApps(params *GetAppsParams, authInfo runtime.ClientAuthInfoW
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -980,15 +1367,14 @@ func (a *Client) GetApps(params *GetAppsParams, authInfo runtime.ClientAuthInfoW
 }
 
 /*
-GetAppsAppIDConfigurations lists configurations
+  GetAppsAppIDConfigurations lists configurations
 */
-func (a *Client) GetAppsAppIDConfigurations(params *GetAppsAppIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppsAppIDConfigurationsOK, error) {
+func (a *Client) GetAppsAppIDConfigurations(params *GetAppsAppIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDConfigurationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAppsAppIDConfigurationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAppsAppIDConfigurations",
 		Method:             "GET",
 		PathPattern:        "/apps/{app_id}/configurations",
@@ -1000,7 +1386,12 @@ func (a *Client) GetAppsAppIDConfigurations(params *GetAppsAppIDConfigurationsPa
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1014,15 +1405,14 @@ func (a *Client) GetAppsAppIDConfigurations(params *GetAppsAppIDConfigurationsPa
 }
 
 /*
-GetAppsAppIDEphemeralSessions lists ephemeral sessions
+  GetAppsAppIDEphemeralSessions lists ephemeral sessions
 */
-func (a *Client) GetAppsAppIDEphemeralSessions(params *GetAppsAppIDEphemeralSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppsAppIDEphemeralSessionsOK, error) {
+func (a *Client) GetAppsAppIDEphemeralSessions(params *GetAppsAppIDEphemeralSessionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDEphemeralSessionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAppsAppIDEphemeralSessionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAppsAppIDEphemeralSessions",
 		Method:             "GET",
 		PathPattern:        "/apps/{app_id}/ephemeral_sessions",
@@ -1034,7 +1424,12 @@ func (a *Client) GetAppsAppIDEphemeralSessions(params *GetAppsAppIDEphemeralSess
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1048,15 +1443,14 @@ func (a *Client) GetAppsAppIDEphemeralSessions(params *GetAppsAppIDEphemeralSess
 }
 
 /*
-GetAppsAppIDImages lists images
+  GetAppsAppIDImages lists images
 */
-func (a *Client) GetAppsAppIDImages(params *GetAppsAppIDImagesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppsAppIDImagesOK, error) {
+func (a *Client) GetAppsAppIDImages(params *GetAppsAppIDImagesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDImagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAppsAppIDImagesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAppsAppIDImages",
 		Method:             "GET",
 		PathPattern:        "/apps/{app_id}/images",
@@ -1068,7 +1462,12 @@ func (a *Client) GetAppsAppIDImages(params *GetAppsAppIDImagesParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1082,15 +1481,14 @@ func (a *Client) GetAppsAppIDImages(params *GetAppsAppIDImagesParams, authInfo r
 }
 
 /*
-GetAppsAppIDOperations lists operations
+  GetAppsAppIDOperations lists operations
 */
-func (a *Client) GetAppsAppIDOperations(params *GetAppsAppIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppsAppIDOperationsOK, error) {
+func (a *Client) GetAppsAppIDOperations(params *GetAppsAppIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDOperationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAppsAppIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAppsAppIDOperations",
 		Method:             "GET",
 		PathPattern:        "/apps/{app_id}/operations",
@@ -1102,7 +1500,12 @@ func (a *Client) GetAppsAppIDOperations(params *GetAppsAppIDOperationsParams, au
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1116,15 +1519,14 @@ func (a *Client) GetAppsAppIDOperations(params *GetAppsAppIDOperationsParams, au
 }
 
 /*
-GetAppsAppIDServices lists services
+  GetAppsAppIDServices lists services
 */
-func (a *Client) GetAppsAppIDServices(params *GetAppsAppIDServicesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppsAppIDServicesOK, error) {
+func (a *Client) GetAppsAppIDServices(params *GetAppsAppIDServicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDServicesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAppsAppIDServicesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAppsAppIDServices",
 		Method:             "GET",
 		PathPattern:        "/apps/{app_id}/services",
@@ -1136,7 +1538,12 @@ func (a *Client) GetAppsAppIDServices(params *GetAppsAppIDServicesParams, authIn
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1150,15 +1557,14 @@ func (a *Client) GetAppsAppIDServices(params *GetAppsAppIDServicesParams, authIn
 }
 
 /*
-GetAppsAppIDVhosts lists vhosts
+  GetAppsAppIDVhosts lists vhosts
 */
-func (a *Client) GetAppsAppIDVhosts(params *GetAppsAppIDVhostsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppsAppIDVhostsOK, error) {
+func (a *Client) GetAppsAppIDVhosts(params *GetAppsAppIDVhostsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsAppIDVhostsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAppsAppIDVhostsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAppsAppIDVhosts",
 		Method:             "GET",
 		PathPattern:        "/apps/{app_id}/vhosts",
@@ -1170,7 +1576,12 @@ func (a *Client) GetAppsAppIDVhosts(params *GetAppsAppIDVhostsParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1184,15 +1595,14 @@ func (a *Client) GetAppsAppIDVhosts(params *GetAppsAppIDVhostsParams, authInfo r
 }
 
 /*
-GetAppsID shows app
+  GetAppsID shows app
 */
-func (a *Client) GetAppsID(params *GetAppsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppsIDOK, error) {
+func (a *Client) GetAppsID(params *GetAppsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAppsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAppsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetAppsID",
 		Method:             "GET",
 		PathPattern:        "/apps/{id}",
@@ -1204,7 +1614,12 @@ func (a *Client) GetAppsID(params *GetAppsIDParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1218,15 +1633,14 @@ func (a *Client) GetAppsID(params *GetAppsIDParams, authInfo runtime.ClientAuthI
 }
 
 /*
-GetBackupRetentionPoliciesID shows backup retention policy
+  GetBackupRetentionPoliciesID shows backup retention policy
 */
-func (a *Client) GetBackupRetentionPoliciesID(params *GetBackupRetentionPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackupRetentionPoliciesIDOK, error) {
+func (a *Client) GetBackupRetentionPoliciesID(params *GetBackupRetentionPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetBackupRetentionPoliciesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetBackupRetentionPoliciesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetBackupRetentionPoliciesID",
 		Method:             "GET",
 		PathPattern:        "/backup_retention_policies/{id}",
@@ -1238,7 +1652,12 @@ func (a *Client) GetBackupRetentionPoliciesID(params *GetBackupRetentionPolicies
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1252,15 +1671,14 @@ func (a *Client) GetBackupRetentionPoliciesID(params *GetBackupRetentionPolicies
 }
 
 /*
-GetBackupsBackupIDCopies lists backups
+  GetBackupsBackupIDCopies lists backups
 */
-func (a *Client) GetBackupsBackupIDCopies(params *GetBackupsBackupIDCopiesParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackupsBackupIDCopiesOK, error) {
+func (a *Client) GetBackupsBackupIDCopies(params *GetBackupsBackupIDCopiesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetBackupsBackupIDCopiesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetBackupsBackupIDCopiesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetBackupsBackupIDCopies",
 		Method:             "GET",
 		PathPattern:        "/backups/{backup_id}/copies",
@@ -1272,7 +1690,12 @@ func (a *Client) GetBackupsBackupIDCopies(params *GetBackupsBackupIDCopiesParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1286,15 +1709,14 @@ func (a *Client) GetBackupsBackupIDCopies(params *GetBackupsBackupIDCopiesParams
 }
 
 /*
-GetBackupsBackupIDOperations lists operations
+  GetBackupsBackupIDOperations lists operations
 */
-func (a *Client) GetBackupsBackupIDOperations(params *GetBackupsBackupIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackupsBackupIDOperationsOK, error) {
+func (a *Client) GetBackupsBackupIDOperations(params *GetBackupsBackupIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetBackupsBackupIDOperationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetBackupsBackupIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetBackupsBackupIDOperations",
 		Method:             "GET",
 		PathPattern:        "/backups/{backup_id}/operations",
@@ -1306,7 +1728,12 @@ func (a *Client) GetBackupsBackupIDOperations(params *GetBackupsBackupIDOperatio
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1320,15 +1747,14 @@ func (a *Client) GetBackupsBackupIDOperations(params *GetBackupsBackupIDOperatio
 }
 
 /*
-GetBackupsID shows backup
+  GetBackupsID shows backup
 */
-func (a *Client) GetBackupsID(params *GetBackupsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackupsIDOK, error) {
+func (a *Client) GetBackupsID(params *GetBackupsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetBackupsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetBackupsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetBackupsID",
 		Method:             "GET",
 		PathPattern:        "/backups/{id}",
@@ -1340,7 +1766,12 @@ func (a *Client) GetBackupsID(params *GetBackupsIDParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1354,15 +1785,14 @@ func (a *Client) GetBackupsID(params *GetBackupsIDParams, authInfo runtime.Clien
 }
 
 /*
-GetCertificatesCertificateIDApps lists apps
+  GetCertificatesCertificateIDApps lists apps
 */
-func (a *Client) GetCertificatesCertificateIDApps(params *GetCertificatesCertificateIDAppsParams, authInfo runtime.ClientAuthInfoWriter) (*GetCertificatesCertificateIDAppsOK, error) {
+func (a *Client) GetCertificatesCertificateIDApps(params *GetCertificatesCertificateIDAppsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCertificatesCertificateIDAppsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetCertificatesCertificateIDAppsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetCertificatesCertificateIDApps",
 		Method:             "GET",
 		PathPattern:        "/certificates/{certificate_id}/apps",
@@ -1374,7 +1804,12 @@ func (a *Client) GetCertificatesCertificateIDApps(params *GetCertificatesCertifi
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1388,15 +1823,14 @@ func (a *Client) GetCertificatesCertificateIDApps(params *GetCertificatesCertifi
 }
 
 /*
-GetCertificatesCertificateIDVhosts lists vhosts
+  GetCertificatesCertificateIDVhosts lists vhosts
 */
-func (a *Client) GetCertificatesCertificateIDVhosts(params *GetCertificatesCertificateIDVhostsParams, authInfo runtime.ClientAuthInfoWriter) (*GetCertificatesCertificateIDVhostsOK, error) {
+func (a *Client) GetCertificatesCertificateIDVhosts(params *GetCertificatesCertificateIDVhostsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCertificatesCertificateIDVhostsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetCertificatesCertificateIDVhostsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetCertificatesCertificateIDVhosts",
 		Method:             "GET",
 		PathPattern:        "/certificates/{certificate_id}/vhosts",
@@ -1408,7 +1842,12 @@ func (a *Client) GetCertificatesCertificateIDVhosts(params *GetCertificatesCerti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1422,15 +1861,14 @@ func (a *Client) GetCertificatesCertificateIDVhosts(params *GetCertificatesCerti
 }
 
 /*
-GetCertificatesID shows certificate
+  GetCertificatesID shows certificate
 */
-func (a *Client) GetCertificatesID(params *GetCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetCertificatesIDOK, error) {
+func (a *Client) GetCertificatesID(params *GetCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCertificatesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetCertificatesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetCertificatesID",
 		Method:             "GET",
 		PathPattern:        "/certificates/{id}",
@@ -1442,7 +1880,12 @@ func (a *Client) GetCertificatesID(params *GetCertificatesIDParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1456,15 +1899,14 @@ func (a *Client) GetCertificatesID(params *GetCertificatesIDParams, authInfo run
 }
 
 /*
-GetConfigurationsID shows configuration
+  GetConfigurationsID shows configuration
 */
-func (a *Client) GetConfigurationsID(params *GetConfigurationsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigurationsIDOK, error) {
+func (a *Client) GetConfigurationsID(params *GetConfigurationsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConfigurationsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetConfigurationsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetConfigurationsID",
 		Method:             "GET",
 		PathPattern:        "/configurations/{id}",
@@ -1476,7 +1918,12 @@ func (a *Client) GetConfigurationsID(params *GetConfigurationsIDParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1490,15 +1937,14 @@ func (a *Client) GetConfigurationsID(params *GetConfigurationsIDParams, authInfo
 }
 
 /*
-GetContainersID shows container
+  GetContainersID shows container
 */
-func (a *Client) GetContainersID(params *GetContainersIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetContainersIDOK, error) {
+func (a *Client) GetContainersID(params *GetContainersIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetContainersIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetContainersIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetContainersID",
 		Method:             "GET",
 		PathPattern:        "/containers/{id}",
@@ -1510,7 +1956,12 @@ func (a *Client) GetContainersID(params *GetContainersIDParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1524,15 +1975,14 @@ func (a *Client) GetContainersID(params *GetContainersIDParams, authInfo runtime
 }
 
 /*
-GetDatabaseCredentialsDatabaseCredentialIDOperations lists operations
+  GetDatabaseCredentialsDatabaseCredentialIDOperations lists operations
 */
-func (a *Client) GetDatabaseCredentialsDatabaseCredentialIDOperations(params *GetDatabaseCredentialsDatabaseCredentialIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabaseCredentialsDatabaseCredentialIDOperationsOK, error) {
+func (a *Client) GetDatabaseCredentialsDatabaseCredentialIDOperations(params *GetDatabaseCredentialsDatabaseCredentialIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabaseCredentialsDatabaseCredentialIDOperationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabaseCredentialsDatabaseCredentialIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabaseCredentialsDatabaseCredentialIDOperations",
 		Method:             "GET",
 		PathPattern:        "/database_credentials/{database_credential_id}/operations",
@@ -1544,7 +1994,12 @@ func (a *Client) GetDatabaseCredentialsDatabaseCredentialIDOperations(params *Ge
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1558,15 +2013,14 @@ func (a *Client) GetDatabaseCredentialsDatabaseCredentialIDOperations(params *Ge
 }
 
 /*
-GetDatabaseCredentialsID shows database credential
+  GetDatabaseCredentialsID shows database credential
 */
-func (a *Client) GetDatabaseCredentialsID(params *GetDatabaseCredentialsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabaseCredentialsIDOK, error) {
+func (a *Client) GetDatabaseCredentialsID(params *GetDatabaseCredentialsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabaseCredentialsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabaseCredentialsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabaseCredentialsID",
 		Method:             "GET",
 		PathPattern:        "/database_credentials/{id}",
@@ -1578,7 +2032,12 @@ func (a *Client) GetDatabaseCredentialsID(params *GetDatabaseCredentialsIDParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1592,15 +2051,14 @@ func (a *Client) GetDatabaseCredentialsID(params *GetDatabaseCredentialsIDParams
 }
 
 /*
-GetDatabaseImages lists database images
+  GetDatabaseImages lists database images
 */
-func (a *Client) GetDatabaseImages(params *GetDatabaseImagesParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabaseImagesOK, error) {
+func (a *Client) GetDatabaseImages(params *GetDatabaseImagesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabaseImagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabaseImagesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabaseImages",
 		Method:             "GET",
 		PathPattern:        "/database_images",
@@ -1612,7 +2070,12 @@ func (a *Client) GetDatabaseImages(params *GetDatabaseImagesParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1626,15 +2089,14 @@ func (a *Client) GetDatabaseImages(params *GetDatabaseImagesParams, authInfo run
 }
 
 /*
-GetDatabaseImagesID shows database image
+  GetDatabaseImagesID shows database image
 */
-func (a *Client) GetDatabaseImagesID(params *GetDatabaseImagesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabaseImagesIDOK, error) {
+func (a *Client) GetDatabaseImagesID(params *GetDatabaseImagesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabaseImagesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabaseImagesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabaseImagesID",
 		Method:             "GET",
 		PathPattern:        "/database_images/{id}",
@@ -1646,7 +2108,12 @@ func (a *Client) GetDatabaseImagesID(params *GetDatabaseImagesIDParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1660,15 +2127,14 @@ func (a *Client) GetDatabaseImagesID(params *GetDatabaseImagesIDParams, authInfo
 }
 
 /*
-GetDatabases lists databases
+  GetDatabases lists databases
 */
-func (a *Client) GetDatabases(params *GetDatabasesParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabasesOK, error) {
+func (a *Client) GetDatabases(params *GetDatabasesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabasesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabases",
 		Method:             "GET",
 		PathPattern:        "/databases",
@@ -1680,7 +2146,12 @@ func (a *Client) GetDatabases(params *GetDatabasesParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1694,15 +2165,14 @@ func (a *Client) GetDatabases(params *GetDatabasesParams, authInfo runtime.Clien
 }
 
 /*
-GetDatabasesDatabaseIDBackups lists backups
+  GetDatabasesDatabaseIDBackups lists backups
 */
-func (a *Client) GetDatabasesDatabaseIDBackups(params *GetDatabasesDatabaseIDBackupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabasesDatabaseIDBackupsOK, error) {
+func (a *Client) GetDatabasesDatabaseIDBackups(params *GetDatabasesDatabaseIDBackupsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDBackupsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabasesDatabaseIDBackupsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabasesDatabaseIDBackups",
 		Method:             "GET",
 		PathPattern:        "/databases/{database_id}/backups",
@@ -1714,7 +2184,12 @@ func (a *Client) GetDatabasesDatabaseIDBackups(params *GetDatabasesDatabaseIDBac
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1728,15 +2203,14 @@ func (a *Client) GetDatabasesDatabaseIDBackups(params *GetDatabasesDatabaseIDBac
 }
 
 /*
-GetDatabasesDatabaseIDConfigurations lists configurations
+  GetDatabasesDatabaseIDConfigurations lists configurations
 */
-func (a *Client) GetDatabasesDatabaseIDConfigurations(params *GetDatabasesDatabaseIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabasesDatabaseIDConfigurationsOK, error) {
+func (a *Client) GetDatabasesDatabaseIDConfigurations(params *GetDatabasesDatabaseIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDConfigurationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabasesDatabaseIDConfigurationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabasesDatabaseIDConfigurations",
 		Method:             "GET",
 		PathPattern:        "/databases/{database_id}/configurations",
@@ -1748,7 +2222,12 @@ func (a *Client) GetDatabasesDatabaseIDConfigurations(params *GetDatabasesDataba
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1762,15 +2241,14 @@ func (a *Client) GetDatabasesDatabaseIDConfigurations(params *GetDatabasesDataba
 }
 
 /*
-GetDatabasesDatabaseIDDatabaseCredentials lists database credentials
+  GetDatabasesDatabaseIDDatabaseCredentials lists database credentials
 */
-func (a *Client) GetDatabasesDatabaseIDDatabaseCredentials(params *GetDatabasesDatabaseIDDatabaseCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabasesDatabaseIDDatabaseCredentialsOK, error) {
+func (a *Client) GetDatabasesDatabaseIDDatabaseCredentials(params *GetDatabasesDatabaseIDDatabaseCredentialsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDDatabaseCredentialsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabasesDatabaseIDDatabaseCredentialsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabasesDatabaseIDDatabaseCredentials",
 		Method:             "GET",
 		PathPattern:        "/databases/{database_id}/database_credentials",
@@ -1782,7 +2260,12 @@ func (a *Client) GetDatabasesDatabaseIDDatabaseCredentials(params *GetDatabasesD
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1796,15 +2279,14 @@ func (a *Client) GetDatabasesDatabaseIDDatabaseCredentials(params *GetDatabasesD
 }
 
 /*
-GetDatabasesDatabaseIDDatabaseImagesID shows database image
+  GetDatabasesDatabaseIDDatabaseImagesID shows database image
 */
-func (a *Client) GetDatabasesDatabaseIDDatabaseImagesID(params *GetDatabasesDatabaseIDDatabaseImagesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabasesDatabaseIDDatabaseImagesIDOK, error) {
+func (a *Client) GetDatabasesDatabaseIDDatabaseImagesID(params *GetDatabasesDatabaseIDDatabaseImagesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDDatabaseImagesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabasesDatabaseIDDatabaseImagesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabasesDatabaseIDDatabaseImagesID",
 		Method:             "GET",
 		PathPattern:        "/databases/{database_id}/database_images/{id}",
@@ -1816,7 +2298,12 @@ func (a *Client) GetDatabasesDatabaseIDDatabaseImagesID(params *GetDatabasesData
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1830,15 +2317,14 @@ func (a *Client) GetDatabasesDatabaseIDDatabaseImagesID(params *GetDatabasesData
 }
 
 /*
-GetDatabasesDatabaseIDDependents lists databases
+  GetDatabasesDatabaseIDDependents lists databases
 */
-func (a *Client) GetDatabasesDatabaseIDDependents(params *GetDatabasesDatabaseIDDependentsParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabasesDatabaseIDDependentsOK, error) {
+func (a *Client) GetDatabasesDatabaseIDDependents(params *GetDatabasesDatabaseIDDependentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDDependentsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabasesDatabaseIDDependentsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabasesDatabaseIDDependents",
 		Method:             "GET",
 		PathPattern:        "/databases/{database_id}/dependents",
@@ -1850,7 +2336,12 @@ func (a *Client) GetDatabasesDatabaseIDDependents(params *GetDatabasesDatabaseID
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1864,15 +2355,14 @@ func (a *Client) GetDatabasesDatabaseIDDependents(params *GetDatabasesDatabaseID
 }
 
 /*
-GetDatabasesDatabaseIDOperations lists operations
+  GetDatabasesDatabaseIDOperations lists operations
 */
-func (a *Client) GetDatabasesDatabaseIDOperations(params *GetDatabasesDatabaseIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabasesDatabaseIDOperationsOK, error) {
+func (a *Client) GetDatabasesDatabaseIDOperations(params *GetDatabasesDatabaseIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesDatabaseIDOperationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabasesDatabaseIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabasesDatabaseIDOperations",
 		Method:             "GET",
 		PathPattern:        "/databases/{database_id}/operations",
@@ -1884,7 +2374,12 @@ func (a *Client) GetDatabasesDatabaseIDOperations(params *GetDatabasesDatabaseID
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1898,15 +2393,14 @@ func (a *Client) GetDatabasesDatabaseIDOperations(params *GetDatabasesDatabaseID
 }
 
 /*
-GetDatabasesID shows database
+  GetDatabasesID shows database
 */
-func (a *Client) GetDatabasesID(params *GetDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetDatabasesIDOK, error) {
+func (a *Client) GetDatabasesID(params *GetDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDatabasesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDatabasesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDatabasesID",
 		Method:             "GET",
 		PathPattern:        "/databases/{id}",
@@ -1918,7 +2412,12 @@ func (a *Client) GetDatabasesID(params *GetDatabasesIDParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1932,15 +2431,14 @@ func (a *Client) GetDatabasesID(params *GetDatabasesIDParams, authInfo runtime.C
 }
 
 /*
-GetDisksID shows disk
+  GetDisksID shows disk
 */
-func (a *Client) GetDisksID(params *GetDisksIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetDisksIDOK, error) {
+func (a *Client) GetDisksID(params *GetDisksIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDisksIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDisksIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetDisksID",
 		Method:             "GET",
 		PathPattern:        "/disks/{id}",
@@ -1952,7 +2450,12 @@ func (a *Client) GetDisksID(params *GetDisksIDParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1966,15 +2469,14 @@ func (a *Client) GetDisksID(params *GetDisksIDParams, authInfo runtime.ClientAut
 }
 
 /*
-GetEphemeralContainersID shows ephemeral container
+  GetEphemeralContainersID shows ephemeral container
 */
-func (a *Client) GetEphemeralContainersID(params *GetEphemeralContainersIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetEphemeralContainersIDOK, error) {
+func (a *Client) GetEphemeralContainersID(params *GetEphemeralContainersIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetEphemeralContainersIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetEphemeralContainersIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetEphemeralContainersID",
 		Method:             "GET",
 		PathPattern:        "/ephemeral_containers/{id}",
@@ -1986,7 +2488,12 @@ func (a *Client) GetEphemeralContainersID(params *GetEphemeralContainersIDParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2000,15 +2507,14 @@ func (a *Client) GetEphemeralContainersID(params *GetEphemeralContainersIDParams
 }
 
 /*
-GetEphemeralSessionsEphemeralSessionIDEphemeralContainers lists ephemeral containers
+  GetEphemeralSessionsEphemeralSessionIDEphemeralContainers lists ephemeral containers
 */
-func (a *Client) GetEphemeralSessionsEphemeralSessionIDEphemeralContainers(params *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersParams, authInfo runtime.ClientAuthInfoWriter) (*GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK, error) {
+func (a *Client) GetEphemeralSessionsEphemeralSessionIDEphemeralContainers(params *GetEphemeralSessionsEphemeralSessionIDEphemeralContainersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetEphemeralSessionsEphemeralSessionIDEphemeralContainersParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetEphemeralSessionsEphemeralSessionIDEphemeralContainers",
 		Method:             "GET",
 		PathPattern:        "/ephemeral_sessions/{ephemeral_session_id}/ephemeral_containers",
@@ -2020,7 +2526,12 @@ func (a *Client) GetEphemeralSessionsEphemeralSessionIDEphemeralContainers(param
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2034,15 +2545,14 @@ func (a *Client) GetEphemeralSessionsEphemeralSessionIDEphemeralContainers(param
 }
 
 /*
-GetEphemeralSessionsEphemeralSessionIDOperations lists operations
+  GetEphemeralSessionsEphemeralSessionIDOperations lists operations
 */
-func (a *Client) GetEphemeralSessionsEphemeralSessionIDOperations(params *GetEphemeralSessionsEphemeralSessionIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetEphemeralSessionsEphemeralSessionIDOperationsOK, error) {
+func (a *Client) GetEphemeralSessionsEphemeralSessionIDOperations(params *GetEphemeralSessionsEphemeralSessionIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetEphemeralSessionsEphemeralSessionIDOperationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetEphemeralSessionsEphemeralSessionIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetEphemeralSessionsEphemeralSessionIDOperations",
 		Method:             "GET",
 		PathPattern:        "/ephemeral_sessions/{ephemeral_session_id}/operations",
@@ -2054,7 +2564,12 @@ func (a *Client) GetEphemeralSessionsEphemeralSessionIDOperations(params *GetEph
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2068,15 +2583,14 @@ func (a *Client) GetEphemeralSessionsEphemeralSessionIDOperations(params *GetEph
 }
 
 /*
-GetEphemeralSessionsID shows ephemeral session
+  GetEphemeralSessionsID shows ephemeral session
 */
-func (a *Client) GetEphemeralSessionsID(params *GetEphemeralSessionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetEphemeralSessionsIDOK, error) {
+func (a *Client) GetEphemeralSessionsID(params *GetEphemeralSessionsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetEphemeralSessionsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetEphemeralSessionsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetEphemeralSessionsID",
 		Method:             "GET",
 		PathPattern:        "/ephemeral_sessions/{id}",
@@ -2088,7 +2602,12 @@ func (a *Client) GetEphemeralSessionsID(params *GetEphemeralSessionsIDParams, au
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2102,15 +2621,14 @@ func (a *Client) GetEphemeralSessionsID(params *GetEphemeralSessionsIDParams, au
 }
 
 /*
-GetImagesID shows image
+  GetImagesID shows image
 */
-func (a *Client) GetImagesID(params *GetImagesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagesIDOK, error) {
+func (a *Client) GetImagesID(params *GetImagesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetImagesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetImagesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetImagesID",
 		Method:             "GET",
 		PathPattern:        "/images/{id}",
@@ -2122,7 +2640,12 @@ func (a *Client) GetImagesID(params *GetImagesIDParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2136,15 +2659,14 @@ func (a *Client) GetImagesID(params *GetImagesIDParams, authInfo runtime.ClientA
 }
 
 /*
-GetImagesImageIDOperations lists operations
+  GetImagesImageIDOperations lists operations
 */
-func (a *Client) GetImagesImageIDOperations(params *GetImagesImageIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagesImageIDOperationsOK, error) {
+func (a *Client) GetImagesImageIDOperations(params *GetImagesImageIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetImagesImageIDOperationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetImagesImageIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetImagesImageIDOperations",
 		Method:             "GET",
 		PathPattern:        "/images/{image_id}/operations",
@@ -2156,7 +2678,12 @@ func (a *Client) GetImagesImageIDOperations(params *GetImagesImageIDOperationsPa
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2170,15 +2697,14 @@ func (a *Client) GetImagesImageIDOperations(params *GetImagesImageIDOperationsPa
 }
 
 /*
-GetIntrusionDetectionReportsID shows intrusion detection report
+  GetIntrusionDetectionReportsID shows intrusion detection report
 */
-func (a *Client) GetIntrusionDetectionReportsID(params *GetIntrusionDetectionReportsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetIntrusionDetectionReportsIDOK, error) {
+func (a *Client) GetIntrusionDetectionReportsID(params *GetIntrusionDetectionReportsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntrusionDetectionReportsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetIntrusionDetectionReportsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetIntrusionDetectionReportsID",
 		Method:             "GET",
 		PathPattern:        "/intrusion_detection_reports/{id}",
@@ -2190,7 +2716,12 @@ func (a *Client) GetIntrusionDetectionReportsID(params *GetIntrusionDetectionRep
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2204,15 +2735,14 @@ func (a *Client) GetIntrusionDetectionReportsID(params *GetIntrusionDetectionRep
 }
 
 /*
-GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv downloads csv intrusion detection report
+  GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv downloads csv intrusion detection report
 */
-func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv(params *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvParams, authInfo runtime.ClientAuthInfoWriter) (*GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK, error) {
+func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv(params *GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv",
 		Method:             "GET",
 		PathPattern:        "/intrusion_detection_reports/{intrusion_report_id}/download_csv",
@@ -2224,7 +2754,12 @@ func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv(params
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2238,15 +2773,14 @@ func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadCsv(params
 }
 
 /*
-GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf downloads pdf intrusion detection report
+  GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf downloads pdf intrusion detection report
 */
-func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf(params *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfParams, authInfo runtime.ClientAuthInfoWriter) (*GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK, error) {
+func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf(params *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetIntrusionDetectionReportsIntrusionReportIDDownloadPdfParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf",
 		Method:             "GET",
 		PathPattern:        "/intrusion_detection_reports/{intrusion_report_id}/download_pdf",
@@ -2258,7 +2792,12 @@ func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf(params
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2272,15 +2811,14 @@ func (a *Client) GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf(params
 }
 
 /*
-GetLogDrainsID shows log drain
+  GetLogDrainsID shows log drain
 */
-func (a *Client) GetLogDrainsID(params *GetLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetLogDrainsIDOK, error) {
+func (a *Client) GetLogDrainsID(params *GetLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLogDrainsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetLogDrainsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetLogDrainsID",
 		Method:             "GET",
 		PathPattern:        "/log_drains/{id}",
@@ -2292,7 +2830,12 @@ func (a *Client) GetLogDrainsID(params *GetLogDrainsIDParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2306,15 +2849,14 @@ func (a *Client) GetLogDrainsID(params *GetLogDrainsIDParams, authInfo runtime.C
 }
 
 /*
-GetLogDrainsLogDrainIDContainers lists containers
+  GetLogDrainsLogDrainIDContainers lists containers
 */
-func (a *Client) GetLogDrainsLogDrainIDContainers(params *GetLogDrainsLogDrainIDContainersParams, authInfo runtime.ClientAuthInfoWriter) (*GetLogDrainsLogDrainIDContainersOK, error) {
+func (a *Client) GetLogDrainsLogDrainIDContainers(params *GetLogDrainsLogDrainIDContainersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLogDrainsLogDrainIDContainersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetLogDrainsLogDrainIDContainersParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetLogDrainsLogDrainIDContainers",
 		Method:             "GET",
 		PathPattern:        "/log_drains/{log_drain_id}/containers",
@@ -2326,7 +2868,12 @@ func (a *Client) GetLogDrainsLogDrainIDContainers(params *GetLogDrainsLogDrainID
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2340,15 +2887,14 @@ func (a *Client) GetLogDrainsLogDrainIDContainers(params *GetLogDrainsLogDrainID
 }
 
 /*
-GetLogDrainsLogDrainIDEphemeralContainers lists ephemeral containers
+  GetLogDrainsLogDrainIDEphemeralContainers lists ephemeral containers
 */
-func (a *Client) GetLogDrainsLogDrainIDEphemeralContainers(params *GetLogDrainsLogDrainIDEphemeralContainersParams, authInfo runtime.ClientAuthInfoWriter) (*GetLogDrainsLogDrainIDEphemeralContainersOK, error) {
+func (a *Client) GetLogDrainsLogDrainIDEphemeralContainers(params *GetLogDrainsLogDrainIDEphemeralContainersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLogDrainsLogDrainIDEphemeralContainersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetLogDrainsLogDrainIDEphemeralContainersParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetLogDrainsLogDrainIDEphemeralContainers",
 		Method:             "GET",
 		PathPattern:        "/log_drains/{log_drain_id}/ephemeral_containers",
@@ -2360,7 +2906,12 @@ func (a *Client) GetLogDrainsLogDrainIDEphemeralContainers(params *GetLogDrainsL
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2374,15 +2925,14 @@ func (a *Client) GetLogDrainsLogDrainIDEphemeralContainers(params *GetLogDrainsL
 }
 
 /*
-GetLogDrainsLogDrainIDOperations lists operations
+  GetLogDrainsLogDrainIDOperations lists operations
 */
-func (a *Client) GetLogDrainsLogDrainIDOperations(params *GetLogDrainsLogDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetLogDrainsLogDrainIDOperationsOK, error) {
+func (a *Client) GetLogDrainsLogDrainIDOperations(params *GetLogDrainsLogDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLogDrainsLogDrainIDOperationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetLogDrainsLogDrainIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetLogDrainsLogDrainIDOperations",
 		Method:             "GET",
 		PathPattern:        "/log_drains/{log_drain_id}/operations",
@@ -2394,7 +2944,12 @@ func (a *Client) GetLogDrainsLogDrainIDOperations(params *GetLogDrainsLogDrainID
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2408,15 +2963,14 @@ func (a *Client) GetLogDrainsLogDrainIDOperations(params *GetLogDrainsLogDrainID
 }
 
 /*
-GetMetricDrainsID shows metric drain
+  GetMetricDrainsID shows metric drain
 */
-func (a *Client) GetMetricDrainsID(params *GetMetricDrainsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetMetricDrainsIDOK, error) {
+func (a *Client) GetMetricDrainsID(params *GetMetricDrainsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetricDrainsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetMetricDrainsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetMetricDrainsID",
 		Method:             "GET",
 		PathPattern:        "/metric_drains/{id}",
@@ -2428,7 +2982,12 @@ func (a *Client) GetMetricDrainsID(params *GetMetricDrainsIDParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2442,15 +3001,14 @@ func (a *Client) GetMetricDrainsID(params *GetMetricDrainsIDParams, authInfo run
 }
 
 /*
-GetMetricDrainsMetricDrainIDContainers lists containers
+  GetMetricDrainsMetricDrainIDContainers lists containers
 */
-func (a *Client) GetMetricDrainsMetricDrainIDContainers(params *GetMetricDrainsMetricDrainIDContainersParams, authInfo runtime.ClientAuthInfoWriter) (*GetMetricDrainsMetricDrainIDContainersOK, error) {
+func (a *Client) GetMetricDrainsMetricDrainIDContainers(params *GetMetricDrainsMetricDrainIDContainersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetricDrainsMetricDrainIDContainersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetMetricDrainsMetricDrainIDContainersParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetMetricDrainsMetricDrainIDContainers",
 		Method:             "GET",
 		PathPattern:        "/metric_drains/{metric_drain_id}/containers",
@@ -2462,7 +3020,12 @@ func (a *Client) GetMetricDrainsMetricDrainIDContainers(params *GetMetricDrainsM
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2476,15 +3039,14 @@ func (a *Client) GetMetricDrainsMetricDrainIDContainers(params *GetMetricDrainsM
 }
 
 /*
-GetMetricDrainsMetricDrainIDOperations lists operations
+  GetMetricDrainsMetricDrainIDOperations lists operations
 */
-func (a *Client) GetMetricDrainsMetricDrainIDOperations(params *GetMetricDrainsMetricDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMetricDrainsMetricDrainIDOperationsOK, error) {
+func (a *Client) GetMetricDrainsMetricDrainIDOperations(params *GetMetricDrainsMetricDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetricDrainsMetricDrainIDOperationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetMetricDrainsMetricDrainIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetMetricDrainsMetricDrainIDOperations",
 		Method:             "GET",
 		PathPattern:        "/metric_drains/{metric_drain_id}/operations",
@@ -2496,7 +3058,12 @@ func (a *Client) GetMetricDrainsMetricDrainIDOperations(params *GetMetricDrainsM
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2510,15 +3077,14 @@ func (a *Client) GetMetricDrainsMetricDrainIDOperations(params *GetMetricDrainsM
 }
 
 /*
-GetOperationsID shows operation
+  GetOperationsID shows operation
 */
-func (a *Client) GetOperationsID(params *GetOperationsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetOperationsIDOK, error) {
+func (a *Client) GetOperationsID(params *GetOperationsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOperationsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOperationsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetOperationsID",
 		Method:             "GET",
 		PathPattern:        "/operations/{id}",
@@ -2530,7 +3096,12 @@ func (a *Client) GetOperationsID(params *GetOperationsIDParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2544,15 +3115,14 @@ func (a *Client) GetOperationsID(params *GetOperationsIDParams, authInfo runtime
 }
 
 /*
-GetOperationsOperationIDEphemeralSessions lists ephemeral sessions
+  GetOperationsOperationIDEphemeralSessions lists ephemeral sessions
 */
-func (a *Client) GetOperationsOperationIDEphemeralSessions(params *GetOperationsOperationIDEphemeralSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOperationsOperationIDEphemeralSessionsOK, error) {
+func (a *Client) GetOperationsOperationIDEphemeralSessions(params *GetOperationsOperationIDEphemeralSessionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOperationsOperationIDEphemeralSessionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOperationsOperationIDEphemeralSessionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetOperationsOperationIDEphemeralSessions",
 		Method:             "GET",
 		PathPattern:        "/operations/{operation_id}/ephemeral_sessions",
@@ -2564,7 +3134,12 @@ func (a *Client) GetOperationsOperationIDEphemeralSessions(params *GetOperations
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2578,15 +3153,14 @@ func (a *Client) GetOperationsOperationIDEphemeralSessions(params *GetOperations
 }
 
 /*
-GetOperationsOperationIDSSHPortalConnections lists ssh portal connections
+  GetOperationsOperationIDSSHPortalConnections lists ssh portal connections
 */
-func (a *Client) GetOperationsOperationIDSSHPortalConnections(params *GetOperationsOperationIDSSHPortalConnectionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOperationsOperationIDSSHPortalConnectionsOK, error) {
+func (a *Client) GetOperationsOperationIDSSHPortalConnections(params *GetOperationsOperationIDSSHPortalConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOperationsOperationIDSSHPortalConnectionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOperationsOperationIDSSHPortalConnectionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetOperationsOperationIDSSHPortalConnections",
 		Method:             "GET",
 		PathPattern:        "/operations/{operation_id}/ssh_portal_connections",
@@ -2598,7 +3172,12 @@ func (a *Client) GetOperationsOperationIDSSHPortalConnections(params *GetOperati
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2612,15 +3191,14 @@ func (a *Client) GetOperationsOperationIDSSHPortalConnections(params *GetOperati
 }
 
 /*
-GetPermissions lists permissions
+  GetPermissions lists permissions
 */
-func (a *Client) GetPermissions(params *GetPermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetPermissionsOK, error) {
+func (a *Client) GetPermissions(params *GetPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPermissionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetPermissionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetPermissions",
 		Method:             "GET",
 		PathPattern:        "/permissions",
@@ -2632,7 +3210,12 @@ func (a *Client) GetPermissions(params *GetPermissionsParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2646,15 +3229,14 @@ func (a *Client) GetPermissions(params *GetPermissionsParams, authInfo runtime.C
 }
 
 /*
-GetPermissionsID shows permission
+  GetPermissionsID shows permission
 */
-func (a *Client) GetPermissionsID(params *GetPermissionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetPermissionsIDOK, error) {
+func (a *Client) GetPermissionsID(params *GetPermissionsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPermissionsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetPermissionsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetPermissionsID",
 		Method:             "GET",
 		PathPattern:        "/permissions/{id}",
@@ -2666,7 +3248,12 @@ func (a *Client) GetPermissionsID(params *GetPermissionsIDParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2680,15 +3267,14 @@ func (a *Client) GetPermissionsID(params *GetPermissionsIDParams, authInfo runti
 }
 
 /*
-GetReleasesID shows release
+  GetReleasesID shows release
 */
-func (a *Client) GetReleasesID(params *GetReleasesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetReleasesIDOK, error) {
+func (a *Client) GetReleasesID(params *GetReleasesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetReleasesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetReleasesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetReleasesID",
 		Method:             "GET",
 		PathPattern:        "/releases/{id}",
@@ -2700,7 +3286,12 @@ func (a *Client) GetReleasesID(params *GetReleasesIDParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2714,15 +3305,14 @@ func (a *Client) GetReleasesID(params *GetReleasesIDParams, authInfo runtime.Cli
 }
 
 /*
-GetReleasesReleaseIDContainers lists containers
+  GetReleasesReleaseIDContainers lists containers
 */
-func (a *Client) GetReleasesReleaseIDContainers(params *GetReleasesReleaseIDContainersParams, authInfo runtime.ClientAuthInfoWriter) (*GetReleasesReleaseIDContainersOK, error) {
+func (a *Client) GetReleasesReleaseIDContainers(params *GetReleasesReleaseIDContainersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetReleasesReleaseIDContainersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetReleasesReleaseIDContainersParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetReleasesReleaseIDContainers",
 		Method:             "GET",
 		PathPattern:        "/releases/{release_id}/containers",
@@ -2734,7 +3324,12 @@ func (a *Client) GetReleasesReleaseIDContainers(params *GetReleasesReleaseIDCont
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2748,15 +3343,14 @@ func (a *Client) GetReleasesReleaseIDContainers(params *GetReleasesReleaseIDCont
 }
 
 /*
-GetSSHPortalConnectionsID shows ssh portal connection
+  GetSSHPortalConnectionsID shows ssh portal connection
 */
-func (a *Client) GetSSHPortalConnectionsID(params *GetSSHPortalConnectionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetSSHPortalConnectionsIDOK, error) {
+func (a *Client) GetSSHPortalConnectionsID(params *GetSSHPortalConnectionsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSSHPortalConnectionsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetSSHPortalConnectionsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetSSHPortalConnectionsID",
 		Method:             "GET",
 		PathPattern:        "/ssh_portal_connections/{id}",
@@ -2768,7 +3362,12 @@ func (a *Client) GetSSHPortalConnectionsID(params *GetSSHPortalConnectionsIDPara
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2782,15 +3381,14 @@ func (a *Client) GetSSHPortalConnectionsID(params *GetSSHPortalConnectionsIDPara
 }
 
 /*
-GetServicesID shows service
+  GetServicesID shows service
 */
-func (a *Client) GetServicesID(params *GetServicesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetServicesIDOK, error) {
+func (a *Client) GetServicesID(params *GetServicesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServicesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetServicesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetServicesID",
 		Method:             "GET",
 		PathPattern:        "/services/{id}",
@@ -2802,7 +3400,12 @@ func (a *Client) GetServicesID(params *GetServicesIDParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2816,15 +3419,14 @@ func (a *Client) GetServicesID(params *GetServicesIDParams, authInfo runtime.Cli
 }
 
 /*
-GetServicesServiceIDOperations lists operations
+  GetServicesServiceIDOperations lists operations
 */
-func (a *Client) GetServicesServiceIDOperations(params *GetServicesServiceIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServicesServiceIDOperationsOK, error) {
+func (a *Client) GetServicesServiceIDOperations(params *GetServicesServiceIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServicesServiceIDOperationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetServicesServiceIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetServicesServiceIDOperations",
 		Method:             "GET",
 		PathPattern:        "/services/{service_id}/operations",
@@ -2836,7 +3438,12 @@ func (a *Client) GetServicesServiceIDOperations(params *GetServicesServiceIDOper
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2850,15 +3457,14 @@ func (a *Client) GetServicesServiceIDOperations(params *GetServicesServiceIDOper
 }
 
 /*
-GetServicesServiceIDReleases lists releases
+  GetServicesServiceIDReleases lists releases
 */
-func (a *Client) GetServicesServiceIDReleases(params *GetServicesServiceIDReleasesParams, authInfo runtime.ClientAuthInfoWriter) (*GetServicesServiceIDReleasesOK, error) {
+func (a *Client) GetServicesServiceIDReleases(params *GetServicesServiceIDReleasesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServicesServiceIDReleasesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetServicesServiceIDReleasesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetServicesServiceIDReleases",
 		Method:             "GET",
 		PathPattern:        "/services/{service_id}/releases",
@@ -2870,7 +3476,12 @@ func (a *Client) GetServicesServiceIDReleases(params *GetServicesServiceIDReleas
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2884,15 +3495,14 @@ func (a *Client) GetServicesServiceIDReleases(params *GetServicesServiceIDReleas
 }
 
 /*
-GetServicesServiceIDVhosts lists vhosts
+  GetServicesServiceIDVhosts lists vhosts
 */
-func (a *Client) GetServicesServiceIDVhosts(params *GetServicesServiceIDVhostsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServicesServiceIDVhostsOK, error) {
+func (a *Client) GetServicesServiceIDVhosts(params *GetServicesServiceIDVhostsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServicesServiceIDVhostsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetServicesServiceIDVhostsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetServicesServiceIDVhosts",
 		Method:             "GET",
 		PathPattern:        "/services/{service_id}/vhosts",
@@ -2904,7 +3514,12 @@ func (a *Client) GetServicesServiceIDVhosts(params *GetServicesServiceIDVhostsPa
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2918,15 +3533,14 @@ func (a *Client) GetServicesServiceIDVhosts(params *GetServicesServiceIDVhostsPa
 }
 
 /*
-GetStacks lists stacks
+  GetStacks lists stacks
 */
-func (a *Client) GetStacks(params *GetStacksParams, authInfo runtime.ClientAuthInfoWriter) (*GetStacksOK, error) {
+func (a *Client) GetStacks(params *GetStacksParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetStacksParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetStacks",
 		Method:             "GET",
 		PathPattern:        "/stacks",
@@ -2938,7 +3552,12 @@ func (a *Client) GetStacks(params *GetStacksParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2952,15 +3571,14 @@ func (a *Client) GetStacks(params *GetStacksParams, authInfo runtime.ClientAuthI
 }
 
 /*
-GetStacksID shows stack
+  GetStacksID shows stack
 */
-func (a *Client) GetStacksID(params *GetStacksIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetStacksIDOK, error) {
+func (a *Client) GetStacksID(params *GetStacksIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetStacksIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetStacksID",
 		Method:             "GET",
 		PathPattern:        "/stacks/{id}",
@@ -2972,7 +3590,12 @@ func (a *Client) GetStacksID(params *GetStacksIDParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -2986,15 +3609,14 @@ func (a *Client) GetStacksID(params *GetStacksIDParams, authInfo runtime.ClientA
 }
 
 /*
-GetStacksStackIDAccounts lists accounts
+  GetStacksStackIDAccounts lists accounts
 */
-func (a *Client) GetStacksStackIDAccounts(params *GetStacksStackIDAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStacksStackIDAccountsOK, error) {
+func (a *Client) GetStacksStackIDAccounts(params *GetStacksStackIDAccountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksStackIDAccountsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetStacksStackIDAccountsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetStacksStackIDAccounts",
 		Method:             "GET",
 		PathPattern:        "/stacks/{stack_id}/accounts",
@@ -3006,7 +3628,12 @@ func (a *Client) GetStacksStackIDAccounts(params *GetStacksStackIDAccountsParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3020,15 +3647,14 @@ func (a *Client) GetStacksStackIDAccounts(params *GetStacksStackIDAccountsParams
 }
 
 /*
-GetStacksStackIDIntrusionDetectionReports lists intrusion detection reports
+  GetStacksStackIDIntrusionDetectionReports lists intrusion detection reports
 */
-func (a *Client) GetStacksStackIDIntrusionDetectionReports(params *GetStacksStackIDIntrusionDetectionReportsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStacksStackIDIntrusionDetectionReportsOK, error) {
+func (a *Client) GetStacksStackIDIntrusionDetectionReports(params *GetStacksStackIDIntrusionDetectionReportsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksStackIDIntrusionDetectionReportsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetStacksStackIDIntrusionDetectionReportsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetStacksStackIDIntrusionDetectionReports",
 		Method:             "GET",
 		PathPattern:        "/stacks/{stack_id}/intrusion_detection_reports",
@@ -3040,7 +3666,12 @@ func (a *Client) GetStacksStackIDIntrusionDetectionReports(params *GetStacksStac
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3054,15 +3685,14 @@ func (a *Client) GetStacksStackIDIntrusionDetectionReports(params *GetStacksStac
 }
 
 /*
-GetStacksStackIDVpcPeers lists vpc peers
+  GetStacksStackIDVpcPeers lists vpc peers
 */
-func (a *Client) GetStacksStackIDVpcPeers(params *GetStacksStackIDVpcPeersParams, authInfo runtime.ClientAuthInfoWriter) (*GetStacksStackIDVpcPeersOK, error) {
+func (a *Client) GetStacksStackIDVpcPeers(params *GetStacksStackIDVpcPeersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksStackIDVpcPeersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetStacksStackIDVpcPeersParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetStacksStackIDVpcPeers",
 		Method:             "GET",
 		PathPattern:        "/stacks/{stack_id}/vpc_peers",
@@ -3074,7 +3704,12 @@ func (a *Client) GetStacksStackIDVpcPeers(params *GetStacksStackIDVpcPeersParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3088,15 +3723,14 @@ func (a *Client) GetStacksStackIDVpcPeers(params *GetStacksStackIDVpcPeersParams
 }
 
 /*
-GetStacksStackIDVpnTunnels lists vpn tunnels
+  GetStacksStackIDVpnTunnels lists vpn tunnels
 */
-func (a *Client) GetStacksStackIDVpnTunnels(params *GetStacksStackIDVpnTunnelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStacksStackIDVpnTunnelsOK, error) {
+func (a *Client) GetStacksStackIDVpnTunnels(params *GetStacksStackIDVpnTunnelsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStacksStackIDVpnTunnelsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetStacksStackIDVpnTunnelsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetStacksStackIDVpnTunnels",
 		Method:             "GET",
 		PathPattern:        "/stacks/{stack_id}/vpn_tunnels",
@@ -3108,7 +3742,12 @@ func (a *Client) GetStacksStackIDVpnTunnels(params *GetStacksStackIDVpnTunnelsPa
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3122,15 +3761,14 @@ func (a *Client) GetStacksStackIDVpnTunnels(params *GetStacksStackIDVpnTunnelsPa
 }
 
 /*
-GetVhostsID shows vhost
+  GetVhostsID shows vhost
 */
-func (a *Client) GetVhostsID(params *GetVhostsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetVhostsIDOK, error) {
+func (a *Client) GetVhostsID(params *GetVhostsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetVhostsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetVhostsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetVhostsID",
 		Method:             "GET",
 		PathPattern:        "/vhosts/{id}",
@@ -3142,7 +3780,12 @@ func (a *Client) GetVhostsID(params *GetVhostsIDParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3156,15 +3799,14 @@ func (a *Client) GetVhostsID(params *GetVhostsIDParams, authInfo runtime.ClientA
 }
 
 /*
-GetVhostsVhostIDOperations lists operations
+  GetVhostsVhostIDOperations lists operations
 */
-func (a *Client) GetVhostsVhostIDOperations(params *GetVhostsVhostIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetVhostsVhostIDOperationsOK, error) {
+func (a *Client) GetVhostsVhostIDOperations(params *GetVhostsVhostIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetVhostsVhostIDOperationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetVhostsVhostIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetVhostsVhostIDOperations",
 		Method:             "GET",
 		PathPattern:        "/vhosts/{vhost_id}/operations",
@@ -3176,7 +3818,12 @@ func (a *Client) GetVhostsVhostIDOperations(params *GetVhostsVhostIDOperationsPa
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3190,15 +3837,14 @@ func (a *Client) GetVhostsVhostIDOperations(params *GetVhostsVhostIDOperationsPa
 }
 
 /*
-GetVpcPeersID shows vpc peer
+  GetVpcPeersID shows vpc peer
 */
-func (a *Client) GetVpcPeersID(params *GetVpcPeersIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetVpcPeersIDOK, error) {
+func (a *Client) GetVpcPeersID(params *GetVpcPeersIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetVpcPeersIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetVpcPeersIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetVpcPeersID",
 		Method:             "GET",
 		PathPattern:        "/vpc_peers/{id}",
@@ -3210,7 +3856,12 @@ func (a *Client) GetVpcPeersID(params *GetVpcPeersIDParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3224,15 +3875,14 @@ func (a *Client) GetVpcPeersID(params *GetVpcPeersIDParams, authInfo runtime.Cli
 }
 
 /*
-GetVpnTunnelsID shows vpn tunnel
+  GetVpnTunnelsID shows vpn tunnel
 */
-func (a *Client) GetVpnTunnelsID(params *GetVpnTunnelsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetVpnTunnelsIDOK, error) {
+func (a *Client) GetVpnTunnelsID(params *GetVpnTunnelsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetVpnTunnelsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetVpnTunnelsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "GetVpnTunnelsID",
 		Method:             "GET",
 		PathPattern:        "/vpn_tunnels/{id}",
@@ -3244,7 +3894,12 @@ func (a *Client) GetVpnTunnelsID(params *GetVpnTunnelsIDParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3258,15 +3913,14 @@ func (a *Client) GetVpnTunnelsID(params *GetVpnTunnelsIDParams, authInfo runtime
 }
 
 /*
-PatchAccountsID updates account
+  PatchAccountsID updates account
 */
-func (a *Client) PatchAccountsID(params *PatchAccountsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PatchAccountsIDOK, error) {
+func (a *Client) PatchAccountsID(params *PatchAccountsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchAccountsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPatchAccountsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PatchAccountsID",
 		Method:             "PATCH",
 		PathPattern:        "/accounts/{id}",
@@ -3278,7 +3932,12 @@ func (a *Client) PatchAccountsID(params *PatchAccountsIDParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3292,15 +3951,14 @@ func (a *Client) PatchAccountsID(params *PatchAccountsIDParams, authInfo runtime
 }
 
 /*
-PatchAppsID updates app
+  PatchAppsID updates app
 */
-func (a *Client) PatchAppsID(params *PatchAppsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PatchAppsIDOK, error) {
+func (a *Client) PatchAppsID(params *PatchAppsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchAppsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPatchAppsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PatchAppsID",
 		Method:             "PATCH",
 		PathPattern:        "/apps/{id}",
@@ -3312,7 +3970,12 @@ func (a *Client) PatchAppsID(params *PatchAppsIDParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3326,15 +3989,14 @@ func (a *Client) PatchAppsID(params *PatchAppsIDParams, authInfo runtime.ClientA
 }
 
 /*
-PatchCertificatesID updates certificate
+  PatchCertificatesID updates certificate
 */
-func (a *Client) PatchCertificatesID(params *PatchCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter) (*PatchCertificatesIDOK, error) {
+func (a *Client) PatchCertificatesID(params *PatchCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchCertificatesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPatchCertificatesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PatchCertificatesID",
 		Method:             "PATCH",
 		PathPattern:        "/certificates/{id}",
@@ -3346,7 +4008,12 @@ func (a *Client) PatchCertificatesID(params *PatchCertificatesIDParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3360,15 +4027,14 @@ func (a *Client) PatchCertificatesID(params *PatchCertificatesIDParams, authInfo
 }
 
 /*
-PatchDatabasesID updates database
+  PatchDatabasesID updates database
 */
-func (a *Client) PatchDatabasesID(params *PatchDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter) (*PatchDatabasesIDOK, error) {
+func (a *Client) PatchDatabasesID(params *PatchDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchDatabasesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPatchDatabasesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PatchDatabasesID",
 		Method:             "PATCH",
 		PathPattern:        "/databases/{id}",
@@ -3380,7 +4046,12 @@ func (a *Client) PatchDatabasesID(params *PatchDatabasesIDParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3394,15 +4065,14 @@ func (a *Client) PatchDatabasesID(params *PatchDatabasesIDParams, authInfo runti
 }
 
 /*
-PatchLogDrainsID updates log drain
+  PatchLogDrainsID updates log drain
 */
-func (a *Client) PatchLogDrainsID(params *PatchLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PatchLogDrainsIDOK, error) {
+func (a *Client) PatchLogDrainsID(params *PatchLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchLogDrainsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPatchLogDrainsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PatchLogDrainsID",
 		Method:             "PATCH",
 		PathPattern:        "/log_drains/{id}",
@@ -3414,7 +4084,12 @@ func (a *Client) PatchLogDrainsID(params *PatchLogDrainsIDParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3428,15 +4103,14 @@ func (a *Client) PatchLogDrainsID(params *PatchLogDrainsIDParams, authInfo runti
 }
 
 /*
-PatchOperationsID updates operation
+  PatchOperationsID updates operation
 */
-func (a *Client) PatchOperationsID(params *PatchOperationsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PatchOperationsIDOK, error) {
+func (a *Client) PatchOperationsID(params *PatchOperationsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchOperationsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPatchOperationsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PatchOperationsID",
 		Method:             "PATCH",
 		PathPattern:        "/operations/{id}",
@@ -3448,7 +4122,12 @@ func (a *Client) PatchOperationsID(params *PatchOperationsIDParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3462,15 +4141,14 @@ func (a *Client) PatchOperationsID(params *PatchOperationsIDParams, authInfo run
 }
 
 /*
-PatchVhostsID updates vhost
+  PatchVhostsID updates vhost
 */
-func (a *Client) PatchVhostsID(params *PatchVhostsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PatchVhostsIDOK, error) {
+func (a *Client) PatchVhostsID(params *PatchVhostsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchVhostsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPatchVhostsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PatchVhostsID",
 		Method:             "PATCH",
 		PathPattern:        "/vhosts/{id}",
@@ -3482,7 +4160,12 @@ func (a *Client) PatchVhostsID(params *PatchVhostsIDParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3496,15 +4179,14 @@ func (a *Client) PatchVhostsID(params *PatchVhostsIDParams, authInfo runtime.Cli
 }
 
 /*
-PostAccounts creates account
+  PostAccounts creates account
 */
-func (a *Client) PostAccounts(params *PostAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*PostAccountsCreated, error) {
+func (a *Client) PostAccounts(params *PostAccountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAccountsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostAccounts",
 		Method:             "POST",
 		PathPattern:        "/accounts",
@@ -3516,7 +4198,12 @@ func (a *Client) PostAccounts(params *PostAccountsParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3530,15 +4217,14 @@ func (a *Client) PostAccounts(params *PostAccountsParams, authInfo runtime.Clien
 }
 
 /*
-PostAccountsAccountIDApps creates app
+  PostAccountsAccountIDApps creates app
 */
-func (a *Client) PostAccountsAccountIDApps(params *PostAccountsAccountIDAppsParams, authInfo runtime.ClientAuthInfoWriter) (*PostAccountsAccountIDAppsCreated, error) {
+func (a *Client) PostAccountsAccountIDApps(params *PostAccountsAccountIDAppsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDAppsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAccountsAccountIDAppsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostAccountsAccountIDApps",
 		Method:             "POST",
 		PathPattern:        "/accounts/{account_id}/apps",
@@ -3550,7 +4236,12 @@ func (a *Client) PostAccountsAccountIDApps(params *PostAccountsAccountIDAppsPara
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3564,15 +4255,14 @@ func (a *Client) PostAccountsAccountIDApps(params *PostAccountsAccountIDAppsPara
 }
 
 /*
-PostAccountsAccountIDBackupRetentionPolicies creates backup retention policy
+  PostAccountsAccountIDBackupRetentionPolicies creates backup retention policy
 */
-func (a *Client) PostAccountsAccountIDBackupRetentionPolicies(params *PostAccountsAccountIDBackupRetentionPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*PostAccountsAccountIDBackupRetentionPoliciesCreated, error) {
+func (a *Client) PostAccountsAccountIDBackupRetentionPolicies(params *PostAccountsAccountIDBackupRetentionPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDBackupRetentionPoliciesCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAccountsAccountIDBackupRetentionPoliciesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostAccountsAccountIDBackupRetentionPolicies",
 		Method:             "POST",
 		PathPattern:        "/accounts/{account_id}/backup_retention_policies",
@@ -3584,7 +4274,12 @@ func (a *Client) PostAccountsAccountIDBackupRetentionPolicies(params *PostAccoun
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3598,15 +4293,14 @@ func (a *Client) PostAccountsAccountIDBackupRetentionPolicies(params *PostAccoun
 }
 
 /*
-PostAccountsAccountIDCertificates creates certificate
+  PostAccountsAccountIDCertificates creates certificate
 */
-func (a *Client) PostAccountsAccountIDCertificates(params *PostAccountsAccountIDCertificatesParams, authInfo runtime.ClientAuthInfoWriter) (*PostAccountsAccountIDCertificatesCreated, error) {
+func (a *Client) PostAccountsAccountIDCertificates(params *PostAccountsAccountIDCertificatesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDCertificatesCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAccountsAccountIDCertificatesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostAccountsAccountIDCertificates",
 		Method:             "POST",
 		PathPattern:        "/accounts/{account_id}/certificates",
@@ -3618,7 +4312,12 @@ func (a *Client) PostAccountsAccountIDCertificates(params *PostAccountsAccountID
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3632,17 +4331,16 @@ func (a *Client) PostAccountsAccountIDCertificates(params *PostAccountsAccountID
 }
 
 /*
-PostAccountsAccountIDClaimsType creates claim
+  PostAccountsAccountIDClaimsType creates claim
 
-You do not need to invoke this directly. Reserves a handle
+  You do not need to invoke this directly. Reserves a handle
 */
-func (a *Client) PostAccountsAccountIDClaimsType(params *PostAccountsAccountIDClaimsTypeParams, authInfo runtime.ClientAuthInfoWriter) (*PostAccountsAccountIDClaimsTypeNoContent, error) {
+func (a *Client) PostAccountsAccountIDClaimsType(params *PostAccountsAccountIDClaimsTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDClaimsTypeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAccountsAccountIDClaimsTypeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostAccountsAccountIDClaimsType",
 		Method:             "POST",
 		PathPattern:        "/accounts/{account_id}/claims/{type}",
@@ -3654,7 +4352,12 @@ func (a *Client) PostAccountsAccountIDClaimsType(params *PostAccountsAccountIDCl
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3668,15 +4371,14 @@ func (a *Client) PostAccountsAccountIDClaimsType(params *PostAccountsAccountIDCl
 }
 
 /*
-PostAccountsAccountIDDatabases creates database
+  PostAccountsAccountIDDatabases creates database
 */
-func (a *Client) PostAccountsAccountIDDatabases(params *PostAccountsAccountIDDatabasesParams, authInfo runtime.ClientAuthInfoWriter) (*PostAccountsAccountIDDatabasesCreated, error) {
+func (a *Client) PostAccountsAccountIDDatabases(params *PostAccountsAccountIDDatabasesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDDatabasesCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAccountsAccountIDDatabasesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostAccountsAccountIDDatabases",
 		Method:             "POST",
 		PathPattern:        "/accounts/{account_id}/databases",
@@ -3688,7 +4390,12 @@ func (a *Client) PostAccountsAccountIDDatabases(params *PostAccountsAccountIDDat
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3702,15 +4409,14 @@ func (a *Client) PostAccountsAccountIDDatabases(params *PostAccountsAccountIDDat
 }
 
 /*
-PostAccountsAccountIDLogDrains creates log drain
+  PostAccountsAccountIDLogDrains creates log drain
 */
-func (a *Client) PostAccountsAccountIDLogDrains(params *PostAccountsAccountIDLogDrainsParams, authInfo runtime.ClientAuthInfoWriter) (*PostAccountsAccountIDLogDrainsCreated, error) {
+func (a *Client) PostAccountsAccountIDLogDrains(params *PostAccountsAccountIDLogDrainsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDLogDrainsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAccountsAccountIDLogDrainsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostAccountsAccountIDLogDrains",
 		Method:             "POST",
 		PathPattern:        "/accounts/{account_id}/log_drains",
@@ -3722,7 +4428,12 @@ func (a *Client) PostAccountsAccountIDLogDrains(params *PostAccountsAccountIDLog
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3736,15 +4447,14 @@ func (a *Client) PostAccountsAccountIDLogDrains(params *PostAccountsAccountIDLog
 }
 
 /*
-PostAccountsAccountIDMetricDrains creates metric drain
+  PostAccountsAccountIDMetricDrains creates metric drain
 */
-func (a *Client) PostAccountsAccountIDMetricDrains(params *PostAccountsAccountIDMetricDrainsParams, authInfo runtime.ClientAuthInfoWriter) (*PostAccountsAccountIDMetricDrainsCreated, error) {
+func (a *Client) PostAccountsAccountIDMetricDrains(params *PostAccountsAccountIDMetricDrainsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDMetricDrainsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAccountsAccountIDMetricDrainsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostAccountsAccountIDMetricDrains",
 		Method:             "POST",
 		PathPattern:        "/accounts/{account_id}/metric_drains",
@@ -3756,7 +4466,12 @@ func (a *Client) PostAccountsAccountIDMetricDrains(params *PostAccountsAccountID
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3770,15 +4485,14 @@ func (a *Client) PostAccountsAccountIDMetricDrains(params *PostAccountsAccountID
 }
 
 /*
-PostAccountsAccountIDPermissions creates permission
+  PostAccountsAccountIDPermissions creates permission
 */
-func (a *Client) PostAccountsAccountIDPermissions(params *PostAccountsAccountIDPermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*PostAccountsAccountIDPermissionsCreated, error) {
+func (a *Client) PostAccountsAccountIDPermissions(params *PostAccountsAccountIDPermissionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAccountsAccountIDPermissionsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAccountsAccountIDPermissionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostAccountsAccountIDPermissions",
 		Method:             "POST",
 		PathPattern:        "/accounts/{account_id}/permissions",
@@ -3790,7 +4504,12 @@ func (a *Client) PostAccountsAccountIDPermissions(params *PostAccountsAccountIDP
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3804,15 +4523,14 @@ func (a *Client) PostAccountsAccountIDPermissions(params *PostAccountsAccountIDP
 }
 
 /*
-PostAppsAppIDConfigurations creates configuration
+  PostAppsAppIDConfigurations creates configuration
 */
-func (a *Client) PostAppsAppIDConfigurations(params *PostAppsAppIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostAppsAppIDConfigurationsCreated, error) {
+func (a *Client) PostAppsAppIDConfigurations(params *PostAppsAppIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAppsAppIDConfigurationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAppsAppIDConfigurationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostAppsAppIDConfigurations",
 		Method:             "POST",
 		PathPattern:        "/apps/{app_id}/configurations",
@@ -3824,7 +4542,12 @@ func (a *Client) PostAppsAppIDConfigurations(params *PostAppsAppIDConfigurations
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3838,15 +4561,14 @@ func (a *Client) PostAppsAppIDConfigurations(params *PostAppsAppIDConfigurations
 }
 
 /*
-PostAppsAppIDOperations creates operation
+  PostAppsAppIDOperations creates operation
 */
-func (a *Client) PostAppsAppIDOperations(params *PostAppsAppIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostAppsAppIDOperationsCreated, error) {
+func (a *Client) PostAppsAppIDOperations(params *PostAppsAppIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAppsAppIDOperationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAppsAppIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostAppsAppIDOperations",
 		Method:             "POST",
 		PathPattern:        "/apps/{app_id}/operations",
@@ -3858,7 +4580,12 @@ func (a *Client) PostAppsAppIDOperations(params *PostAppsAppIDOperationsParams, 
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3872,15 +4599,14 @@ func (a *Client) PostAppsAppIDOperations(params *PostAppsAppIDOperationsParams, 
 }
 
 /*
-PostBackupsBackupIDOperations creates operation
+  PostBackupsBackupIDOperations creates operation
 */
-func (a *Client) PostBackupsBackupIDOperations(params *PostBackupsBackupIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostBackupsBackupIDOperationsCreated, error) {
+func (a *Client) PostBackupsBackupIDOperations(params *PostBackupsBackupIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostBackupsBackupIDOperationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostBackupsBackupIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostBackupsBackupIDOperations",
 		Method:             "POST",
 		PathPattern:        "/backups/{backup_id}/operations",
@@ -3892,7 +4618,12 @@ func (a *Client) PostBackupsBackupIDOperations(params *PostBackupsBackupIDOperat
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3906,17 +4637,16 @@ func (a *Client) PostBackupsBackupIDOperations(params *PostBackupsBackupIDOperat
 }
 
 /*
-PostClaims creates claim
+  PostClaims creates claim
 
-You do not need to invoke this directly. Reserves a handle
+  You do not need to invoke this directly. Reserves a handle
 */
-func (a *Client) PostClaims(params *PostClaimsParams, authInfo runtime.ClientAuthInfoWriter) (*PostClaimsNoContent, error) {
+func (a *Client) PostClaims(params *PostClaimsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostClaimsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostClaimsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostClaims",
 		Method:             "POST",
 		PathPattern:        "/claims",
@@ -3928,7 +4658,12 @@ func (a *Client) PostClaims(params *PostClaimsParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3942,17 +4677,16 @@ func (a *Client) PostClaims(params *PostClaimsParams, authInfo runtime.ClientAut
 }
 
 /*
-PostClaimsType creates claim
+  PostClaimsType creates claim
 
-You do not need to invoke this directly. Reserves a handle
+  You do not need to invoke this directly. Reserves a handle
 */
-func (a *Client) PostClaimsType(params *PostClaimsTypeParams, authInfo runtime.ClientAuthInfoWriter) (*PostClaimsTypeNoContent, error) {
+func (a *Client) PostClaimsType(params *PostClaimsTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostClaimsTypeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostClaimsTypeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostClaimsType",
 		Method:             "POST",
 		PathPattern:        "/claims/{type}",
@@ -3964,7 +4698,12 @@ func (a *Client) PostClaimsType(params *PostClaimsTypeParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -3978,15 +4717,14 @@ func (a *Client) PostClaimsType(params *PostClaimsTypeParams, authInfo runtime.C
 }
 
 /*
-PostDatabaseCredentialsDatabaseCredentialIDOperations creates operation
+  PostDatabaseCredentialsDatabaseCredentialIDOperations creates operation
 */
-func (a *Client) PostDatabaseCredentialsDatabaseCredentialIDOperations(params *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated, error) {
+func (a *Client) PostDatabaseCredentialsDatabaseCredentialIDOperations(params *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostDatabaseCredentialsDatabaseCredentialIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostDatabaseCredentialsDatabaseCredentialIDOperations",
 		Method:             "POST",
 		PathPattern:        "/database_credentials/{database_credential_id}/operations",
@@ -3998,7 +4736,12 @@ func (a *Client) PostDatabaseCredentialsDatabaseCredentialIDOperations(params *P
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4012,15 +4755,14 @@ func (a *Client) PostDatabaseCredentialsDatabaseCredentialIDOperations(params *P
 }
 
 /*
-PostDatabasesDatabaseIDConfigurations creates configuration
+  PostDatabasesDatabaseIDConfigurations creates configuration
 */
-func (a *Client) PostDatabasesDatabaseIDConfigurations(params *PostDatabasesDatabaseIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostDatabasesDatabaseIDConfigurationsCreated, error) {
+func (a *Client) PostDatabasesDatabaseIDConfigurations(params *PostDatabasesDatabaseIDConfigurationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostDatabasesDatabaseIDConfigurationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostDatabasesDatabaseIDConfigurationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostDatabasesDatabaseIDConfigurations",
 		Method:             "POST",
 		PathPattern:        "/databases/{database_id}/configurations",
@@ -4032,7 +4774,12 @@ func (a *Client) PostDatabasesDatabaseIDConfigurations(params *PostDatabasesData
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4046,15 +4793,14 @@ func (a *Client) PostDatabasesDatabaseIDConfigurations(params *PostDatabasesData
 }
 
 /*
-PostDatabasesDatabaseIDOperations creates operation
+  PostDatabasesDatabaseIDOperations creates operation
 */
-func (a *Client) PostDatabasesDatabaseIDOperations(params *PostDatabasesDatabaseIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostDatabasesDatabaseIDOperationsCreated, error) {
+func (a *Client) PostDatabasesDatabaseIDOperations(params *PostDatabasesDatabaseIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostDatabasesDatabaseIDOperationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostDatabasesDatabaseIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostDatabasesDatabaseIDOperations",
 		Method:             "POST",
 		PathPattern:        "/databases/{database_id}/operations",
@@ -4066,7 +4812,12 @@ func (a *Client) PostDatabasesDatabaseIDOperations(params *PostDatabasesDatabase
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4080,15 +4831,14 @@ func (a *Client) PostDatabasesDatabaseIDOperations(params *PostDatabasesDatabase
 }
 
 /*
-PostEphemeralSessionsEphemeralSessionIDOperations creates operation
+  PostEphemeralSessionsEphemeralSessionIDOperations creates operation
 */
-func (a *Client) PostEphemeralSessionsEphemeralSessionIDOperations(params *PostEphemeralSessionsEphemeralSessionIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostEphemeralSessionsEphemeralSessionIDOperationsCreated, error) {
+func (a *Client) PostEphemeralSessionsEphemeralSessionIDOperations(params *PostEphemeralSessionsEphemeralSessionIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostEphemeralSessionsEphemeralSessionIDOperationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostEphemeralSessionsEphemeralSessionIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostEphemeralSessionsEphemeralSessionIDOperations",
 		Method:             "POST",
 		PathPattern:        "/ephemeral_sessions/{ephemeral_session_id}/operations",
@@ -4100,7 +4850,12 @@ func (a *Client) PostEphemeralSessionsEphemeralSessionIDOperations(params *PostE
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4114,15 +4869,14 @@ func (a *Client) PostEphemeralSessionsEphemeralSessionIDOperations(params *PostE
 }
 
 /*
-PostImagesImageIDOperations creates operation
+  PostImagesImageIDOperations creates operation
 */
-func (a *Client) PostImagesImageIDOperations(params *PostImagesImageIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostImagesImageIDOperationsCreated, error) {
+func (a *Client) PostImagesImageIDOperations(params *PostImagesImageIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostImagesImageIDOperationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostImagesImageIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostImagesImageIDOperations",
 		Method:             "POST",
 		PathPattern:        "/images/{image_id}/operations",
@@ -4134,7 +4888,12 @@ func (a *Client) PostImagesImageIDOperations(params *PostImagesImageIDOperations
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4148,15 +4907,14 @@ func (a *Client) PostImagesImageIDOperations(params *PostImagesImageIDOperations
 }
 
 /*
-PostLogDrainsLogDrainIDOperations creates operation
+  PostLogDrainsLogDrainIDOperations creates operation
 */
-func (a *Client) PostLogDrainsLogDrainIDOperations(params *PostLogDrainsLogDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostLogDrainsLogDrainIDOperationsCreated, error) {
+func (a *Client) PostLogDrainsLogDrainIDOperations(params *PostLogDrainsLogDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostLogDrainsLogDrainIDOperationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostLogDrainsLogDrainIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostLogDrainsLogDrainIDOperations",
 		Method:             "POST",
 		PathPattern:        "/log_drains/{log_drain_id}/operations",
@@ -4168,7 +4926,12 @@ func (a *Client) PostLogDrainsLogDrainIDOperations(params *PostLogDrainsLogDrain
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4182,15 +4945,14 @@ func (a *Client) PostLogDrainsLogDrainIDOperations(params *PostLogDrainsLogDrain
 }
 
 /*
-PostMetricDrainsMetricDrainIDOperations creates operation
+  PostMetricDrainsMetricDrainIDOperations creates operation
 */
-func (a *Client) PostMetricDrainsMetricDrainIDOperations(params *PostMetricDrainsMetricDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostMetricDrainsMetricDrainIDOperationsCreated, error) {
+func (a *Client) PostMetricDrainsMetricDrainIDOperations(params *PostMetricDrainsMetricDrainIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostMetricDrainsMetricDrainIDOperationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostMetricDrainsMetricDrainIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostMetricDrainsMetricDrainIDOperations",
 		Method:             "POST",
 		PathPattern:        "/metric_drains/{metric_drain_id}/operations",
@@ -4202,7 +4964,12 @@ func (a *Client) PostMetricDrainsMetricDrainIDOperations(params *PostMetricDrain
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4216,15 +4983,14 @@ func (a *Client) PostMetricDrainsMetricDrainIDOperations(params *PostMetricDrain
 }
 
 /*
-PostOperationsOperationIDSSHPortalConnections creates ssh portal connection
+  PostOperationsOperationIDSSHPortalConnections creates ssh portal connection
 */
-func (a *Client) PostOperationsOperationIDSSHPortalConnections(params *PostOperationsOperationIDSSHPortalConnectionsParams, authInfo runtime.ClientAuthInfoWriter) (*PostOperationsOperationIDSSHPortalConnectionsCreated, error) {
+func (a *Client) PostOperationsOperationIDSSHPortalConnections(params *PostOperationsOperationIDSSHPortalConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOperationsOperationIDSSHPortalConnectionsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostOperationsOperationIDSSHPortalConnectionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostOperationsOperationIDSSHPortalConnections",
 		Method:             "POST",
 		PathPattern:        "/operations/{operation_id}/ssh_portal_connections",
@@ -4236,7 +5002,12 @@ func (a *Client) PostOperationsOperationIDSSHPortalConnections(params *PostOpera
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4250,15 +5021,14 @@ func (a *Client) PostOperationsOperationIDSSHPortalConnections(params *PostOpera
 }
 
 /*
-PostServicesServiceIDOperations creates operation
+  PostServicesServiceIDOperations creates operation
 */
-func (a *Client) PostServicesServiceIDOperations(params *PostServicesServiceIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostServicesServiceIDOperationsCreated, error) {
+func (a *Client) PostServicesServiceIDOperations(params *PostServicesServiceIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostServicesServiceIDOperationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostServicesServiceIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostServicesServiceIDOperations",
 		Method:             "POST",
 		PathPattern:        "/services/{service_id}/operations",
@@ -4270,7 +5040,12 @@ func (a *Client) PostServicesServiceIDOperations(params *PostServicesServiceIDOp
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4284,15 +5059,14 @@ func (a *Client) PostServicesServiceIDOperations(params *PostServicesServiceIDOp
 }
 
 /*
-PostServicesServiceIDVhosts creates vhost
+  PostServicesServiceIDVhosts creates vhost
 */
-func (a *Client) PostServicesServiceIDVhosts(params *PostServicesServiceIDVhostsParams, authInfo runtime.ClientAuthInfoWriter) (*PostServicesServiceIDVhostsCreated, error) {
+func (a *Client) PostServicesServiceIDVhosts(params *PostServicesServiceIDVhostsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostServicesServiceIDVhostsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostServicesServiceIDVhostsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostServicesServiceIDVhosts",
 		Method:             "POST",
 		PathPattern:        "/services/{service_id}/vhosts",
@@ -4304,7 +5078,12 @@ func (a *Client) PostServicesServiceIDVhosts(params *PostServicesServiceIDVhosts
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4318,15 +5097,14 @@ func (a *Client) PostServicesServiceIDVhosts(params *PostServicesServiceIDVhosts
 }
 
 /*
-PostVhostsVhostIDOperations creates operation
+  PostVhostsVhostIDOperations creates operation
 */
-func (a *Client) PostVhostsVhostIDOperations(params *PostVhostsVhostIDOperationsParams, authInfo runtime.ClientAuthInfoWriter) (*PostVhostsVhostIDOperationsCreated, error) {
+func (a *Client) PostVhostsVhostIDOperations(params *PostVhostsVhostIDOperationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostVhostsVhostIDOperationsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostVhostsVhostIDOperationsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PostVhostsVhostIDOperations",
 		Method:             "POST",
 		PathPattern:        "/vhosts/{vhost_id}/operations",
@@ -4338,7 +5116,12 @@ func (a *Client) PostVhostsVhostIDOperations(params *PostVhostsVhostIDOperations
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4352,15 +5135,14 @@ func (a *Client) PostVhostsVhostIDOperations(params *PostVhostsVhostIDOperations
 }
 
 /*
-PutAccountsID updates account
+  PutAccountsID updates account
 */
-func (a *Client) PutAccountsID(params *PutAccountsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutAccountsIDOK, error) {
+func (a *Client) PutAccountsID(params *PutAccountsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAccountsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutAccountsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PutAccountsID",
 		Method:             "PUT",
 		PathPattern:        "/accounts/{id}",
@@ -4372,7 +5154,12 @@ func (a *Client) PutAccountsID(params *PutAccountsIDParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4386,15 +5173,14 @@ func (a *Client) PutAccountsID(params *PutAccountsIDParams, authInfo runtime.Cli
 }
 
 /*
-PutAppsID updates app
+  PutAppsID updates app
 */
-func (a *Client) PutAppsID(params *PutAppsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutAppsIDOK, error) {
+func (a *Client) PutAppsID(params *PutAppsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAppsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutAppsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PutAppsID",
 		Method:             "PUT",
 		PathPattern:        "/apps/{id}",
@@ -4406,7 +5192,12 @@ func (a *Client) PutAppsID(params *PutAppsIDParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4420,15 +5211,14 @@ func (a *Client) PutAppsID(params *PutAppsIDParams, authInfo runtime.ClientAuthI
 }
 
 /*
-PutCertificatesID updates certificate
+  PutCertificatesID updates certificate
 */
-func (a *Client) PutCertificatesID(params *PutCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutCertificatesIDOK, error) {
+func (a *Client) PutCertificatesID(params *PutCertificatesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutCertificatesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutCertificatesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PutCertificatesID",
 		Method:             "PUT",
 		PathPattern:        "/certificates/{id}",
@@ -4440,7 +5230,12 @@ func (a *Client) PutCertificatesID(params *PutCertificatesIDParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4454,15 +5249,14 @@ func (a *Client) PutCertificatesID(params *PutCertificatesIDParams, authInfo run
 }
 
 /*
-PutDatabasesID updates database
+  PutDatabasesID updates database
 */
-func (a *Client) PutDatabasesID(params *PutDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutDatabasesIDOK, error) {
+func (a *Client) PutDatabasesID(params *PutDatabasesIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutDatabasesIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutDatabasesIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PutDatabasesID",
 		Method:             "PUT",
 		PathPattern:        "/databases/{id}",
@@ -4474,7 +5268,12 @@ func (a *Client) PutDatabasesID(params *PutDatabasesIDParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4488,15 +5287,14 @@ func (a *Client) PutDatabasesID(params *PutDatabasesIDParams, authInfo runtime.C
 }
 
 /*
-PutLogDrainsID updates log drain
+  PutLogDrainsID updates log drain
 */
-func (a *Client) PutLogDrainsID(params *PutLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutLogDrainsIDOK, error) {
+func (a *Client) PutLogDrainsID(params *PutLogDrainsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutLogDrainsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutLogDrainsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PutLogDrainsID",
 		Method:             "PUT",
 		PathPattern:        "/log_drains/{id}",
@@ -4508,7 +5306,12 @@ func (a *Client) PutLogDrainsID(params *PutLogDrainsIDParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4522,15 +5325,14 @@ func (a *Client) PutLogDrainsID(params *PutLogDrainsIDParams, authInfo runtime.C
 }
 
 /*
-PutOperationsID updates operation
+  PutOperationsID updates operation
 */
-func (a *Client) PutOperationsID(params *PutOperationsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutOperationsIDOK, error) {
+func (a *Client) PutOperationsID(params *PutOperationsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutOperationsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutOperationsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PutOperationsID",
 		Method:             "PUT",
 		PathPattern:        "/operations/{id}",
@@ -4542,7 +5344,12 @@ func (a *Client) PutOperationsID(params *PutOperationsIDParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -4556,15 +5363,14 @@ func (a *Client) PutOperationsID(params *PutOperationsIDParams, authInfo runtime
 }
 
 /*
-PutVhostsID updates vhost
+  PutVhostsID updates vhost
 */
-func (a *Client) PutVhostsID(params *PutVhostsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutVhostsIDOK, error) {
+func (a *Client) PutVhostsID(params *PutVhostsIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutVhostsIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutVhostsIDParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "PutVhostsID",
 		Method:             "PUT",
 		PathPattern:        "/vhosts/{id}",
@@ -4576,7 +5382,12 @@ func (a *Client) PutVhostsID(params *PutVhostsIDParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

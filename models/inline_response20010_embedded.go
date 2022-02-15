@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20010Embedded inline response 200 10 embedded
+//
 // swagger:model inline_response_200_10__embedded
 type InlineResponse20010Embedded struct {
 
@@ -37,7 +38,6 @@ func (m *InlineResponse20010Embedded) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20010Embedded) validateContainers(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Containers) { // not required
 		return nil
 	}
@@ -51,6 +51,42 @@ func (m *InlineResponse20010Embedded) validateContainers(formats strfmt.Registry
 			if err := m.Containers[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("containers" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("containers" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 10 embedded based on the context it is used
+func (m *InlineResponse20010Embedded) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateContainers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20010Embedded) contextValidateContainers(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Containers); i++ {
+
+		if m.Containers[i] != nil {
+			if err := m.Containers[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("containers" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("containers" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

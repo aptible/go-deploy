@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetOperationsOperationIDEphemeralSessionsReader is a Reader for the GetOperationsOperationIDEphemeralSessions structure.
@@ -47,7 +46,7 @@ func NewGetOperationsOperationIDEphemeralSessionsOK() *GetOperationsOperationIDE
 	return &GetOperationsOperationIDEphemeralSessionsOK{}
 }
 
-/*GetOperationsOperationIDEphemeralSessionsOK handles this case with default header values.
+/* GetOperationsOperationIDEphemeralSessionsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetOperationsOperationIDEphemeralSessionsOK struct {
 func (o *GetOperationsOperationIDEphemeralSessionsOK) Error() string {
 	return fmt.Sprintf("[GET /operations/{operation_id}/ephemeral_sessions][%d] getOperationsOperationIdEphemeralSessionsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetOperationsOperationIDEphemeralSessionsOK) GetPayload() *models.InlineResponse20021 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetOperationsOperationIDEphemeralSessionsDefault(code int) *GetOperation
 	}
 }
 
-/*GetOperationsOperationIDEphemeralSessionsDefault handles this case with default header values.
+/* GetOperationsOperationIDEphemeralSessionsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetOperationsOperationIDEphemeralSessionsDefault) Code() int {
 func (o *GetOperationsOperationIDEphemeralSessionsDefault) Error() string {
 	return fmt.Sprintf("[GET /operations/{operation_id}/ephemeral_sessions][%d] GetOperationsOperationIDEphemeralSessions default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetOperationsOperationIDEphemeralSessionsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

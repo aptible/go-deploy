@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetDatabasesDatabaseIDDependentsReader is a Reader for the GetDatabasesDatabaseIDDependents structure.
@@ -47,7 +46,7 @@ func NewGetDatabasesDatabaseIDDependentsOK() *GetDatabasesDatabaseIDDependentsOK
 	return &GetDatabasesDatabaseIDDependentsOK{}
 }
 
-/*GetDatabasesDatabaseIDDependentsOK handles this case with default header values.
+/* GetDatabasesDatabaseIDDependentsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetDatabasesDatabaseIDDependentsOK struct {
 func (o *GetDatabasesDatabaseIDDependentsOK) Error() string {
 	return fmt.Sprintf("[GET /databases/{database_id}/dependents][%d] getDatabasesDatabaseIdDependentsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetDatabasesDatabaseIDDependentsOK) GetPayload() *models.InlineResponse20016 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetDatabasesDatabaseIDDependentsDefault(code int) *GetDatabasesDatabaseI
 	}
 }
 
-/*GetDatabasesDatabaseIDDependentsDefault handles this case with default header values.
+/* GetDatabasesDatabaseIDDependentsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetDatabasesDatabaseIDDependentsDefault) Code() int {
 func (o *GetDatabasesDatabaseIDDependentsDefault) Error() string {
 	return fmt.Sprintf("[GET /databases/{database_id}/dependents][%d] GetDatabasesDatabaseIDDependents default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetDatabasesDatabaseIDDependentsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

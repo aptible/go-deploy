@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20038EmbeddedLinks inline response 200 38 embedded links
+//
 // swagger:model inline_response_200_38__embedded__links
 type InlineResponse20038EmbeddedLinks struct {
 
@@ -70,7 +72,6 @@ func (m *InlineResponse20038EmbeddedLinks) Validate(formats strfmt.Registry) err
 }
 
 func (m *InlineResponse20038EmbeddedLinks) validateAccounts(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Accounts) { // not required
 		return nil
 	}
@@ -79,6 +80,8 @@ func (m *InlineResponse20038EmbeddedLinks) validateAccounts(formats strfmt.Regis
 		if err := m.Accounts.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accounts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accounts")
 			}
 			return err
 		}
@@ -88,7 +91,6 @@ func (m *InlineResponse20038EmbeddedLinks) validateAccounts(formats strfmt.Regis
 }
 
 func (m *InlineResponse20038EmbeddedLinks) validateIntrusionDetectionReports(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.IntrusionDetectionReports) { // not required
 		return nil
 	}
@@ -97,6 +99,8 @@ func (m *InlineResponse20038EmbeddedLinks) validateIntrusionDetectionReports(for
 		if err := m.IntrusionDetectionReports.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("intrusion_detection_reports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("intrusion_detection_reports")
 			}
 			return err
 		}
@@ -106,7 +110,6 @@ func (m *InlineResponse20038EmbeddedLinks) validateIntrusionDetectionReports(for
 }
 
 func (m *InlineResponse20038EmbeddedLinks) validateOrganization(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Organization) { // not required
 		return nil
 	}
@@ -115,6 +118,8 @@ func (m *InlineResponse20038EmbeddedLinks) validateOrganization(formats strfmt.R
 		if err := m.Organization.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("organization")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("organization")
 			}
 			return err
 		}
@@ -124,7 +129,6 @@ func (m *InlineResponse20038EmbeddedLinks) validateOrganization(formats strfmt.R
 }
 
 func (m *InlineResponse20038EmbeddedLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -133,6 +137,8 @@ func (m *InlineResponse20038EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}
@@ -142,7 +148,6 @@ func (m *InlineResponse20038EmbeddedLinks) validateSelf(formats strfmt.Registry)
 }
 
 func (m *InlineResponse20038EmbeddedLinks) validateVpcPeers(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.VpcPeers) { // not required
 		return nil
 	}
@@ -151,6 +156,8 @@ func (m *InlineResponse20038EmbeddedLinks) validateVpcPeers(formats strfmt.Regis
 		if err := m.VpcPeers.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vpc_peers")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vpc_peers")
 			}
 			return err
 		}
@@ -160,7 +167,6 @@ func (m *InlineResponse20038EmbeddedLinks) validateVpcPeers(formats strfmt.Regis
 }
 
 func (m *InlineResponse20038EmbeddedLinks) validateVpnTunnels(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.VpnTunnels) { // not required
 		return nil
 	}
@@ -169,6 +175,138 @@ func (m *InlineResponse20038EmbeddedLinks) validateVpnTunnels(formats strfmt.Reg
 		if err := m.VpnTunnels.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vpn_tunnels")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vpn_tunnels")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 38 embedded links based on the context it is used
+func (m *InlineResponse20038EmbeddedLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAccounts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIntrusionDetectionReports(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOrganization(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVpcPeers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVpnTunnels(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20038EmbeddedLinks) contextValidateAccounts(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Accounts != nil {
+		if err := m.Accounts.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("accounts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accounts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20038EmbeddedLinks) contextValidateIntrusionDetectionReports(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IntrusionDetectionReports != nil {
+		if err := m.IntrusionDetectionReports.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("intrusion_detection_reports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("intrusion_detection_reports")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20038EmbeddedLinks) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Organization != nil {
+		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("organization")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("organization")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20038EmbeddedLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20038EmbeddedLinks) contextValidateVpcPeers(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VpcPeers != nil {
+		if err := m.VpcPeers.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vpc_peers")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vpc_peers")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20038EmbeddedLinks) contextValidateVpnTunnels(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VpnTunnels != nil {
+		if err := m.VpnTunnels.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vpn_tunnels")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vpn_tunnels")
 			}
 			return err
 		}

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetStacksStackIDIntrusionDetectionReportsReader is a Reader for the GetStacksStackIDIntrusionDetectionReports structure.
@@ -47,7 +46,7 @@ func NewGetStacksStackIDIntrusionDetectionReportsOK() *GetStacksStackIDIntrusion
 	return &GetStacksStackIDIntrusionDetectionReportsOK{}
 }
 
-/*GetStacksStackIDIntrusionDetectionReportsOK handles this case with default header values.
+/* GetStacksStackIDIntrusionDetectionReportsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetStacksStackIDIntrusionDetectionReportsOK struct {
 func (o *GetStacksStackIDIntrusionDetectionReportsOK) Error() string {
 	return fmt.Sprintf("[GET /stacks/{stack_id}/intrusion_detection_reports][%d] getStacksStackIdIntrusionDetectionReportsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetStacksStackIDIntrusionDetectionReportsOK) GetPayload() *models.InlineResponse20026 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetStacksStackIDIntrusionDetectionReportsDefault(code int) *GetStacksSta
 	}
 }
 
-/*GetStacksStackIDIntrusionDetectionReportsDefault handles this case with default header values.
+/* GetStacksStackIDIntrusionDetectionReportsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetStacksStackIDIntrusionDetectionReportsDefault) Code() int {
 func (o *GetStacksStackIDIntrusionDetectionReportsDefault) Error() string {
 	return fmt.Sprintf("[GET /stacks/{stack_id}/intrusion_detection_reports][%d] GetStacksStackIDIntrusionDetectionReports default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetStacksStackIDIntrusionDetectionReportsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPutCertificatesIDParams creates a new PutCertificatesIDParams object
-// with the default values initialized.
+// NewPutCertificatesIDParams creates a new PutCertificatesIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPutCertificatesIDParams() *PutCertificatesIDParams {
-	var ()
 	return &PutCertificatesIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPutCertificatesIDParamsWithTimeout creates a new PutCertificatesIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPutCertificatesIDParamsWithTimeout(timeout time.Duration) *PutCertificatesIDParams {
-	var ()
 	return &PutCertificatesIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPutCertificatesIDParamsWithContext creates a new PutCertificatesIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPutCertificatesIDParamsWithContext(ctx context.Context) *PutCertificatesIDParams {
-	var ()
 	return &PutCertificatesIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPutCertificatesIDParamsWithHTTPClient creates a new PutCertificatesIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPutCertificatesIDParamsWithHTTPClient(client *http.Client) *PutCertificatesIDParams {
-	var ()
 	return &PutCertificatesIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*PutCertificatesIDParams contains all the parameters to send to the API endpoint
-for the put certificates ID operation typically these are written to a http.Request
+/* PutCertificatesIDParams contains all the parameters to send to the API endpoint
+   for the put certificates ID operation.
+
+   Typically these are written to a http.Request.
 */
 type PutCertificatesIDParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest6
-	/*ID
-	  id
 
+	/* ID.
+
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the put certificates ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PutCertificatesIDParams) WithDefaults() *PutCertificatesIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the put certificates ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PutCertificatesIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the put certificates ID params
@@ -139,7 +153,6 @@ func (o *PutCertificatesIDParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

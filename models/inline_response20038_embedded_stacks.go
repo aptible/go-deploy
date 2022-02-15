@@ -6,16 +6,17 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // InlineResponse20038EmbeddedStacks inline response 200 38 embedded stacks
+//
 // swagger:model inline_response_200_38__embedded_stacks
 type InlineResponse20038EmbeddedStacks struct {
 
@@ -115,7 +116,6 @@ func (m *InlineResponse20038EmbeddedStacks) Validate(formats strfmt.Registry) er
 }
 
 func (m *InlineResponse20038EmbeddedStacks) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -124,6 +124,8 @@ func (m *InlineResponse20038EmbeddedStacks) validateLinks(formats strfmt.Registr
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
 			}
 			return err
 		}
@@ -155,14 +157,13 @@ const (
 
 // prop value enum
 func (m *InlineResponse20038EmbeddedStacks) validateVersionEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, inlineResponse20038EmbeddedStacksTypeVersionPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, inlineResponse20038EmbeddedStacksTypeVersionPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
 func (m *InlineResponse20038EmbeddedStacks) validateVersion(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Version) { // not required
 		return nil
 	}
@@ -170,6 +171,36 @@ func (m *InlineResponse20038EmbeddedStacks) validateVersion(formats strfmt.Regis
 	// value enum
 	if err := m.validateVersionEnum("version", "body", m.Version); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 38 embedded stacks based on the context it is used
+func (m *InlineResponse20038EmbeddedStacks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20038EmbeddedStacks) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
+			}
+			return err
+		}
 	}
 
 	return nil

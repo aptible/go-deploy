@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPostAccountsAccountIDPermissionsParams creates a new PostAccountsAccountIDPermissionsParams object
-// with the default values initialized.
+// NewPostAccountsAccountIDPermissionsParams creates a new PostAccountsAccountIDPermissionsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostAccountsAccountIDPermissionsParams() *PostAccountsAccountIDPermissionsParams {
-	var ()
 	return &PostAccountsAccountIDPermissionsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostAccountsAccountIDPermissionsParamsWithTimeout creates a new PostAccountsAccountIDPermissionsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostAccountsAccountIDPermissionsParamsWithTimeout(timeout time.Duration) *PostAccountsAccountIDPermissionsParams {
-	var ()
 	return &PostAccountsAccountIDPermissionsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostAccountsAccountIDPermissionsParamsWithContext creates a new PostAccountsAccountIDPermissionsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostAccountsAccountIDPermissionsParamsWithContext(ctx context.Context) *PostAccountsAccountIDPermissionsParams {
-	var ()
 	return &PostAccountsAccountIDPermissionsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostAccountsAccountIDPermissionsParamsWithHTTPClient creates a new PostAccountsAccountIDPermissionsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostAccountsAccountIDPermissionsParamsWithHTTPClient(client *http.Client) *PostAccountsAccountIDPermissionsParams {
-	var ()
 	return &PostAccountsAccountIDPermissionsParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostAccountsAccountIDPermissionsParams contains all the parameters to send to the API endpoint
-for the post accounts account ID permissions operation typically these are written to a http.Request
+/* PostAccountsAccountIDPermissionsParams contains all the parameters to send to the API endpoint
+   for the post accounts account ID permissions operation.
+
+   Typically these are written to a http.Request.
 */
 type PostAccountsAccountIDPermissionsParams struct {
 
-	/*AccountID
-	  account_id
+	/* AccountID.
 
+	   account_id
 	*/
 	AccountID int64
-	/*AppRequest*/
+
+	// AppRequest.
 	AppRequest *models.AppRequest32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post accounts account ID permissions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostAccountsAccountIDPermissionsParams) WithDefaults() *PostAccountsAccountIDPermissionsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post accounts account ID permissions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostAccountsAccountIDPermissionsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post accounts account ID permissions params
@@ -144,7 +158,6 @@ func (o *PostAccountsAccountIDPermissionsParams) WriteToRequest(r runtime.Client
 	if err := r.SetPathParam("account_id", swag.FormatInt64(o.AccountID)); err != nil {
 		return err
 	}
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

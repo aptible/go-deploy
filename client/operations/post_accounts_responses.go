@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PostAccountsReader is a Reader for the PostAccounts structure.
@@ -47,7 +46,7 @@ func NewPostAccountsCreated() *PostAccountsCreated {
 	return &PostAccountsCreated{}
 }
 
-/*PostAccountsCreated handles this case with default header values.
+/* PostAccountsCreated describes a response with status code 201, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type PostAccountsCreated struct {
 func (o *PostAccountsCreated) Error() string {
 	return fmt.Sprintf("[POST /accounts][%d] postAccountsCreated  %+v", 201, o.Payload)
 }
-
 func (o *PostAccountsCreated) GetPayload() *models.InlineResponse201 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewPostAccountsDefault(code int) *PostAccountsDefault {
 	}
 }
 
-/*PostAccountsDefault handles this case with default header values.
+/* PostAccountsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *PostAccountsDefault) Code() int {
 func (o *PostAccountsDefault) Error() string {
 	return fmt.Sprintf("[POST /accounts][%d] PostAccounts default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PostAccountsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

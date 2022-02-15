@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PostAccountsAccountIDLogDrainsReader is a Reader for the PostAccountsAccountIDLogDrains structure.
@@ -47,7 +46,7 @@ func NewPostAccountsAccountIDLogDrainsCreated() *PostAccountsAccountIDLogDrainsC
 	return &PostAccountsAccountIDLogDrainsCreated{}
 }
 
-/*PostAccountsAccountIDLogDrainsCreated handles this case with default header values.
+/* PostAccountsAccountIDLogDrainsCreated describes a response with status code 201, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type PostAccountsAccountIDLogDrainsCreated struct {
 func (o *PostAccountsAccountIDLogDrainsCreated) Error() string {
 	return fmt.Sprintf("[POST /accounts/{account_id}/log_drains][%d] postAccountsAccountIdLogDrainsCreated  %+v", 201, o.Payload)
 }
-
 func (o *PostAccountsAccountIDLogDrainsCreated) GetPayload() *models.InlineResponse2015 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewPostAccountsAccountIDLogDrainsDefault(code int) *PostAccountsAccountIDLo
 	}
 }
 
-/*PostAccountsAccountIDLogDrainsDefault handles this case with default header values.
+/* PostAccountsAccountIDLogDrainsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *PostAccountsAccountIDLogDrainsDefault) Code() int {
 func (o *PostAccountsAccountIDLogDrainsDefault) Error() string {
 	return fmt.Sprintf("[POST /accounts/{account_id}/log_drains][%d] PostAccountsAccountIDLogDrains default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PostAccountsAccountIDLogDrainsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

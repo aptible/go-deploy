@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetEphemeralSessionsIDReader is a Reader for the GetEphemeralSessionsID structure.
@@ -47,7 +46,7 @@ func NewGetEphemeralSessionsIDOK() *GetEphemeralSessionsIDOK {
 	return &GetEphemeralSessionsIDOK{}
 }
 
-/*GetEphemeralSessionsIDOK handles this case with default header values.
+/* GetEphemeralSessionsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetEphemeralSessionsIDOK struct {
 func (o *GetEphemeralSessionsIDOK) Error() string {
 	return fmt.Sprintf("[GET /ephemeral_sessions/{id}][%d] getEphemeralSessionsIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetEphemeralSessionsIDOK) GetPayload() *models.InlineResponse20022 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetEphemeralSessionsIDDefault(code int) *GetEphemeralSessionsIDDefault {
 	}
 }
 
-/*GetEphemeralSessionsIDDefault handles this case with default header values.
+/* GetEphemeralSessionsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetEphemeralSessionsIDDefault) Code() int {
 func (o *GetEphemeralSessionsIDDefault) Error() string {
 	return fmt.Sprintf("[GET /ephemeral_sessions/{id}][%d] GetEphemeralSessionsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetEphemeralSessionsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

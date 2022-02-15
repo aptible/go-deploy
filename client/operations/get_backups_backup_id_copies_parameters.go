@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetBackupsBackupIDCopiesParams creates a new GetBackupsBackupIDCopiesParams object
-// with the default values initialized.
+// NewGetBackupsBackupIDCopiesParams creates a new GetBackupsBackupIDCopiesParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetBackupsBackupIDCopiesParams() *GetBackupsBackupIDCopiesParams {
-	var ()
 	return &GetBackupsBackupIDCopiesParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetBackupsBackupIDCopiesParamsWithTimeout creates a new GetBackupsBackupIDCopiesParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetBackupsBackupIDCopiesParamsWithTimeout(timeout time.Duration) *GetBackupsBackupIDCopiesParams {
-	var ()
 	return &GetBackupsBackupIDCopiesParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetBackupsBackupIDCopiesParamsWithContext creates a new GetBackupsBackupIDCopiesParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetBackupsBackupIDCopiesParamsWithContext(ctx context.Context) *GetBackupsBackupIDCopiesParams {
-	var ()
 	return &GetBackupsBackupIDCopiesParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetBackupsBackupIDCopiesParamsWithHTTPClient creates a new GetBackupsBackupIDCopiesParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetBackupsBackupIDCopiesParamsWithHTTPClient(client *http.Client) *GetBackupsBackupIDCopiesParams {
-	var ()
 	return &GetBackupsBackupIDCopiesParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetBackupsBackupIDCopiesParams contains all the parameters to send to the API endpoint
-for the get backups backup ID copies operation typically these are written to a http.Request
+/* GetBackupsBackupIDCopiesParams contains all the parameters to send to the API endpoint
+   for the get backups backup ID copies operation.
+
+   Typically these are written to a http.Request.
 */
 type GetBackupsBackupIDCopiesParams struct {
 
-	/*BackupID
-	  backup_id
+	/* BackupID.
 
+	   backup_id
 	*/
 	BackupID int64
-	/*Page
-	  current page of results for pagination
 
+	/* Page.
+
+	   current page of results for pagination
 	*/
 	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get backups backup ID copies params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetBackupsBackupIDCopiesParams) WithDefaults() *GetBackupsBackupIDCopiesParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get backups backup ID copies params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetBackupsBackupIDCopiesParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get backups backup ID copies params
@@ -150,16 +164,17 @@ func (o *GetBackupsBackupIDCopiesParams) WriteToRequest(r runtime.ClientRequest,
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

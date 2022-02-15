@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PostAccountsAccountIDPermissionsReader is a Reader for the PostAccountsAccountIDPermissions structure.
@@ -47,7 +46,7 @@ func NewPostAccountsAccountIDPermissionsCreated() *PostAccountsAccountIDPermissi
 	return &PostAccountsAccountIDPermissionsCreated{}
 }
 
-/*PostAccountsAccountIDPermissionsCreated handles this case with default header values.
+/* PostAccountsAccountIDPermissionsCreated describes a response with status code 201, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type PostAccountsAccountIDPermissionsCreated struct {
 func (o *PostAccountsAccountIDPermissionsCreated) Error() string {
 	return fmt.Sprintf("[POST /accounts/{account_id}/permissions][%d] postAccountsAccountIdPermissionsCreated  %+v", 201, o.Payload)
 }
-
 func (o *PostAccountsAccountIDPermissionsCreated) GetPayload() *models.InlineResponse2017 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewPostAccountsAccountIDPermissionsDefault(code int) *PostAccountsAccountID
 	}
 }
 
-/*PostAccountsAccountIDPermissionsDefault handles this case with default header values.
+/* PostAccountsAccountIDPermissionsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *PostAccountsAccountIDPermissionsDefault) Code() int {
 func (o *PostAccountsAccountIDPermissionsDefault) Error() string {
 	return fmt.Sprintf("[POST /accounts/{account_id}/permissions][%d] PostAccountsAccountIDPermissions default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PostAccountsAccountIDPermissionsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

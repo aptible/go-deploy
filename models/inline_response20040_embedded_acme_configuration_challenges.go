@@ -6,17 +6,18 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // InlineResponse20040EmbeddedAcmeConfigurationChallenges inline response 200 40 embedded acme configuration challenges
+//
 // swagger:model inline_response_200_40__embedded_acme_configuration_challenges
 type InlineResponse20040EmbeddedAcmeConfigurationChallenges struct {
 
@@ -54,7 +55,6 @@ func (m *InlineResponse20040EmbeddedAcmeConfigurationChallenges) Validate(format
 }
 
 func (m *InlineResponse20040EmbeddedAcmeConfigurationChallenges) validateFrom(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.From) { // not required
 		return nil
 	}
@@ -63,6 +63,8 @@ func (m *InlineResponse20040EmbeddedAcmeConfigurationChallenges) validateFrom(fo
 		if err := m.From.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("from")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("from")
 			}
 			return err
 		}
@@ -94,14 +96,13 @@ const (
 
 // prop value enum
 func (m *InlineResponse20040EmbeddedAcmeConfigurationChallenges) validateMethodEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, inlineResponse20040EmbeddedAcmeConfigurationChallengesTypeMethodPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, inlineResponse20040EmbeddedAcmeConfigurationChallengesTypeMethodPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
 func (m *InlineResponse20040EmbeddedAcmeConfigurationChallenges) validateMethod(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Method) { // not required
 		return nil
 	}
@@ -115,7 +116,6 @@ func (m *InlineResponse20040EmbeddedAcmeConfigurationChallenges) validateMethod(
 }
 
 func (m *InlineResponse20040EmbeddedAcmeConfigurationChallenges) validateTo(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.To) { // not required
 		return nil
 	}
@@ -129,6 +129,62 @@ func (m *InlineResponse20040EmbeddedAcmeConfigurationChallenges) validateTo(form
 			if err := m.To[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("to" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("to" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 40 embedded acme configuration challenges based on the context it is used
+func (m *InlineResponse20040EmbeddedAcmeConfigurationChallenges) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateFrom(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20040EmbeddedAcmeConfigurationChallenges) contextValidateFrom(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.From != nil {
+		if err := m.From.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("from")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("from")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20040EmbeddedAcmeConfigurationChallenges) contextValidateTo(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.To); i++ {
+
+		if m.To[i] != nil {
+			if err := m.To[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("to" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("to" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

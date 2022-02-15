@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20040EmbeddedVhosts inline response 200 40 embedded vhosts
+//
 // swagger:model inline_response_200_40__embedded_vhosts
 type InlineResponse20040EmbeddedVhosts struct {
 
@@ -132,7 +134,6 @@ func (m *InlineResponse20040EmbeddedVhosts) Validate(formats strfmt.Registry) er
 }
 
 func (m *InlineResponse20040EmbeddedVhosts) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -141,6 +142,8 @@ func (m *InlineResponse20040EmbeddedVhosts) validateLinks(formats strfmt.Registr
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
 			}
 			return err
 		}
@@ -150,7 +153,6 @@ func (m *InlineResponse20040EmbeddedVhosts) validateLinks(formats strfmt.Registr
 }
 
 func (m *InlineResponse20040EmbeddedVhosts) validateAcmeConfiguration(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AcmeConfiguration) { // not required
 		return nil
 	}
@@ -159,6 +161,58 @@ func (m *InlineResponse20040EmbeddedVhosts) validateAcmeConfiguration(formats st
 		if err := m.AcmeConfiguration.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("acme_configuration")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("acme_configuration")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 40 embedded vhosts based on the context it is used
+func (m *InlineResponse20040EmbeddedVhosts) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAcmeConfiguration(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20040EmbeddedVhosts) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20040EmbeddedVhosts) contextValidateAcmeConfiguration(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AcmeConfiguration != nil {
+		if err := m.AcmeConfiguration.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("acme_configuration")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("acme_configuration")
 			}
 			return err
 		}

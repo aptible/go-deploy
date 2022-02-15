@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PutVhostsIDReader is a Reader for the PutVhostsID structure.
@@ -47,7 +46,7 @@ func NewPutVhostsIDOK() *PutVhostsIDOK {
 	return &PutVhostsIDOK{}
 }
 
-/*PutVhostsIDOK handles this case with default header values.
+/* PutVhostsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewPutVhostsIDDefault(code int) *PutVhostsIDDefault {
 	}
 }
 
-/*PutVhostsIDDefault handles this case with default header values.
+/* PutVhostsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *PutVhostsIDDefault) Code() int {
 func (o *PutVhostsIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /vhosts/{id}][%d] PutVhostsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PutVhostsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

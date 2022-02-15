@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // InlineResponse20012 inline response 200 12
+//
 // swagger:model inline_response_200_12
 type InlineResponse20012 struct {
 
@@ -78,6 +80,8 @@ func (m *InlineResponse20012) validateEmbedded(formats strfmt.Registry) error {
 		if err := m.Embedded.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_embedded")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_embedded")
 			}
 			return err
 		}
@@ -96,6 +100,8 @@ func (m *InlineResponse20012) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
 			}
 			return err
 		}
@@ -126,6 +132,56 @@ func (m *InlineResponse20012) validateTotalCount(formats strfmt.Registry) error 
 
 	if err := validate.Required("total_count", "body", m.TotalCount); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 12 based on the context it is used
+func (m *InlineResponse20012) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateEmbedded(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20012) contextValidateEmbedded(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Embedded != nil {
+		if err := m.Embedded.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_embedded")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_embedded")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20012) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
+			}
+			return err
+		}
 	}
 
 	return nil

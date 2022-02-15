@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // DeletePermissionsIDReader is a Reader for the DeletePermissionsID structure.
@@ -47,7 +46,7 @@ func NewDeletePermissionsIDNoContent() *DeletePermissionsIDNoContent {
 	return &DeletePermissionsIDNoContent{}
 }
 
-/*DeletePermissionsIDNoContent handles this case with default header values.
+/* DeletePermissionsIDNoContent describes a response with status code 204, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewDeletePermissionsIDDefault(code int) *DeletePermissionsIDDefault {
 	}
 }
 
-/*DeletePermissionsIDDefault handles this case with default header values.
+/* DeletePermissionsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *DeletePermissionsIDDefault) Code() int {
 func (o *DeletePermissionsIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /permissions/{id}][%d] DeletePermissionsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *DeletePermissionsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

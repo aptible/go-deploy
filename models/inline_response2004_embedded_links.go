@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse2004EmbeddedLinks inline response 200 4 embedded links
+//
 // swagger:model inline_response_200_4__embedded__links
 type InlineResponse2004EmbeddedLinks struct {
 
@@ -42,7 +44,6 @@ func (m *InlineResponse2004EmbeddedLinks) Validate(formats strfmt.Registry) erro
 }
 
 func (m *InlineResponse2004EmbeddedLinks) validateAccount(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Account) { // not required
 		return nil
 	}
@@ -51,6 +52,8 @@ func (m *InlineResponse2004EmbeddedLinks) validateAccount(formats strfmt.Registr
 		if err := m.Account.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
 			}
 			return err
 		}
@@ -60,7 +63,6 @@ func (m *InlineResponse2004EmbeddedLinks) validateAccount(formats strfmt.Registr
 }
 
 func (m *InlineResponse2004EmbeddedLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -69,6 +71,58 @@ func (m *InlineResponse2004EmbeddedLinks) validateSelf(formats strfmt.Registry) 
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 4 embedded links based on the context it is used
+func (m *InlineResponse2004EmbeddedLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse2004EmbeddedLinks) contextValidateAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Account != nil {
+		if err := m.Account.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2004EmbeddedLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}

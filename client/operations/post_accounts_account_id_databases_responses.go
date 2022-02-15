@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PostAccountsAccountIDDatabasesReader is a Reader for the PostAccountsAccountIDDatabases structure.
@@ -47,7 +46,7 @@ func NewPostAccountsAccountIDDatabasesCreated() *PostAccountsAccountIDDatabasesC
 	return &PostAccountsAccountIDDatabasesCreated{}
 }
 
-/*PostAccountsAccountIDDatabasesCreated handles this case with default header values.
+/* PostAccountsAccountIDDatabasesCreated describes a response with status code 201, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type PostAccountsAccountIDDatabasesCreated struct {
 func (o *PostAccountsAccountIDDatabasesCreated) Error() string {
 	return fmt.Sprintf("[POST /accounts/{account_id}/databases][%d] postAccountsAccountIdDatabasesCreated  %+v", 201, o.Payload)
 }
-
 func (o *PostAccountsAccountIDDatabasesCreated) GetPayload() *models.InlineResponse2014 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewPostAccountsAccountIDDatabasesDefault(code int) *PostAccountsAccountIDDa
 	}
 }
 
-/*PostAccountsAccountIDDatabasesDefault handles this case with default header values.
+/* PostAccountsAccountIDDatabasesDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *PostAccountsAccountIDDatabasesDefault) Code() int {
 func (o *PostAccountsAccountIDDatabasesDefault) Error() string {
 	return fmt.Sprintf("[POST /accounts/{account_id}/databases][%d] PostAccountsAccountIDDatabases default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PostAccountsAccountIDDatabasesDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse2006EmbeddedBackups inline response 200 6 embedded backups
+//
 // swagger:model inline_response_200_6__embedded_backups
 type InlineResponse2006EmbeddedBackups struct {
 
@@ -72,7 +74,6 @@ func (m *InlineResponse2006EmbeddedBackups) Validate(formats strfmt.Registry) er
 }
 
 func (m *InlineResponse2006EmbeddedBackups) validateEmbedded(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Embedded) { // not required
 		return nil
 	}
@@ -81,6 +82,8 @@ func (m *InlineResponse2006EmbeddedBackups) validateEmbedded(formats strfmt.Regi
 		if err := m.Embedded.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_embedded")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_embedded")
 			}
 			return err
 		}
@@ -90,7 +93,6 @@ func (m *InlineResponse2006EmbeddedBackups) validateEmbedded(formats strfmt.Regi
 }
 
 func (m *InlineResponse2006EmbeddedBackups) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -99,6 +101,58 @@ func (m *InlineResponse2006EmbeddedBackups) validateLinks(formats strfmt.Registr
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 6 embedded backups based on the context it is used
+func (m *InlineResponse2006EmbeddedBackups) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateEmbedded(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedBackups) contextValidateEmbedded(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Embedded != nil {
+		if err := m.Embedded.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_embedded")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_embedded")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2006EmbeddedBackups) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
 			}
 			return err
 		}

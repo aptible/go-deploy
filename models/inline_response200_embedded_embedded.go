@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse200EmbeddedEmbedded inline response 200 embedded embedded
+//
 // swagger:model inline_response_200__embedded__embedded
 type InlineResponse200EmbeddedEmbedded struct {
 
@@ -44,7 +45,6 @@ func (m *InlineResponse200EmbeddedEmbedded) Validate(formats strfmt.Registry) er
 }
 
 func (m *InlineResponse200EmbeddedEmbedded) validateLogDrains(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.LogDrains) { // not required
 		return nil
 	}
@@ -58,6 +58,8 @@ func (m *InlineResponse200EmbeddedEmbedded) validateLogDrains(formats strfmt.Reg
 			if err := m.LogDrains[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("log_drains" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("log_drains" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -69,7 +71,6 @@ func (m *InlineResponse200EmbeddedEmbedded) validateLogDrains(formats strfmt.Reg
 }
 
 func (m *InlineResponse200EmbeddedEmbedded) validatePermissions(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Permissions) { // not required
 		return nil
 	}
@@ -83,6 +84,66 @@ func (m *InlineResponse200EmbeddedEmbedded) validatePermissions(formats strfmt.R
 			if err := m.Permissions[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("permissions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("permissions" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 embedded embedded based on the context it is used
+func (m *InlineResponse200EmbeddedEmbedded) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLogDrains(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePermissions(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedEmbedded) contextValidateLogDrains(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.LogDrains); i++ {
+
+		if m.LogDrains[i] != nil {
+			if err := m.LogDrains[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("log_drains" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("log_drains" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedEmbedded) contextValidatePermissions(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Permissions); i++ {
+
+		if m.Permissions[i] != nil {
+			if err := m.Permissions[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("permissions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("permissions" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

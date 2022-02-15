@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // InlineResponse2019 inline response 201 9
+//
 // swagger:model inline_response_201_9
 type InlineResponse2019 struct {
 
@@ -303,6 +305,8 @@ func (m *InlineResponse2019) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
 			}
 			return err
 		}
@@ -330,6 +334,8 @@ func (m *InlineResponse2019) validateAcmeConfiguration(formats strfmt.Registry) 
 		if err := m.AcmeConfiguration.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("acme_configuration")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("acme_configuration")
 			}
 			return err
 		}
@@ -585,6 +591,56 @@ func (m *InlineResponse2019) validateVirtualDomain(formats strfmt.Registry) erro
 
 	if err := validate.Required("virtual_domain", "body", m.VirtualDomain); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 201 9 based on the context it is used
+func (m *InlineResponse2019) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAcmeConfiguration(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse2019) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2019) contextValidateAcmeConfiguration(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AcmeConfiguration != nil {
+		if err := m.AcmeConfiguration.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("acme_configuration")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("acme_configuration")
+			}
+			return err
+		}
 	}
 
 	return nil

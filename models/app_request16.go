@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // AppRequest16 app request 16
+//
 // swagger:model app_request_16
 type AppRequest16 struct {
 
@@ -96,7 +98,6 @@ func (m *AppRequest16) Validate(formats strfmt.Registry) error {
 }
 
 func (m *AppRequest16) validateDatabase(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Database) { // not required
 		return nil
 	}
@@ -109,7 +110,6 @@ func (m *AppRequest16) validateDatabase(formats strfmt.Registry) error {
 }
 
 func (m *AppRequest16) validateDrainHost(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DrainHost) { // not required
 		return nil
 	}
@@ -140,7 +140,6 @@ func (m *AppRequest16) validateHandle(formats strfmt.Registry) error {
 }
 
 func (m *AppRequest16) validateURL(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.URL) { // not required
 		return nil
 	}
@@ -149,6 +148,11 @@ func (m *AppRequest16) validateURL(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this app request 16 based on context it is used
+func (m *AppRequest16) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // DeleteBackupRetentionPoliciesIDReader is a Reader for the DeleteBackupRetentionPoliciesID structure.
@@ -47,7 +46,7 @@ func NewDeleteBackupRetentionPoliciesIDNoContent() *DeleteBackupRetentionPolicie
 	return &DeleteBackupRetentionPoliciesIDNoContent{}
 }
 
-/*DeleteBackupRetentionPoliciesIDNoContent handles this case with default header values.
+/* DeleteBackupRetentionPoliciesIDNoContent describes a response with status code 204, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewDeleteBackupRetentionPoliciesIDDefault(code int) *DeleteBackupRetentionP
 	}
 }
 
-/*DeleteBackupRetentionPoliciesIDDefault handles this case with default header values.
+/* DeleteBackupRetentionPoliciesIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *DeleteBackupRetentionPoliciesIDDefault) Code() int {
 func (o *DeleteBackupRetentionPoliciesIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /backup_retention_policies/{id}][%d] DeleteBackupRetentionPoliciesID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *DeleteBackupRetentionPoliciesIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetSSHPortalConnectionsIDReader is a Reader for the GetSSHPortalConnectionsID structure.
@@ -47,7 +46,7 @@ func NewGetSSHPortalConnectionsIDOK() *GetSSHPortalConnectionsIDOK {
 	return &GetSSHPortalConnectionsIDOK{}
 }
 
-/*GetSSHPortalConnectionsIDOK handles this case with default header values.
+/* GetSSHPortalConnectionsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetSSHPortalConnectionsIDOK struct {
 func (o *GetSSHPortalConnectionsIDOK) Error() string {
 	return fmt.Sprintf("[GET /ssh_portal_connections/{id}][%d] getSshPortalConnectionsIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetSSHPortalConnectionsIDOK) GetPayload() *models.InlineResponse2018 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetSSHPortalConnectionsIDDefault(code int) *GetSSHPortalConnectionsIDDef
 	}
 }
 
-/*GetSSHPortalConnectionsIDDefault handles this case with default header values.
+/* GetSSHPortalConnectionsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetSSHPortalConnectionsIDDefault) Code() int {
 func (o *GetSSHPortalConnectionsIDDefault) Error() string {
 	return fmt.Sprintf("[GET /ssh_portal_connections/{id}][%d] GetSSHPortalConnectionsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetSSHPortalConnectionsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

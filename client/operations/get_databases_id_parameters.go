@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetDatabasesIDParams creates a new GetDatabasesIDParams object
-// with the default values initialized.
+// NewGetDatabasesIDParams creates a new GetDatabasesIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetDatabasesIDParams() *GetDatabasesIDParams {
-	var ()
 	return &GetDatabasesIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetDatabasesIDParamsWithTimeout creates a new GetDatabasesIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetDatabasesIDParamsWithTimeout(timeout time.Duration) *GetDatabasesIDParams {
-	var ()
 	return &GetDatabasesIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetDatabasesIDParamsWithContext creates a new GetDatabasesIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetDatabasesIDParamsWithContext(ctx context.Context) *GetDatabasesIDParams {
-	var ()
 	return &GetDatabasesIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetDatabasesIDParamsWithHTTPClient creates a new GetDatabasesIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetDatabasesIDParamsWithHTTPClient(client *http.Client) *GetDatabasesIDParams {
-	var ()
 	return &GetDatabasesIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetDatabasesIDParams contains all the parameters to send to the API endpoint
-for the get databases ID operation typically these are written to a http.Request
+/* GetDatabasesIDParams contains all the parameters to send to the API endpoint
+   for the get databases ID operation.
+
+   Typically these are written to a http.Request.
 */
 type GetDatabasesIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get databases ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDatabasesIDParams) WithDefaults() *GetDatabasesIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get databases ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDatabasesIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get databases ID params

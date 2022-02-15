@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20014Links inline response 200 14 links
+//
 // swagger:model inline_response_200_14__links
 type InlineResponse20014Links struct {
 
@@ -42,7 +44,6 @@ func (m *InlineResponse20014Links) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20014Links) validateDatabase(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Database) { // not required
 		return nil
 	}
@@ -51,6 +52,8 @@ func (m *InlineResponse20014Links) validateDatabase(formats strfmt.Registry) err
 		if err := m.Database.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("database")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("database")
 			}
 			return err
 		}
@@ -60,7 +63,6 @@ func (m *InlineResponse20014Links) validateDatabase(formats strfmt.Registry) err
 }
 
 func (m *InlineResponse20014Links) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -69,6 +71,58 @@ func (m *InlineResponse20014Links) validateSelf(formats strfmt.Registry) error {
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 14 links based on the context it is used
+func (m *InlineResponse20014Links) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDatabase(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20014Links) contextValidateDatabase(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Database != nil {
+		if err := m.Database.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("database")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("database")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20014Links) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}

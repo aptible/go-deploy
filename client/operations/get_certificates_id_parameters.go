@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetCertificatesIDParams creates a new GetCertificatesIDParams object
-// with the default values initialized.
+// NewGetCertificatesIDParams creates a new GetCertificatesIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetCertificatesIDParams() *GetCertificatesIDParams {
-	var ()
 	return &GetCertificatesIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetCertificatesIDParamsWithTimeout creates a new GetCertificatesIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetCertificatesIDParamsWithTimeout(timeout time.Duration) *GetCertificatesIDParams {
-	var ()
 	return &GetCertificatesIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetCertificatesIDParamsWithContext creates a new GetCertificatesIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetCertificatesIDParamsWithContext(ctx context.Context) *GetCertificatesIDParams {
-	var ()
 	return &GetCertificatesIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetCertificatesIDParamsWithHTTPClient creates a new GetCertificatesIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetCertificatesIDParamsWithHTTPClient(client *http.Client) *GetCertificatesIDParams {
-	var ()
 	return &GetCertificatesIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetCertificatesIDParams contains all the parameters to send to the API endpoint
-for the get certificates ID operation typically these are written to a http.Request
+/* GetCertificatesIDParams contains all the parameters to send to the API endpoint
+   for the get certificates ID operation.
+
+   Typically these are written to a http.Request.
 */
 type GetCertificatesIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get certificates ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetCertificatesIDParams) WithDefaults() *GetCertificatesIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get certificates ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetCertificatesIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get certificates ID params

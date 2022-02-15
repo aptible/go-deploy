@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetStacksStackIDVpnTunnelsParams creates a new GetStacksStackIDVpnTunnelsParams object
-// with the default values initialized.
+// NewGetStacksStackIDVpnTunnelsParams creates a new GetStacksStackIDVpnTunnelsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetStacksStackIDVpnTunnelsParams() *GetStacksStackIDVpnTunnelsParams {
-	var ()
 	return &GetStacksStackIDVpnTunnelsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetStacksStackIDVpnTunnelsParamsWithTimeout creates a new GetStacksStackIDVpnTunnelsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetStacksStackIDVpnTunnelsParamsWithTimeout(timeout time.Duration) *GetStacksStackIDVpnTunnelsParams {
-	var ()
 	return &GetStacksStackIDVpnTunnelsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetStacksStackIDVpnTunnelsParamsWithContext creates a new GetStacksStackIDVpnTunnelsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetStacksStackIDVpnTunnelsParamsWithContext(ctx context.Context) *GetStacksStackIDVpnTunnelsParams {
-	var ()
 	return &GetStacksStackIDVpnTunnelsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetStacksStackIDVpnTunnelsParamsWithHTTPClient creates a new GetStacksStackIDVpnTunnelsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetStacksStackIDVpnTunnelsParamsWithHTTPClient(client *http.Client) *GetStacksStackIDVpnTunnelsParams {
-	var ()
 	return &GetStacksStackIDVpnTunnelsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetStacksStackIDVpnTunnelsParams contains all the parameters to send to the API endpoint
-for the get stacks stack ID vpn tunnels operation typically these are written to a http.Request
+/* GetStacksStackIDVpnTunnelsParams contains all the parameters to send to the API endpoint
+   for the get stacks stack ID vpn tunnels operation.
+
+   Typically these are written to a http.Request.
 */
 type GetStacksStackIDVpnTunnelsParams struct {
 
-	/*Page
-	  current page of results for pagination
+	/* Page.
 
+	   current page of results for pagination
 	*/
 	Page *int64
-	/*StackID
-	  stack_id
 
+	/* StackID.
+
+	   stack_id
 	*/
 	StackID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get stacks stack ID vpn tunnels params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetStacksStackIDVpnTunnelsParams) WithDefaults() *GetStacksStackIDVpnTunnelsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get stacks stack ID vpn tunnels params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetStacksStackIDVpnTunnelsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get stacks stack ID vpn tunnels params
@@ -145,16 +159,17 @@ func (o *GetStacksStackIDVpnTunnelsParams) WriteToRequest(r runtime.ClientReques
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param stack_id

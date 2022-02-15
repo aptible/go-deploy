@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PutOperationsIDReader is a Reader for the PutOperationsID structure.
@@ -47,7 +46,7 @@ func NewPutOperationsIDOK() *PutOperationsIDOK {
 	return &PutOperationsIDOK{}
 }
 
-/*PutOperationsIDOK handles this case with default header values.
+/* PutOperationsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewPutOperationsIDDefault(code int) *PutOperationsIDDefault {
 	}
 }
 
-/*PutOperationsIDDefault handles this case with default header values.
+/* PutOperationsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *PutOperationsIDDefault) Code() int {
 func (o *PutOperationsIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /operations/{id}][%d] PutOperationsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PutOperationsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

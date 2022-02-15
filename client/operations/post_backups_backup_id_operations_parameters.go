@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPostBackupsBackupIDOperationsParams creates a new PostBackupsBackupIDOperationsParams object
-// with the default values initialized.
+// NewPostBackupsBackupIDOperationsParams creates a new PostBackupsBackupIDOperationsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostBackupsBackupIDOperationsParams() *PostBackupsBackupIDOperationsParams {
-	var ()
 	return &PostBackupsBackupIDOperationsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostBackupsBackupIDOperationsParamsWithTimeout creates a new PostBackupsBackupIDOperationsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostBackupsBackupIDOperationsParamsWithTimeout(timeout time.Duration) *PostBackupsBackupIDOperationsParams {
-	var ()
 	return &PostBackupsBackupIDOperationsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostBackupsBackupIDOperationsParamsWithContext creates a new PostBackupsBackupIDOperationsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostBackupsBackupIDOperationsParamsWithContext(ctx context.Context) *PostBackupsBackupIDOperationsParams {
-	var ()
 	return &PostBackupsBackupIDOperationsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostBackupsBackupIDOperationsParamsWithHTTPClient creates a new PostBackupsBackupIDOperationsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostBackupsBackupIDOperationsParamsWithHTTPClient(client *http.Client) *PostBackupsBackupIDOperationsParams {
-	var ()
 	return &PostBackupsBackupIDOperationsParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostBackupsBackupIDOperationsParams contains all the parameters to send to the API endpoint
-for the post backups backup ID operations operation typically these are written to a http.Request
+/* PostBackupsBackupIDOperationsParams contains all the parameters to send to the API endpoint
+   for the post backups backup ID operations operation.
+
+   Typically these are written to a http.Request.
 */
 type PostBackupsBackupIDOperationsParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest31
-	/*BackupID
-	  backup_id
 
+	/* BackupID.
+
+	   backup_id
 	*/
 	BackupID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post backups backup ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostBackupsBackupIDOperationsParams) WithDefaults() *PostBackupsBackupIDOperationsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post backups backup ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostBackupsBackupIDOperationsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post backups backup ID operations params
@@ -139,7 +153,6 @@ func (o *PostBackupsBackupIDOperationsParams) WriteToRequest(r runtime.ClientReq
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20024Links inline response 200 24 links
+//
 // swagger:model inline_response_200_24__links
 type InlineResponse20024Links struct {
 
@@ -56,7 +58,6 @@ func (m *InlineResponse20024Links) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20024Links) validateApp(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.App) { // not required
 		return nil
 	}
@@ -65,6 +66,8 @@ func (m *InlineResponse20024Links) validateApp(formats strfmt.Registry) error {
 		if err := m.App.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("app")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("app")
 			}
 			return err
 		}
@@ -74,7 +77,6 @@ func (m *InlineResponse20024Links) validateApp(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20024Links) validateNext(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Next) { // not required
 		return nil
 	}
@@ -83,6 +85,8 @@ func (m *InlineResponse20024Links) validateNext(formats strfmt.Registry) error {
 		if err := m.Next.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("next")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("next")
 			}
 			return err
 		}
@@ -92,7 +96,6 @@ func (m *InlineResponse20024Links) validateNext(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20024Links) validatePrev(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Prev) { // not required
 		return nil
 	}
@@ -101,6 +104,8 @@ func (m *InlineResponse20024Links) validatePrev(formats strfmt.Registry) error {
 		if err := m.Prev.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("prev")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("prev")
 			}
 			return err
 		}
@@ -110,7 +115,6 @@ func (m *InlineResponse20024Links) validatePrev(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20024Links) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -119,6 +123,98 @@ func (m *InlineResponse20024Links) validateSelf(formats strfmt.Registry) error {
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 24 links based on the context it is used
+func (m *InlineResponse20024Links) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateApp(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePrev(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20024Links) contextValidateApp(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.App != nil {
+		if err := m.App.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("app")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("app")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20024Links) contextValidateNext(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Next != nil {
+		if err := m.Next.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("next")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("next")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20024Links) contextValidatePrev(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Prev != nil {
+		if err := m.Prev.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("prev")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("prev")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20024Links) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}

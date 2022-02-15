@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // InlineResponse20029EmbeddedDrainConfiguration inline response 200 29 embedded drain configuration
+//
 // swagger:model inline_response_200_29__embedded_drain_configuration
 type InlineResponse20029EmbeddedDrainConfiguration struct {
 
@@ -46,7 +48,6 @@ func (m *InlineResponse20029EmbeddedDrainConfiguration) Validate(formats strfmt.
 }
 
 func (m *InlineResponse20029EmbeddedDrainConfiguration) validateAddress(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Address) { // not required
 		return nil
 	}
@@ -55,6 +56,11 @@ func (m *InlineResponse20029EmbeddedDrainConfiguration) validateAddress(formats 
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this inline response 200 29 embedded drain configuration based on context it is used
+func (m *InlineResponse20029EmbeddedDrainConfiguration) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

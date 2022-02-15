@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetActivityReportsActivityReportIDDownloadParams creates a new GetActivityReportsActivityReportIDDownloadParams object
-// with the default values initialized.
+// NewGetActivityReportsActivityReportIDDownloadParams creates a new GetActivityReportsActivityReportIDDownloadParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetActivityReportsActivityReportIDDownloadParams() *GetActivityReportsActivityReportIDDownloadParams {
-	var ()
 	return &GetActivityReportsActivityReportIDDownloadParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetActivityReportsActivityReportIDDownloadParamsWithTimeout creates a new GetActivityReportsActivityReportIDDownloadParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetActivityReportsActivityReportIDDownloadParamsWithTimeout(timeout time.Duration) *GetActivityReportsActivityReportIDDownloadParams {
-	var ()
 	return &GetActivityReportsActivityReportIDDownloadParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetActivityReportsActivityReportIDDownloadParamsWithContext creates a new GetActivityReportsActivityReportIDDownloadParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetActivityReportsActivityReportIDDownloadParamsWithContext(ctx context.Context) *GetActivityReportsActivityReportIDDownloadParams {
-	var ()
 	return &GetActivityReportsActivityReportIDDownloadParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetActivityReportsActivityReportIDDownloadParamsWithHTTPClient creates a new GetActivityReportsActivityReportIDDownloadParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetActivityReportsActivityReportIDDownloadParamsWithHTTPClient(client *http.Client) *GetActivityReportsActivityReportIDDownloadParams {
-	var ()
 	return &GetActivityReportsActivityReportIDDownloadParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetActivityReportsActivityReportIDDownloadParams contains all the parameters to send to the API endpoint
-for the get activity reports activity report ID download operation typically these are written to a http.Request
+/* GetActivityReportsActivityReportIDDownloadParams contains all the parameters to send to the API endpoint
+   for the get activity reports activity report ID download operation.
+
+   Typically these are written to a http.Request.
 */
 type GetActivityReportsActivityReportIDDownloadParams struct {
 
-	/*ActivityReportID
-	  activity_report_id
+	/* ActivityReportID.
 
+	   activity_report_id
 	*/
 	ActivityReportID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get activity reports activity report ID download params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetActivityReportsActivityReportIDDownloadParams) WithDefaults() *GetActivityReportsActivityReportIDDownloadParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get activity reports activity report ID download params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetActivityReportsActivityReportIDDownloadParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get activity reports activity report ID download params

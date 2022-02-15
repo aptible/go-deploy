@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetEphemeralContainersIDReader is a Reader for the GetEphemeralContainersID structure.
@@ -47,7 +46,7 @@ func NewGetEphemeralContainersIDOK() *GetEphemeralContainersIDOK {
 	return &GetEphemeralContainersIDOK{}
 }
 
-/*GetEphemeralContainersIDOK handles this case with default header values.
+/* GetEphemeralContainersIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetEphemeralContainersIDOK struct {
 func (o *GetEphemeralContainersIDOK) Error() string {
 	return fmt.Sprintf("[GET /ephemeral_containers/{id}][%d] getEphemeralContainersIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetEphemeralContainersIDOK) GetPayload() *models.InlineResponse20020 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetEphemeralContainersIDDefault(code int) *GetEphemeralContainersIDDefau
 	}
 }
 
-/*GetEphemeralContainersIDDefault handles this case with default header values.
+/* GetEphemeralContainersIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetEphemeralContainersIDDefault) Code() int {
 func (o *GetEphemeralContainersIDDefault) Error() string {
 	return fmt.Sprintf("[GET /ephemeral_containers/{id}][%d] GetEphemeralContainersID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetEphemeralContainersIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

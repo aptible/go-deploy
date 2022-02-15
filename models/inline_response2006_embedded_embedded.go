@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse2006EmbeddedEmbedded inline response 200 6 embedded embedded
+//
 // swagger:model inline_response_200_6__embedded__embedded
 type InlineResponse2006EmbeddedEmbedded struct {
 
@@ -21,6 +23,11 @@ type InlineResponse2006EmbeddedEmbedded struct {
 
 // Validate validates this inline response 200 6 embedded embedded
 func (m *InlineResponse2006EmbeddedEmbedded) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this inline response 200 6 embedded embedded based on context it is used
+func (m *InlineResponse2006EmbeddedEmbedded) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

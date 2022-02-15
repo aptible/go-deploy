@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // InlineResponse2013 inline response 201 3
+//
 // swagger:model inline_response_201_3
 type InlineResponse2013 struct {
 
@@ -79,6 +81,8 @@ func (m *InlineResponse2013) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
 			}
 			return err
 		}
@@ -89,8 +93,8 @@ func (m *InlineResponse2013) validateLinks(formats strfmt.Registry) error {
 
 func (m *InlineResponse2013) validateEnv(formats strfmt.Registry) error {
 
-	if err := validate.Required("env", "body", m.Env); err != nil {
-		return err
+	if m.Env == nil {
+		return errors.Required("env", "body", nil)
 	}
 
 	return nil
@@ -100,6 +104,36 @@ func (m *InlineResponse2013) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 201 3 based on the context it is used
+func (m *InlineResponse2013) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse2013) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
+			}
+			return err
+		}
 	}
 
 	return nil

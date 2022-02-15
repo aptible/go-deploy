@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetImagesImageIDOperationsParams creates a new GetImagesImageIDOperationsParams object
-// with the default values initialized.
+// NewGetImagesImageIDOperationsParams creates a new GetImagesImageIDOperationsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetImagesImageIDOperationsParams() *GetImagesImageIDOperationsParams {
-	var ()
 	return &GetImagesImageIDOperationsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetImagesImageIDOperationsParamsWithTimeout creates a new GetImagesImageIDOperationsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetImagesImageIDOperationsParamsWithTimeout(timeout time.Duration) *GetImagesImageIDOperationsParams {
-	var ()
 	return &GetImagesImageIDOperationsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetImagesImageIDOperationsParamsWithContext creates a new GetImagesImageIDOperationsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetImagesImageIDOperationsParamsWithContext(ctx context.Context) *GetImagesImageIDOperationsParams {
-	var ()
 	return &GetImagesImageIDOperationsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetImagesImageIDOperationsParamsWithHTTPClient creates a new GetImagesImageIDOperationsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetImagesImageIDOperationsParamsWithHTTPClient(client *http.Client) *GetImagesImageIDOperationsParams {
-	var ()
 	return &GetImagesImageIDOperationsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetImagesImageIDOperationsParams contains all the parameters to send to the API endpoint
-for the get images image ID operations operation typically these are written to a http.Request
+/* GetImagesImageIDOperationsParams contains all the parameters to send to the API endpoint
+   for the get images image ID operations operation.
+
+   Typically these are written to a http.Request.
 */
 type GetImagesImageIDOperationsParams struct {
 
-	/*ImageID
-	  image_id
+	/* ImageID.
 
+	   image_id
 	*/
 	ImageID int64
-	/*Page
-	  current page of results for pagination
 
+	/* Page.
+
+	   current page of results for pagination
 	*/
 	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get images image ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetImagesImageIDOperationsParams) WithDefaults() *GetImagesImageIDOperationsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get images image ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetImagesImageIDOperationsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get images image ID operations params
@@ -150,16 +164,17 @@ func (o *GetImagesImageIDOperationsParams) WriteToRequest(r runtime.ClientReques
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PostAppsAppIDOperationsReader is a Reader for the PostAppsAppIDOperations structure.
@@ -47,7 +46,7 @@ func NewPostAppsAppIDOperationsCreated() *PostAppsAppIDOperationsCreated {
 	return &PostAppsAppIDOperationsCreated{}
 }
 
-/*PostAppsAppIDOperationsCreated handles this case with default header values.
+/* PostAppsAppIDOperationsCreated describes a response with status code 201, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type PostAppsAppIDOperationsCreated struct {
 func (o *PostAppsAppIDOperationsCreated) Error() string {
 	return fmt.Sprintf("[POST /apps/{app_id}/operations][%d] postAppsAppIdOperationsCreated  %+v", 201, o.Payload)
 }
-
 func (o *PostAppsAppIDOperationsCreated) GetPayload() *models.InlineResponse20030 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewPostAppsAppIDOperationsDefault(code int) *PostAppsAppIDOperationsDefault
 	}
 }
 
-/*PostAppsAppIDOperationsDefault handles this case with default header values.
+/* PostAppsAppIDOperationsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *PostAppsAppIDOperationsDefault) Code() int {
 func (o *PostAppsAppIDOperationsDefault) Error() string {
 	return fmt.Sprintf("[POST /apps/{app_id}/operations][%d] PostAppsAppIDOperations default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PostAppsAppIDOperationsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

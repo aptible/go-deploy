@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetDatabaseCredentialsDatabaseCredentialIDOperationsReader is a Reader for the GetDatabaseCredentialsDatabaseCredentialIDOperations structure.
@@ -47,7 +46,7 @@ func NewGetDatabaseCredentialsDatabaseCredentialIDOperationsOK() *GetDatabaseCre
 	return &GetDatabaseCredentialsDatabaseCredentialIDOperationsOK{}
 }
 
-/*GetDatabaseCredentialsDatabaseCredentialIDOperationsOK handles this case with default header values.
+/* GetDatabaseCredentialsDatabaseCredentialIDOperationsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetDatabaseCredentialsDatabaseCredentialIDOperationsOK struct {
 func (o *GetDatabaseCredentialsDatabaseCredentialIDOperationsOK) Error() string {
 	return fmt.Sprintf("[GET /database_credentials/{database_credential_id}/operations][%d] getDatabaseCredentialsDatabaseCredentialIdOperationsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetDatabaseCredentialsDatabaseCredentialIDOperationsOK) GetPayload() *models.InlineResponse20031 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetDatabaseCredentialsDatabaseCredentialIDOperationsDefault(code int) *G
 	}
 }
 
-/*GetDatabaseCredentialsDatabaseCredentialIDOperationsDefault handles this case with default header values.
+/* GetDatabaseCredentialsDatabaseCredentialIDOperationsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetDatabaseCredentialsDatabaseCredentialIDOperationsDefault) Code() int
 func (o *GetDatabaseCredentialsDatabaseCredentialIDOperationsDefault) Error() string {
 	return fmt.Sprintf("[GET /database_credentials/{database_credential_id}/operations][%d] GetDatabaseCredentialsDatabaseCredentialIDOperations default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetDatabaseCredentialsDatabaseCredentialIDOperationsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

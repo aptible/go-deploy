@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20033EmbeddedLinks inline response 200 33 embedded links
+//
 // swagger:model inline_response_200_33__embedded__links
 type InlineResponse20033EmbeddedLinks struct {
 
@@ -49,7 +51,6 @@ func (m *InlineResponse20033EmbeddedLinks) Validate(formats strfmt.Registry) err
 }
 
 func (m *InlineResponse20033EmbeddedLinks) validateContainers(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Containers) { // not required
 		return nil
 	}
@@ -58,6 +59,8 @@ func (m *InlineResponse20033EmbeddedLinks) validateContainers(formats strfmt.Reg
 		if err := m.Containers.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("containers")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("containers")
 			}
 			return err
 		}
@@ -67,7 +70,6 @@ func (m *InlineResponse20033EmbeddedLinks) validateContainers(formats strfmt.Reg
 }
 
 func (m *InlineResponse20033EmbeddedLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -76,6 +78,8 @@ func (m *InlineResponse20033EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}
@@ -85,7 +89,6 @@ func (m *InlineResponse20033EmbeddedLinks) validateSelf(formats strfmt.Registry)
 }
 
 func (m *InlineResponse20033EmbeddedLinks) validateService(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Service) { // not required
 		return nil
 	}
@@ -94,6 +97,78 @@ func (m *InlineResponse20033EmbeddedLinks) validateService(formats strfmt.Regist
 		if err := m.Service.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("service")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 33 embedded links based on the context it is used
+func (m *InlineResponse20033EmbeddedLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateContainers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateService(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20033EmbeddedLinks) contextValidateContainers(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Containers != nil {
+		if err := m.Containers.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("containers")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("containers")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20033EmbeddedLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20033EmbeddedLinks) contextValidateService(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Service != nil {
+		if err := m.Service.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("service")
 			}
 			return err
 		}

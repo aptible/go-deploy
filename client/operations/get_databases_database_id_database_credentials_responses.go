@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetDatabasesDatabaseIDDatabaseCredentialsReader is a Reader for the GetDatabasesDatabaseIDDatabaseCredentials structure.
@@ -47,7 +46,7 @@ func NewGetDatabasesDatabaseIDDatabaseCredentialsOK() *GetDatabasesDatabaseIDDat
 	return &GetDatabasesDatabaseIDDatabaseCredentialsOK{}
 }
 
-/*GetDatabasesDatabaseIDDatabaseCredentialsOK handles this case with default header values.
+/* GetDatabasesDatabaseIDDatabaseCredentialsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetDatabasesDatabaseIDDatabaseCredentialsOK struct {
 func (o *GetDatabasesDatabaseIDDatabaseCredentialsOK) Error() string {
 	return fmt.Sprintf("[GET /databases/{database_id}/database_credentials][%d] getDatabasesDatabaseIdDatabaseCredentialsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetDatabasesDatabaseIDDatabaseCredentialsOK) GetPayload() *models.InlineResponse20012 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetDatabasesDatabaseIDDatabaseCredentialsDefault(code int) *GetDatabases
 	}
 }
 
-/*GetDatabasesDatabaseIDDatabaseCredentialsDefault handles this case with default header values.
+/* GetDatabasesDatabaseIDDatabaseCredentialsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetDatabasesDatabaseIDDatabaseCredentialsDefault) Code() int {
 func (o *GetDatabasesDatabaseIDDatabaseCredentialsDefault) Error() string {
 	return fmt.Sprintf("[GET /databases/{database_id}/database_credentials][%d] GetDatabasesDatabaseIDDatabaseCredentials default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetDatabasesDatabaseIDDatabaseCredentialsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

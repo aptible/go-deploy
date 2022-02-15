@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // AppRequest19 app request 19
+//
 // swagger:model app_request_19
 type AppRequest19 struct {
 
@@ -63,7 +65,6 @@ func (m *AppRequest19) Validate(formats strfmt.Registry) error {
 }
 
 func (m *AppRequest19) validateDatabase(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Database) { // not required
 		return nil
 	}
@@ -76,7 +77,6 @@ func (m *AppRequest19) validateDatabase(formats strfmt.Registry) error {
 }
 
 func (m *AppRequest19) validateDrainConfiguration(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DrainConfiguration) { // not required
 		return nil
 	}
@@ -85,6 +85,8 @@ func (m *AppRequest19) validateDrainConfiguration(formats strfmt.Registry) error
 		if err := m.DrainConfiguration.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("drain_configuration")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("drain_configuration")
 			}
 			return err
 		}
@@ -106,6 +108,36 @@ func (m *AppRequest19) validateHandle(formats strfmt.Registry) error {
 
 	if err := validate.Required("handle", "body", m.Handle); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this app request 19 based on the context it is used
+func (m *AppRequest19) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDrainConfiguration(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AppRequest19) contextValidateDrainConfiguration(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DrainConfiguration != nil {
+		if err := m.DrainConfiguration.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("drain_configuration")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("drain_configuration")
+			}
+			return err
+		}
 	}
 
 	return nil

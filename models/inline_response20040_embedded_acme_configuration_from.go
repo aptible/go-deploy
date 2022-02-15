@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20040EmbeddedAcmeConfigurationFrom inline response 200 40 embedded acme configuration from
+//
 // swagger:model inline_response_200_40__embedded_acme_configuration_from
 type InlineResponse20040EmbeddedAcmeConfigurationFrom struct {
 
@@ -21,6 +23,11 @@ type InlineResponse20040EmbeddedAcmeConfigurationFrom struct {
 
 // Validate validates this inline response 200 40 embedded acme configuration from
 func (m *InlineResponse20040EmbeddedAcmeConfigurationFrom) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this inline response 200 40 embedded acme configuration from based on context it is used
+func (m *InlineResponse20040EmbeddedAcmeConfigurationFrom) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

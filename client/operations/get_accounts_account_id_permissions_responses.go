@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetAccountsAccountIDPermissionsReader is a Reader for the GetAccountsAccountIDPermissions structure.
@@ -47,7 +46,7 @@ func NewGetAccountsAccountIDPermissionsOK() *GetAccountsAccountIDPermissionsOK {
 	return &GetAccountsAccountIDPermissionsOK{}
 }
 
-/*GetAccountsAccountIDPermissionsOK handles this case with default header values.
+/* GetAccountsAccountIDPermissionsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetAccountsAccountIDPermissionsOK struct {
 func (o *GetAccountsAccountIDPermissionsOK) Error() string {
 	return fmt.Sprintf("[GET /accounts/{account_id}/permissions][%d] getAccountsAccountIdPermissionsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAccountsAccountIDPermissionsOK) GetPayload() *models.InlineResponse20032 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetAccountsAccountIDPermissionsDefault(code int) *GetAccountsAccountIDPe
 	}
 }
 
-/*GetAccountsAccountIDPermissionsDefault handles this case with default header values.
+/* GetAccountsAccountIDPermissionsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetAccountsAccountIDPermissionsDefault) Code() int {
 func (o *GetAccountsAccountIDPermissionsDefault) Error() string {
 	return fmt.Sprintf("[GET /accounts/{account_id}/permissions][%d] GetAccountsAccountIDPermissions default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetAccountsAccountIDPermissionsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

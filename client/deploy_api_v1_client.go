@@ -6,12 +6,10 @@ package client
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"github.com/aptible/go-deploy/client/operations"
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
-
-	strfmt "github.com/go-openapi/strfmt"
-
-	"github.com/aptible/go-deploy/client/operations"
+	"github.com/go-openapi/strfmt"
 )
 
 // Default deploy API v1 HTTP client.
@@ -56,9 +54,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *DeployAPIV
 
 	cli := new(DeployAPIV1)
 	cli.Transport = transport
-
 	cli.Operations = operations.New(transport, formats)
-
 	return cli
 }
 
@@ -103,7 +99,7 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // DeployAPIV1 is a client for deploy API v1
 type DeployAPIV1 struct {
-	Operations *operations.Client
+	Operations operations.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -111,7 +107,5 @@ type DeployAPIV1 struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *DeployAPIV1) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
-
 	c.Operations.SetTransport(transport)
-
 }

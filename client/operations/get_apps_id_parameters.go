@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetAppsIDParams creates a new GetAppsIDParams object
-// with the default values initialized.
+// NewGetAppsIDParams creates a new GetAppsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAppsIDParams() *GetAppsIDParams {
-	var ()
 	return &GetAppsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAppsIDParamsWithTimeout creates a new GetAppsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAppsIDParamsWithTimeout(timeout time.Duration) *GetAppsIDParams {
-	var ()
 	return &GetAppsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAppsIDParamsWithContext creates a new GetAppsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAppsIDParamsWithContext(ctx context.Context) *GetAppsIDParams {
-	var ()
 	return &GetAppsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetAppsIDParamsWithHTTPClient creates a new GetAppsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAppsIDParamsWithHTTPClient(client *http.Client) *GetAppsIDParams {
-	var ()
 	return &GetAppsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetAppsIDParams contains all the parameters to send to the API endpoint
-for the get apps ID operation typically these are written to a http.Request
+/* GetAppsIDParams contains all the parameters to send to the API endpoint
+   for the get apps ID operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAppsIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get apps ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAppsIDParams) WithDefaults() *GetAppsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get apps ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAppsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get apps ID params

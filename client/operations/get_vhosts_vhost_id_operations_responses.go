@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetVhostsVhostIDOperationsReader is a Reader for the GetVhostsVhostIDOperations structure.
@@ -47,7 +46,7 @@ func NewGetVhostsVhostIDOperationsOK() *GetVhostsVhostIDOperationsOK {
 	return &GetVhostsVhostIDOperationsOK{}
 }
 
-/*GetVhostsVhostIDOperationsOK handles this case with default header values.
+/* GetVhostsVhostIDOperationsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetVhostsVhostIDOperationsOK struct {
 func (o *GetVhostsVhostIDOperationsOK) Error() string {
 	return fmt.Sprintf("[GET /vhosts/{vhost_id}/operations][%d] getVhostsVhostIdOperationsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetVhostsVhostIDOperationsOK) GetPayload() *models.InlineResponse20031 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetVhostsVhostIDOperationsDefault(code int) *GetVhostsVhostIDOperationsD
 	}
 }
 
-/*GetVhostsVhostIDOperationsDefault handles this case with default header values.
+/* GetVhostsVhostIDOperationsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetVhostsVhostIDOperationsDefault) Code() int {
 func (o *GetVhostsVhostIDOperationsDefault) Error() string {
 	return fmt.Sprintf("[GET /vhosts/{vhost_id}/operations][%d] GetVhostsVhostIDOperations default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetVhostsVhostIDOperationsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

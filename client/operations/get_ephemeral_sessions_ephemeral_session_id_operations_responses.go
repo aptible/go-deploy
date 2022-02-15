@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetEphemeralSessionsEphemeralSessionIDOperationsReader is a Reader for the GetEphemeralSessionsEphemeralSessionIDOperations structure.
@@ -47,7 +46,7 @@ func NewGetEphemeralSessionsEphemeralSessionIDOperationsOK() *GetEphemeralSessio
 	return &GetEphemeralSessionsEphemeralSessionIDOperationsOK{}
 }
 
-/*GetEphemeralSessionsEphemeralSessionIDOperationsOK handles this case with default header values.
+/* GetEphemeralSessionsEphemeralSessionIDOperationsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetEphemeralSessionsEphemeralSessionIDOperationsOK struct {
 func (o *GetEphemeralSessionsEphemeralSessionIDOperationsOK) Error() string {
 	return fmt.Sprintf("[GET /ephemeral_sessions/{ephemeral_session_id}/operations][%d] getEphemeralSessionsEphemeralSessionIdOperationsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetEphemeralSessionsEphemeralSessionIDOperationsOK) GetPayload() *models.InlineResponse20031 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetEphemeralSessionsEphemeralSessionIDOperationsDefault(code int) *GetEp
 	}
 }
 
-/*GetEphemeralSessionsEphemeralSessionIDOperationsDefault handles this case with default header values.
+/* GetEphemeralSessionsEphemeralSessionIDOperationsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetEphemeralSessionsEphemeralSessionIDOperationsDefault) Code() int {
 func (o *GetEphemeralSessionsEphemeralSessionIDOperationsDefault) Error() string {
 	return fmt.Sprintf("[GET /ephemeral_sessions/{ephemeral_session_id}/operations][%d] GetEphemeralSessionsEphemeralSessionIDOperations default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetEphemeralSessionsEphemeralSessionIDOperationsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetReader is a Reader for the Get structure.
@@ -30,9 +29,8 @@ func (o *GetReader) ReadResponse(response runtime.ClientResponse, consumer runti
 			return nil, err
 		}
 		return result, nil
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -41,7 +39,7 @@ func NewGetOK() *GetOK {
 	return &GetOK{}
 }
 
-/*GetOK handles this case with default header values.
+/* GetOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -52,7 +50,6 @@ type GetOK struct {
 func (o *GetOK) Error() string {
 	return fmt.Sprintf("[GET /][%d] getOK  %+v", 200, o.Payload)
 }
-
 func (o *GetOK) GetPayload() *models.InlineResponse20023 {
 	return o.Payload
 }

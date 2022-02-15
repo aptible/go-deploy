@@ -6,16 +6,17 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // InlineResponse200EmbeddedAccounts inline response 200 embedded accounts
+//
 // swagger:model inline_response_200__embedded_accounts
 type InlineResponse200EmbeddedAccounts struct {
 
@@ -137,7 +138,6 @@ func (m *InlineResponse200EmbeddedAccounts) Validate(formats strfmt.Registry) er
 }
 
 func (m *InlineResponse200EmbeddedAccounts) validateEmbedded(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Embedded) { // not required
 		return nil
 	}
@@ -146,6 +146,8 @@ func (m *InlineResponse200EmbeddedAccounts) validateEmbedded(formats strfmt.Regi
 		if err := m.Embedded.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_embedded")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_embedded")
 			}
 			return err
 		}
@@ -155,7 +157,6 @@ func (m *InlineResponse200EmbeddedAccounts) validateEmbedded(formats strfmt.Regi
 }
 
 func (m *InlineResponse200EmbeddedAccounts) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -164,6 +165,8 @@ func (m *InlineResponse200EmbeddedAccounts) validateLinks(formats strfmt.Registr
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
 			}
 			return err
 		}
@@ -195,14 +198,13 @@ const (
 
 // prop value enum
 func (m *InlineResponse200EmbeddedAccounts) validateSweetnessStackVersionEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, inlineResponse200EmbeddedAccountsTypeSweetnessStackVersionPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, inlineResponse200EmbeddedAccountsTypeSweetnessStackVersionPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
 func (m *InlineResponse200EmbeddedAccounts) validateSweetnessStackVersion(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.SweetnessStackVersion) { // not required
 		return nil
 	}
@@ -210,6 +212,56 @@ func (m *InlineResponse200EmbeddedAccounts) validateSweetnessStackVersion(format
 	// value enum
 	if err := m.validateSweetnessStackVersionEnum("sweetness_stack_version", "body", *m.SweetnessStackVersion); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 embedded accounts based on the context it is used
+func (m *InlineResponse200EmbeddedAccounts) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateEmbedded(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedAccounts) contextValidateEmbedded(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Embedded != nil {
+		if err := m.Embedded.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_embedded")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_embedded")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedAccounts) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPostDatabaseCredentialsDatabaseCredentialIDOperationsParams creates a new PostDatabaseCredentialsDatabaseCredentialIDOperationsParams object
-// with the default values initialized.
+// NewPostDatabaseCredentialsDatabaseCredentialIDOperationsParams creates a new PostDatabaseCredentialsDatabaseCredentialIDOperationsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostDatabaseCredentialsDatabaseCredentialIDOperationsParams() *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams {
-	var ()
 	return &PostDatabaseCredentialsDatabaseCredentialIDOperationsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostDatabaseCredentialsDatabaseCredentialIDOperationsParamsWithTimeout creates a new PostDatabaseCredentialsDatabaseCredentialIDOperationsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostDatabaseCredentialsDatabaseCredentialIDOperationsParamsWithTimeout(timeout time.Duration) *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams {
-	var ()
 	return &PostDatabaseCredentialsDatabaseCredentialIDOperationsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostDatabaseCredentialsDatabaseCredentialIDOperationsParamsWithContext creates a new PostDatabaseCredentialsDatabaseCredentialIDOperationsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostDatabaseCredentialsDatabaseCredentialIDOperationsParamsWithContext(ctx context.Context) *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams {
-	var ()
 	return &PostDatabaseCredentialsDatabaseCredentialIDOperationsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostDatabaseCredentialsDatabaseCredentialIDOperationsParamsWithHTTPClient creates a new PostDatabaseCredentialsDatabaseCredentialIDOperationsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostDatabaseCredentialsDatabaseCredentialIDOperationsParamsWithHTTPClient(client *http.Client) *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams {
-	var ()
 	return &PostDatabaseCredentialsDatabaseCredentialIDOperationsParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostDatabaseCredentialsDatabaseCredentialIDOperationsParams contains all the parameters to send to the API endpoint
-for the post database credentials database credential ID operations operation typically these are written to a http.Request
+/* PostDatabaseCredentialsDatabaseCredentialIDOperationsParams contains all the parameters to send to the API endpoint
+   for the post database credentials database credential ID operations operation.
+
+   Typically these are written to a http.Request.
 */
 type PostDatabaseCredentialsDatabaseCredentialIDOperationsParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest25
-	/*DatabaseCredentialID
-	  database_credential_id
 
+	/* DatabaseCredentialID.
+
+	   database_credential_id
 	*/
 	DatabaseCredentialID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post database credentials database credential ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams) WithDefaults() *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post database credentials database credential ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post database credentials database credential ID operations params
@@ -139,7 +153,6 @@ func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsParams) WriteToReq
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

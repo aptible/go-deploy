@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetAccountsAccountIDServicesParams creates a new GetAccountsAccountIDServicesParams object
-// with the default values initialized.
+// NewGetAccountsAccountIDServicesParams creates a new GetAccountsAccountIDServicesParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAccountsAccountIDServicesParams() *GetAccountsAccountIDServicesParams {
-	var ()
 	return &GetAccountsAccountIDServicesParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAccountsAccountIDServicesParamsWithTimeout creates a new GetAccountsAccountIDServicesParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAccountsAccountIDServicesParamsWithTimeout(timeout time.Duration) *GetAccountsAccountIDServicesParams {
-	var ()
 	return &GetAccountsAccountIDServicesParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAccountsAccountIDServicesParamsWithContext creates a new GetAccountsAccountIDServicesParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAccountsAccountIDServicesParamsWithContext(ctx context.Context) *GetAccountsAccountIDServicesParams {
-	var ()
 	return &GetAccountsAccountIDServicesParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetAccountsAccountIDServicesParamsWithHTTPClient creates a new GetAccountsAccountIDServicesParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAccountsAccountIDServicesParamsWithHTTPClient(client *http.Client) *GetAccountsAccountIDServicesParams {
-	var ()
 	return &GetAccountsAccountIDServicesParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetAccountsAccountIDServicesParams contains all the parameters to send to the API endpoint
-for the get accounts account ID services operation typically these are written to a http.Request
+/* GetAccountsAccountIDServicesParams contains all the parameters to send to the API endpoint
+   for the get accounts account ID services operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAccountsAccountIDServicesParams struct {
 
-	/*AccountID
-	  account_id
+	/* AccountID.
 
+	   account_id
 	*/
 	AccountID int64
-	/*Page
-	  current page of results for pagination
 
+	/* Page.
+
+	   current page of results for pagination
 	*/
 	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get accounts account ID services params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAccountsAccountIDServicesParams) WithDefaults() *GetAccountsAccountIDServicesParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get accounts account ID services params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAccountsAccountIDServicesParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get accounts account ID services params
@@ -150,16 +164,17 @@ func (o *GetAccountsAccountIDServicesParams) WriteToRequest(r runtime.ClientRequ
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

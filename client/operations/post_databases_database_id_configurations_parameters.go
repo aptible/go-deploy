@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPostDatabasesDatabaseIDConfigurationsParams creates a new PostDatabasesDatabaseIDConfigurationsParams object
-// with the default values initialized.
+// NewPostDatabasesDatabaseIDConfigurationsParams creates a new PostDatabasesDatabaseIDConfigurationsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostDatabasesDatabaseIDConfigurationsParams() *PostDatabasesDatabaseIDConfigurationsParams {
-	var ()
 	return &PostDatabasesDatabaseIDConfigurationsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostDatabasesDatabaseIDConfigurationsParamsWithTimeout creates a new PostDatabasesDatabaseIDConfigurationsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostDatabasesDatabaseIDConfigurationsParamsWithTimeout(timeout time.Duration) *PostDatabasesDatabaseIDConfigurationsParams {
-	var ()
 	return &PostDatabasesDatabaseIDConfigurationsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostDatabasesDatabaseIDConfigurationsParamsWithContext creates a new PostDatabasesDatabaseIDConfigurationsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostDatabasesDatabaseIDConfigurationsParamsWithContext(ctx context.Context) *PostDatabasesDatabaseIDConfigurationsParams {
-	var ()
 	return &PostDatabasesDatabaseIDConfigurationsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostDatabasesDatabaseIDConfigurationsParamsWithHTTPClient creates a new PostDatabasesDatabaseIDConfigurationsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostDatabasesDatabaseIDConfigurationsParamsWithHTTPClient(client *http.Client) *PostDatabasesDatabaseIDConfigurationsParams {
-	var ()
 	return &PostDatabasesDatabaseIDConfigurationsParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostDatabasesDatabaseIDConfigurationsParams contains all the parameters to send to the API endpoint
-for the post databases database ID configurations operation typically these are written to a http.Request
+/* PostDatabasesDatabaseIDConfigurationsParams contains all the parameters to send to the API endpoint
+   for the post databases database ID configurations operation.
+
+   Typically these are written to a http.Request.
 */
 type PostDatabasesDatabaseIDConfigurationsParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest12
-	/*DatabaseID
-	  database_id
 
+	/* DatabaseID.
+
+	   database_id
 	*/
 	DatabaseID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post databases database ID configurations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostDatabasesDatabaseIDConfigurationsParams) WithDefaults() *PostDatabasesDatabaseIDConfigurationsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post databases database ID configurations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostDatabasesDatabaseIDConfigurationsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post databases database ID configurations params
@@ -139,7 +153,6 @@ func (o *PostDatabasesDatabaseIDConfigurationsParams) WriteToRequest(r runtime.C
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetVpcPeersIDReader is a Reader for the GetVpcPeersID structure.
@@ -47,7 +46,7 @@ func NewGetVpcPeersIDOK() *GetVpcPeersIDOK {
 	return &GetVpcPeersIDOK{}
 }
 
-/*GetVpcPeersIDOK handles this case with default header values.
+/* GetVpcPeersIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetVpcPeersIDOK struct {
 func (o *GetVpcPeersIDOK) Error() string {
 	return fmt.Sprintf("[GET /vpc_peers/{id}][%d] getVpcPeersIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetVpcPeersIDOK) GetPayload() *models.InlineResponse20042 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetVpcPeersIDDefault(code int) *GetVpcPeersIDDefault {
 	}
 }
 
-/*GetVpcPeersIDDefault handles this case with default header values.
+/* GetVpcPeersIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetVpcPeersIDDefault) Code() int {
 func (o *GetVpcPeersIDDefault) Error() string {
 	return fmt.Sprintf("[GET /vpc_peers/{id}][%d] GetVpcPeersID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetVpcPeersIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

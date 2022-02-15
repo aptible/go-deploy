@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20010Links inline response 200 10 links
+//
 // swagger:model inline_response_200_10__links
 type InlineResponse20010Links struct {
 
@@ -63,7 +65,6 @@ func (m *InlineResponse20010Links) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20010Links) validateLogDrain(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.LogDrain) { // not required
 		return nil
 	}
@@ -72,6 +73,8 @@ func (m *InlineResponse20010Links) validateLogDrain(formats strfmt.Registry) err
 		if err := m.LogDrain.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("log_drain")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("log_drain")
 			}
 			return err
 		}
@@ -81,7 +84,6 @@ func (m *InlineResponse20010Links) validateLogDrain(formats strfmt.Registry) err
 }
 
 func (m *InlineResponse20010Links) validateNext(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Next) { // not required
 		return nil
 	}
@@ -90,6 +92,8 @@ func (m *InlineResponse20010Links) validateNext(formats strfmt.Registry) error {
 		if err := m.Next.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("next")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("next")
 			}
 			return err
 		}
@@ -99,7 +103,6 @@ func (m *InlineResponse20010Links) validateNext(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20010Links) validatePrev(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Prev) { // not required
 		return nil
 	}
@@ -108,6 +111,8 @@ func (m *InlineResponse20010Links) validatePrev(formats strfmt.Registry) error {
 		if err := m.Prev.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("prev")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("prev")
 			}
 			return err
 		}
@@ -117,7 +122,6 @@ func (m *InlineResponse20010Links) validatePrev(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20010Links) validateRelease(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Release) { // not required
 		return nil
 	}
@@ -126,6 +130,8 @@ func (m *InlineResponse20010Links) validateRelease(formats strfmt.Registry) erro
 		if err := m.Release.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("release")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("release")
 			}
 			return err
 		}
@@ -135,7 +141,6 @@ func (m *InlineResponse20010Links) validateRelease(formats strfmt.Registry) erro
 }
 
 func (m *InlineResponse20010Links) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -144,6 +149,118 @@ func (m *InlineResponse20010Links) validateSelf(formats strfmt.Registry) error {
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 10 links based on the context it is used
+func (m *InlineResponse20010Links) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLogDrain(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePrev(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRelease(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20010Links) contextValidateLogDrain(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LogDrain != nil {
+		if err := m.LogDrain.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("log_drain")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("log_drain")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010Links) contextValidateNext(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Next != nil {
+		if err := m.Next.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("next")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("next")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010Links) contextValidatePrev(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Prev != nil {
+		if err := m.Prev.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("prev")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("prev")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010Links) contextValidateRelease(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Release != nil {
+		if err := m.Release.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("release")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("release")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010Links) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}

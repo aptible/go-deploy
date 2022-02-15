@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse2003EmbeddedEmbeddedLastOperationLinks inline response 200 3 embedded embedded last operation links
+//
 // swagger:model inline_response_200_3__embedded__embedded_last_operation__links
 type InlineResponse2003EmbeddedEmbeddedLastOperationLinks struct {
 
@@ -77,7 +79,6 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) Validate(formats 
 }
 
 func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateAccount(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Account) { // not required
 		return nil
 	}
@@ -86,6 +87,8 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateAccount(f
 		if err := m.Account.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
 			}
 			return err
 		}
@@ -95,7 +98,6 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateAccount(f
 }
 
 func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateDestinationAccount(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DestinationAccount) { // not required
 		return nil
 	}
@@ -104,6 +106,8 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateDestinati
 		if err := m.DestinationAccount.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("destination_account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("destination_account")
 			}
 			return err
 		}
@@ -113,7 +117,6 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateDestinati
 }
 
 func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateEphemeralSessions(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.EphemeralSessions) { // not required
 		return nil
 	}
@@ -122,6 +125,8 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateEphemeral
 		if err := m.EphemeralSessions.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ephemeral_sessions")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ephemeral_sessions")
 			}
 			return err
 		}
@@ -131,7 +136,6 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateEphemeral
 }
 
 func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateResource(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Resource) { // not required
 		return nil
 	}
@@ -140,6 +144,8 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateResource(
 		if err := m.Resource.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("resource")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource")
 			}
 			return err
 		}
@@ -149,7 +155,6 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateResource(
 }
 
 func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -158,6 +163,8 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateSelf(form
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}
@@ -167,7 +174,6 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateSelf(form
 }
 
 func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateSSHPortalConnections(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.SSHPortalConnections) { // not required
 		return nil
 	}
@@ -176,6 +182,8 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateSSHPortal
 		if err := m.SSHPortalConnections.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ssh_portal_connections")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ssh_portal_connections")
 			}
 			return err
 		}
@@ -185,7 +193,6 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateSSHPortal
 }
 
 func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateUser(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.User) { // not required
 		return nil
 	}
@@ -194,6 +201,158 @@ func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) validateUser(form
 		if err := m.User.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 3 embedded embedded last operation links based on the context it is used
+func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDestinationAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEphemeralSessions(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResource(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSSHPortalConnections(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUser(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) contextValidateAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Account != nil {
+		if err := m.Account.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) contextValidateDestinationAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DestinationAccount != nil {
+		if err := m.DestinationAccount.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("destination_account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("destination_account")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) contextValidateEphemeralSessions(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EphemeralSessions != nil {
+		if err := m.EphemeralSessions.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ephemeral_sessions")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ephemeral_sessions")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) contextValidateResource(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Resource != nil {
+		if err := m.Resource.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("resource")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) contextValidateSSHPortalConnections(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SSHPortalConnections != nil {
+		if err := m.SSHPortalConnections.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ssh_portal_connections")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ssh_portal_connections")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2003EmbeddedEmbeddedLastOperationLinks) contextValidateUser(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.User != nil {
+		if err := m.User.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
 			}
 			return err
 		}

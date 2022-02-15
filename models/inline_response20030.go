@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // InlineResponse20030 inline response 200 30
+//
 // swagger:model inline_response_200_30
 type InlineResponse20030 struct {
 
@@ -231,6 +233,8 @@ func (m *InlineResponse20030) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
 			}
 			return err
 		}
@@ -331,8 +335,8 @@ func (m *InlineResponse20030) validateDockerRef(formats strfmt.Registry) error {
 
 func (m *InlineResponse20030) validateEnv(formats strfmt.Registry) error {
 
-	if err := validate.Required("env", "body", m.Env); err != nil {
-		return err
+	if m.Env == nil {
+		return errors.Required("env", "body", nil)
 	}
 
 	return nil
@@ -423,6 +427,36 @@ func (m *InlineResponse20030) validateUserName(formats strfmt.Registry) error {
 
 	if err := validate.Required("user_name", "body", m.UserName); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 30 based on the context it is used
+func (m *InlineResponse20030) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20030) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
+			}
+			return err
+		}
 	}
 
 	return nil

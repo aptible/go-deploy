@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PutLogDrainsIDReader is a Reader for the PutLogDrainsID structure.
@@ -47,7 +46,7 @@ func NewPutLogDrainsIDOK() *PutLogDrainsIDOK {
 	return &PutLogDrainsIDOK{}
 }
 
-/*PutLogDrainsIDOK handles this case with default header values.
+/* PutLogDrainsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewPutLogDrainsIDDefault(code int) *PutLogDrainsIDDefault {
 	}
 }
 
-/*PutLogDrainsIDDefault handles this case with default header values.
+/* PutLogDrainsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *PutLogDrainsIDDefault) Code() int {
 func (o *PutLogDrainsIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /log_drains/{id}][%d] PutLogDrainsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PutLogDrainsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

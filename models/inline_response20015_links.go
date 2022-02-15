@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20015Links inline response 200 15 links
+//
 // swagger:model inline_response_200_15__links
 type InlineResponse20015Links struct {
 
@@ -49,7 +51,6 @@ func (m *InlineResponse20015Links) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20015Links) validateNext(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Next) { // not required
 		return nil
 	}
@@ -58,6 +59,8 @@ func (m *InlineResponse20015Links) validateNext(formats strfmt.Registry) error {
 		if err := m.Next.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("next")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("next")
 			}
 			return err
 		}
@@ -67,7 +70,6 @@ func (m *InlineResponse20015Links) validateNext(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20015Links) validatePrev(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Prev) { // not required
 		return nil
 	}
@@ -76,6 +78,8 @@ func (m *InlineResponse20015Links) validatePrev(formats strfmt.Registry) error {
 		if err := m.Prev.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("prev")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("prev")
 			}
 			return err
 		}
@@ -85,7 +89,6 @@ func (m *InlineResponse20015Links) validatePrev(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20015Links) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -94,6 +97,78 @@ func (m *InlineResponse20015Links) validateSelf(formats strfmt.Registry) error {
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 15 links based on the context it is used
+func (m *InlineResponse20015Links) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateNext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePrev(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20015Links) contextValidateNext(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Next != nil {
+		if err := m.Next.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("next")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("next")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20015Links) contextValidatePrev(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Prev != nil {
+		if err := m.Prev.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("prev")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("prev")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20015Links) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}

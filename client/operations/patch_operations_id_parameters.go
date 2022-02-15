@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPatchOperationsIDParams creates a new PatchOperationsIDParams object
-// with the default values initialized.
+// NewPatchOperationsIDParams creates a new PatchOperationsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPatchOperationsIDParams() *PatchOperationsIDParams {
-	var ()
 	return &PatchOperationsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPatchOperationsIDParamsWithTimeout creates a new PatchOperationsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPatchOperationsIDParamsWithTimeout(timeout time.Duration) *PatchOperationsIDParams {
-	var ()
 	return &PatchOperationsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPatchOperationsIDParamsWithContext creates a new PatchOperationsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPatchOperationsIDParamsWithContext(ctx context.Context) *PatchOperationsIDParams {
-	var ()
 	return &PatchOperationsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPatchOperationsIDParamsWithHTTPClient creates a new PatchOperationsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPatchOperationsIDParamsWithHTTPClient(client *http.Client) *PatchOperationsIDParams {
-	var ()
 	return &PatchOperationsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*PatchOperationsIDParams contains all the parameters to send to the API endpoint
-for the patch operations ID operation typically these are written to a http.Request
+/* PatchOperationsIDParams contains all the parameters to send to the API endpoint
+   for the patch operations ID operation.
+
+   Typically these are written to a http.Request.
 */
 type PatchOperationsIDParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest21
-	/*ID
-	  id
 
+	/* ID.
+
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the patch operations ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchOperationsIDParams) WithDefaults() *PatchOperationsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the patch operations ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchOperationsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch operations ID params
@@ -139,7 +153,6 @@ func (o *PatchOperationsIDParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

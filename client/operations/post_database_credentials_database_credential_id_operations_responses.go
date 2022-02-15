@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PostDatabaseCredentialsDatabaseCredentialIDOperationsReader is a Reader for the PostDatabaseCredentialsDatabaseCredentialIDOperations structure.
@@ -47,7 +46,7 @@ func NewPostDatabaseCredentialsDatabaseCredentialIDOperationsCreated() *PostData
 	return &PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated{}
 }
 
-/*PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated handles this case with default header values.
+/* PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated describes a response with status code 201, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated struct {
 func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated) Error() string {
 	return fmt.Sprintf("[POST /database_credentials/{database_credential_id}/operations][%d] postDatabaseCredentialsDatabaseCredentialIdOperationsCreated  %+v", 201, o.Payload)
 }
-
 func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated) GetPayload() *models.InlineResponse20030 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewPostDatabaseCredentialsDatabaseCredentialIDOperationsDefault(code int) *
 	}
 }
 
-/*PostDatabaseCredentialsDatabaseCredentialIDOperationsDefault handles this case with default header values.
+/* PostDatabaseCredentialsDatabaseCredentialIDOperationsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsDefault) Code() in
 func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsDefault) Error() string {
 	return fmt.Sprintf("[POST /database_credentials/{database_credential_id}/operations][%d] PostDatabaseCredentialsDatabaseCredentialIDOperations default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PostDatabaseCredentialsDatabaseCredentialIDOperationsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // AppRequest33 app request 33
+//
 // swagger:model app_request_33
 type AppRequest33 struct {
 
@@ -45,6 +47,11 @@ func (m *AppRequest33) validateSSHPublicKey(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this app request 33 based on context it is used
+func (m *AppRequest33) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

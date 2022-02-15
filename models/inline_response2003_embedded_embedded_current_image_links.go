@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse2003EmbeddedEmbeddedCurrentImageLinks inline response 200 3 embedded embedded current image links
+//
 // swagger:model inline_response_200_3__embedded__embedded_current_image__links
 type InlineResponse2003EmbeddedEmbeddedCurrentImageLinks struct {
 
@@ -49,7 +51,6 @@ func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) Validate(formats s
 }
 
 func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) validateApp(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.App) { // not required
 		return nil
 	}
@@ -58,6 +59,8 @@ func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) validateApp(format
 		if err := m.App.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("app")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("app")
 			}
 			return err
 		}
@@ -67,7 +70,6 @@ func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) validateApp(format
 }
 
 func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) validateOperations(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Operations) { // not required
 		return nil
 	}
@@ -76,6 +78,8 @@ func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) validateOperations
 		if err := m.Operations.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
 			}
 			return err
 		}
@@ -85,7 +89,6 @@ func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) validateOperations
 }
 
 func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -94,6 +97,78 @@ func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) validateSelf(forma
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 3 embedded embedded current image links based on the context it is used
+func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateApp(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOperations(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) contextValidateApp(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.App != nil {
+		if err := m.App.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("app")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("app")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) contextValidateOperations(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Operations != nil {
+		if err := m.Operations.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse2003EmbeddedEmbeddedCurrentImageLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}

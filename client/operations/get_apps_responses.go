@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetAppsReader is a Reader for the GetApps structure.
@@ -47,7 +46,7 @@ func NewGetAppsOK() *GetAppsOK {
 	return &GetAppsOK{}
 }
 
-/*GetAppsOK handles this case with default header values.
+/* GetAppsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetAppsOK struct {
 func (o *GetAppsOK) Error() string {
 	return fmt.Sprintf("[GET /apps][%d] getAppsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAppsOK) GetPayload() *models.InlineResponse2003 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetAppsDefault(code int) *GetAppsDefault {
 	}
 }
 
-/*GetAppsDefault handles this case with default header values.
+/* GetAppsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetAppsDefault) Code() int {
 func (o *GetAppsDefault) Error() string {
 	return fmt.Sprintf("[GET /apps][%d] GetApps default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetAppsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

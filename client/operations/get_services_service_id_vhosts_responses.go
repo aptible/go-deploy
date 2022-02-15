@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetServicesServiceIDVhostsReader is a Reader for the GetServicesServiceIDVhosts structure.
@@ -47,7 +46,7 @@ func NewGetServicesServiceIDVhostsOK() *GetServicesServiceIDVhostsOK {
 	return &GetServicesServiceIDVhostsOK{}
 }
 
-/*GetServicesServiceIDVhostsOK handles this case with default header values.
+/* GetServicesServiceIDVhostsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetServicesServiceIDVhostsOK struct {
 func (o *GetServicesServiceIDVhostsOK) Error() string {
 	return fmt.Sprintf("[GET /services/{service_id}/vhosts][%d] getServicesServiceIdVhostsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetServicesServiceIDVhostsOK) GetPayload() *models.InlineResponse20040 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetServicesServiceIDVhostsDefault(code int) *GetServicesServiceIDVhostsD
 	}
 }
 
-/*GetServicesServiceIDVhostsDefault handles this case with default header values.
+/* GetServicesServiceIDVhostsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetServicesServiceIDVhostsDefault) Code() int {
 func (o *GetServicesServiceIDVhostsDefault) Error() string {
 	return fmt.Sprintf("[GET /services/{service_id}/vhosts][%d] GetServicesServiceIDVhosts default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetServicesServiceIDVhostsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

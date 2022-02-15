@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PatchVhostsIDReader is a Reader for the PatchVhostsID structure.
@@ -47,7 +46,7 @@ func NewPatchVhostsIDOK() *PatchVhostsIDOK {
 	return &PatchVhostsIDOK{}
 }
 
-/*PatchVhostsIDOK handles this case with default header values.
+/* PatchVhostsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewPatchVhostsIDDefault(code int) *PatchVhostsIDDefault {
 	}
 }
 
-/*PatchVhostsIDDefault handles this case with default header values.
+/* PatchVhostsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *PatchVhostsIDDefault) Code() int {
 func (o *PatchVhostsIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /vhosts/{id}][%d] PatchVhostsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PatchVhostsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

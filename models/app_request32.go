@@ -6,16 +6,17 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // AppRequest32 app request 32
+//
 // swagger:model app_request_32
 type AppRequest32 struct {
 
@@ -84,7 +85,7 @@ const (
 
 // prop value enum
 func (m *AppRequest32) validateScopeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, appRequest32TypeScopePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, appRequest32TypeScopePropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -101,6 +102,11 @@ func (m *AppRequest32) validateScope(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this app request 32 based on context it is used
+func (m *AppRequest32) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetActivityReportsIDReader is a Reader for the GetActivityReportsID structure.
@@ -47,7 +46,7 @@ func NewGetActivityReportsIDOK() *GetActivityReportsIDOK {
 	return &GetActivityReportsIDOK{}
 }
 
-/*GetActivityReportsIDOK handles this case with default header values.
+/* GetActivityReportsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetActivityReportsIDOK struct {
 func (o *GetActivityReportsIDOK) Error() string {
 	return fmt.Sprintf("[GET /activity_reports/{id}][%d] getActivityReportsIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetActivityReportsIDOK) GetPayload() *models.InlineResponse2002 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetActivityReportsIDDefault(code int) *GetActivityReportsIDDefault {
 	}
 }
 
-/*GetActivityReportsIDDefault handles this case with default header values.
+/* GetActivityReportsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetActivityReportsIDDefault) Code() int {
 func (o *GetActivityReportsIDDefault) Error() string {
 	return fmt.Sprintf("[GET /activity_reports/{id}][%d] GetActivityReportsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetActivityReportsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

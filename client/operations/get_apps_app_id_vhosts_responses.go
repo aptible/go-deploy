@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetAppsAppIDVhostsReader is a Reader for the GetAppsAppIDVhosts structure.
@@ -47,7 +46,7 @@ func NewGetAppsAppIDVhostsOK() *GetAppsAppIDVhostsOK {
 	return &GetAppsAppIDVhostsOK{}
 }
 
-/*GetAppsAppIDVhostsOK handles this case with default header values.
+/* GetAppsAppIDVhostsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetAppsAppIDVhostsOK struct {
 func (o *GetAppsAppIDVhostsOK) Error() string {
 	return fmt.Sprintf("[GET /apps/{app_id}/vhosts][%d] getAppsAppIdVhostsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAppsAppIDVhostsOK) GetPayload() *models.InlineResponse20040 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetAppsAppIDVhostsDefault(code int) *GetAppsAppIDVhostsDefault {
 	}
 }
 
-/*GetAppsAppIDVhostsDefault handles this case with default header values.
+/* GetAppsAppIDVhostsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetAppsAppIDVhostsDefault) Code() int {
 func (o *GetAppsAppIDVhostsDefault) Error() string {
 	return fmt.Sprintf("[GET /apps/{app_id}/vhosts][%d] GetAppsAppIDVhosts default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetAppsAppIDVhostsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

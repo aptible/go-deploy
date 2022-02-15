@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetDatabasesDatabaseIDDependentsParams creates a new GetDatabasesDatabaseIDDependentsParams object
-// with the default values initialized.
+// NewGetDatabasesDatabaseIDDependentsParams creates a new GetDatabasesDatabaseIDDependentsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetDatabasesDatabaseIDDependentsParams() *GetDatabasesDatabaseIDDependentsParams {
-	var ()
 	return &GetDatabasesDatabaseIDDependentsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetDatabasesDatabaseIDDependentsParamsWithTimeout creates a new GetDatabasesDatabaseIDDependentsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetDatabasesDatabaseIDDependentsParamsWithTimeout(timeout time.Duration) *GetDatabasesDatabaseIDDependentsParams {
-	var ()
 	return &GetDatabasesDatabaseIDDependentsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetDatabasesDatabaseIDDependentsParamsWithContext creates a new GetDatabasesDatabaseIDDependentsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetDatabasesDatabaseIDDependentsParamsWithContext(ctx context.Context) *GetDatabasesDatabaseIDDependentsParams {
-	var ()
 	return &GetDatabasesDatabaseIDDependentsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetDatabasesDatabaseIDDependentsParamsWithHTTPClient creates a new GetDatabasesDatabaseIDDependentsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetDatabasesDatabaseIDDependentsParamsWithHTTPClient(client *http.Client) *GetDatabasesDatabaseIDDependentsParams {
-	var ()
 	return &GetDatabasesDatabaseIDDependentsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetDatabasesDatabaseIDDependentsParams contains all the parameters to send to the API endpoint
-for the get databases database ID dependents operation typically these are written to a http.Request
+/* GetDatabasesDatabaseIDDependentsParams contains all the parameters to send to the API endpoint
+   for the get databases database ID dependents operation.
+
+   Typically these are written to a http.Request.
 */
 type GetDatabasesDatabaseIDDependentsParams struct {
 
-	/*DatabaseID
-	  database_id
+	/* DatabaseID.
 
+	   database_id
 	*/
 	DatabaseID int64
-	/*Page
-	  current page of results for pagination
 
+	/* Page.
+
+	   current page of results for pagination
 	*/
 	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get databases database ID dependents params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDatabasesDatabaseIDDependentsParams) WithDefaults() *GetDatabasesDatabaseIDDependentsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get databases database ID dependents params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDatabasesDatabaseIDDependentsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get databases database ID dependents params
@@ -150,16 +164,17 @@ func (o *GetDatabasesDatabaseIDDependentsParams) WriteToRequest(r runtime.Client
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

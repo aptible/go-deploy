@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPostServicesServiceIDOperationsParams creates a new PostServicesServiceIDOperationsParams object
-// with the default values initialized.
+// NewPostServicesServiceIDOperationsParams creates a new PostServicesServiceIDOperationsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostServicesServiceIDOperationsParams() *PostServicesServiceIDOperationsParams {
-	var ()
 	return &PostServicesServiceIDOperationsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostServicesServiceIDOperationsParamsWithTimeout creates a new PostServicesServiceIDOperationsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostServicesServiceIDOperationsParamsWithTimeout(timeout time.Duration) *PostServicesServiceIDOperationsParams {
-	var ()
 	return &PostServicesServiceIDOperationsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostServicesServiceIDOperationsParamsWithContext creates a new PostServicesServiceIDOperationsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostServicesServiceIDOperationsParamsWithContext(ctx context.Context) *PostServicesServiceIDOperationsParams {
-	var ()
 	return &PostServicesServiceIDOperationsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostServicesServiceIDOperationsParamsWithHTTPClient creates a new PostServicesServiceIDOperationsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostServicesServiceIDOperationsParamsWithHTTPClient(client *http.Client) *PostServicesServiceIDOperationsParams {
-	var ()
 	return &PostServicesServiceIDOperationsParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostServicesServiceIDOperationsParams contains all the parameters to send to the API endpoint
-for the post services service ID operations operation typically these are written to a http.Request
+/* PostServicesServiceIDOperationsParams contains all the parameters to send to the API endpoint
+   for the post services service ID operations operation.
+
+   Typically these are written to a http.Request.
 */
 type PostServicesServiceIDOperationsParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest26
-	/*ServiceID
-	  service_id
 
+	/* ServiceID.
+
+	   service_id
 	*/
 	ServiceID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post services service ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostServicesServiceIDOperationsParams) WithDefaults() *PostServicesServiceIDOperationsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post services service ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostServicesServiceIDOperationsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post services service ID operations params
@@ -139,7 +153,6 @@ func (o *PostServicesServiceIDOperationsParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

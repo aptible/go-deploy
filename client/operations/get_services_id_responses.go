@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetServicesIDReader is a Reader for the GetServicesID structure.
@@ -47,7 +46,7 @@ func NewGetServicesIDOK() *GetServicesIDOK {
 	return &GetServicesIDOK{}
 }
 
-/*GetServicesIDOK handles this case with default header values.
+/* GetServicesIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetServicesIDOK struct {
 func (o *GetServicesIDOK) Error() string {
 	return fmt.Sprintf("[GET /services/{id}][%d] getServicesIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetServicesIDOK) GetPayload() *models.InlineResponse20036 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetServicesIDDefault(code int) *GetServicesIDDefault {
 	}
 }
 
-/*GetServicesIDDefault handles this case with default header values.
+/* GetServicesIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetServicesIDDefault) Code() int {
 func (o *GetServicesIDDefault) Error() string {
 	return fmt.Sprintf("[GET /services/{id}][%d] GetServicesID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetServicesIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

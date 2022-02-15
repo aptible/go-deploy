@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetPermissionsIDParams creates a new GetPermissionsIDParams object
-// with the default values initialized.
+// NewGetPermissionsIDParams creates a new GetPermissionsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetPermissionsIDParams() *GetPermissionsIDParams {
-	var ()
 	return &GetPermissionsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetPermissionsIDParamsWithTimeout creates a new GetPermissionsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetPermissionsIDParamsWithTimeout(timeout time.Duration) *GetPermissionsIDParams {
-	var ()
 	return &GetPermissionsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetPermissionsIDParamsWithContext creates a new GetPermissionsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetPermissionsIDParamsWithContext(ctx context.Context) *GetPermissionsIDParams {
-	var ()
 	return &GetPermissionsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetPermissionsIDParamsWithHTTPClient creates a new GetPermissionsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetPermissionsIDParamsWithHTTPClient(client *http.Client) *GetPermissionsIDParams {
-	var ()
 	return &GetPermissionsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetPermissionsIDParams contains all the parameters to send to the API endpoint
-for the get permissions ID operation typically these are written to a http.Request
+/* GetPermissionsIDParams contains all the parameters to send to the API endpoint
+   for the get permissions ID operation.
+
+   Typically these are written to a http.Request.
 */
 type GetPermissionsIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get permissions ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetPermissionsIDParams) WithDefaults() *GetPermissionsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get permissions ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetPermissionsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get permissions ID params

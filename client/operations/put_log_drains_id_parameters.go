@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPutLogDrainsIDParams creates a new PutLogDrainsIDParams object
-// with the default values initialized.
+// NewPutLogDrainsIDParams creates a new PutLogDrainsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPutLogDrainsIDParams() *PutLogDrainsIDParams {
-	var ()
 	return &PutLogDrainsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPutLogDrainsIDParamsWithTimeout creates a new PutLogDrainsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPutLogDrainsIDParamsWithTimeout(timeout time.Duration) *PutLogDrainsIDParams {
-	var ()
 	return &PutLogDrainsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPutLogDrainsIDParamsWithContext creates a new PutLogDrainsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPutLogDrainsIDParamsWithContext(ctx context.Context) *PutLogDrainsIDParams {
-	var ()
 	return &PutLogDrainsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPutLogDrainsIDParamsWithHTTPClient creates a new PutLogDrainsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPutLogDrainsIDParamsWithHTTPClient(client *http.Client) *PutLogDrainsIDParams {
-	var ()
 	return &PutLogDrainsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*PutLogDrainsIDParams contains all the parameters to send to the API endpoint
-for the put log drains ID operation typically these are written to a http.Request
+/* PutLogDrainsIDParams contains all the parameters to send to the API endpoint
+   for the put log drains ID operation.
+
+   Typically these are written to a http.Request.
 */
 type PutLogDrainsIDParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest17
-	/*ID
-	  id
 
+	/* ID.
+
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the put log drains ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PutLogDrainsIDParams) WithDefaults() *PutLogDrainsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the put log drains ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PutLogDrainsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the put log drains ID params
@@ -139,7 +153,6 @@ func (o *PutLogDrainsIDParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

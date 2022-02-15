@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // InlineResponse20037EmbeddedSSHPortalConnections inline response 200 37 embedded ssh portal connections
+//
 // swagger:model inline_response_200_37__embedded_ssh_portal_connections
 type InlineResponse20037EmbeddedSSHPortalConnections struct {
 
@@ -65,7 +67,6 @@ func (m *InlineResponse20037EmbeddedSSHPortalConnections) Validate(formats strfm
 }
 
 func (m *InlineResponse20037EmbeddedSSHPortalConnections) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -74,6 +75,8 @@ func (m *InlineResponse20037EmbeddedSSHPortalConnections) validateLinks(formats 
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
 			}
 			return err
 		}
@@ -83,13 +86,42 @@ func (m *InlineResponse20037EmbeddedSSHPortalConnections) validateLinks(formats 
 }
 
 func (m *InlineResponse20037EmbeddedSSHPortalConnections) validateID(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ID) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("id", "body", "uuid", m.ID.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 37 embedded ssh portal connections based on the context it is used
+func (m *InlineResponse20037EmbeddedSSHPortalConnections) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20037EmbeddedSSHPortalConnections) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse2006Embedded inline response 200 6 embedded
+//
 // swagger:model inline_response_200_6__embedded
 type InlineResponse2006Embedded struct {
 
@@ -37,7 +38,6 @@ func (m *InlineResponse2006Embedded) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse2006Embedded) validateBackups(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Backups) { // not required
 		return nil
 	}
@@ -51,6 +51,42 @@ func (m *InlineResponse2006Embedded) validateBackups(formats strfmt.Registry) er
 			if err := m.Backups[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("backups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("backups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 6 embedded based on the context it is used
+func (m *InlineResponse2006Embedded) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateBackups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse2006Embedded) contextValidateBackups(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Backups); i++ {
+
+		if m.Backups[i] != nil {
+			if err := m.Backups[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("backups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("backups" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

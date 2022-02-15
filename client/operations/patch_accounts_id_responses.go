@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PatchAccountsIDReader is a Reader for the PatchAccountsID structure.
@@ -47,7 +46,7 @@ func NewPatchAccountsIDOK() *PatchAccountsIDOK {
 	return &PatchAccountsIDOK{}
 }
 
-/*PatchAccountsIDOK handles this case with default header values.
+/* PatchAccountsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewPatchAccountsIDDefault(code int) *PatchAccountsIDDefault {
 	}
 }
 
-/*PatchAccountsIDDefault handles this case with default header values.
+/* PatchAccountsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *PatchAccountsIDDefault) Code() int {
 func (o *PatchAccountsIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /accounts/{id}][%d] PatchAccountsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PatchAccountsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

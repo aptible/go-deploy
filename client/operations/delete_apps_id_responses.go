@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // DeleteAppsIDReader is a Reader for the DeleteAppsID structure.
@@ -47,7 +46,7 @@ func NewDeleteAppsIDNoContent() *DeleteAppsIDNoContent {
 	return &DeleteAppsIDNoContent{}
 }
 
-/*DeleteAppsIDNoContent handles this case with default header values.
+/* DeleteAppsIDNoContent describes a response with status code 204, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewDeleteAppsIDDefault(code int) *DeleteAppsIDDefault {
 	}
 }
 
-/*DeleteAppsIDDefault handles this case with default header values.
+/* DeleteAppsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *DeleteAppsIDDefault) Code() int {
 func (o *DeleteAppsIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /apps/{id}][%d] DeleteAppsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *DeleteAppsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

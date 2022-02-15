@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20021Embedded inline response 200 21 embedded
+//
 // swagger:model inline_response_200_21__embedded
 type InlineResponse20021Embedded struct {
 
@@ -37,7 +38,6 @@ func (m *InlineResponse20021Embedded) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20021Embedded) validateEphemeralSessions(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.EphemeralSessions) { // not required
 		return nil
 	}
@@ -51,6 +51,42 @@ func (m *InlineResponse20021Embedded) validateEphemeralSessions(formats strfmt.R
 			if err := m.EphemeralSessions[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ephemeral_sessions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ephemeral_sessions" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 21 embedded based on the context it is used
+func (m *InlineResponse20021Embedded) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateEphemeralSessions(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20021Embedded) contextValidateEphemeralSessions(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.EphemeralSessions); i++ {
+
+		if m.EphemeralSessions[i] != nil {
+			if err := m.EphemeralSessions[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("ephemeral_sessions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ephemeral_sessions" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

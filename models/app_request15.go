@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // AppRequest15 app request 15
+//
 // swagger:model app_request_15
 type AppRequest15 struct {
 
@@ -33,6 +35,11 @@ type AppRequest15 struct {
 
 // Validate validates this app request 15
 func (m *AppRequest15) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this app request 15 based on context it is used
+func (m *AppRequest15) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

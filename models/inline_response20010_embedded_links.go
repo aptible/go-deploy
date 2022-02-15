@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20010EmbeddedLinks inline response 200 10 embedded links
+//
 // swagger:model inline_response_200_10__embedded__links
 type InlineResponse20010EmbeddedLinks struct {
 
@@ -63,7 +65,6 @@ func (m *InlineResponse20010EmbeddedLinks) Validate(formats strfmt.Registry) err
 }
 
 func (m *InlineResponse20010EmbeddedLinks) validateLogDrain(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.LogDrain) { // not required
 		return nil
 	}
@@ -72,6 +73,8 @@ func (m *InlineResponse20010EmbeddedLinks) validateLogDrain(formats strfmt.Regis
 		if err := m.LogDrain.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("log_drain")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("log_drain")
 			}
 			return err
 		}
@@ -81,7 +84,6 @@ func (m *InlineResponse20010EmbeddedLinks) validateLogDrain(formats strfmt.Regis
 }
 
 func (m *InlineResponse20010EmbeddedLinks) validateMetricDrain(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.MetricDrain) { // not required
 		return nil
 	}
@@ -90,6 +92,8 @@ func (m *InlineResponse20010EmbeddedLinks) validateMetricDrain(formats strfmt.Re
 		if err := m.MetricDrain.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("metric_drain")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric_drain")
 			}
 			return err
 		}
@@ -99,7 +103,6 @@ func (m *InlineResponse20010EmbeddedLinks) validateMetricDrain(formats strfmt.Re
 }
 
 func (m *InlineResponse20010EmbeddedLinks) validateRelease(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Release) { // not required
 		return nil
 	}
@@ -108,6 +111,8 @@ func (m *InlineResponse20010EmbeddedLinks) validateRelease(formats strfmt.Regist
 		if err := m.Release.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("release")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("release")
 			}
 			return err
 		}
@@ -117,7 +122,6 @@ func (m *InlineResponse20010EmbeddedLinks) validateRelease(formats strfmt.Regist
 }
 
 func (m *InlineResponse20010EmbeddedLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -126,6 +130,8 @@ func (m *InlineResponse20010EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}
@@ -135,7 +141,6 @@ func (m *InlineResponse20010EmbeddedLinks) validateSelf(formats strfmt.Registry)
 }
 
 func (m *InlineResponse20010EmbeddedLinks) validateVhost(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Vhost) { // not required
 		return nil
 	}
@@ -144,6 +149,118 @@ func (m *InlineResponse20010EmbeddedLinks) validateVhost(formats strfmt.Registry
 		if err := m.Vhost.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vhost")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vhost")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 10 embedded links based on the context it is used
+func (m *InlineResponse20010EmbeddedLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLogDrain(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMetricDrain(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRelease(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVhost(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20010EmbeddedLinks) contextValidateLogDrain(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LogDrain != nil {
+		if err := m.LogDrain.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("log_drain")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("log_drain")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010EmbeddedLinks) contextValidateMetricDrain(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.MetricDrain != nil {
+		if err := m.MetricDrain.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metric_drain")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric_drain")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010EmbeddedLinks) contextValidateRelease(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Release != nil {
+		if err := m.Release.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("release")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("release")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010EmbeddedLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20010EmbeddedLinks) contextValidateVhost(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Vhost != nil {
+		if err := m.Vhost.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vhost")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vhost")
 			}
 			return err
 		}

@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetAccountsParams creates a new GetAccountsParams object
-// with the default values initialized.
+// NewGetAccountsParams creates a new GetAccountsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAccountsParams() *GetAccountsParams {
-	var ()
 	return &GetAccountsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAccountsParamsWithTimeout creates a new GetAccountsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAccountsParamsWithTimeout(timeout time.Duration) *GetAccountsParams {
-	var ()
 	return &GetAccountsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAccountsParamsWithContext creates a new GetAccountsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAccountsParamsWithContext(ctx context.Context) *GetAccountsParams {
-	var ()
 	return &GetAccountsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetAccountsParamsWithHTTPClient creates a new GetAccountsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAccountsParamsWithHTTPClient(client *http.Client) *GetAccountsParams {
-	var ()
 	return &GetAccountsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetAccountsParams contains all the parameters to send to the API endpoint
-for the get accounts operation typically these are written to a http.Request
+/* GetAccountsParams contains all the parameters to send to the API endpoint
+   for the get accounts operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAccountsParams struct {
 
-	/*Page
-	  current page of results for pagination
+	/* Page.
 
+	   current page of results for pagination
 	*/
 	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get accounts params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAccountsParams) WithDefaults() *GetAccountsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get accounts params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAccountsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get accounts params
@@ -129,16 +142,17 @@ func (o *GetAccountsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

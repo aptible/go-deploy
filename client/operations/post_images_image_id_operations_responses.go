@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PostImagesImageIDOperationsReader is a Reader for the PostImagesImageIDOperations structure.
@@ -47,7 +46,7 @@ func NewPostImagesImageIDOperationsCreated() *PostImagesImageIDOperationsCreated
 	return &PostImagesImageIDOperationsCreated{}
 }
 
-/*PostImagesImageIDOperationsCreated handles this case with default header values.
+/* PostImagesImageIDOperationsCreated describes a response with status code 201, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type PostImagesImageIDOperationsCreated struct {
 func (o *PostImagesImageIDOperationsCreated) Error() string {
 	return fmt.Sprintf("[POST /images/{image_id}/operations][%d] postImagesImageIdOperationsCreated  %+v", 201, o.Payload)
 }
-
 func (o *PostImagesImageIDOperationsCreated) GetPayload() *models.InlineResponse20030 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewPostImagesImageIDOperationsDefault(code int) *PostImagesImageIDOperation
 	}
 }
 
-/*PostImagesImageIDOperationsDefault handles this case with default header values.
+/* PostImagesImageIDOperationsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *PostImagesImageIDOperationsDefault) Code() int {
 func (o *PostImagesImageIDOperationsDefault) Error() string {
 	return fmt.Sprintf("[POST /images/{image_id}/operations][%d] PostImagesImageIDOperations default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PostImagesImageIDOperationsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

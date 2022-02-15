@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetLogDrainsLogDrainIDEphemeralContainersParams creates a new GetLogDrainsLogDrainIDEphemeralContainersParams object
-// with the default values initialized.
+// NewGetLogDrainsLogDrainIDEphemeralContainersParams creates a new GetLogDrainsLogDrainIDEphemeralContainersParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetLogDrainsLogDrainIDEphemeralContainersParams() *GetLogDrainsLogDrainIDEphemeralContainersParams {
-	var ()
 	return &GetLogDrainsLogDrainIDEphemeralContainersParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetLogDrainsLogDrainIDEphemeralContainersParamsWithTimeout creates a new GetLogDrainsLogDrainIDEphemeralContainersParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetLogDrainsLogDrainIDEphemeralContainersParamsWithTimeout(timeout time.Duration) *GetLogDrainsLogDrainIDEphemeralContainersParams {
-	var ()
 	return &GetLogDrainsLogDrainIDEphemeralContainersParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetLogDrainsLogDrainIDEphemeralContainersParamsWithContext creates a new GetLogDrainsLogDrainIDEphemeralContainersParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetLogDrainsLogDrainIDEphemeralContainersParamsWithContext(ctx context.Context) *GetLogDrainsLogDrainIDEphemeralContainersParams {
-	var ()
 	return &GetLogDrainsLogDrainIDEphemeralContainersParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetLogDrainsLogDrainIDEphemeralContainersParamsWithHTTPClient creates a new GetLogDrainsLogDrainIDEphemeralContainersParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetLogDrainsLogDrainIDEphemeralContainersParamsWithHTTPClient(client *http.Client) *GetLogDrainsLogDrainIDEphemeralContainersParams {
-	var ()
 	return &GetLogDrainsLogDrainIDEphemeralContainersParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetLogDrainsLogDrainIDEphemeralContainersParams contains all the parameters to send to the API endpoint
-for the get log drains log drain ID ephemeral containers operation typically these are written to a http.Request
+/* GetLogDrainsLogDrainIDEphemeralContainersParams contains all the parameters to send to the API endpoint
+   for the get log drains log drain ID ephemeral containers operation.
+
+   Typically these are written to a http.Request.
 */
 type GetLogDrainsLogDrainIDEphemeralContainersParams struct {
 
-	/*LogDrainID
-	  log_drain_id
+	/* LogDrainID.
 
+	   log_drain_id
 	*/
 	LogDrainID int64
-	/*Page
-	  current page of results for pagination
 
+	/* Page.
+
+	   current page of results for pagination
 	*/
 	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get log drains log drain ID ephemeral containers params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetLogDrainsLogDrainIDEphemeralContainersParams) WithDefaults() *GetLogDrainsLogDrainIDEphemeralContainersParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get log drains log drain ID ephemeral containers params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetLogDrainsLogDrainIDEphemeralContainersParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get log drains log drain ID ephemeral containers params
@@ -150,16 +164,17 @@ func (o *GetLogDrainsLogDrainIDEphemeralContainersParams) WriteToRequest(r runti
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

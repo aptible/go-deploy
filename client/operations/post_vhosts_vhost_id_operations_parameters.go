@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPostVhostsVhostIDOperationsParams creates a new PostVhostsVhostIDOperationsParams object
-// with the default values initialized.
+// NewPostVhostsVhostIDOperationsParams creates a new PostVhostsVhostIDOperationsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostVhostsVhostIDOperationsParams() *PostVhostsVhostIDOperationsParams {
-	var ()
 	return &PostVhostsVhostIDOperationsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostVhostsVhostIDOperationsParamsWithTimeout creates a new PostVhostsVhostIDOperationsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostVhostsVhostIDOperationsParamsWithTimeout(timeout time.Duration) *PostVhostsVhostIDOperationsParams {
-	var ()
 	return &PostVhostsVhostIDOperationsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostVhostsVhostIDOperationsParamsWithContext creates a new PostVhostsVhostIDOperationsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostVhostsVhostIDOperationsParamsWithContext(ctx context.Context) *PostVhostsVhostIDOperationsParams {
-	var ()
 	return &PostVhostsVhostIDOperationsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostVhostsVhostIDOperationsParamsWithHTTPClient creates a new PostVhostsVhostIDOperationsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostVhostsVhostIDOperationsParamsWithHTTPClient(client *http.Client) *PostVhostsVhostIDOperationsParams {
-	var ()
 	return &PostVhostsVhostIDOperationsParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostVhostsVhostIDOperationsParams contains all the parameters to send to the API endpoint
-for the post vhosts vhost ID operations operation typically these are written to a http.Request
+/* PostVhostsVhostIDOperationsParams contains all the parameters to send to the API endpoint
+   for the post vhosts vhost ID operations operation.
+
+   Typically these are written to a http.Request.
 */
 type PostVhostsVhostIDOperationsParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest27
-	/*VhostID
-	  vhost_id
 
+	/* VhostID.
+
+	   vhost_id
 	*/
 	VhostID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post vhosts vhost ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostVhostsVhostIDOperationsParams) WithDefaults() *PostVhostsVhostIDOperationsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post vhosts vhost ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostVhostsVhostIDOperationsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post vhosts vhost ID operations params
@@ -139,7 +153,6 @@ func (o *PostVhostsVhostIDOperationsParams) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

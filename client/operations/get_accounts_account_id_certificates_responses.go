@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetAccountsAccountIDCertificatesReader is a Reader for the GetAccountsAccountIDCertificates structure.
@@ -47,7 +46,7 @@ func NewGetAccountsAccountIDCertificatesOK() *GetAccountsAccountIDCertificatesOK
 	return &GetAccountsAccountIDCertificatesOK{}
 }
 
-/*GetAccountsAccountIDCertificatesOK handles this case with default header values.
+/* GetAccountsAccountIDCertificatesOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetAccountsAccountIDCertificatesOK struct {
 func (o *GetAccountsAccountIDCertificatesOK) Error() string {
 	return fmt.Sprintf("[GET /accounts/{account_id}/certificates][%d] getAccountsAccountIdCertificatesOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAccountsAccountIDCertificatesOK) GetPayload() *models.InlineResponse2008 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetAccountsAccountIDCertificatesDefault(code int) *GetAccountsAccountIDC
 	}
 }
 
-/*GetAccountsAccountIDCertificatesDefault handles this case with default header values.
+/* GetAccountsAccountIDCertificatesDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetAccountsAccountIDCertificatesDefault) Code() int {
 func (o *GetAccountsAccountIDCertificatesDefault) Error() string {
 	return fmt.Sprintf("[GET /accounts/{account_id}/certificates][%d] GetAccountsAccountIDCertificates default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetAccountsAccountIDCertificatesDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetReleasesIDReader is a Reader for the GetReleasesID structure.
@@ -47,7 +46,7 @@ func NewGetReleasesIDOK() *GetReleasesIDOK {
 	return &GetReleasesIDOK{}
 }
 
-/*GetReleasesIDOK handles this case with default header values.
+/* GetReleasesIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetReleasesIDOK struct {
 func (o *GetReleasesIDOK) Error() string {
 	return fmt.Sprintf("[GET /releases/{id}][%d] getReleasesIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetReleasesIDOK) GetPayload() *models.InlineResponse20034 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetReleasesIDDefault(code int) *GetReleasesIDDefault {
 	}
 }
 
-/*GetReleasesIDDefault handles this case with default header values.
+/* GetReleasesIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetReleasesIDDefault) Code() int {
 func (o *GetReleasesIDDefault) Error() string {
 	return fmt.Sprintf("[GET /releases/{id}][%d] GetReleasesID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetReleasesIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

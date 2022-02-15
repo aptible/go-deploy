@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20041EmbeddedLinks inline response 200 41 embedded links
+//
 // swagger:model inline_response_200_41__embedded__links
 type InlineResponse20041EmbeddedLinks struct {
 
@@ -42,7 +44,6 @@ func (m *InlineResponse20041EmbeddedLinks) Validate(formats strfmt.Registry) err
 }
 
 func (m *InlineResponse20041EmbeddedLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -51,6 +52,8 @@ func (m *InlineResponse20041EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}
@@ -60,7 +63,6 @@ func (m *InlineResponse20041EmbeddedLinks) validateSelf(formats strfmt.Registry)
 }
 
 func (m *InlineResponse20041EmbeddedLinks) validateStack(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Stack) { // not required
 		return nil
 	}
@@ -69,6 +71,58 @@ func (m *InlineResponse20041EmbeddedLinks) validateStack(formats strfmt.Registry
 		if err := m.Stack.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("stack")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("stack")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 41 embedded links based on the context it is used
+func (m *InlineResponse20041EmbeddedLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStack(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20041EmbeddedLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20041EmbeddedLinks) contextValidateStack(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Stack != nil {
+		if err := m.Stack.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("stack")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("stack")
 			}
 			return err
 		}

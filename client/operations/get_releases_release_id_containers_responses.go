@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetReleasesReleaseIDContainersReader is a Reader for the GetReleasesReleaseIDContainers structure.
@@ -47,7 +46,7 @@ func NewGetReleasesReleaseIDContainersOK() *GetReleasesReleaseIDContainersOK {
 	return &GetReleasesReleaseIDContainersOK{}
 }
 
-/*GetReleasesReleaseIDContainersOK handles this case with default header values.
+/* GetReleasesReleaseIDContainersOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetReleasesReleaseIDContainersOK struct {
 func (o *GetReleasesReleaseIDContainersOK) Error() string {
 	return fmt.Sprintf("[GET /releases/{release_id}/containers][%d] getReleasesReleaseIdContainersOK  %+v", 200, o.Payload)
 }
-
 func (o *GetReleasesReleaseIDContainersOK) GetPayload() *models.InlineResponse20010 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetReleasesReleaseIDContainersDefault(code int) *GetReleasesReleaseIDCon
 	}
 }
 
-/*GetReleasesReleaseIDContainersDefault handles this case with default header values.
+/* GetReleasesReleaseIDContainersDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetReleasesReleaseIDContainersDefault) Code() int {
 func (o *GetReleasesReleaseIDContainersDefault) Error() string {
 	return fmt.Sprintf("[GET /releases/{release_id}/containers][%d] GetReleasesReleaseIDContainers default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetReleasesReleaseIDContainersDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

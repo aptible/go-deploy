@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetStacksStackIDAccountsReader is a Reader for the GetStacksStackIDAccounts structure.
@@ -47,7 +46,7 @@ func NewGetStacksStackIDAccountsOK() *GetStacksStackIDAccountsOK {
 	return &GetStacksStackIDAccountsOK{}
 }
 
-/*GetStacksStackIDAccountsOK handles this case with default header values.
+/* GetStacksStackIDAccountsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetStacksStackIDAccountsOK struct {
 func (o *GetStacksStackIDAccountsOK) Error() string {
 	return fmt.Sprintf("[GET /stacks/{stack_id}/accounts][%d] getStacksStackIdAccountsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetStacksStackIDAccountsOK) GetPayload() *models.InlineResponse200 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetStacksStackIDAccountsDefault(code int) *GetStacksStackIDAccountsDefau
 	}
 }
 
-/*GetStacksStackIDAccountsDefault handles this case with default header values.
+/* GetStacksStackIDAccountsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetStacksStackIDAccountsDefault) Code() int {
 func (o *GetStacksStackIDAccountsDefault) Error() string {
 	return fmt.Sprintf("[GET /stacks/{stack_id}/accounts][%d] GetStacksStackIDAccounts default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetStacksStackIDAccountsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

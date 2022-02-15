@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20029EmbeddedMetricDrains inline response 200 29 embedded metric drains
+//
 // swagger:model inline_response_200_29__embedded_metric_drains
 type InlineResponse20029EmbeddedMetricDrains struct {
 
@@ -84,7 +86,6 @@ func (m *InlineResponse20029EmbeddedMetricDrains) Validate(formats strfmt.Regist
 }
 
 func (m *InlineResponse20029EmbeddedMetricDrains) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -93,6 +94,8 @@ func (m *InlineResponse20029EmbeddedMetricDrains) validateLinks(formats strfmt.R
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
 			}
 			return err
 		}
@@ -102,7 +105,6 @@ func (m *InlineResponse20029EmbeddedMetricDrains) validateLinks(formats strfmt.R
 }
 
 func (m *InlineResponse20029EmbeddedMetricDrains) validateDrainConfiguration(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DrainConfiguration) { // not required
 		return nil
 	}
@@ -111,6 +113,58 @@ func (m *InlineResponse20029EmbeddedMetricDrains) validateDrainConfiguration(for
 		if err := m.DrainConfiguration.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("drain_configuration")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("drain_configuration")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 29 embedded metric drains based on the context it is used
+func (m *InlineResponse20029EmbeddedMetricDrains) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDrainConfiguration(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20029EmbeddedMetricDrains) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20029EmbeddedMetricDrains) contextValidateDrainConfiguration(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DrainConfiguration != nil {
+		if err := m.DrainConfiguration.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("drain_configuration")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("drain_configuration")
 			}
 			return err
 		}

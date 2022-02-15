@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20015Embedded inline response 200 15 embedded
+//
 // swagger:model inline_response_200_15__embedded
 type InlineResponse20015Embedded struct {
 
@@ -37,7 +38,6 @@ func (m *InlineResponse20015Embedded) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20015Embedded) validateDatabaseImages(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DatabaseImages) { // not required
 		return nil
 	}
@@ -51,6 +51,42 @@ func (m *InlineResponse20015Embedded) validateDatabaseImages(formats strfmt.Regi
 			if err := m.DatabaseImages[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("database_images" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("database_images" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 15 embedded based on the context it is used
+func (m *InlineResponse20015Embedded) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDatabaseImages(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20015Embedded) contextValidateDatabaseImages(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.DatabaseImages); i++ {
+
+		if m.DatabaseImages[i] != nil {
+			if err := m.DatabaseImages[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("database_images" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("database_images" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

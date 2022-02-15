@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20040Embedded inline response 200 40 embedded
+//
 // swagger:model inline_response_200_40__embedded
 type InlineResponse20040Embedded struct {
 
@@ -37,7 +38,6 @@ func (m *InlineResponse20040Embedded) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20040Embedded) validateVhosts(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Vhosts) { // not required
 		return nil
 	}
@@ -51,6 +51,42 @@ func (m *InlineResponse20040Embedded) validateVhosts(formats strfmt.Registry) er
 			if err := m.Vhosts[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vhosts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vhosts" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 40 embedded based on the context it is used
+func (m *InlineResponse20040Embedded) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateVhosts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20040Embedded) contextValidateVhosts(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Vhosts); i++ {
+
+		if m.Vhosts[i] != nil {
+			if err := m.Vhosts[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("vhosts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vhosts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

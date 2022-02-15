@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetMetricDrainsMetricDrainIDContainersReader is a Reader for the GetMetricDrainsMetricDrainIDContainers structure.
@@ -47,7 +46,7 @@ func NewGetMetricDrainsMetricDrainIDContainersOK() *GetMetricDrainsMetricDrainID
 	return &GetMetricDrainsMetricDrainIDContainersOK{}
 }
 
-/*GetMetricDrainsMetricDrainIDContainersOK handles this case with default header values.
+/* GetMetricDrainsMetricDrainIDContainersOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetMetricDrainsMetricDrainIDContainersOK struct {
 func (o *GetMetricDrainsMetricDrainIDContainersOK) Error() string {
 	return fmt.Sprintf("[GET /metric_drains/{metric_drain_id}/containers][%d] getMetricDrainsMetricDrainIdContainersOK  %+v", 200, o.Payload)
 }
-
 func (o *GetMetricDrainsMetricDrainIDContainersOK) GetPayload() *models.InlineResponse20010 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetMetricDrainsMetricDrainIDContainersDefault(code int) *GetMetricDrains
 	}
 }
 
-/*GetMetricDrainsMetricDrainIDContainersDefault handles this case with default header values.
+/* GetMetricDrainsMetricDrainIDContainersDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetMetricDrainsMetricDrainIDContainersDefault) Code() int {
 func (o *GetMetricDrainsMetricDrainIDContainersDefault) Error() string {
 	return fmt.Sprintf("[GET /metric_drains/{metric_drain_id}/containers][%d] GetMetricDrainsMetricDrainIDContainers default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetMetricDrainsMetricDrainIDContainersDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

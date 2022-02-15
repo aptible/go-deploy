@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetConfigurationsIDParams creates a new GetConfigurationsIDParams object
-// with the default values initialized.
+// NewGetConfigurationsIDParams creates a new GetConfigurationsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetConfigurationsIDParams() *GetConfigurationsIDParams {
-	var ()
 	return &GetConfigurationsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetConfigurationsIDParamsWithTimeout creates a new GetConfigurationsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetConfigurationsIDParamsWithTimeout(timeout time.Duration) *GetConfigurationsIDParams {
-	var ()
 	return &GetConfigurationsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetConfigurationsIDParamsWithContext creates a new GetConfigurationsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetConfigurationsIDParamsWithContext(ctx context.Context) *GetConfigurationsIDParams {
-	var ()
 	return &GetConfigurationsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetConfigurationsIDParamsWithHTTPClient creates a new GetConfigurationsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetConfigurationsIDParamsWithHTTPClient(client *http.Client) *GetConfigurationsIDParams {
-	var ()
 	return &GetConfigurationsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetConfigurationsIDParams contains all the parameters to send to the API endpoint
-for the get configurations ID operation typically these are written to a http.Request
+/* GetConfigurationsIDParams contains all the parameters to send to the API endpoint
+   for the get configurations ID operation.
+
+   Typically these are written to a http.Request.
 */
 type GetConfigurationsIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get configurations ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetConfigurationsIDParams) WithDefaults() *GetConfigurationsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get configurations ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetConfigurationsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get configurations ID params

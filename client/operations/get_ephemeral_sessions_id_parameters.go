@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetEphemeralSessionsIDParams creates a new GetEphemeralSessionsIDParams object
-// with the default values initialized.
+// NewGetEphemeralSessionsIDParams creates a new GetEphemeralSessionsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetEphemeralSessionsIDParams() *GetEphemeralSessionsIDParams {
-	var ()
 	return &GetEphemeralSessionsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetEphemeralSessionsIDParamsWithTimeout creates a new GetEphemeralSessionsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetEphemeralSessionsIDParamsWithTimeout(timeout time.Duration) *GetEphemeralSessionsIDParams {
-	var ()
 	return &GetEphemeralSessionsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetEphemeralSessionsIDParamsWithContext creates a new GetEphemeralSessionsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetEphemeralSessionsIDParamsWithContext(ctx context.Context) *GetEphemeralSessionsIDParams {
-	var ()
 	return &GetEphemeralSessionsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetEphemeralSessionsIDParamsWithHTTPClient creates a new GetEphemeralSessionsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetEphemeralSessionsIDParamsWithHTTPClient(client *http.Client) *GetEphemeralSessionsIDParams {
-	var ()
 	return &GetEphemeralSessionsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetEphemeralSessionsIDParams contains all the parameters to send to the API endpoint
-for the get ephemeral sessions ID operation typically these are written to a http.Request
+/* GetEphemeralSessionsIDParams contains all the parameters to send to the API endpoint
+   for the get ephemeral sessions ID operation.
+
+   Typically these are written to a http.Request.
 */
 type GetEphemeralSessionsIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get ephemeral sessions ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetEphemeralSessionsIDParams) WithDefaults() *GetEphemeralSessionsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get ephemeral sessions ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetEphemeralSessionsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get ephemeral sessions ID params

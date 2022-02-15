@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20040EmbeddedLinks inline response 200 40 embedded links
+//
 // swagger:model inline_response_200_40__embedded__links
 type InlineResponse20040EmbeddedLinks struct {
 
@@ -56,7 +58,6 @@ func (m *InlineResponse20040EmbeddedLinks) Validate(formats strfmt.Registry) err
 }
 
 func (m *InlineResponse20040EmbeddedLinks) validateCertificate(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Certificate) { // not required
 		return nil
 	}
@@ -65,6 +66,8 @@ func (m *InlineResponse20040EmbeddedLinks) validateCertificate(formats strfmt.Re
 		if err := m.Certificate.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("certificate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("certificate")
 			}
 			return err
 		}
@@ -74,7 +77,6 @@ func (m *InlineResponse20040EmbeddedLinks) validateCertificate(formats strfmt.Re
 }
 
 func (m *InlineResponse20040EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Operations) { // not required
 		return nil
 	}
@@ -83,6 +85,8 @@ func (m *InlineResponse20040EmbeddedLinks) validateOperations(formats strfmt.Reg
 		if err := m.Operations.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
 			}
 			return err
 		}
@@ -92,7 +96,6 @@ func (m *InlineResponse20040EmbeddedLinks) validateOperations(formats strfmt.Reg
 }
 
 func (m *InlineResponse20040EmbeddedLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -101,6 +104,8 @@ func (m *InlineResponse20040EmbeddedLinks) validateSelf(formats strfmt.Registry)
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}
@@ -110,7 +115,6 @@ func (m *InlineResponse20040EmbeddedLinks) validateSelf(formats strfmt.Registry)
 }
 
 func (m *InlineResponse20040EmbeddedLinks) validateService(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Service) { // not required
 		return nil
 	}
@@ -119,6 +123,98 @@ func (m *InlineResponse20040EmbeddedLinks) validateService(formats strfmt.Regist
 		if err := m.Service.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("service")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 40 embedded links based on the context it is used
+func (m *InlineResponse20040EmbeddedLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCertificate(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOperations(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateService(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20040EmbeddedLinks) contextValidateCertificate(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Certificate != nil {
+		if err := m.Certificate.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("certificate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("certificate")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20040EmbeddedLinks) contextValidateOperations(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Operations != nil {
+		if err := m.Operations.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20040EmbeddedLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20040EmbeddedLinks) contextValidateService(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Service != nil {
+		if err := m.Service.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("service")
 			}
 			return err
 		}

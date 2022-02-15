@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetDatabaseImagesIDReader is a Reader for the GetDatabaseImagesID structure.
@@ -47,7 +46,7 @@ func NewGetDatabaseImagesIDOK() *GetDatabaseImagesIDOK {
 	return &GetDatabaseImagesIDOK{}
 }
 
-/*GetDatabaseImagesIDOK handles this case with default header values.
+/* GetDatabaseImagesIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetDatabaseImagesIDOK struct {
 func (o *GetDatabaseImagesIDOK) Error() string {
 	return fmt.Sprintf("[GET /database_images/{id}][%d] getDatabaseImagesIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetDatabaseImagesIDOK) GetPayload() *models.InlineResponse20014 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetDatabaseImagesIDDefault(code int) *GetDatabaseImagesIDDefault {
 	}
 }
 
-/*GetDatabaseImagesIDDefault handles this case with default header values.
+/* GetDatabaseImagesIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetDatabaseImagesIDDefault) Code() int {
 func (o *GetDatabaseImagesIDDefault) Error() string {
 	return fmt.Sprintf("[GET /database_images/{id}][%d] GetDatabaseImagesID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetDatabaseImagesIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

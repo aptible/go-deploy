@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetPermissionsParams creates a new GetPermissionsParams object
-// with the default values initialized.
+// NewGetPermissionsParams creates a new GetPermissionsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetPermissionsParams() *GetPermissionsParams {
-	var ()
 	return &GetPermissionsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetPermissionsParamsWithTimeout creates a new GetPermissionsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetPermissionsParamsWithTimeout(timeout time.Duration) *GetPermissionsParams {
-	var ()
 	return &GetPermissionsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetPermissionsParamsWithContext creates a new GetPermissionsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetPermissionsParamsWithContext(ctx context.Context) *GetPermissionsParams {
-	var ()
 	return &GetPermissionsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetPermissionsParamsWithHTTPClient creates a new GetPermissionsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetPermissionsParamsWithHTTPClient(client *http.Client) *GetPermissionsParams {
-	var ()
 	return &GetPermissionsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetPermissionsParams contains all the parameters to send to the API endpoint
-for the get permissions operation typically these are written to a http.Request
+/* GetPermissionsParams contains all the parameters to send to the API endpoint
+   for the get permissions operation.
+
+   Typically these are written to a http.Request.
 */
 type GetPermissionsParams struct {
 
-	/*Page
-	  current page of results for pagination
+	/* Page.
 
+	   current page of results for pagination
 	*/
 	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get permissions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetPermissionsParams) WithDefaults() *GetPermissionsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get permissions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetPermissionsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get permissions params
@@ -129,16 +142,17 @@ func (o *GetPermissionsParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

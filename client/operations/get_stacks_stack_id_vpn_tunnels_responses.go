@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetStacksStackIDVpnTunnelsReader is a Reader for the GetStacksStackIDVpnTunnels structure.
@@ -47,7 +46,7 @@ func NewGetStacksStackIDVpnTunnelsOK() *GetStacksStackIDVpnTunnelsOK {
 	return &GetStacksStackIDVpnTunnelsOK{}
 }
 
-/*GetStacksStackIDVpnTunnelsOK handles this case with default header values.
+/* GetStacksStackIDVpnTunnelsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetStacksStackIDVpnTunnelsOK struct {
 func (o *GetStacksStackIDVpnTunnelsOK) Error() string {
 	return fmt.Sprintf("[GET /stacks/{stack_id}/vpn_tunnels][%d] getStacksStackIdVpnTunnelsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetStacksStackIDVpnTunnelsOK) GetPayload() *models.InlineResponse20043 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetStacksStackIDVpnTunnelsDefault(code int) *GetStacksStackIDVpnTunnelsD
 	}
 }
 
-/*GetStacksStackIDVpnTunnelsDefault handles this case with default header values.
+/* GetStacksStackIDVpnTunnelsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetStacksStackIDVpnTunnelsDefault) Code() int {
 func (o *GetStacksStackIDVpnTunnelsDefault) Error() string {
 	return fmt.Sprintf("[GET /stacks/{stack_id}/vpn_tunnels][%d] GetStacksStackIDVpnTunnels default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetStacksStackIDVpnTunnelsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

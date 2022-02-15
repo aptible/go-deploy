@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PostClaimsTypeReader is a Reader for the PostClaimsType structure.
@@ -47,7 +46,7 @@ func NewPostClaimsTypeNoContent() *PostClaimsTypeNoContent {
 	return &PostClaimsTypeNoContent{}
 }
 
-/*PostClaimsTypeNoContent handles this case with default header values.
+/* PostClaimsTypeNoContent describes a response with status code 204, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewPostClaimsTypeDefault(code int) *PostClaimsTypeDefault {
 	}
 }
 
-/*PostClaimsTypeDefault handles this case with default header values.
+/* PostClaimsTypeDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *PostClaimsTypeDefault) Code() int {
 func (o *PostClaimsTypeDefault) Error() string {
 	return fmt.Sprintf("[POST /claims/{type}][%d] PostClaimsType default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PostClaimsTypeDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

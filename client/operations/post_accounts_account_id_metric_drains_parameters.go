@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPostAccountsAccountIDMetricDrainsParams creates a new PostAccountsAccountIDMetricDrainsParams object
-// with the default values initialized.
+// NewPostAccountsAccountIDMetricDrainsParams creates a new PostAccountsAccountIDMetricDrainsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostAccountsAccountIDMetricDrainsParams() *PostAccountsAccountIDMetricDrainsParams {
-	var ()
 	return &PostAccountsAccountIDMetricDrainsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostAccountsAccountIDMetricDrainsParamsWithTimeout creates a new PostAccountsAccountIDMetricDrainsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostAccountsAccountIDMetricDrainsParamsWithTimeout(timeout time.Duration) *PostAccountsAccountIDMetricDrainsParams {
-	var ()
 	return &PostAccountsAccountIDMetricDrainsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostAccountsAccountIDMetricDrainsParamsWithContext creates a new PostAccountsAccountIDMetricDrainsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostAccountsAccountIDMetricDrainsParamsWithContext(ctx context.Context) *PostAccountsAccountIDMetricDrainsParams {
-	var ()
 	return &PostAccountsAccountIDMetricDrainsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostAccountsAccountIDMetricDrainsParamsWithHTTPClient creates a new PostAccountsAccountIDMetricDrainsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostAccountsAccountIDMetricDrainsParamsWithHTTPClient(client *http.Client) *PostAccountsAccountIDMetricDrainsParams {
-	var ()
 	return &PostAccountsAccountIDMetricDrainsParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostAccountsAccountIDMetricDrainsParams contains all the parameters to send to the API endpoint
-for the post accounts account ID metric drains operation typically these are written to a http.Request
+/* PostAccountsAccountIDMetricDrainsParams contains all the parameters to send to the API endpoint
+   for the post accounts account ID metric drains operation.
+
+   Typically these are written to a http.Request.
 */
 type PostAccountsAccountIDMetricDrainsParams struct {
 
-	/*AccountID
-	  account_id
+	/* AccountID.
 
+	   account_id
 	*/
 	AccountID int64
-	/*AppRequest*/
+
+	// AppRequest.
 	AppRequest *models.AppRequest19
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post accounts account ID metric drains params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostAccountsAccountIDMetricDrainsParams) WithDefaults() *PostAccountsAccountIDMetricDrainsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post accounts account ID metric drains params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostAccountsAccountIDMetricDrainsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post accounts account ID metric drains params
@@ -144,7 +158,6 @@ func (o *PostAccountsAccountIDMetricDrainsParams) WriteToRequest(r runtime.Clien
 	if err := r.SetPathParam("account_id", swag.FormatInt64(o.AccountID)); err != nil {
 		return err
 	}
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PostAccountsAccountIDClaimsTypeReader is a Reader for the PostAccountsAccountIDClaimsType structure.
@@ -47,7 +46,7 @@ func NewPostAccountsAccountIDClaimsTypeNoContent() *PostAccountsAccountIDClaimsT
 	return &PostAccountsAccountIDClaimsTypeNoContent{}
 }
 
-/*PostAccountsAccountIDClaimsTypeNoContent handles this case with default header values.
+/* PostAccountsAccountIDClaimsTypeNoContent describes a response with status code 204, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewPostAccountsAccountIDClaimsTypeDefault(code int) *PostAccountsAccountIDC
 	}
 }
 
-/*PostAccountsAccountIDClaimsTypeDefault handles this case with default header values.
+/* PostAccountsAccountIDClaimsTypeDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *PostAccountsAccountIDClaimsTypeDefault) Code() int {
 func (o *PostAccountsAccountIDClaimsTypeDefault) Error() string {
 	return fmt.Sprintf("[POST /accounts/{account_id}/claims/{type}][%d] PostAccountsAccountIDClaimsType default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PostAccountsAccountIDClaimsTypeDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

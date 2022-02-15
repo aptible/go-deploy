@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse200EmbeddedLinks inline response 200 embedded links
+//
 // swagger:model inline_response_200__embedded__links
 type InlineResponse200EmbeddedLinks struct {
 
@@ -133,7 +135,6 @@ func (m *InlineResponse200EmbeddedLinks) Validate(formats strfmt.Registry) error
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateActivityReports(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ActivityReports) { // not required
 		return nil
 	}
@@ -142,6 +143,8 @@ func (m *InlineResponse200EmbeddedLinks) validateActivityReports(formats strfmt.
 		if err := m.ActivityReports.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("activity_reports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("activity_reports")
 			}
 			return err
 		}
@@ -151,7 +154,6 @@ func (m *InlineResponse200EmbeddedLinks) validateActivityReports(formats strfmt.
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateApps(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Apps) { // not required
 		return nil
 	}
@@ -160,6 +162,8 @@ func (m *InlineResponse200EmbeddedLinks) validateApps(formats strfmt.Registry) e
 		if err := m.Apps.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("apps")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("apps")
 			}
 			return err
 		}
@@ -169,7 +173,6 @@ func (m *InlineResponse200EmbeddedLinks) validateApps(formats strfmt.Registry) e
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateBackups(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Backups) { // not required
 		return nil
 	}
@@ -178,6 +181,8 @@ func (m *InlineResponse200EmbeddedLinks) validateBackups(formats strfmt.Registry
 		if err := m.Backups.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("backups")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backups")
 			}
 			return err
 		}
@@ -187,7 +192,6 @@ func (m *InlineResponse200EmbeddedLinks) validateBackups(formats strfmt.Registry
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateCertificates(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Certificates) { // not required
 		return nil
 	}
@@ -196,6 +200,8 @@ func (m *InlineResponse200EmbeddedLinks) validateCertificates(formats strfmt.Reg
 		if err := m.Certificates.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("certificates")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("certificates")
 			}
 			return err
 		}
@@ -205,7 +211,6 @@ func (m *InlineResponse200EmbeddedLinks) validateCertificates(formats strfmt.Reg
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateDatabases(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Databases) { // not required
 		return nil
 	}
@@ -214,6 +219,8 @@ func (m *InlineResponse200EmbeddedLinks) validateDatabases(formats strfmt.Regist
 		if err := m.Databases.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("databases")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("databases")
 			}
 			return err
 		}
@@ -223,7 +230,6 @@ func (m *InlineResponse200EmbeddedLinks) validateDatabases(formats strfmt.Regist
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateDisks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Disks) { // not required
 		return nil
 	}
@@ -232,6 +238,8 @@ func (m *InlineResponse200EmbeddedLinks) validateDisks(formats strfmt.Registry) 
 		if err := m.Disks.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks")
 			}
 			return err
 		}
@@ -241,7 +249,6 @@ func (m *InlineResponse200EmbeddedLinks) validateDisks(formats strfmt.Registry) 
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateLogDrains(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.LogDrains) { // not required
 		return nil
 	}
@@ -250,6 +257,8 @@ func (m *InlineResponse200EmbeddedLinks) validateLogDrains(formats strfmt.Regist
 		if err := m.LogDrains.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("log_drains")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("log_drains")
 			}
 			return err
 		}
@@ -259,7 +268,6 @@ func (m *InlineResponse200EmbeddedLinks) validateLogDrains(formats strfmt.Regist
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateMetricDrains(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.MetricDrains) { // not required
 		return nil
 	}
@@ -268,6 +276,8 @@ func (m *InlineResponse200EmbeddedLinks) validateMetricDrains(formats strfmt.Reg
 		if err := m.MetricDrains.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("metric_drains")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric_drains")
 			}
 			return err
 		}
@@ -277,7 +287,6 @@ func (m *InlineResponse200EmbeddedLinks) validateMetricDrains(formats strfmt.Reg
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateOperations(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Operations) { // not required
 		return nil
 	}
@@ -286,6 +295,8 @@ func (m *InlineResponse200EmbeddedLinks) validateOperations(formats strfmt.Regis
 		if err := m.Operations.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
 			}
 			return err
 		}
@@ -295,7 +306,6 @@ func (m *InlineResponse200EmbeddedLinks) validateOperations(formats strfmt.Regis
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateOrganization(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Organization) { // not required
 		return nil
 	}
@@ -304,6 +314,8 @@ func (m *InlineResponse200EmbeddedLinks) validateOrganization(formats strfmt.Reg
 		if err := m.Organization.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("organization")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("organization")
 			}
 			return err
 		}
@@ -313,7 +325,6 @@ func (m *InlineResponse200EmbeddedLinks) validateOrganization(formats strfmt.Reg
 }
 
 func (m *InlineResponse200EmbeddedLinks) validatePermissions(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Permissions) { // not required
 		return nil
 	}
@@ -322,6 +333,8 @@ func (m *InlineResponse200EmbeddedLinks) validatePermissions(formats strfmt.Regi
 		if err := m.Permissions.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("permissions")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("permissions")
 			}
 			return err
 		}
@@ -331,7 +344,6 @@ func (m *InlineResponse200EmbeddedLinks) validatePermissions(formats strfmt.Regi
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateSelf(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Self) { // not required
 		return nil
 	}
@@ -340,6 +352,8 @@ func (m *InlineResponse200EmbeddedLinks) validateSelf(formats strfmt.Registry) e
 		if err := m.Self.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
 			}
 			return err
 		}
@@ -349,7 +363,6 @@ func (m *InlineResponse200EmbeddedLinks) validateSelf(formats strfmt.Registry) e
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateServices(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Services) { // not required
 		return nil
 	}
@@ -358,6 +371,8 @@ func (m *InlineResponse200EmbeddedLinks) validateServices(formats strfmt.Registr
 		if err := m.Services.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("services")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("services")
 			}
 			return err
 		}
@@ -367,7 +382,6 @@ func (m *InlineResponse200EmbeddedLinks) validateServices(formats strfmt.Registr
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateStack(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Stack) { // not required
 		return nil
 	}
@@ -376,6 +390,8 @@ func (m *InlineResponse200EmbeddedLinks) validateStack(formats strfmt.Registry) 
 		if err := m.Stack.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("stack")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("stack")
 			}
 			return err
 		}
@@ -385,7 +401,6 @@ func (m *InlineResponse200EmbeddedLinks) validateStack(formats strfmt.Registry) 
 }
 
 func (m *InlineResponse200EmbeddedLinks) validateVhosts(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Vhosts) { // not required
 		return nil
 	}
@@ -394,6 +409,318 @@ func (m *InlineResponse200EmbeddedLinks) validateVhosts(formats strfmt.Registry)
 		if err := m.Vhosts.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vhosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vhosts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 embedded links based on the context it is used
+func (m *InlineResponse200EmbeddedLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateActivityReports(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateApps(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCertificates(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatabases(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLogDrains(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMetricDrains(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOperations(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOrganization(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePermissions(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSelf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStack(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVhosts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateActivityReports(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ActivityReports != nil {
+		if err := m.ActivityReports.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("activity_reports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("activity_reports")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateApps(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Apps != nil {
+		if err := m.Apps.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("apps")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("apps")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateBackups(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Backups != nil {
+		if err := m.Backups.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backups")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backups")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateCertificates(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Certificates != nil {
+		if err := m.Certificates.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("certificates")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("certificates")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateDatabases(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Databases != nil {
+		if err := m.Databases.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("databases")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("databases")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateDisks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Disks != nil {
+		if err := m.Disks.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateLogDrains(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LogDrains != nil {
+		if err := m.LogDrains.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("log_drains")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("log_drains")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateMetricDrains(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.MetricDrains != nil {
+		if err := m.MetricDrains.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metric_drains")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric_drains")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateOperations(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Operations != nil {
+		if err := m.Operations.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("operations")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("operations")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Organization != nil {
+		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("organization")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("organization")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidatePermissions(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Permissions != nil {
+		if err := m.Permissions.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("permissions")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("permissions")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateSelf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Self != nil {
+		if err := m.Self.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("self")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("self")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateServices(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Services != nil {
+		if err := m.Services.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("services")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("services")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateStack(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Stack != nil {
+		if err := m.Stack.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("stack")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("stack")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InlineResponse200EmbeddedLinks) contextValidateVhosts(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Vhosts != nil {
+		if err := m.Vhosts.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vhosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vhosts")
 			}
 			return err
 		}

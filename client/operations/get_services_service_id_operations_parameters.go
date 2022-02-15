@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetServicesServiceIDOperationsParams creates a new GetServicesServiceIDOperationsParams object
-// with the default values initialized.
+// NewGetServicesServiceIDOperationsParams creates a new GetServicesServiceIDOperationsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetServicesServiceIDOperationsParams() *GetServicesServiceIDOperationsParams {
-	var ()
 	return &GetServicesServiceIDOperationsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetServicesServiceIDOperationsParamsWithTimeout creates a new GetServicesServiceIDOperationsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetServicesServiceIDOperationsParamsWithTimeout(timeout time.Duration) *GetServicesServiceIDOperationsParams {
-	var ()
 	return &GetServicesServiceIDOperationsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetServicesServiceIDOperationsParamsWithContext creates a new GetServicesServiceIDOperationsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetServicesServiceIDOperationsParamsWithContext(ctx context.Context) *GetServicesServiceIDOperationsParams {
-	var ()
 	return &GetServicesServiceIDOperationsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetServicesServiceIDOperationsParamsWithHTTPClient creates a new GetServicesServiceIDOperationsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetServicesServiceIDOperationsParamsWithHTTPClient(client *http.Client) *GetServicesServiceIDOperationsParams {
-	var ()
 	return &GetServicesServiceIDOperationsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetServicesServiceIDOperationsParams contains all the parameters to send to the API endpoint
-for the get services service ID operations operation typically these are written to a http.Request
+/* GetServicesServiceIDOperationsParams contains all the parameters to send to the API endpoint
+   for the get services service ID operations operation.
+
+   Typically these are written to a http.Request.
 */
 type GetServicesServiceIDOperationsParams struct {
 
-	/*Page
-	  current page of results for pagination
+	/* Page.
 
+	   current page of results for pagination
 	*/
 	Page *int64
-	/*ServiceID
-	  service_id
 
+	/* ServiceID.
+
+	   service_id
 	*/
 	ServiceID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get services service ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetServicesServiceIDOperationsParams) WithDefaults() *GetServicesServiceIDOperationsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get services service ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetServicesServiceIDOperationsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get services service ID operations params
@@ -145,16 +159,17 @@ func (o *GetServicesServiceIDOperationsParams) WriteToRequest(r runtime.ClientRe
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param service_id

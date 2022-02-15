@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPostLogDrainsLogDrainIDOperationsParams creates a new PostLogDrainsLogDrainIDOperationsParams object
-// with the default values initialized.
+// NewPostLogDrainsLogDrainIDOperationsParams creates a new PostLogDrainsLogDrainIDOperationsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostLogDrainsLogDrainIDOperationsParams() *PostLogDrainsLogDrainIDOperationsParams {
-	var ()
 	return &PostLogDrainsLogDrainIDOperationsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostLogDrainsLogDrainIDOperationsParamsWithTimeout creates a new PostLogDrainsLogDrainIDOperationsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostLogDrainsLogDrainIDOperationsParamsWithTimeout(timeout time.Duration) *PostLogDrainsLogDrainIDOperationsParams {
-	var ()
 	return &PostLogDrainsLogDrainIDOperationsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostLogDrainsLogDrainIDOperationsParamsWithContext creates a new PostLogDrainsLogDrainIDOperationsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostLogDrainsLogDrainIDOperationsParamsWithContext(ctx context.Context) *PostLogDrainsLogDrainIDOperationsParams {
-	var ()
 	return &PostLogDrainsLogDrainIDOperationsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostLogDrainsLogDrainIDOperationsParamsWithHTTPClient creates a new PostLogDrainsLogDrainIDOperationsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostLogDrainsLogDrainIDOperationsParamsWithHTTPClient(client *http.Client) *PostLogDrainsLogDrainIDOperationsParams {
-	var ()
 	return &PostLogDrainsLogDrainIDOperationsParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostLogDrainsLogDrainIDOperationsParams contains all the parameters to send to the API endpoint
-for the post log drains log drain ID operations operation typically these are written to a http.Request
+/* PostLogDrainsLogDrainIDOperationsParams contains all the parameters to send to the API endpoint
+   for the post log drains log drain ID operations operation.
+
+   Typically these are written to a http.Request.
 */
 type PostLogDrainsLogDrainIDOperationsParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest29
-	/*LogDrainID
-	  log_drain_id
 
+	/* LogDrainID.
+
+	   log_drain_id
 	*/
 	LogDrainID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post log drains log drain ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostLogDrainsLogDrainIDOperationsParams) WithDefaults() *PostLogDrainsLogDrainIDOperationsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post log drains log drain ID operations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostLogDrainsLogDrainIDOperationsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post log drains log drain ID operations params
@@ -139,7 +153,6 @@ func (o *PostLogDrainsLogDrainIDOperationsParams) WriteToRequest(r runtime.Clien
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

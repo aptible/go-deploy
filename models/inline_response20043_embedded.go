@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20043Embedded inline response 200 43 embedded
+//
 // swagger:model inline_response_200_43__embedded
 type InlineResponse20043Embedded struct {
 
@@ -37,7 +38,6 @@ func (m *InlineResponse20043Embedded) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InlineResponse20043Embedded) validateVpnTunnels(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.VpnTunnels) { // not required
 		return nil
 	}
@@ -51,6 +51,42 @@ func (m *InlineResponse20043Embedded) validateVpnTunnels(formats strfmt.Registry
 			if err := m.VpnTunnels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vpn_tunnels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vpn_tunnels" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 43 embedded based on the context it is used
+func (m *InlineResponse20043Embedded) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateVpnTunnels(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20043Embedded) contextValidateVpnTunnels(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.VpnTunnels); i++ {
+
+		if m.VpnTunnels[i] != nil {
+			if err := m.VpnTunnels[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("vpn_tunnels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vpn_tunnels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

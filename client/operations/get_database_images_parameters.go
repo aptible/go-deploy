@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetDatabaseImagesParams creates a new GetDatabaseImagesParams object
-// with the default values initialized.
+// NewGetDatabaseImagesParams creates a new GetDatabaseImagesParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetDatabaseImagesParams() *GetDatabaseImagesParams {
-	var ()
 	return &GetDatabaseImagesParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetDatabaseImagesParamsWithTimeout creates a new GetDatabaseImagesParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetDatabaseImagesParamsWithTimeout(timeout time.Duration) *GetDatabaseImagesParams {
-	var ()
 	return &GetDatabaseImagesParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetDatabaseImagesParamsWithContext creates a new GetDatabaseImagesParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetDatabaseImagesParamsWithContext(ctx context.Context) *GetDatabaseImagesParams {
-	var ()
 	return &GetDatabaseImagesParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetDatabaseImagesParamsWithHTTPClient creates a new GetDatabaseImagesParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetDatabaseImagesParamsWithHTTPClient(client *http.Client) *GetDatabaseImagesParams {
-	var ()
 	return &GetDatabaseImagesParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetDatabaseImagesParams contains all the parameters to send to the API endpoint
-for the get database images operation typically these are written to a http.Request
+/* GetDatabaseImagesParams contains all the parameters to send to the API endpoint
+   for the get database images operation.
+
+   Typically these are written to a http.Request.
 */
 type GetDatabaseImagesParams struct {
 
-	/*Page
-	  current page of results for pagination
+	/* Page.
 
+	   current page of results for pagination
 	*/
 	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get database images params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDatabaseImagesParams) WithDefaults() *GetDatabaseImagesParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get database images params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDatabaseImagesParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get database images params
@@ -129,16 +142,17 @@ func (o *GetDatabaseImagesParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

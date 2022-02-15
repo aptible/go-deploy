@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20026EmbeddedIntrusionDetectionReports inline response 200 26 embedded intrusion detection reports
+//
 // swagger:model inline_response_200_26__embedded_intrusion_detection_reports
 type InlineResponse20026EmbeddedIntrusionDetectionReports struct {
 
@@ -53,7 +55,6 @@ func (m *InlineResponse20026EmbeddedIntrusionDetectionReports) Validate(formats 
 }
 
 func (m *InlineResponse20026EmbeddedIntrusionDetectionReports) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -62,6 +63,38 @@ func (m *InlineResponse20026EmbeddedIntrusionDetectionReports) validateLinks(for
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 26 embedded intrusion detection reports based on the context it is used
+func (m *InlineResponse20026EmbeddedIntrusionDetectionReports) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20026EmbeddedIntrusionDetectionReports) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("_links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("_links")
 			}
 			return err
 		}

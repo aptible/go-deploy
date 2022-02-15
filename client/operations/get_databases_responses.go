@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetDatabasesReader is a Reader for the GetDatabases structure.
@@ -47,7 +46,7 @@ func NewGetDatabasesOK() *GetDatabasesOK {
 	return &GetDatabasesOK{}
 }
 
-/*GetDatabasesOK handles this case with default header values.
+/* GetDatabasesOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetDatabasesOK struct {
 func (o *GetDatabasesOK) Error() string {
 	return fmt.Sprintf("[GET /databases][%d] getDatabasesOK  %+v", 200, o.Payload)
 }
-
 func (o *GetDatabasesOK) GetPayload() *models.InlineResponse20016 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetDatabasesDefault(code int) *GetDatabasesDefault {
 	}
 }
 
-/*GetDatabasesDefault handles this case with default header values.
+/* GetDatabasesDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetDatabasesDefault) Code() int {
 func (o *GetDatabasesDefault) Error() string {
 	return fmt.Sprintf("[GET /databases][%d] GetDatabases default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetDatabasesDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetVpnTunnelsIDParams creates a new GetVpnTunnelsIDParams object
-// with the default values initialized.
+// NewGetVpnTunnelsIDParams creates a new GetVpnTunnelsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetVpnTunnelsIDParams() *GetVpnTunnelsIDParams {
-	var ()
 	return &GetVpnTunnelsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetVpnTunnelsIDParamsWithTimeout creates a new GetVpnTunnelsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetVpnTunnelsIDParamsWithTimeout(timeout time.Duration) *GetVpnTunnelsIDParams {
-	var ()
 	return &GetVpnTunnelsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetVpnTunnelsIDParamsWithContext creates a new GetVpnTunnelsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetVpnTunnelsIDParamsWithContext(ctx context.Context) *GetVpnTunnelsIDParams {
-	var ()
 	return &GetVpnTunnelsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetVpnTunnelsIDParamsWithHTTPClient creates a new GetVpnTunnelsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetVpnTunnelsIDParamsWithHTTPClient(client *http.Client) *GetVpnTunnelsIDParams {
-	var ()
 	return &GetVpnTunnelsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetVpnTunnelsIDParams contains all the parameters to send to the API endpoint
-for the get vpn tunnels ID operation typically these are written to a http.Request
+/* GetVpnTunnelsIDParams contains all the parameters to send to the API endpoint
+   for the get vpn tunnels ID operation.
+
+   Typically these are written to a http.Request.
 */
 type GetVpnTunnelsIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get vpn tunnels ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetVpnTunnelsIDParams) WithDefaults() *GetVpnTunnelsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get vpn tunnels ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetVpnTunnelsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get vpn tunnels ID params

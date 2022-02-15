@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetAccountsAccountIDBackupRetentionPoliciesReader is a Reader for the GetAccountsAccountIDBackupRetentionPolicies structure.
@@ -47,7 +46,7 @@ func NewGetAccountsAccountIDBackupRetentionPoliciesOK() *GetAccountsAccountIDBac
 	return &GetAccountsAccountIDBackupRetentionPoliciesOK{}
 }
 
-/*GetAccountsAccountIDBackupRetentionPoliciesOK handles this case with default header values.
+/* GetAccountsAccountIDBackupRetentionPoliciesOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetAccountsAccountIDBackupRetentionPoliciesOK struct {
 func (o *GetAccountsAccountIDBackupRetentionPoliciesOK) Error() string {
 	return fmt.Sprintf("[GET /accounts/{account_id}/backup_retention_policies][%d] getAccountsAccountIdBackupRetentionPoliciesOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAccountsAccountIDBackupRetentionPoliciesOK) GetPayload() *models.InlineResponse2004 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetAccountsAccountIDBackupRetentionPoliciesDefault(code int) *GetAccount
 	}
 }
 
-/*GetAccountsAccountIDBackupRetentionPoliciesDefault handles this case with default header values.
+/* GetAccountsAccountIDBackupRetentionPoliciesDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetAccountsAccountIDBackupRetentionPoliciesDefault) Code() int {
 func (o *GetAccountsAccountIDBackupRetentionPoliciesDefault) Error() string {
 	return fmt.Sprintf("[GET /accounts/{account_id}/backup_retention_policies][%d] GetAccountsAccountIDBackupRetentionPolicies default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetAccountsAccountIDBackupRetentionPoliciesDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

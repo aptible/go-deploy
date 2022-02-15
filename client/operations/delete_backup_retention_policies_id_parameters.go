@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewDeleteBackupRetentionPoliciesIDParams creates a new DeleteBackupRetentionPoliciesIDParams object
-// with the default values initialized.
+// NewDeleteBackupRetentionPoliciesIDParams creates a new DeleteBackupRetentionPoliciesIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteBackupRetentionPoliciesIDParams() *DeleteBackupRetentionPoliciesIDParams {
-	var ()
 	return &DeleteBackupRetentionPoliciesIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteBackupRetentionPoliciesIDParamsWithTimeout creates a new DeleteBackupRetentionPoliciesIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteBackupRetentionPoliciesIDParamsWithTimeout(timeout time.Duration) *DeleteBackupRetentionPoliciesIDParams {
-	var ()
 	return &DeleteBackupRetentionPoliciesIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteBackupRetentionPoliciesIDParamsWithContext creates a new DeleteBackupRetentionPoliciesIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteBackupRetentionPoliciesIDParamsWithContext(ctx context.Context) *DeleteBackupRetentionPoliciesIDParams {
-	var ()
 	return &DeleteBackupRetentionPoliciesIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteBackupRetentionPoliciesIDParamsWithHTTPClient creates a new DeleteBackupRetentionPoliciesIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteBackupRetentionPoliciesIDParamsWithHTTPClient(client *http.Client) *DeleteBackupRetentionPoliciesIDParams {
-	var ()
 	return &DeleteBackupRetentionPoliciesIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteBackupRetentionPoliciesIDParams contains all the parameters to send to the API endpoint
-for the delete backup retention policies ID operation typically these are written to a http.Request
+/* DeleteBackupRetentionPoliciesIDParams contains all the parameters to send to the API endpoint
+   for the delete backup retention policies ID operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteBackupRetentionPoliciesIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete backup retention policies ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteBackupRetentionPoliciesIDParams) WithDefaults() *DeleteBackupRetentionPoliciesIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete backup retention policies ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteBackupRetentionPoliciesIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete backup retention policies ID params

@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetOperationsOperationIDEphemeralSessionsParams creates a new GetOperationsOperationIDEphemeralSessionsParams object
-// with the default values initialized.
+// NewGetOperationsOperationIDEphemeralSessionsParams creates a new GetOperationsOperationIDEphemeralSessionsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetOperationsOperationIDEphemeralSessionsParams() *GetOperationsOperationIDEphemeralSessionsParams {
-	var ()
 	return &GetOperationsOperationIDEphemeralSessionsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetOperationsOperationIDEphemeralSessionsParamsWithTimeout creates a new GetOperationsOperationIDEphemeralSessionsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetOperationsOperationIDEphemeralSessionsParamsWithTimeout(timeout time.Duration) *GetOperationsOperationIDEphemeralSessionsParams {
-	var ()
 	return &GetOperationsOperationIDEphemeralSessionsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetOperationsOperationIDEphemeralSessionsParamsWithContext creates a new GetOperationsOperationIDEphemeralSessionsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetOperationsOperationIDEphemeralSessionsParamsWithContext(ctx context.Context) *GetOperationsOperationIDEphemeralSessionsParams {
-	var ()
 	return &GetOperationsOperationIDEphemeralSessionsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetOperationsOperationIDEphemeralSessionsParamsWithHTTPClient creates a new GetOperationsOperationIDEphemeralSessionsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetOperationsOperationIDEphemeralSessionsParamsWithHTTPClient(client *http.Client) *GetOperationsOperationIDEphemeralSessionsParams {
-	var ()
 	return &GetOperationsOperationIDEphemeralSessionsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetOperationsOperationIDEphemeralSessionsParams contains all the parameters to send to the API endpoint
-for the get operations operation ID ephemeral sessions operation typically these are written to a http.Request
+/* GetOperationsOperationIDEphemeralSessionsParams contains all the parameters to send to the API endpoint
+   for the get operations operation ID ephemeral sessions operation.
+
+   Typically these are written to a http.Request.
 */
 type GetOperationsOperationIDEphemeralSessionsParams struct {
 
-	/*OperationID
-	  operation_id
+	/* OperationID.
 
+	   operation_id
 	*/
 	OperationID int64
-	/*Page
-	  current page of results for pagination
 
+	/* Page.
+
+	   current page of results for pagination
 	*/
 	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get operations operation ID ephemeral sessions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetOperationsOperationIDEphemeralSessionsParams) WithDefaults() *GetOperationsOperationIDEphemeralSessionsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get operations operation ID ephemeral sessions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetOperationsOperationIDEphemeralSessionsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get operations operation ID ephemeral sessions params
@@ -150,16 +164,17 @@ func (o *GetOperationsOperationIDEphemeralSessionsParams) WriteToRequest(r runti
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

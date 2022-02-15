@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewDeleteDatabasesIDParams creates a new DeleteDatabasesIDParams object
-// with the default values initialized.
+// NewDeleteDatabasesIDParams creates a new DeleteDatabasesIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteDatabasesIDParams() *DeleteDatabasesIDParams {
-	var ()
 	return &DeleteDatabasesIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteDatabasesIDParamsWithTimeout creates a new DeleteDatabasesIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteDatabasesIDParamsWithTimeout(timeout time.Duration) *DeleteDatabasesIDParams {
-	var ()
 	return &DeleteDatabasesIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteDatabasesIDParamsWithContext creates a new DeleteDatabasesIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteDatabasesIDParamsWithContext(ctx context.Context) *DeleteDatabasesIDParams {
-	var ()
 	return &DeleteDatabasesIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteDatabasesIDParamsWithHTTPClient creates a new DeleteDatabasesIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteDatabasesIDParamsWithHTTPClient(client *http.Client) *DeleteDatabasesIDParams {
-	var ()
 	return &DeleteDatabasesIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteDatabasesIDParams contains all the parameters to send to the API endpoint
-for the delete databases ID operation typically these are written to a http.Request
+/* DeleteDatabasesIDParams contains all the parameters to send to the API endpoint
+   for the delete databases ID operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteDatabasesIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete databases ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteDatabasesIDParams) WithDefaults() *DeleteDatabasesIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete databases ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteDatabasesIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete databases ID params

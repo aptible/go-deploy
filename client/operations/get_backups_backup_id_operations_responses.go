@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetBackupsBackupIDOperationsReader is a Reader for the GetBackupsBackupIDOperations structure.
@@ -47,7 +46,7 @@ func NewGetBackupsBackupIDOperationsOK() *GetBackupsBackupIDOperationsOK {
 	return &GetBackupsBackupIDOperationsOK{}
 }
 
-/*GetBackupsBackupIDOperationsOK handles this case with default header values.
+/* GetBackupsBackupIDOperationsOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetBackupsBackupIDOperationsOK struct {
 func (o *GetBackupsBackupIDOperationsOK) Error() string {
 	return fmt.Sprintf("[GET /backups/{backup_id}/operations][%d] getBackupsBackupIdOperationsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetBackupsBackupIDOperationsOK) GetPayload() *models.InlineResponse20031 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetBackupsBackupIDOperationsDefault(code int) *GetBackupsBackupIDOperati
 	}
 }
 
-/*GetBackupsBackupIDOperationsDefault handles this case with default header values.
+/* GetBackupsBackupIDOperationsDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetBackupsBackupIDOperationsDefault) Code() int {
 func (o *GetBackupsBackupIDOperationsDefault) Error() string {
 	return fmt.Sprintf("[GET /backups/{backup_id}/operations][%d] GetBackupsBackupIDOperations default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetBackupsBackupIDOperationsDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

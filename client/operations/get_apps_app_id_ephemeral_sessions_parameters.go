@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetAppsAppIDEphemeralSessionsParams creates a new GetAppsAppIDEphemeralSessionsParams object
-// with the default values initialized.
+// NewGetAppsAppIDEphemeralSessionsParams creates a new GetAppsAppIDEphemeralSessionsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAppsAppIDEphemeralSessionsParams() *GetAppsAppIDEphemeralSessionsParams {
-	var ()
 	return &GetAppsAppIDEphemeralSessionsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAppsAppIDEphemeralSessionsParamsWithTimeout creates a new GetAppsAppIDEphemeralSessionsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAppsAppIDEphemeralSessionsParamsWithTimeout(timeout time.Duration) *GetAppsAppIDEphemeralSessionsParams {
-	var ()
 	return &GetAppsAppIDEphemeralSessionsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAppsAppIDEphemeralSessionsParamsWithContext creates a new GetAppsAppIDEphemeralSessionsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAppsAppIDEphemeralSessionsParamsWithContext(ctx context.Context) *GetAppsAppIDEphemeralSessionsParams {
-	var ()
 	return &GetAppsAppIDEphemeralSessionsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetAppsAppIDEphemeralSessionsParamsWithHTTPClient creates a new GetAppsAppIDEphemeralSessionsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAppsAppIDEphemeralSessionsParamsWithHTTPClient(client *http.Client) *GetAppsAppIDEphemeralSessionsParams {
-	var ()
 	return &GetAppsAppIDEphemeralSessionsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetAppsAppIDEphemeralSessionsParams contains all the parameters to send to the API endpoint
-for the get apps app ID ephemeral sessions operation typically these are written to a http.Request
+/* GetAppsAppIDEphemeralSessionsParams contains all the parameters to send to the API endpoint
+   for the get apps app ID ephemeral sessions operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAppsAppIDEphemeralSessionsParams struct {
 
-	/*AppID
-	  app_id
+	/* AppID.
 
+	   app_id
 	*/
 	AppID int64
-	/*Page
-	  current page of results for pagination
 
+	/* Page.
+
+	   current page of results for pagination
 	*/
 	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get apps app ID ephemeral sessions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAppsAppIDEphemeralSessionsParams) WithDefaults() *GetAppsAppIDEphemeralSessionsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get apps app ID ephemeral sessions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAppsAppIDEphemeralSessionsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get apps app ID ephemeral sessions params
@@ -150,16 +164,17 @@ func (o *GetAppsAppIDEphemeralSessionsParams) WriteToRequest(r runtime.ClientReq
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

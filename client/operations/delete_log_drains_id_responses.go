@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // DeleteLogDrainsIDReader is a Reader for the DeleteLogDrainsID structure.
@@ -47,7 +46,7 @@ func NewDeleteLogDrainsIDNoContent() *DeleteLogDrainsIDNoContent {
 	return &DeleteLogDrainsIDNoContent{}
 }
 
-/*DeleteLogDrainsIDNoContent handles this case with default header values.
+/* DeleteLogDrainsIDNoContent describes a response with status code 204, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewDeleteLogDrainsIDDefault(code int) *DeleteLogDrainsIDDefault {
 	}
 }
 
-/*DeleteLogDrainsIDDefault handles this case with default header values.
+/* DeleteLogDrainsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *DeleteLogDrainsIDDefault) Code() int {
 func (o *DeleteLogDrainsIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /log_drains/{id}][%d] DeleteLogDrainsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *DeleteLogDrainsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

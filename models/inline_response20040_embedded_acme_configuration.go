@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InlineResponse20040EmbeddedAcmeConfiguration inline response 200 40 embedded acme configuration
+//
 // swagger:model inline_response_200_40__embedded_acme_configuration
 type InlineResponse20040EmbeddedAcmeConfiguration struct {
 
@@ -40,7 +41,6 @@ func (m *InlineResponse20040EmbeddedAcmeConfiguration) Validate(formats strfmt.R
 }
 
 func (m *InlineResponse20040EmbeddedAcmeConfiguration) validateChallenges(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Challenges) { // not required
 		return nil
 	}
@@ -54,6 +54,42 @@ func (m *InlineResponse20040EmbeddedAcmeConfiguration) validateChallenges(format
 			if err := m.Challenges[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("challenges" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("challenges" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this inline response 200 40 embedded acme configuration based on the context it is used
+func (m *InlineResponse20040EmbeddedAcmeConfiguration) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateChallenges(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InlineResponse20040EmbeddedAcmeConfiguration) contextValidateChallenges(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Challenges); i++ {
+
+		if m.Challenges[i] != nil {
+			if err := m.Challenges[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("challenges" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("challenges" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

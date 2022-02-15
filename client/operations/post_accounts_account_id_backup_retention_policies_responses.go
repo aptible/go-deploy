@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // PostAccountsAccountIDBackupRetentionPoliciesReader is a Reader for the PostAccountsAccountIDBackupRetentionPolicies structure.
@@ -47,7 +46,7 @@ func NewPostAccountsAccountIDBackupRetentionPoliciesCreated() *PostAccountsAccou
 	return &PostAccountsAccountIDBackupRetentionPoliciesCreated{}
 }
 
-/*PostAccountsAccountIDBackupRetentionPoliciesCreated handles this case with default header values.
+/* PostAccountsAccountIDBackupRetentionPoliciesCreated describes a response with status code 201, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewPostAccountsAccountIDBackupRetentionPoliciesDefault(code int) *PostAccou
 	}
 }
 
-/*PostAccountsAccountIDBackupRetentionPoliciesDefault handles this case with default header values.
+/* PostAccountsAccountIDBackupRetentionPoliciesDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *PostAccountsAccountIDBackupRetentionPoliciesDefault) Code() int {
 func (o *PostAccountsAccountIDBackupRetentionPoliciesDefault) Error() string {
 	return fmt.Sprintf("[POST /accounts/{account_id}/backup_retention_policies][%d] PostAccountsAccountIDBackupRetentionPolicies default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *PostAccountsAccountIDBackupRetentionPoliciesDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

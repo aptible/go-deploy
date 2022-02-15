@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // DeleteConfigurationsIDReader is a Reader for the DeleteConfigurationsID structure.
@@ -47,7 +46,7 @@ func NewDeleteConfigurationsIDNoContent() *DeleteConfigurationsIDNoContent {
 	return &DeleteConfigurationsIDNoContent{}
 }
 
-/*DeleteConfigurationsIDNoContent handles this case with default header values.
+/* DeleteConfigurationsIDNoContent describes a response with status code 204, with default header values.
 
 successful
 */
@@ -70,7 +69,7 @@ func NewDeleteConfigurationsIDDefault(code int) *DeleteConfigurationsIDDefault {
 	}
 }
 
-/*DeleteConfigurationsIDDefault handles this case with default header values.
+/* DeleteConfigurationsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *DeleteConfigurationsIDDefault) Code() int {
 func (o *DeleteConfigurationsIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /configurations/{id}][%d] DeleteConfigurationsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *DeleteConfigurationsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

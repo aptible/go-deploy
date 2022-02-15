@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetVhostsIDReader is a Reader for the GetVhostsID structure.
@@ -47,7 +46,7 @@ func NewGetVhostsIDOK() *GetVhostsIDOK {
 	return &GetVhostsIDOK{}
 }
 
-/*GetVhostsIDOK handles this case with default header values.
+/* GetVhostsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetVhostsIDOK struct {
 func (o *GetVhostsIDOK) Error() string {
 	return fmt.Sprintf("[GET /vhosts/{id}][%d] getVhostsIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetVhostsIDOK) GetPayload() *models.InlineResponse2019 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetVhostsIDDefault(code int) *GetVhostsIDDefault {
 	}
 }
 
-/*GetVhostsIDDefault handles this case with default header values.
+/* GetVhostsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetVhostsIDDefault) Code() int {
 func (o *GetVhostsIDDefault) Error() string {
 	return fmt.Sprintf("[GET /vhosts/{id}][%d] GetVhostsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetVhostsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

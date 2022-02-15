@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPostAppsAppIDConfigurationsParams creates a new PostAppsAppIDConfigurationsParams object
-// with the default values initialized.
+// NewPostAppsAppIDConfigurationsParams creates a new PostAppsAppIDConfigurationsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostAppsAppIDConfigurationsParams() *PostAppsAppIDConfigurationsParams {
-	var ()
 	return &PostAppsAppIDConfigurationsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostAppsAppIDConfigurationsParamsWithTimeout creates a new PostAppsAppIDConfigurationsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostAppsAppIDConfigurationsParamsWithTimeout(timeout time.Duration) *PostAppsAppIDConfigurationsParams {
-	var ()
 	return &PostAppsAppIDConfigurationsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostAppsAppIDConfigurationsParamsWithContext creates a new PostAppsAppIDConfigurationsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostAppsAppIDConfigurationsParamsWithContext(ctx context.Context) *PostAppsAppIDConfigurationsParams {
-	var ()
 	return &PostAppsAppIDConfigurationsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostAppsAppIDConfigurationsParamsWithHTTPClient creates a new PostAppsAppIDConfigurationsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostAppsAppIDConfigurationsParamsWithHTTPClient(client *http.Client) *PostAppsAppIDConfigurationsParams {
-	var ()
 	return &PostAppsAppIDConfigurationsParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostAppsAppIDConfigurationsParams contains all the parameters to send to the API endpoint
-for the post apps app ID configurations operation typically these are written to a http.Request
+/* PostAppsAppIDConfigurationsParams contains all the parameters to send to the API endpoint
+   for the post apps app ID configurations operation.
+
+   Typically these are written to a http.Request.
 */
 type PostAppsAppIDConfigurationsParams struct {
 
-	/*AppID
-	  app_id
+	/* AppID.
 
+	   app_id
 	*/
 	AppID int64
-	/*AppRequest*/
+
+	// AppRequest.
 	AppRequest *models.AppRequest11
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post apps app ID configurations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostAppsAppIDConfigurationsParams) WithDefaults() *PostAppsAppIDConfigurationsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post apps app ID configurations params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostAppsAppIDConfigurationsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post apps app ID configurations params
@@ -144,7 +158,6 @@ func (o *PostAppsAppIDConfigurationsParams) WriteToRequest(r runtime.ClientReque
 	if err := r.SetPathParam("app_id", swag.FormatInt64(o.AppID)); err != nil {
 		return err
 	}
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

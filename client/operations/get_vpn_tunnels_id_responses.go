@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetVpnTunnelsIDReader is a Reader for the GetVpnTunnelsID structure.
@@ -47,7 +46,7 @@ func NewGetVpnTunnelsIDOK() *GetVpnTunnelsIDOK {
 	return &GetVpnTunnelsIDOK{}
 }
 
-/*GetVpnTunnelsIDOK handles this case with default header values.
+/* GetVpnTunnelsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetVpnTunnelsIDOK struct {
 func (o *GetVpnTunnelsIDOK) Error() string {
 	return fmt.Sprintf("[GET /vpn_tunnels/{id}][%d] getVpnTunnelsIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetVpnTunnelsIDOK) GetPayload() *models.InlineResponse20044 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetVpnTunnelsIDDefault(code int) *GetVpnTunnelsIDDefault {
 	}
 }
 
-/*GetVpnTunnelsIDDefault handles this case with default header values.
+/* GetVpnTunnelsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetVpnTunnelsIDDefault) Code() int {
 func (o *GetVpnTunnelsIDDefault) Error() string {
 	return fmt.Sprintf("[GET /vpn_tunnels/{id}][%d] GetVpnTunnelsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetVpnTunnelsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

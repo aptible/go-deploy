@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfReader is a Reader for the GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf structure.
@@ -47,7 +46,7 @@ func NewGetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK() *GetIntrusi
 	return &GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK{}
 }
 
-/*GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK handles this case with default header values.
+/* GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfOK describes a response with status code 200, with default header values.
 
 Presigned URL
 */
@@ -70,7 +69,7 @@ func NewGetIntrusionDetectionReportsIntrusionReportIDDownloadPdfDefault(code int
 	}
 }
 
-/*GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfDefault handles this case with default header values.
+/* GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -88,7 +87,6 @@ func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfDefault) Code()
 func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfDefault) Error() string {
 	return fmt.Sprintf("[GET /intrusion_detection_reports/{intrusion_report_id}/download_pdf][%d] GetIntrusionDetectionReportsIntrusionReportIDDownloadPdf default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetIntrusionDetectionReportsIntrusionReportIDDownloadPdfDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

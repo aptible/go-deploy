@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPutOperationsIDParams creates a new PutOperationsIDParams object
-// with the default values initialized.
+// NewPutOperationsIDParams creates a new PutOperationsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPutOperationsIDParams() *PutOperationsIDParams {
-	var ()
 	return &PutOperationsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPutOperationsIDParamsWithTimeout creates a new PutOperationsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPutOperationsIDParamsWithTimeout(timeout time.Duration) *PutOperationsIDParams {
-	var ()
 	return &PutOperationsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPutOperationsIDParamsWithContext creates a new PutOperationsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPutOperationsIDParamsWithContext(ctx context.Context) *PutOperationsIDParams {
-	var ()
 	return &PutOperationsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPutOperationsIDParamsWithHTTPClient creates a new PutOperationsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPutOperationsIDParamsWithHTTPClient(client *http.Client) *PutOperationsIDParams {
-	var ()
 	return &PutOperationsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*PutOperationsIDParams contains all the parameters to send to the API endpoint
-for the put operations ID operation typically these are written to a http.Request
+/* PutOperationsIDParams contains all the parameters to send to the API endpoint
+   for the put operations ID operation.
+
+   Typically these are written to a http.Request.
 */
 type PutOperationsIDParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest20
-	/*ID
-	  id
 
+	/* ID.
+
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the put operations ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PutOperationsIDParams) WithDefaults() *PutOperationsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the put operations ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PutOperationsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the put operations ID params
@@ -139,7 +153,6 @@ func (o *PutOperationsIDParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

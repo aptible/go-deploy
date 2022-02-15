@@ -13,67 +13,81 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPostClaimsTypeParams creates a new PostClaimsTypeParams object
-// with the default values initialized.
+// NewPostClaimsTypeParams creates a new PostClaimsTypeParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostClaimsTypeParams() *PostClaimsTypeParams {
-	var ()
 	return &PostClaimsTypeParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostClaimsTypeParamsWithTimeout creates a new PostClaimsTypeParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostClaimsTypeParamsWithTimeout(timeout time.Duration) *PostClaimsTypeParams {
-	var ()
 	return &PostClaimsTypeParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostClaimsTypeParamsWithContext creates a new PostClaimsTypeParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostClaimsTypeParamsWithContext(ctx context.Context) *PostClaimsTypeParams {
-	var ()
 	return &PostClaimsTypeParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostClaimsTypeParamsWithHTTPClient creates a new PostClaimsTypeParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostClaimsTypeParamsWithHTTPClient(client *http.Client) *PostClaimsTypeParams {
-	var ()
 	return &PostClaimsTypeParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostClaimsTypeParams contains all the parameters to send to the API endpoint
-for the post claims type operation typically these are written to a http.Request
+/* PostClaimsTypeParams contains all the parameters to send to the API endpoint
+   for the post claims type operation.
+
+   Typically these are written to a http.Request.
 */
 type PostClaimsTypeParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest10
-	/*Type
-	  type
 
+	/* Type.
+
+	   type
 	*/
 	Type string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post claims type params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostClaimsTypeParams) WithDefaults() *PostClaimsTypeParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post claims type params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostClaimsTypeParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post claims type params
@@ -138,7 +152,6 @@ func (o *PostClaimsTypeParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

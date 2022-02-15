@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetLogDrainsLogDrainIDEphemeralContainersReader is a Reader for the GetLogDrainsLogDrainIDEphemeralContainers structure.
@@ -47,7 +46,7 @@ func NewGetLogDrainsLogDrainIDEphemeralContainersOK() *GetLogDrainsLogDrainIDEph
 	return &GetLogDrainsLogDrainIDEphemeralContainersOK{}
 }
 
-/*GetLogDrainsLogDrainIDEphemeralContainersOK handles this case with default header values.
+/* GetLogDrainsLogDrainIDEphemeralContainersOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetLogDrainsLogDrainIDEphemeralContainersOK struct {
 func (o *GetLogDrainsLogDrainIDEphemeralContainersOK) Error() string {
 	return fmt.Sprintf("[GET /log_drains/{log_drain_id}/ephemeral_containers][%d] getLogDrainsLogDrainIdEphemeralContainersOK  %+v", 200, o.Payload)
 }
-
 func (o *GetLogDrainsLogDrainIDEphemeralContainersOK) GetPayload() *models.InlineResponse20019 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetLogDrainsLogDrainIDEphemeralContainersDefault(code int) *GetLogDrains
 	}
 }
 
-/*GetLogDrainsLogDrainIDEphemeralContainersDefault handles this case with default header values.
+/* GetLogDrainsLogDrainIDEphemeralContainersDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetLogDrainsLogDrainIDEphemeralContainersDefault) Code() int {
 func (o *GetLogDrainsLogDrainIDEphemeralContainersDefault) Error() string {
 	return fmt.Sprintf("[GET /log_drains/{log_drain_id}/ephemeral_containers][%d] GetLogDrainsLogDrainIDEphemeralContainers default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetLogDrainsLogDrainIDEphemeralContainersDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetLogDrainsIDReader is a Reader for the GetLogDrainsID structure.
@@ -47,7 +46,7 @@ func NewGetLogDrainsIDOK() *GetLogDrainsIDOK {
 	return &GetLogDrainsIDOK{}
 }
 
-/*GetLogDrainsIDOK handles this case with default header values.
+/* GetLogDrainsIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetLogDrainsIDOK struct {
 func (o *GetLogDrainsIDOK) Error() string {
 	return fmt.Sprintf("[GET /log_drains/{id}][%d] getLogDrainsIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetLogDrainsIDOK) GetPayload() *models.InlineResponse2015 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetLogDrainsIDDefault(code int) *GetLogDrainsIDDefault {
 	}
 }
 
-/*GetLogDrainsIDDefault handles this case with default header values.
+/* GetLogDrainsIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetLogDrainsIDDefault) Code() int {
 func (o *GetLogDrainsIDDefault) Error() string {
 	return fmt.Sprintf("[GET /log_drains/{id}][%d] GetLogDrainsID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetLogDrainsIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

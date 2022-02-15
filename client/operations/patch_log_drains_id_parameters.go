@@ -13,68 +13,82 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
-// NewPatchLogDrainsIDParams creates a new PatchLogDrainsIDParams object
-// with the default values initialized.
+// NewPatchLogDrainsIDParams creates a new PatchLogDrainsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPatchLogDrainsIDParams() *PatchLogDrainsIDParams {
-	var ()
 	return &PatchLogDrainsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPatchLogDrainsIDParamsWithTimeout creates a new PatchLogDrainsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPatchLogDrainsIDParamsWithTimeout(timeout time.Duration) *PatchLogDrainsIDParams {
-	var ()
 	return &PatchLogDrainsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPatchLogDrainsIDParamsWithContext creates a new PatchLogDrainsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPatchLogDrainsIDParamsWithContext(ctx context.Context) *PatchLogDrainsIDParams {
-	var ()
 	return &PatchLogDrainsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPatchLogDrainsIDParamsWithHTTPClient creates a new PatchLogDrainsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPatchLogDrainsIDParamsWithHTTPClient(client *http.Client) *PatchLogDrainsIDParams {
-	var ()
 	return &PatchLogDrainsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*PatchLogDrainsIDParams contains all the parameters to send to the API endpoint
-for the patch log drains ID operation typically these are written to a http.Request
+/* PatchLogDrainsIDParams contains all the parameters to send to the API endpoint
+   for the patch log drains ID operation.
+
+   Typically these are written to a http.Request.
 */
 type PatchLogDrainsIDParams struct {
 
-	/*AppRequest*/
+	// AppRequest.
 	AppRequest *models.AppRequest18
-	/*ID
-	  id
 
+	/* ID.
+
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the patch log drains ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchLogDrainsIDParams) WithDefaults() *PatchLogDrainsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the patch log drains ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchLogDrainsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch log drains ID params
@@ -139,7 +153,6 @@ func (o *PatchLogDrainsIDParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
 	if o.AppRequest != nil {
 		if err := r.SetBodyParam(o.AppRequest); err != nil {
 			return err

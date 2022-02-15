@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // PatchRequest patch request
+//
 // swagger:model patch_request
 type PatchRequest struct {
 
@@ -48,7 +50,6 @@ func (m *PatchRequest) Validate(formats strfmt.Registry) error {
 }
 
 func (m *PatchRequest) validateCurrentConfiguration(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CurrentConfiguration) { // not required
 		return nil
 	}
@@ -61,7 +62,6 @@ func (m *PatchRequest) validateCurrentConfiguration(formats strfmt.Registry) err
 }
 
 func (m *PatchRequest) validateCurrentImage(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CurrentImage) { // not required
 		return nil
 	}
@@ -70,6 +70,11 @@ func (m *PatchRequest) validateCurrentImage(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this patch request based on context it is used
+func (m *PatchRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

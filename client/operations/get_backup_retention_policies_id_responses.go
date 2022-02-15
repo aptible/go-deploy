@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetBackupRetentionPoliciesIDReader is a Reader for the GetBackupRetentionPoliciesID structure.
@@ -47,7 +46,7 @@ func NewGetBackupRetentionPoliciesIDOK() *GetBackupRetentionPoliciesIDOK {
 	return &GetBackupRetentionPoliciesIDOK{}
 }
 
-/*GetBackupRetentionPoliciesIDOK handles this case with default header values.
+/* GetBackupRetentionPoliciesIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetBackupRetentionPoliciesIDOK struct {
 func (o *GetBackupRetentionPoliciesIDOK) Error() string {
 	return fmt.Sprintf("[GET /backup_retention_policies/{id}][%d] getBackupRetentionPoliciesIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetBackupRetentionPoliciesIDOK) GetPayload() *models.InlineResponse2005 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetBackupRetentionPoliciesIDDefault(code int) *GetBackupRetentionPolicie
 	}
 }
 
-/*GetBackupRetentionPoliciesIDDefault handles this case with default header values.
+/* GetBackupRetentionPoliciesIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetBackupRetentionPoliciesIDDefault) Code() int {
 func (o *GetBackupRetentionPoliciesIDDefault) Error() string {
 	return fmt.Sprintf("[GET /backup_retention_policies/{id}][%d] GetBackupRetentionPoliciesID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetBackupRetentionPoliciesIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

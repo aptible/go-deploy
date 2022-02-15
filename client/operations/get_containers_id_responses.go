@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetContainersIDReader is a Reader for the GetContainersID structure.
@@ -47,7 +46,7 @@ func NewGetContainersIDOK() *GetContainersIDOK {
 	return &GetContainersIDOK{}
 }
 
-/*GetContainersIDOK handles this case with default header values.
+/* GetContainersIDOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetContainersIDOK struct {
 func (o *GetContainersIDOK) Error() string {
 	return fmt.Sprintf("[GET /containers/{id}][%d] getContainersIdOK  %+v", 200, o.Payload)
 }
-
 func (o *GetContainersIDOK) GetPayload() *models.InlineResponse20011 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetContainersIDDefault(code int) *GetContainersIDDefault {
 	}
 }
 
-/*GetContainersIDDefault handles this case with default header values.
+/* GetContainersIDDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetContainersIDDefault) Code() int {
 func (o *GetContainersIDDefault) Error() string {
 	return fmt.Sprintf("[GET /containers/{id}][%d] GetContainersID default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetContainersIDDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

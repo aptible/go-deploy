@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/aptible/go-deploy/models"
+	"github.com/aptible/go-deploy/models"
 )
 
 // GetStacksReader is a Reader for the GetStacks structure.
@@ -47,7 +46,7 @@ func NewGetStacksOK() *GetStacksOK {
 	return &GetStacksOK{}
 }
 
-/*GetStacksOK handles this case with default header values.
+/* GetStacksOK describes a response with status code 200, with default header values.
 
 successful
 */
@@ -58,7 +57,6 @@ type GetStacksOK struct {
 func (o *GetStacksOK) Error() string {
 	return fmt.Sprintf("[GET /stacks][%d] getStacksOK  %+v", 200, o.Payload)
 }
-
 func (o *GetStacksOK) GetPayload() *models.InlineResponse20038 {
 	return o.Payload
 }
@@ -82,7 +80,7 @@ func NewGetStacksDefault(code int) *GetStacksDefault {
 	}
 }
 
-/*GetStacksDefault handles this case with default header values.
+/* GetStacksDefault describes a response with status code -1, with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
@@ -100,7 +98,6 @@ func (o *GetStacksDefault) Code() int {
 func (o *GetStacksDefault) Error() string {
 	return fmt.Sprintf("[GET /stacks][%d] GetStacks default  %+v", o._statusCode, o.Payload)
 }
-
 func (o *GetStacksDefault) GetPayload() *models.InlineResponseDefault {
 	return o.Payload
 }

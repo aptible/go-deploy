@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetVhostsIDParams creates a new GetVhostsIDParams object
-// with the default values initialized.
+// NewGetVhostsIDParams creates a new GetVhostsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetVhostsIDParams() *GetVhostsIDParams {
-	var ()
 	return &GetVhostsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetVhostsIDParamsWithTimeout creates a new GetVhostsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetVhostsIDParamsWithTimeout(timeout time.Duration) *GetVhostsIDParams {
-	var ()
 	return &GetVhostsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetVhostsIDParamsWithContext creates a new GetVhostsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetVhostsIDParamsWithContext(ctx context.Context) *GetVhostsIDParams {
-	var ()
 	return &GetVhostsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetVhostsIDParamsWithHTTPClient creates a new GetVhostsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetVhostsIDParamsWithHTTPClient(client *http.Client) *GetVhostsIDParams {
-	var ()
 	return &GetVhostsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetVhostsIDParams contains all the parameters to send to the API endpoint
-for the get vhosts ID operation typically these are written to a http.Request
+/* GetVhostsIDParams contains all the parameters to send to the API endpoint
+   for the get vhosts ID operation.
+
+   Typically these are written to a http.Request.
 */
 type GetVhostsIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get vhosts ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetVhostsIDParams) WithDefaults() *GetVhostsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get vhosts ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetVhostsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get vhosts ID params

@@ -13,64 +13,77 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetOperationsIDParams creates a new GetOperationsIDParams object
-// with the default values initialized.
+// NewGetOperationsIDParams creates a new GetOperationsIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetOperationsIDParams() *GetOperationsIDParams {
-	var ()
 	return &GetOperationsIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetOperationsIDParamsWithTimeout creates a new GetOperationsIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetOperationsIDParamsWithTimeout(timeout time.Duration) *GetOperationsIDParams {
-	var ()
 	return &GetOperationsIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetOperationsIDParamsWithContext creates a new GetOperationsIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetOperationsIDParamsWithContext(ctx context.Context) *GetOperationsIDParams {
-	var ()
 	return &GetOperationsIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetOperationsIDParamsWithHTTPClient creates a new GetOperationsIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetOperationsIDParamsWithHTTPClient(client *http.Client) *GetOperationsIDParams {
-	var ()
 	return &GetOperationsIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetOperationsIDParams contains all the parameters to send to the API endpoint
-for the get operations ID operation typically these are written to a http.Request
+/* GetOperationsIDParams contains all the parameters to send to the API endpoint
+   for the get operations ID operation.
+
+   Typically these are written to a http.Request.
 */
 type GetOperationsIDParams struct {
 
-	/*ID
-	  id
+	/* ID.
 
+	   id
 	*/
 	ID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get operations ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetOperationsIDParams) WithDefaults() *GetOperationsIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get operations ID params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetOperationsIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get operations ID params

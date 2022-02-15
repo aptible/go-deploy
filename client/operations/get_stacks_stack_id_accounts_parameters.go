@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetStacksStackIDAccountsParams creates a new GetStacksStackIDAccountsParams object
-// with the default values initialized.
+// NewGetStacksStackIDAccountsParams creates a new GetStacksStackIDAccountsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetStacksStackIDAccountsParams() *GetStacksStackIDAccountsParams {
-	var ()
 	return &GetStacksStackIDAccountsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetStacksStackIDAccountsParamsWithTimeout creates a new GetStacksStackIDAccountsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetStacksStackIDAccountsParamsWithTimeout(timeout time.Duration) *GetStacksStackIDAccountsParams {
-	var ()
 	return &GetStacksStackIDAccountsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetStacksStackIDAccountsParamsWithContext creates a new GetStacksStackIDAccountsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetStacksStackIDAccountsParamsWithContext(ctx context.Context) *GetStacksStackIDAccountsParams {
-	var ()
 	return &GetStacksStackIDAccountsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetStacksStackIDAccountsParamsWithHTTPClient creates a new GetStacksStackIDAccountsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetStacksStackIDAccountsParamsWithHTTPClient(client *http.Client) *GetStacksStackIDAccountsParams {
-	var ()
 	return &GetStacksStackIDAccountsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetStacksStackIDAccountsParams contains all the parameters to send to the API endpoint
-for the get stacks stack ID accounts operation typically these are written to a http.Request
+/* GetStacksStackIDAccountsParams contains all the parameters to send to the API endpoint
+   for the get stacks stack ID accounts operation.
+
+   Typically these are written to a http.Request.
 */
 type GetStacksStackIDAccountsParams struct {
 
-	/*Page
-	  current page of results for pagination
+	/* Page.
 
+	   current page of results for pagination
 	*/
 	Page *int64
-	/*StackID
-	  stack_id
 
+	/* StackID.
+
+	   stack_id
 	*/
 	StackID int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get stacks stack ID accounts params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetStacksStackIDAccountsParams) WithDefaults() *GetStacksStackIDAccountsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get stacks stack ID accounts params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetStacksStackIDAccountsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get stacks stack ID accounts params
@@ -145,16 +159,17 @@ func (o *GetStacksStackIDAccountsParams) WriteToRequest(r runtime.ClientRequest,
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param stack_id

@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // AccountsaccountIdmetricDrainsDrainConfiguration For external metric drain hosts
+//
 // swagger:model accountsaccount_idmetric_drains_drain_configuration
 type AccountsaccountIdmetricDrainsDrainConfiguration struct {
 
@@ -30,6 +32,11 @@ type AccountsaccountIdmetricDrainsDrainConfiguration struct {
 
 // Validate validates this accountsaccount idmetric drains drain configuration
 func (m *AccountsaccountIdmetricDrainsDrainConfiguration) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this accountsaccount idmetric drains drain configuration based on context it is used
+func (m *AccountsaccountIdmetricDrainsDrainConfiguration) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

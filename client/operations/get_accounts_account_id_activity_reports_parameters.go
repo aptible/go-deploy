@@ -13,69 +13,83 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetAccountsAccountIDActivityReportsParams creates a new GetAccountsAccountIDActivityReportsParams object
-// with the default values initialized.
+// NewGetAccountsAccountIDActivityReportsParams creates a new GetAccountsAccountIDActivityReportsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAccountsAccountIDActivityReportsParams() *GetAccountsAccountIDActivityReportsParams {
-	var ()
 	return &GetAccountsAccountIDActivityReportsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAccountsAccountIDActivityReportsParamsWithTimeout creates a new GetAccountsAccountIDActivityReportsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAccountsAccountIDActivityReportsParamsWithTimeout(timeout time.Duration) *GetAccountsAccountIDActivityReportsParams {
-	var ()
 	return &GetAccountsAccountIDActivityReportsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAccountsAccountIDActivityReportsParamsWithContext creates a new GetAccountsAccountIDActivityReportsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAccountsAccountIDActivityReportsParamsWithContext(ctx context.Context) *GetAccountsAccountIDActivityReportsParams {
-	var ()
 	return &GetAccountsAccountIDActivityReportsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetAccountsAccountIDActivityReportsParamsWithHTTPClient creates a new GetAccountsAccountIDActivityReportsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAccountsAccountIDActivityReportsParamsWithHTTPClient(client *http.Client) *GetAccountsAccountIDActivityReportsParams {
-	var ()
 	return &GetAccountsAccountIDActivityReportsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetAccountsAccountIDActivityReportsParams contains all the parameters to send to the API endpoint
-for the get accounts account ID activity reports operation typically these are written to a http.Request
+/* GetAccountsAccountIDActivityReportsParams contains all the parameters to send to the API endpoint
+   for the get accounts account ID activity reports operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAccountsAccountIDActivityReportsParams struct {
 
-	/*AccountID
-	  account_id
+	/* AccountID.
 
+	   account_id
 	*/
 	AccountID int64
-	/*Page
-	  current page of results for pagination
 
+	/* Page.
+
+	   current page of results for pagination
 	*/
 	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get accounts account ID activity reports params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAccountsAccountIDActivityReportsParams) WithDefaults() *GetAccountsAccountIDActivityReportsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get accounts account ID activity reports params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAccountsAccountIDActivityReportsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get accounts account ID activity reports params
@@ -150,16 +164,17 @@ func (o *GetAccountsAccountIDActivityReportsParams) WriteToRequest(r runtime.Cli
 
 		// query param page
 		var qrPage int64
+
 		if o.Page != nil {
 			qrPage = *o.Page
 		}
 		qPage := swag.FormatInt64(qrPage)
 		if qPage != "" {
+
 			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {
