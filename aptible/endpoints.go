@@ -225,6 +225,25 @@ func (c *Client) UpdateEndpoint(endpointID int64, up EndpointUpdates) error {
 		return err
 	}
 
+	requestType := "provision"
+	operationRequest := models.AppRequest27{Type: &requestType}
+	operationParams := operations.NewPostVhostsVhostIDOperationsParams().WithVhostID(endpointID).WithAppRequest(&operationRequest)
+	operationResponse, err := c.Client.Operations.PostVhostsVhostIDOperations(operationParams, c.Token)
+	if err != nil {
+		return err
+	}
+
+	// Wait on provision operation to complete.
+	if operationResponse.Payload.ID == nil {
+		return fmt.Errorf("operation ID is a nil pointer")
+	}
+	operationID := *operationResponse.Payload.ID
+
+	_, err = c.WaitForOperation(operationID)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
