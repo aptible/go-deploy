@@ -10,9 +10,15 @@ import (
 	"github.com/mitchellh/go-homedir"
 )
 
-func GetToken() (string, error) {
+func GetToken(attrs ClientAttrs) (string, error) {
+	// Tries to get token via ClientAttrs
+	token := attrs.TokenString
+	if token != "" {
+		return token, nil
+	}
+
 	// Tries to get token via environment variable
-	token := os.Getenv("APTIBLE_ACCESS_TOKEN")
+	token = os.Getenv("APTIBLE_ACCESS_TOKEN")
 	if token != "" {
 		return token, nil
 	}

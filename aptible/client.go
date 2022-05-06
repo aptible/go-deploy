@@ -17,8 +17,13 @@ type Client struct {
 	Token  runtime.ClientAuthInfoWriter
 }
 
+type ClientAttrs struct {
+	TokenString string
+	TokenPath   string // Not yet supported
+}
+
 // sets up client and gets auth token used for API requests
-func SetUpClient() (*Client, error) {
+func SetUpClient(attrs ClientAttrs) (*Client, error) {
 	host, err := GetHost()
 	if err != nil {
 		return nil, err
@@ -32,7 +37,7 @@ func SetUpClient() (*Client, error) {
 	rt.Producers["application/hal+json"] = runtime.JSONProducer()
 	client := deploy.New(rt, strfmt.Default)
 
-	token, err := GetToken()
+	token, err := GetToken(attrs)
 	if err != nil {
 		return nil, err
 	}

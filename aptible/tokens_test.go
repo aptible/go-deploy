@@ -27,7 +27,7 @@ func TestGetTokenEnv(t *testing.T) {
 	defer mockEnv("APTIBLE_ACCESS_TOKEN", token)()
 
 	t.Run("Use environment variable", func(t *testing.T) {
-		ans, err := GetToken()
+		ans, err := GetToken(ClientAttrs{})
 		if err != nil {
 			t.Errorf("Input: %s caused error: %s", token, err)
 		}
@@ -73,7 +73,7 @@ func TestGetToken(t *testing.T) {
 			}
 			_ = os.Unsetenv("APTIBLE_ACCESS_TOKEN")
 			_ = os.Setenv("APTIBLE_AUTH_ROOT_URL", tc.authURL)
-			ans, err := GetToken()
+			ans, err := GetToken(ClientAttrs{})
 			// Unexpected error encountered
 			if (err != nil) != tc.errored {
 				t.Errorf("Input: %s caused error: %s", tc.token, err)

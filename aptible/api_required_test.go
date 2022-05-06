@@ -7,6 +7,7 @@
 package aptible
 
 import (
+	deploy "github.com/aptible/go-deploy/client"
 	"testing"
 )
 
@@ -22,7 +23,7 @@ func TestWaitForOperation(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		c, err := SetUpClient()
+		c, err := SetUpClient(ClientAttrs{})
 		if err != nil {
 			t.Errorf("Unable to set up client due to error. \nERROR -- %s", err)
 		}

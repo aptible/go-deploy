@@ -21,7 +21,7 @@ func main() {
 }
 
 func getOperations() ([]string, error) {
-	c, err := aptible.SetUpClient()
+	c, err := aptible.SetUpClient(aptible.ClientAttrs{})
 	if err != nil {
 		return []string{}, err
 	}
