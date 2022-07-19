@@ -31,7 +31,7 @@ lint:
 	@./bin/golangci-lint run
 
 tools:
-	@curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s v1.24.0
+	@curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.24.0
 	@scripts/install-swagger.sh
 
 .PHONY: build gen test testacc fmt fmtcheck lint tools testapi
