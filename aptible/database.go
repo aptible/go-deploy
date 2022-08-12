@@ -191,6 +191,9 @@ func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
 	if updates.DiskSize >= 10 {
 		request.DiskSize = updates.DiskSize
 	}
+	if updates.Handle != "" {
+		request.Handle = updates.Handle
+	}
 
 	params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
 	op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
