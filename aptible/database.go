@@ -23,10 +23,14 @@ type Database struct {
 	DatabaseImage     DatabaseImage
 }
 
+// DBUpdates - struct to define what operations you contain your DB update to. Add values to this struct
+// 			   to eventually pass it around for consumption by the go sdk
 type DBUpdates struct {
-	ContainerSize      int64
-	DiskSize           int64
-	Handle             string
+	ContainerSize int64
+	DiskSize      int64
+	Handle        string
+	// OnlyChangingHandle - changing a DB can incur multiple API calls. To contain it to only update the handle
+	// 						set this to true so you only make one API call (to update database itself)
 	OnlyChangingHandle bool
 }
 
