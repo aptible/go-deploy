@@ -26,6 +26,7 @@ type Database struct {
 type DBUpdates struct {
 	ContainerSize int64
 	DiskSize      int64
+	Handle        string
 }
 
 type DBCreateAttrs struct {
