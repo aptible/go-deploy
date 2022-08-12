@@ -24,9 +24,10 @@ type Database struct {
 }
 
 type DBUpdates struct {
-	ContainerSize int64
-	DiskSize      int64
-	Handle        string
+	ContainerSize      int64
+	DiskSize           int64
+	Handle             string
+	OnlyChangingHandle bool
 }
 
 type DBCreateAttrs struct {
@@ -180,34 +181,47 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 }
 
 func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
-	requestType := "restart"
-	request := models.AppRequest24{
-		Type: &requestType,
-	}
-
-	if updates.ContainerSize >= 512 {
-		request.ContainerSize = updates.ContainerSize
-	}
-	if updates.DiskSize >= 10 {
-		request.DiskSize = updates.DiskSize
-	}
 	if updates.Handle != "" {
-		request.Handle = updates.Handle
-	}
+		// need to update the database directly
+		databaseUpdateRequest := &models.AppRequest14{
+			Handle: updates.Handle,
+		}
 
-	params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
-	op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
-	if err != nil {
-		return err
-	}
-	if op.Payload.ID != nil {
-		operationID := *op.Payload.ID
-		_, err = c.WaitForOperation(operationID)
+		updateDatabaseParams := operations.NewPutDatabasesIDParams().WithID(databaseID).WithAppRequest(databaseUpdateRequest)
+		_, err := c.Client.Operations.PutDatabasesID(updateDatabaseParams, c.Token)
 		if err != nil {
 			return err
 		}
-	} else {
-		return fmt.Errorf("id is a nil pointer")
+	}
+
+	requestType := "restart"
+	databaseUpdateOperationBasedRequest := models.AppRequest24{
+		Type: &requestType,
+	}
+	if updates.ContainerSize >= 512 {
+		databaseUpdateOperationBasedRequest.ContainerSize = updates.ContainerSize
+	}
+	if updates.DiskSize >= 10 {
+		databaseUpdateOperationBasedRequest.DiskSize = updates.DiskSize
+	}
+
+	if !updates.OnlyChangingHandle {
+		updateDatabaseByOperationParams := operations.NewPostDatabasesDatabaseIDOperationsParams().
+			WithDatabaseID(databaseID).
+			WithAppRequest(&databaseUpdateOperationBasedRequest)
+		op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(updateDatabaseByOperationParams, c.Token)
+		if err != nil {
+			return err
+		}
+		if op.Payload.ID != nil {
+			operationID := *op.Payload.ID
+			_, err = c.WaitForOperation(operationID)
+			if err != nil {
+				return err
+			}
+		} else {
+			return fmt.Errorf("id is a nil pointer")
+		}
 	}
 
 	return nil
