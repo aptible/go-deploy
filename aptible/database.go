@@ -185,18 +185,6 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 }
 
 func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
-	if updates.Handle != "" {
-		// need to update the database directly
-		databaseUpdateRequest := models.AppRequest14{
-			Handle: updates.Handle,
-		}
-		updateDatabaseParams := operations.NewPutDatabasesIDParams().WithID(databaseID).WithAppRequest(&databaseUpdateRequest)
-		_, err := c.Client.Operations.PutDatabasesID(updateDatabaseParams, c.Token)
-		if err != nil {
-			return err
-		}
-	}
-
 	requestType := "restart"
 	request := models.AppRequest24{
 		Type: &requestType,
@@ -225,6 +213,18 @@ func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
 			return fmt.Errorf("id is a nil pointer")
 		}
 
+	}
+
+	if updates.Handle != "" {
+		// need to update the database directly
+		databaseUpdateRequest := models.AppRequest14{
+			Handle: updates.Handle,
+		}
+		updateDatabaseParams := operations.NewPutDatabasesIDParams().WithID(databaseID).WithAppRequest(&databaseUpdateRequest)
+		_, err := c.Client.Operations.PutDatabasesID(updateDatabaseParams, c.Token)
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil
