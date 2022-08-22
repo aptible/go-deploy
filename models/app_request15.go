@@ -24,6 +24,9 @@ type AppRequest15 struct {
 	// database image id
 	DatabaseImageID int64 `json:"database_image_id,omitempty"`
 
+	// handle
+	Handle string `json:"handle,omitempty"`
+
 	// initial continer size
 	InitialContinerSize int64 `json:"initial_continer_size,omitempty"`
 
