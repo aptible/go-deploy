@@ -17,6 +17,11 @@ type App struct {
 	Services      []Service
 }
 
+type AppUpdates struct {
+	// Handle - field to update app handle
+	Handle string
+}
+
 func (c *Client) CreateApp(handle string, accountID int64) (App, error) {
 	app := App{}
 	appRequest := models.AppRequest3{Handle: &handle}
@@ -124,6 +129,17 @@ func (c *Client) DeployApp(config map[string]interface{}, appID int64) error {
 
 	operationID := *response.Payload.ID
 	_, err = c.WaitForOperation(operationID)
+
+	return err
+}
+
+func (c *Client) UpdateApp(appID int64, appUpdates AppUpdates) error {
+	patchRequest := models.PatchRequest{
+		Handle: appUpdates.Handle,
+	}
+
+	updateAppParams := operations.NewPutAppsIDParams().WithID(appID).WithPatchRequest(&patchRequest)
+	_, err := c.Client.Operations.PutAppsID(updateAppParams, c.Token)
 
 	return err
 }

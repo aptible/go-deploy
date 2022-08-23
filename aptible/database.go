@@ -23,9 +23,15 @@ type Database struct {
 	DatabaseImage     DatabaseImage
 }
 
+// DBUpdates - struct to define what operations you contain your DB update to. Add values to this struct
+// 			   to eventually pass it around for consumption by the go sdk
 type DBUpdates struct {
 	ContainerSize int64
 	DiskSize      int64
+	Handle        string
+	// OnlyChangingHandle - changing a DB can incur multiple API calls. To contain it to only update the handle
+	// 						set this to true so you only make one API call (to update database itself)
+	OnlyChangingHandle bool
 }
 
 type DBCreateAttrs struct {
@@ -191,19 +197,34 @@ func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
 		request.DiskSize = updates.DiskSize
 	}
 
-	params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
-	op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
-	if err != nil {
-		return err
-	}
-	if op.Payload.ID != nil {
-		operationID := *op.Payload.ID
-		_, err = c.WaitForOperation(operationID)
+	if !updates.OnlyChangingHandle {
+		params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
+		op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
 		if err != nil {
 			return err
 		}
-	} else {
-		return fmt.Errorf("id is a nil pointer")
+		if op.Payload.ID != nil {
+			operationID := *op.Payload.ID
+			_, err = c.WaitForOperation(operationID)
+			if err != nil {
+				return err
+			}
+		} else {
+			return fmt.Errorf("id is a nil pointer")
+		}
+
+	}
+
+	if updates.Handle != "" {
+		// need to update the database directly
+		databaseUpdateRequest := models.AppRequest14{
+			Handle: updates.Handle,
+		}
+		updateDatabaseParams := operations.NewPutDatabasesIDParams().WithID(databaseID).WithAppRequest(&databaseUpdateRequest)
+		_, err := c.Client.Operations.PutDatabasesID(updateDatabaseParams, c.Token)
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil

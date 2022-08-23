@@ -25,6 +25,9 @@ type PatchRequest struct {
 	// Format: uri
 	CurrentImage strfmt.URI `json:"current_image,omitempty"`
 
+	// handle
+	Handle string `json:"handle,omitempty"`
+
 	// status
 	Status string `json:"status,omitempty"`
 }
