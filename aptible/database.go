@@ -29,9 +29,10 @@ type DBUpdates struct {
 	ContainerSize int64
 	DiskSize      int64
 	Handle        string
-	// OnlyChangingHandle - changing a DB can incur multiple API calls. To contain it to only update the handle
-	// 						set this to true so you only make one API call (to update database itself)
-	OnlyChangingHandle bool
+	// SkipOperationUpdate - changing a DB can incur multiple API calls. To contain it to only update the handle
+	// 						 set this to true then you only make one API call (to update database itself) without
+	// 						 triggering an operation
+	SkipOperationUpdate bool
 }
 
 type DBCreateAttrs struct {
@@ -197,7 +198,7 @@ func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
 		request.DiskSize = updates.DiskSize
 	}
 
-	if !updates.OnlyChangingHandle {
+	if !updates.SkipOperationUpdate {
 		params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
 		op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
 		if err != nil {
