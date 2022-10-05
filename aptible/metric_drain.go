@@ -15,7 +15,7 @@ type MetricDrain struct {
 	Handle        string
 	DrainType     string
 	DatabaseID    int64
-	URL           strfmt.URI
+	Address       strfmt.URI
 	DrainUsername string
 	DrainPassword string
 	DrainDatabase string
@@ -28,7 +28,7 @@ type MetricDrainCreateAttrs struct {
 	DatabaseID    int64
 	DrainType     *string
 	LoggingToken  string
-	URL           strfmt.URI
+	Address       strfmt.URI
 	DrainUsername string
 	DrainPassword string
 	DrainDatabase string
@@ -43,10 +43,11 @@ func (c *Client) CreateMetricDrain(handle string, accountID int64, attrs *Metric
 		Handle:     &handle,
 	}
 
+	// influxdb_database drains cannot have a DrainConfiguration
 	if *attrs.DrainType != "influxdb_database" {
 		request.DrainConfiguration = &models.AccountsaccountIdmetricDrainsDrainConfiguration{
 			// TODO: Update address to a URI
-			Address:  attrs.URL.String(),
+			Address:  attrs.Address.String(),
 			Username: attrs.DrainUsername,
 			Password: attrs.DrainPassword,
 			Database: attrs.DrainDatabase,
