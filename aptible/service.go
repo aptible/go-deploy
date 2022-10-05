@@ -16,7 +16,7 @@ type Service struct {
 	ResourceType           string
 	ResourceID             int64
 	EnvironmentID          int64
-	ContainerProfile       string
+	InstanceClass          string
 }
 
 func (c *Client) GetService(serviceID int64) (Service, error) {
@@ -51,7 +51,7 @@ func (c *Client) GetService(serviceID int64) (Service, error) {
 	if response.Payload.InstanceClass == nil {
 		return service, fmt.Errorf("instance class is a nil pointer")
 	}
-	service.ContainerProfile = *response.Payload.InstanceClass
+	service.InstanceClass = *response.Payload.InstanceClass
 
 	if response.Payload.Command == nil {
 		service.Command = ""
@@ -135,11 +135,11 @@ func (c *Client) GetServiceForAppByName(appID int64, serviceName string) (Servic
 	for _, service := range services {
 		if service.ProcessType == serviceName {
 			s := Service{
-				ID:               service.ID,
-				ContainerCount:   service.ContainerCount,
-				ProcessType:      service.ProcessType,
-				Command:          service.Command,
-				ContainerProfile: service.InstanceClass,
+				ID:             service.ID,
+				ContainerCount: service.ContainerCount,
+				ProcessType:    service.ProcessType,
+				Command:        service.Command,
+				InstanceClass:  service.InstanceClass,
 			}
 			if service.ContainerMemoryLimitMb != nil {
 				s.ContainerMemoryLimitMb = *service.ContainerMemoryLimitMb
