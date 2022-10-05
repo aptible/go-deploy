@@ -16,6 +16,7 @@ type Service struct {
 	ResourceType           string
 	ResourceID             int64
 	EnvironmentID          int64
+	ContainerProfile       string
 }
 
 func (c *Client) GetService(serviceID int64) (Service, error) {
@@ -46,6 +47,11 @@ func (c *Client) GetService(serviceID int64) (Service, error) {
 		return service, fmt.Errorf("process type is a nil pointer")
 	}
 	service.ProcessType = *response.Payload.ProcessType
+
+	if response.Payload.InstanceClass == nil {
+		return service, fmt.Errorf("instance class is a nil pointer")
+	}
+	service.ContainerProfile = *response.Payload.InstanceClass
 
 	if response.Payload.Command == nil {
 		service.Command = ""
@@ -85,12 +91,13 @@ func (c *Client) GetService(serviceID int64) (Service, error) {
 	return service, nil
 }
 
-func (c *Client) ScaleService(serviceID int64, containerCount int64, memoryLimit int64) error {
+func (c *Client) ScaleService(serviceID int64, containerCount int64, memoryLimit int64, instanceClass string) error {
 	requestType := "scale"
 	request := models.AppRequest26{
-		Type:           &requestType,
-		ContainerSize:  memoryLimit,
-		ContainerCount: containerCount,
+		Type:            &requestType,
+		ContainerSize:   memoryLimit,
+		ContainerCount:  containerCount,
+		InstanceProfile: instanceClass,
 	}
 	appParams := operations.NewPostServicesServiceIDOperationsParams().WithServiceID(serviceID).WithAppRequest(&request)
 	response, err := c.Client.Operations.PostServicesServiceIDOperations(appParams, c.Token)
@@ -128,10 +135,11 @@ func (c *Client) GetServiceForAppByName(appID int64, serviceName string) (Servic
 	for _, service := range services {
 		if service.ProcessType == serviceName {
 			s := Service{
-				ID:             service.ID,
-				ContainerCount: service.ContainerCount,
-				ProcessType:    service.ProcessType,
-				Command:        service.Command,
+				ID:               service.ID,
+				ContainerCount:   service.ContainerCount,
+				ProcessType:      service.ProcessType,
+				Command:          service.Command,
+				ContainerProfile: service.InstanceClass,
 			}
 			if service.ContainerMemoryLimitMb != nil {
 				s.ContainerMemoryLimitMb = *service.ContainerMemoryLimitMb
