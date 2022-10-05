@@ -21,11 +21,18 @@ type InlineResponse20029EmbeddedDrainConfiguration struct {
 	// Format: uri
 	Address strfmt.URI `json:"address,omitempty"`
 
+	// api key
+	APIKey string `json:"api_key,omitempty"`
+
 	// database
 	Database string `json:"database,omitempty"`
 
 	// password
 	Password string `json:"password,omitempty"`
+
+	// series url
+	// Format: uri
+	SeriesURL strfmt.URI `json:"series_url,omitempty"`
 
 	// username
 	Username string `json:"username,omitempty"`
@@ -36,6 +43,10 @@ func (m *InlineResponse20029EmbeddedDrainConfiguration) Validate(formats strfmt.
 	var res []error
 
 	if err := m.validateAddress(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSeriesURL(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -52,6 +63,19 @@ func (m *InlineResponse20029EmbeddedDrainConfiguration) validateAddress(formats 
 	}
 
 	if err := validate.FormatOf("address", "body", "uri", m.Address.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20029EmbeddedDrainConfiguration) validateSeriesURL(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SeriesURL) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("series_url", "body", "uri", m.SeriesURL.String(), formats); err != nil {
 		return err
 	}
 
