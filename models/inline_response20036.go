@@ -57,6 +57,10 @@ type InlineResponse20036 struct {
 	// Required: true
 	ID *int64 `json:"id"`
 
+	// instance class
+	// Required: true
+	InstanceClass *string `json:"instance_class"`
+
 	// process type
 	// Required: true
 	ProcessType *string `json:"process_type"`
@@ -107,6 +111,10 @@ func (m *InlineResponse20036) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInstanceClass(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -217,6 +225,15 @@ func (m *InlineResponse20036) validateHandle(formats strfmt.Registry) error {
 func (m *InlineResponse20036) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20036) validateInstanceClass(formats strfmt.Registry) error {
+
+	if err := validate.Required("instance_class", "body", m.InstanceClass); err != nil {
 		return err
 	}
 

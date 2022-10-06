@@ -81,6 +81,10 @@ type InlineResponse20030 struct {
 	// Required: true
 	ID *int64 `json:"id"`
 
+	// instance profile
+	// Required: true
+	InstanceProfile *string `json:"instance_profile"`
+
 	// interactive
 	// Required: true
 	Interactive *bool `json:"interactive"`
@@ -175,6 +179,10 @@ func (m *InlineResponse20030) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInstanceProfile(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -359,6 +367,15 @@ func (m *InlineResponse20030) validateHandle(formats strfmt.Registry) error {
 func (m *InlineResponse20030) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InlineResponse20030) validateInstanceProfile(formats strfmt.Registry) error {
+
+	if err := validate.Required("instance_profile", "body", m.InstanceProfile); err != nil {
 		return err
 	}
 
