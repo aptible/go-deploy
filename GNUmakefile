@@ -15,8 +15,8 @@ gen:
 	@rm swagger.json
 
 gen-mac:
-	wget https://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.28/swagger-codegen-cli-2.4.28.jar
-	java -jar swagger-codegen-cli-2.4.28.jar generate -i https://documentation-staging.s3.amazonaws.com/swagger/v1/swagger.json -l go -o ./tmp
+	wget https://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.28/swagger-codegen-cli-2.4.28.jar -P tools
+	java -jar tools/swagger-codegen-cli-2.4.28.jar generate -i https://documentation-staging.s3.amazonaws.com/swagger/v1/swagger.json -l go -o ./tmp
 	cp tmp/api/swagger.yaml . && rm -rf tmp
 	bin/swagger generate client
 
