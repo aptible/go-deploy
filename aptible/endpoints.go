@@ -285,7 +285,7 @@ func GetHumanReadableEndpointType(t string) (string, error) {
 	case "tls":
 		return "tls", nil
 	default:
-		e := fmt.Errorf("invalid endpoint type")
+		e := fmt.Errorf("invalid endpoint type - %s", t)
 		return "", e
 	}
 }
