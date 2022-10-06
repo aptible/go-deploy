@@ -14,7 +14,7 @@ gen:
 	docker run --rm -v $(CURDIR):/src -v $(CURDIR):/out/api/ swaggerapi/swagger-codegen-cli generate -i src/swagger.json -l go -o /out
 	@rm swagger.json
 
-gen-mac:
+gen-native:
 	wget https://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.28/swagger-codegen-cli-2.4.28.jar
 	java -jar swagger-codegen-cli-2.4.28.jar generate -i https://documentation-staging.s3.amazonaws.com/swagger/v1/swagger.json -l go -o ./tmp
 	cp tmp/api/swagger.yaml . && rm -rf tmp
