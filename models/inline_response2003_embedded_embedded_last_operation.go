@@ -64,6 +64,9 @@ type InlineResponse2003EmbeddedEmbeddedLastOperation struct {
 	// id
 	ID int64 `json:"id,omitempty"`
 
+	// instance profile
+	InstanceProfile *string `json:"instance_profile,omitempty"`
+
 	// interactive
 	Interactive *bool `json:"interactive,omitempty"`
 

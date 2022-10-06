@@ -8,7 +8,9 @@ package models
 import (
 	strfmt "github.com/go-openapi/strfmt"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // AccountsaccountIdmetricDrainsDrainConfiguration For external metric drain hosts
@@ -16,7 +18,11 @@ import (
 type AccountsaccountIdmetricDrainsDrainConfiguration struct {
 
 	// address
-	Address string `json:"address,omitempty"`
+	// Format: uri
+	Address strfmt.URI `json:"address,omitempty"`
+
+	// api key
+	APIKey string `json:"api_key,omitempty"`
 
 	// database
 	Database string `json:"database,omitempty"`
@@ -24,12 +30,55 @@ type AccountsaccountIdmetricDrainsDrainConfiguration struct {
 	// password
 	Password string `json:"password,omitempty"`
 
+	// series url
+	// Format: uri
+	SeriesURL strfmt.URI `json:"series_url,omitempty"`
+
 	// username
 	Username string `json:"username,omitempty"`
 }
 
 // Validate validates this accountsaccount idmetric drains drain configuration
 func (m *AccountsaccountIdmetricDrainsDrainConfiguration) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateAddress(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSeriesURL(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AccountsaccountIdmetricDrainsDrainConfiguration) validateAddress(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Address) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("address", "body", "uri", m.Address.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AccountsaccountIdmetricDrainsDrainConfiguration) validateSeriesURL(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SeriesURL) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("series_url", "body", "uri", m.SeriesURL.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

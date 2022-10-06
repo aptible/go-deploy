@@ -57,6 +57,9 @@ type AppRequest29 struct {
 	// handle
 	Handle string `json:"handle,omitempty"`
 
+	// instance profile
+	InstanceProfile *string `json:"instance_profile,omitempty"`
+
 	// interactive
 	Interactive bool `json:"interactive"`
 
