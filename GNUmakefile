@@ -15,6 +15,17 @@ gen:
 	@rm swagger.json
 	bin/swagger generate client
 
+# The swaggerapi/swagger-codegen-cli image is only available for linux/amd64 which causes issues
+# trying to run it on an Apple Silicon Mac. However, using the jar file in a container that is
+# available for linux/arm64 does work.
+gen-m1:
+	docker run --rm -v $(CURDIR):/src -v $(CURDIR):/out/api/ openjdk:alpine sh -c ' \
+		wget https://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.28/swagger-codegen-cli-2.4.28.jar -O /swagger-codegen-cli.jar; \
+		java -jar /swagger-codegen-cli.jar generate -i https://documentation-staging.s3.amazonaws.com/swagger/v1/swagger.json -l go -o /out; \
+	'
+	@rm swagger.json || true # If there's a swagger.json file the client generator will use this instead of the swagger.yaml generated above
+	bin/swagger generate client
+
 test: fmtcheck
 	go test $(TEST) -timeout=120s -parallel=4
 
