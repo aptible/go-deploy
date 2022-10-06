@@ -10,33 +10,37 @@ import (
 )
 
 type MetricDrain struct {
-	Deleted       bool
-	ID            int64
-	Handle        string
-	DrainType     string
-	DatabaseID    int64
-	Address       strfmt.URI
-	DrainUsername string
-	DrainPassword string
-	DrainDatabase string
-	ApiKey        string
-	SeriesURL     strfmt.URI
-	AccountID     int64
+	Deleted    bool
+	ID         int64
+	Handle     string
+	DrainType  string
+	DatabaseID int64
+	Address    strfmt.URI
+	Username   string
+	Password   string
+	Database   string
+	APIKey     string
+	SeriesURL  strfmt.URI
+	AccountID  int64
 }
 
 type MetricDrainCreateAttrs struct {
-	DatabaseID    int64
-	DrainType     *string
-	LoggingToken  string
-	Address       strfmt.URI
-	DrainUsername string
-	DrainPassword string
-	DrainDatabase string
-	ApiKey        string
-	SeriesURL     strfmt.URI
+	DatabaseID   int64
+	DrainType    *string
+	LoggingToken string
+	Address      strfmt.URI
+	Username     string
+	Password     string
+	Database     string
+	APIKey       string
+	SeriesURL    strfmt.URI
 }
 
 func (c *Client) CreateMetricDrain(handle string, accountID int64, attrs *MetricDrainCreateAttrs) (*MetricDrain, error) {
+	if attrs == nil {
+		return nil, fmt.Errorf("no attributes provided")
+	}
+
 	request := &models.AppRequest19{
 		DatabaseID: attrs.DatabaseID,
 		DrainType:  attrs.DrainType,
@@ -44,16 +48,14 @@ func (c *Client) CreateMetricDrain(handle string, accountID int64, attrs *Metric
 	}
 
 	// influxdb_database drains cannot have a DrainConfiguration
-	if *attrs.DrainType != "influxdb_database" {
+	if attrs.DrainType != nil && *attrs.DrainType != "influxdb_database" {
 		request.DrainConfiguration = &models.AccountsaccountIdmetricDrainsDrainConfiguration{
-			// TODO: Update address to a URI
-			Address:  attrs.Address.String(),
-			Username: attrs.DrainUsername,
-			Password: attrs.DrainPassword,
-			Database: attrs.DrainDatabase,
-			// TODO: Add api_key and series_url to swagger schema
-			//ApiKey: attrs.ApiKey,
-			//SeriesURL: attrs.ApiKey,
+			Address:   attrs.Address,
+			Username:  attrs.Username,
+			Password:  attrs.Password,
+			Database:  attrs.Database,
+			APIKey:    attrs.APIKey,
+			SeriesURL: attrs.SeriesURL,
 		}
 	}
 
@@ -74,7 +76,7 @@ func (c *Client) CreateMetricDrain(handle string, accountID int64, attrs *Metric
 	operationParams := operations.NewPostMetricDrainsMetricDrainIDOperationsParams().WithMetricDrainID(metricDrain.ID).WithAppRequest(operationRequest)
 	operationResponse, err := c.Client.Operations.PostMetricDrainsMetricDrainIDOperations(operationParams, c.Token)
 	if err != nil {
-		return nil, err
+		return metricDrain, err
 	}
 
 	// Wait on provision operation to complete.
@@ -84,7 +86,7 @@ func (c *Client) CreateMetricDrain(handle string, accountID int64, attrs *Metric
 	operationID := *operationResponse.Payload.ID
 	_, err = c.WaitForOperation(operationID)
 	if err != nil {
-		return nil, err
+		return metricDrain, err
 	}
 
 	return c.GetMetricDrain(metricDrain.ID)
@@ -116,6 +118,12 @@ func (c *Client) GetMetricDrain(metricDrainID int64) (*MetricDrain, error) {
 	metricDrain.ID = swag.Int64Value(response.Payload.ID)
 	metricDrain.Handle = swag.StringValue(response.Payload.Handle)
 	metricDrain.DrainType = swag.StringValue(response.Payload.DrainType)
+	metricDrain.Address = response.Payload.DrainConfiguration.Address
+	metricDrain.Username = response.Payload.DrainConfiguration.Username
+	metricDrain.Password = response.Payload.DrainConfiguration.Password
+	metricDrain.Database = response.Payload.DrainConfiguration.Database
+	metricDrain.APIKey = response.Payload.DrainConfiguration.APIKey
+	metricDrain.SeriesURL = response.Payload.DrainConfiguration.SeriesURL
 	metricDrain.AccountID, _ = GetIDFromHref(response.Payload.Links.Account.Href.String())
 
 	if response.Payload.Links.Database != nil {
