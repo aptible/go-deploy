@@ -46,6 +46,9 @@ type InlineResponse2003EmbeddedEmbeddedServices struct {
 	// id
 	ID int64 `json:"id,omitempty"`
 
+	// instance class
+	InstanceClass string `json:"instance_class,omitempty"`
+
 	// process type
 	ProcessType string `json:"process_type,omitempty"`
 
