@@ -51,4 +51,4 @@ tools:
 	@curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.24.0
 	@scripts/install-swagger.sh
 
-.PHONY: build gen test testacc fmt fmtcheck lint tools testapi
+.PHONY: build gen gen-native gen-m1 test testapi fmt fmtcheck lint tools
