@@ -26,7 +26,7 @@ type MetricDrain struct {
 
 type MetricDrainCreateAttrs struct {
 	DatabaseID   int64
-	DrainType    *string
+	DrainType    string
 	LoggingToken string
 	Address      strfmt.URI
 	Username     string
@@ -43,12 +43,12 @@ func (c *Client) CreateMetricDrain(handle string, accountID int64, attrs *Metric
 
 	request := &models.AppRequest19{
 		DatabaseID: attrs.DatabaseID,
-		DrainType:  attrs.DrainType,
+		DrainType:  &attrs.DrainType,
 		Handle:     &handle,
 	}
 
 	// influxdb_database drains cannot have a DrainConfiguration
-	if attrs.DrainType != nil && *attrs.DrainType != "influxdb_database" {
+	if attrs.DrainType != "influxdb_database" {
 		request.DrainConfiguration = &models.AccountsaccountIdmetricDrainsDrainConfiguration{
 			Address:   attrs.Address,
 			Username:  attrs.Username,
@@ -59,24 +59,25 @@ func (c *Client) CreateMetricDrain(handle string, accountID int64, attrs *Metric
 		}
 	}
 
-	metricDrain := &MetricDrain{}
-	params := operations.NewPostAccountsAccountIDMetricDrainsParams().WithAccountID(accountID).WithAppRequest(request)
+	params := operations.
+		NewPostAccountsAccountIDMetricDrainsParams().
+		WithAccountID(accountID).
+		WithAppRequest(request)
 	response, err := c.Client.Operations.PostAccountsAccountIDMetricDrains(params, c.Token)
 	if err != nil {
-		return metricDrain, err
+		return nil, err
 	}
 
-	if response.Payload.ID == nil {
-		return metricDrain, fmt.Errorf("metric drain ID is a nil pointer")
-	}
-	metricDrain.ID = *response.Payload.ID
-
+	drainID := *response.Payload.ID
 	requestType := "provision"
 	operationRequest := &models.AppRequest30{Type: &requestType}
-	operationParams := operations.NewPostMetricDrainsMetricDrainIDOperationsParams().WithMetricDrainID(metricDrain.ID).WithAppRequest(operationRequest)
+	operationParams := operations.
+		NewPostMetricDrainsMetricDrainIDOperationsParams().
+		WithMetricDrainID(drainID).
+		WithAppRequest(operationRequest)
 	operationResponse, err := c.Client.Operations.PostMetricDrainsMetricDrainIDOperations(operationParams, c.Token)
 	if err != nil {
-		return metricDrain, err
+		return nil, err
 	}
 
 	// Wait on provision operation to complete.
@@ -86,10 +87,10 @@ func (c *Client) CreateMetricDrain(handle string, accountID int64, attrs *Metric
 	operationID := *operationResponse.Payload.ID
 	_, err = c.WaitForOperation(operationID)
 	if err != nil {
-		return metricDrain, err
+		return nil, err
 	}
 
-	return c.GetMetricDrain(metricDrain.ID)
+	return c.GetMetricDrain(drainID)
 }
 
 func (c *Client) GetMetricDrain(metricDrainID int64) (*MetricDrain, error) {
@@ -97,7 +98,9 @@ func (c *Client) GetMetricDrain(metricDrainID int64) (*MetricDrain, error) {
 		Deleted: false,
 	}
 
-	params := operations.NewGetMetricDrainsIDParams().WithID(metricDrainID)
+	params := operations.
+		NewGetMetricDrainsIDParams().
+		WithID(metricDrainID)
 	response, err := c.Client.Operations.GetMetricDrainsID(params, c.Token)
 	if err != nil {
 		errStruct := err.(*operations.GetMetricDrainsIDDefault)
@@ -108,34 +111,41 @@ func (c *Client) GetMetricDrain(metricDrainID int64) (*MetricDrain, error) {
 			return metricDrain, nil
 		case 401:
 			e := fmt.Errorf("make sure you have the correct auth token")
-			return metricDrain, e
+			return nil, e
 		default:
 			e := fmt.Errorf("there was an error when completing the request to get the app \n[ERROR] -%s", err)
-			return metricDrain, e
+			return nil, e
 		}
 	}
 
 	metricDrain.ID = swag.Int64Value(response.Payload.ID)
 	metricDrain.Handle = swag.StringValue(response.Payload.Handle)
 	metricDrain.DrainType = swag.StringValue(response.Payload.DrainType)
-	metricDrain.Address = response.Payload.DrainConfiguration.Address
-	metricDrain.Username = response.Payload.DrainConfiguration.Username
-	metricDrain.Password = response.Payload.DrainConfiguration.Password
-	metricDrain.Database = response.Payload.DrainConfiguration.Database
-	metricDrain.APIKey = response.Payload.DrainConfiguration.APIKey
-	metricDrain.SeriesURL = response.Payload.DrainConfiguration.SeriesURL
 	metricDrain.AccountID, _ = GetIDFromHref(response.Payload.Links.Account.Href.String())
+
+	if response.Payload.DrainConfiguration != nil {
+		metricDrain.Address = response.Payload.DrainConfiguration.Address
+		metricDrain.Username = response.Payload.DrainConfiguration.Username
+		metricDrain.Password = response.Payload.DrainConfiguration.Password
+		metricDrain.Database = response.Payload.DrainConfiguration.Database
+		metricDrain.APIKey = response.Payload.DrainConfiguration.APIKey
+		metricDrain.SeriesURL = response.Payload.DrainConfiguration.SeriesURL
+	}
 
 	if response.Payload.Links.Database != nil {
 		metricDrain.DatabaseID, _ = GetIDFromHref(response.Payload.Links.Database.Href.String())
 	}
+
 	return metricDrain, nil
 }
 
 func (c *Client) DeleteMetricDrain(metricDrainID int64) (bool, error) {
 	requestType := "deprovision"
 	request := models.AppRequest30{Type: &requestType}
-	params := operations.NewPostMetricDrainsMetricDrainIDOperationsParams().WithMetricDrainID(metricDrainID).WithAppRequest(&request)
+	params := operations.
+		NewPostMetricDrainsMetricDrainIDOperationsParams().
+		WithMetricDrainID(metricDrainID).
+		WithAppRequest(&request)
 	op, err := c.Client.Operations.PostMetricDrainsMetricDrainIDOperations(params, c.Token)
 	if err != nil {
 		return false, err
