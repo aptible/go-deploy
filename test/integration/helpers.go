@@ -25,6 +25,10 @@ func integrationPreCheck(t *testing.T) {
 	if matched, _ := regexp.Match("aptible-sandbox\\.com$", []byte(authURL)); !matched {
 		t.Fatal("APTIBLE_AUTH_ROOT_URL must be a URL for a sandbox stack, got", authURL)
 	}
+	token := os.Getenv("APTIBLE_ACCESS_TOKEN")
+	if token == "" {
+		t.Fatal("APTIBLE_ACCESS_TOKEN must be set for integration tests")
+	}
 }
 
 func getClient(t *testing.T) aptible.Client {
