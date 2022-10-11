@@ -11,7 +11,6 @@ import (
 
 func TestMetricDrains(t *testing.T) {
 	// Setup
-	integrationPreCheck(t)
 	envID := getEnvID(t)
 	client := getClient(t)
 	var metricDrain *aptible.MetricDrain
