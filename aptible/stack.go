@@ -42,7 +42,7 @@ func (c *Client) GetStacks() ([]Stack, error) {
 	return stacksToReturn, nil
 }
 
-func (c *Client) GetStackById(id int64) (Stack, error) {
+func (c *Client) GetStack(id int64) (Stack, error) {
 	params := operations.NewGetStacksIDParams().WithID(id)
 	result, err := c.Client.Operations.GetStacksID(params, c.Token)
 	if err != nil {
