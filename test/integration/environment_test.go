@@ -42,7 +42,7 @@ func TestEnvironments(t *testing.T) {
 
 	envID := environment.ID
 	prevEnvironment := environment
-	environment, err = client.GetEnvironment(*envID)
+	environment, err = client.GetEnvironment(envID)
 	if err != nil {
 		t.Error("Expected GetEnvironment to not return an error but got", err.Error())
 	}

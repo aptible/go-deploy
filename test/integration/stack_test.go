@@ -12,7 +12,7 @@ func TestStack(t *testing.T) {
 	client := getClient(t)
 	var err error
 
-	_, err = client.GetStackById(-999)
+	_, err = client.GetStack(-999)
 	if err == nil {
 		t.Fatal("Expected GetStackById to return an error but got none!")
 		return
