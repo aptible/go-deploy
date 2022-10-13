@@ -32,7 +32,6 @@ func TestEnvironments(t *testing.T) {
 
 	environment, err = client.CreateEnvironment(orgID, aptible.EnvironmentCreateAttrs{
 		Handle:  "123-testing-handle",
-		Type:    "development",
 		StackID: stackID,
 	})
 	if err != nil {
@@ -53,10 +52,10 @@ func TestEnvironments(t *testing.T) {
 	}
 
 	// update it
-	updateEnvironmentAttributes := client.EnvironmentUpdates{
+	updateEnvironmentAttributes := aptible.EnvironmentUpdates{
 		Handle: "234-testing-handle-update",
 	}
-	err = client.UpdateEnvironment(environment.ID, updateEnvironmentAttributes)
+	err = client.UpdateEnvironment(*environment.ID, updateEnvironmentAttributes)
 	if err != nil {
 		t.Error("Expected UpdateEnvironment to not return an error but got", err.Error())
 	}

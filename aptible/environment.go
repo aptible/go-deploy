@@ -16,17 +16,23 @@ type EnvironmentUpdates struct {
 }
 
 type EnvironmentCreateAttrs struct {
-	Handle  string
-	Type    string
-	StackID int64
+	Handle string
+	Type   string
 }
 
-func (c *Client) CreateEnvironment(organizationID string, attrs EnvironmentCreateAttrs) (Environment, error) {
+func (c *Client) CreateEnvironment(organizationID string, stackID int64, attrs EnvironmentCreateAttrs) (Environment, error) {
+	stack, err := c.GetStackById(stackID)
+	if err != nil {
+		return Environment{}, err
+	}
+	environmentType := "production"
+	if stack.isShared() {
+		environmentType = "development"
+	}
 	params := operations.NewPostAccountsParams().WithAppRequest(&models.AppRequest{
 		Handle:         &attrs.Handle,
 		OrganizationID: &organizationID,
-		Type:           &attrs.Type,
-		StackID:        attrs.StackID,
+		Type:           &environmentType,
 	})
 	environment, err := c.Client.Operations.PostAccounts(params, c.Token)
 	if err != nil {
@@ -35,7 +41,6 @@ func (c *Client) CreateEnvironment(organizationID string, attrs EnvironmentCreat
 	return Environment{
 		Handle: environment.Payload.Handle,
 		ID:     environment.Payload.ID,
-		Type:   environment.Payload.Type,
 	}, nil
 }
 
@@ -48,7 +53,6 @@ func (c *Client) GetEnvironment(environmentID int64) (Environment, error) {
 	return Environment{
 		Handle: environment.Payload.Handle,
 		ID:     environment.Payload.ID,
-		Type:   environment.Payload.Type,
 	}, nil
 }
 
