@@ -16,11 +16,10 @@ type EnvironmentUpdates struct {
 
 type EnvironmentCreateAttrs struct {
 	Handle string
-	Type   string
 }
 
 func (c *Client) CreateEnvironment(organizationID string, stackID int64, attrs EnvironmentCreateAttrs) (Environment, error) {
-	stack, err := c.GetStackById(stackID)
+	stack, err := c.GetStack(stackID)
 	if err != nil {
 		return Environment{}, err
 	}
