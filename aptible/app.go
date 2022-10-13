@@ -101,6 +101,7 @@ func (c *Client) GetApp(appID int64) (App, error) {
 			service := Service{
 				ID:                     s.ID,
 				ContainerCount:         s.ContainerCount,
+				ContainerProfile:       s.InstanceClass,
 				ContainerMemoryLimitMb: *s.ContainerMemoryLimitMb,
 				ProcessType:            s.ProcessType,
 				Command:                s.Command,

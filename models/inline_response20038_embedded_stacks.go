@@ -93,7 +93,7 @@ type InlineResponse20038EmbeddedStacks struct {
 	Version string `json:"version,omitempty"`
 
 	// vpc id
-	VpcID *int64 `json:"vpc_id,omitempty"`
+	VpcID *string `json:"vpc_id,omitempty"`
 }
 
 // Validate validates this inline response 200 38 embedded stacks

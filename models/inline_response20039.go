@@ -118,7 +118,7 @@ type InlineResponse20039 struct {
 
 	// vpc id
 	// Required: true
-	VpcID *int64 `json:"vpc_id"`
+	VpcID *string `json:"vpc_id"`
 }
 
 // Validate validates this inline response 200 39

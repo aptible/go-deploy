@@ -14,6 +14,7 @@ type Database struct {
 	ConnectionURLs    []string
 	ContainerSize     int64
 	DiskSize          int64
+	ContainerProfile  string
 	Deleted           bool
 	Handle            string
 	Type              string
@@ -26,9 +27,10 @@ type Database struct {
 // DBUpdates - struct to define what operations you contain your DB update to. Add values to this struct
 // 			   to eventually pass it around for consumption by the go sdk
 type DBUpdates struct {
-	ContainerSize int64
-	DiskSize      int64
-	Handle        string
+	ContainerSize    int64
+	DiskSize         int64
+	ContainerProfile string
+	Handle           string
 	// SkipOperationUpdate - changing a DB can incur multiple API calls. To contain it to only update the handle
 	// 						 set this to true then you only make one API call (to update database itself) without
 	// 						 triggering an operation
@@ -36,11 +38,12 @@ type DBUpdates struct {
 }
 
 type DBCreateAttrs struct {
-	Handle          *string
-	Type            string
-	ContainerSize   int64
-	DiskSize        int64
-	DatabaseImageID int64
+	Handle           *string
+	Type             string
+	ContainerSize    int64
+	DiskSize         int64
+	ContainerProfile string
+	DatabaseImageID  int64
 }
 
 func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database, error) {
@@ -80,6 +83,31 @@ func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database,
 	_, err = c.WaitForOperation(operationID)
 	if err != nil {
 		return Database{}, err
+	}
+
+	// Setting the container profile on provision is not currently supported so
+	// if a non-default container profile is requested, restart with the desired profile
+	if attrs.ContainerProfile != "" && attrs.ContainerProfile != "m4" {
+		requestType := "restart"
+		request := models.AppRequest24{
+			Type:            &requestType,
+			InstanceProfile: attrs.ContainerProfile,
+		}
+
+		params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
+		op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
+		if err != nil {
+			return Database{}, err
+		}
+		if op.Payload.ID != nil {
+			operationID := *op.Payload.ID
+			_, err = c.WaitForOperation(operationID)
+			if err != nil {
+				return Database{}, err
+			}
+		} else {
+			return Database{}, fmt.Errorf("restart operation id is a nil pointer")
+		}
 	}
 
 	// gets database
@@ -140,6 +168,7 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 		return Database{}, err
 	}
 	database.ContainerSize = service.ContainerMemoryLimitMb
+	database.ContainerProfile = service.ContainerProfile
 
 	diskHref := resp.Payload.Links.Disk.Href.String()
 	disk, err := c.GetDiskFromHref(diskHref)
@@ -188,7 +217,8 @@ func (c *Client) GetDatabase(databaseID int64) (Database, error) {
 func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
 	requestType := "restart"
 	request := models.AppRequest24{
-		Type: &requestType,
+		Type:            &requestType,
+		InstanceProfile: updates.ContainerProfile,
 	}
 
 	if updates.ContainerSize >= 512 {
@@ -213,7 +243,6 @@ func (c *Client) UpdateDatabase(databaseID int64, updates DBUpdates) error {
 		} else {
 			return fmt.Errorf("id is a nil pointer")
 		}
-
 	}
 
 	if updates.Handle != "" {
