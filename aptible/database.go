@@ -85,7 +85,7 @@ func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database,
 		return Database{}, err
 	}
 
-	// Sweetness doesn't support setting the container profile on provision so
+	// Setting the container profile on provision is not currently supported so
 	// if a non-default container profile is requested, restart with the desired profile
 	if attrs.ContainerProfile != "" && attrs.ContainerProfile != "m4" {
 		requestType := "restart"
