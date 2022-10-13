@@ -20,7 +20,7 @@ func TestStack(t *testing.T) {
 
 	individualResult, err := client.GetStackByName("THIS_STACK_SHOULD_NOT_EXIST_EVER")
 	if err == nil {
-		t.Fatal("Expected GetStacksByName to return an error but did not get an err!")
+		t.Fatal("Expected GetStackByName to return an error but did not get an err!")
 		return
 	}
 	if individualResult.ID != 0 {
