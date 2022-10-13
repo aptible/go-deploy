@@ -46,7 +46,7 @@ func TestStack(t *testing.T) {
 
 	resultByName, err := client.GetStackByName(results[0].Name)
 	if err != nil {
-		t.Fatal("Expected GetStacks by ID to not return an error but got", err.Error())
+		t.Fatal("Expected GetStackByName to not return an error but got", err.Error())
 		return
 	}
 	if resultByName.Name == "" {
