@@ -40,7 +40,7 @@ func TestStack(t *testing.T) {
 	// get first item off the list and test getters
 	_, err = client.GetStackById(results[0].ID)
 	if err != nil {
-		t.Fatal("Expected GetStacks by ID to not return an error but got", err.Error())
+		t.Fatal("Expected GetStackByID to not return an error but got", err.Error())
 		return
 	}
 
