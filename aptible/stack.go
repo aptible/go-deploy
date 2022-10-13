@@ -17,7 +17,7 @@ func (s Stack) isShared() bool {
 	return s.OrganizationID == ""
 }
 
-func (c *Client) GetStacks() ([]Stack, error) {
+func (c *Client) UNSUPPORTED_GetStacks() ([]Stack, error) {
 	page := int64(0)
 	params := operations.NewGetStacksParams().WithPage(&page)
 
@@ -62,8 +62,8 @@ func (c *Client) GetStack(id int64) (Stack, error) {
 	return stackToReturn, nil
 }
 
-func (c *Client) GetStackByName(name string) (Stack, error) {
-	stacks, err := c.GetStacks()
+func (c *Client) UNSUPPORTED_GetStackByName(name string) (Stack, error) {
+	stacks, err := c.UNSUPPORTED_GetStacks()
 	if err != nil {
 		return Stack{}, err
 	}
