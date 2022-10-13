@@ -6,9 +6,8 @@ import (
 )
 
 type Environment struct {
-	Handle *string
-	ID     *int64
-	Type   *string
+	Handle string
+	ID     int64
 }
 
 type EnvironmentUpdates struct {
@@ -39,8 +38,8 @@ func (c *Client) CreateEnvironment(organizationID string, stackID int64, attrs E
 		return Environment{}, err
 	}
 	return Environment{
-		Handle: environment.Payload.Handle,
-		ID:     environment.Payload.ID,
+		Handle: *environment.Payload.Handle,
+		ID:     *environment.Payload.ID,
 	}, nil
 }
 
@@ -51,8 +50,8 @@ func (c *Client) GetEnvironment(environmentID int64) (Environment, error) {
 		return Environment{}, nil
 	}
 	return Environment{
-		Handle: environment.Payload.Handle,
-		ID:     environment.Payload.ID,
+		Handle: *environment.Payload.Handle,
+		ID:     *environment.Payload.ID,
 	}, nil
 }
 

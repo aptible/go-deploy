@@ -2,15 +2,15 @@ package aptible
 
 import (
 	"fmt"
-	"github.com/aptible/go-deploy/client/operations"
 	"strings"
+
+	"github.com/aptible/go-deploy/client/operations"
 )
 
 type Stack struct {
 	ID             int64
 	OrganizationID string
 	Name           string
-	Type           string
 }
 
 func (s Stack) isShared() bool {
@@ -31,7 +31,6 @@ func (c *Client) GetStacks() ([]Stack, error) {
 		stacksToReturn[idx] = Stack{
 			ID:   stacks.Payload.Embedded.Stacks[idx].ID,
 			Name: stacks.Payload.Embedded.Stacks[idx].Name,
-			Type: stacks.Payload.Embedded.Stacks[idx].ResourceType,
 		}
 		if stacks.Payload.Embedded.Stacks[idx].Links.Organization != nil &&
 			stacks.Payload.Embedded.Stacks[idx].Links.Organization.Href != "" {
@@ -44,41 +43,39 @@ func (c *Client) GetStacks() ([]Stack, error) {
 }
 
 func (c *Client) GetStackById(id int64) (Stack, error) {
-	stacks, err := c.GetStacks()
+	params := operations.NewGetStacksIDParams().WithID(id)
+	result, err := c.Client.Operations.GetStacksID(params, c.Token)
 	if err != nil {
 		return Stack{}, err
 	}
-	stackToReturn := Stack{
-		ID: id,
+	organizationId := ""
+	if result.Payload.Links.Organization != nil &&
+		result.Payload.Links.Organization.Href != "" {
+		orgIdParts := strings.Split(result.Payload.Links.Organization.Href.String(), "/")
+		organizationId = orgIdParts[len(orgIdParts)-1]
 	}
-	for idx, stack := range stacks {
-		if id == stack.ID {
-			stackToReturn.Name = stack.Name
-			break
-		}
-		if idx == len(stacks)-1 {
-			return Stack{}, fmt.Errorf("Error, unable to find stack from the id provided: %d\n", id)
-		}
+	stackToReturn := Stack{
+		ID:             id,
+		OrganizationID: organizationId,
+		Name:           *result.Payload.Name,
 	}
 	return stackToReturn, nil
 }
 
-func (c *Client) GetStacksByName(name string) ([]Stack, error) {
+func (c *Client) GetStackByName(name string) (Stack, error) {
 	stacks, err := c.GetStacks()
 	if err != nil {
-		return nil, err
+		return Stack{}, err
 	}
-	var stacksToReturn []Stack
-	for idx, stack := range stacks {
+	var stacksToReturn Stack
+	for _, stack := range stacks {
 		if name == stack.Name {
-			stacksToReturn = append(stacksToReturn, Stack{
-				ID:   stack.ID,
-				Name: stack.Name,
-			})
-		}
-		if idx == len(stacks)-1 {
-			return nil, fmt.Errorf("Error, unable to find stack from the name provided: %s\n", name)
+			return Stack{
+				ID:             stack.ID,
+				Name:           stack.Name,
+				OrganizationID: stack.OrganizationID,
+			}, nil
 		}
 	}
-	return stacksToReturn, nil
+	return stacksToReturn, fmt.Errorf("Error, unable to find stack from the name provided: %s\n", name)
 }

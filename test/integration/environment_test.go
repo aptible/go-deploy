@@ -30,9 +30,8 @@ func TestEnvironments(t *testing.T) {
 
 	// create it
 
-	environment, err = client.CreateEnvironment(orgID, aptible.EnvironmentCreateAttrs{
-		Handle:  "123-testing-handle",
-		StackID: stackID,
+	environment, err = client.CreateEnvironment(orgID, stackID, aptible.EnvironmentCreateAttrs{
+		Handle: "1234-testing-handle",
 	})
 	if err != nil {
 		t.Fatal("Expected CreateEnvironment to not return an error but got", err.Error())
@@ -53,14 +52,14 @@ func TestEnvironments(t *testing.T) {
 
 	// update it
 	updateEnvironmentAttributes := aptible.EnvironmentUpdates{
-		Handle: "234-testing-handle-update",
+		Handle: "2345-testing-handle-update",
 	}
-	err = client.UpdateEnvironment(*environment.ID, updateEnvironmentAttributes)
+	err = client.UpdateEnvironment(environment.ID, updateEnvironmentAttributes)
 	if err != nil {
 		t.Error("Expected UpdateEnvironment to not return an error but got", err.Error())
 	}
 
-	environment, err = client.GetEnvironment(*envID)
+	environment, err = client.GetEnvironment(envID)
 	if err != nil {
 		t.Error("Expected GetEnvironment to not return an error but got", err.Error())
 	}
@@ -69,10 +68,10 @@ func TestEnvironments(t *testing.T) {
 	}
 
 	// delete it
-	err = client.DeleteEnvironment(*envID)
+	err = client.DeleteEnvironment(envID)
 	if err != nil {
 		t.Error("Expected DeleteEnvironment to not return an error but got", err.Error())
 	}
 
-	testNotFound(*environment.ID)
+	testNotFound(environment.ID)
 }

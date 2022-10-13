@@ -18,9 +18,13 @@ func TestStack(t *testing.T) {
 		return
 	}
 
-	_, err = client.GetStacksByName("THIS_STACK_SHOULD_NOT_EXIST_EVER")
+	individualResult, err := client.GetStackByName("THIS_STACK_SHOULD_NOT_EXIST_EVER")
 	if err == nil {
-		t.Fatal("Expected GetStacksByName to return an error but got none!")
+		t.Fatal("Expected GetStacksByName to NOT return an error but got an err!", err.Error())
+		return
+	}
+	if individualResult.ID != 0 {
+		t.Fatal("Expected to get no results, but got a result!")
 		return
 	}
 
@@ -40,12 +44,12 @@ func TestStack(t *testing.T) {
 		return
 	}
 
-	resultsByName, err := client.GetStacksByName(results[0].Name)
+	resultByName, err := client.GetStackByName(results[0].Name)
 	if err != nil {
 		t.Fatal("Expected GetStacks by ID to not return an error but got", err.Error())
 		return
 	}
-	if len(resultsByName) == 0 {
+	if resultByName.Name == "" {
 		t.Fatal("Expected results from stacks in payload ")
 	}
 }
