@@ -4,6 +4,7 @@
 package integration
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 
@@ -29,7 +30,7 @@ func TestEnvironments(t *testing.T) {
 	testNotFound(0)
 
 	// create it
-
+	fmt.Println("Testing environment creation")
 	environment, err = client.CreateEnvironment(orgID, stackID, aptible.EnvironmentCreateAttrs{
 		Handle: "1234-testing-handle",
 	})
@@ -39,7 +40,7 @@ func TestEnvironments(t *testing.T) {
 	}
 
 	// get it
-
+	fmt.Println("Testing environment getting")
 	envID := environment.ID
 	prevEnvironment := environment
 	environment, err = client.GetEnvironment(envID)
@@ -53,6 +54,7 @@ func TestEnvironments(t *testing.T) {
 	}
 
 	// update it
+	fmt.Println("Testing environment update")
 	updateEnvironmentAttributes := aptible.EnvironmentUpdates{
 		Handle: "2345-testing-handle-update",
 	}
@@ -73,6 +75,7 @@ func TestEnvironments(t *testing.T) {
 	}
 
 	// delete it
+	fmt.Println("Testing environment deletion")
 	err = client.DeleteEnvironment(envID)
 	if err != nil {
 		t.Error("Expected DeleteEnvironment to not return an error but got", err.Error())
