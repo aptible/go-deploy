@@ -113,7 +113,7 @@ func (c *Client) GetMetricDrain(metricDrainID int64) (*MetricDrain, error) {
 			e := fmt.Errorf("make sure you have the correct auth token")
 			return nil, e
 		default:
-			e := fmt.Errorf("there was an error when completing the request to get the app \n[ERROR] -%s", err)
+			e := fmt.Errorf("there was an error when completing the request to get the metric drain \n[ERROR] -%s", err)
 			return nil, e
 		}
 	}
