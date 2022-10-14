@@ -45,9 +45,11 @@ func TestEnvironments(t *testing.T) {
 	environment, err = client.GetEnvironment(envID)
 	if err != nil {
 		t.Error("Expected GetEnvironment to not return an error but got", err.Error())
+		return
 	}
 	if !reflect.DeepEqual(environment, prevEnvironment) {
 		t.Errorf("Expected the environment to be the same as when it was created: expected %v, got %v", prevEnvironment, environment)
+		return
 	}
 
 	// update it
@@ -57,20 +59,29 @@ func TestEnvironments(t *testing.T) {
 	err = client.UpdateEnvironment(environment.ID, updateEnvironmentAttributes)
 	if err != nil {
 		t.Error("Expected UpdateEnvironment to not return an error but got", err.Error())
+		return
 	}
 
 	environment, err = client.GetEnvironment(envID)
 	if err != nil {
 		t.Error("Expected GetEnvironment to not return an error but got", err.Error())
+		return
 	}
 	if !reflect.DeepEqual(environment.Handle, updateEnvironmentAttributes.Handle) {
 		t.Errorf("Expected the environment to have some handle changes: expected %v, got %v", updateEnvironmentAttributes.Handle, environment.Handle)
+		return
 	}
 
 	// delete it
 	err = client.DeleteEnvironment(envID)
 	if err != nil {
 		t.Error("Expected DeleteEnvironment to not return an error but got", err.Error())
+		return
+	}
+	environment, _ = client.GetEnvironment(envID)
+	if environment.Deleted == false {
+		t.Error("Expected GetEnvironment to return deleted but got false", err.Error())
+		return
 	}
 
 	testNotFound(environment.ID)

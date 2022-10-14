@@ -35,6 +35,7 @@ func TestStack(t *testing.T) {
 	}
 	if len(results) == 0 {
 		t.Fatal("Expected results from stacks in payload ")
+		return
 	}
 
 	// get first item off the list and test getters
@@ -51,5 +52,6 @@ func TestStack(t *testing.T) {
 	}
 	if resultByName.Name == "" {
 		t.Fatal("Expected results from stacks in payload ")
+		return
 	}
 }

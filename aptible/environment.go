@@ -1,13 +1,16 @@
 package aptible
 
 import (
+	"fmt"
 	"github.com/aptible/go-deploy/client/operations"
 	"github.com/aptible/go-deploy/models"
+	"github.com/go-openapi/swag"
 )
 
 type Environment struct {
-	Handle string
-	ID     int64
+	Deleted bool
+	Handle  string
+	ID      int64
 }
 
 type EnvironmentUpdates struct {
@@ -43,15 +46,27 @@ func (c *Client) CreateEnvironment(organizationID string, stackID int64, attrs E
 }
 
 func (c *Client) GetEnvironment(environmentID int64) (Environment, error) {
-	params := operations.NewGetAccountsIDParams().WithID(environmentID)
-	environment, err := c.Client.Operations.GetAccountsID(params, c.Token)
-	if err != nil {
-		return Environment{}, nil
+	environment := Environment{
+		Deleted: false,
 	}
-	return Environment{
-		Handle: *environment.Payload.Handle,
-		ID:     *environment.Payload.ID,
-	}, nil
+	params := operations.NewGetAccountsIDParams().WithID(environmentID)
+	environmentData, err := c.Client.Operations.GetAccountsID(params, c.Token)
+	if err != nil {
+		switch err.(*operations.GetAccountsIDDefault).Code() {
+		case 404:
+			environment.Deleted = true
+			return environment, nil
+		case 401:
+			e := fmt.Errorf("make sure you have the correct auth token")
+			return Environment{}, e
+		default:
+			e := fmt.Errorf("there was an error when completing the request to get the environment \n[ERROR] -%s", err)
+			return Environment{}, e
+		}
+	}
+	environment.Handle = swag.StringValue(environmentData.Payload.Handle)
+	environment.ID = swag.Int64Value(environmentData.Payload.ID)
+	return environment, nil
 }
 
 func (c *Client) UpdateEnvironment(environmentID int64, environmentUpdates EnvironmentUpdates) error {
