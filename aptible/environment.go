@@ -2,6 +2,7 @@ package aptible
 
 import (
 	"fmt"
+	
 	"github.com/aptible/go-deploy/client/operations"
 	"github.com/aptible/go-deploy/models"
 	"github.com/go-openapi/swag"
