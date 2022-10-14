@@ -33,6 +33,7 @@ func (c *Client) CreateEnvironment(organizationID string, stackID int64, attrs E
 	params := operations.NewPostAccountsParams().WithAppRequest(&models.AppRequest{
 		Handle:         &attrs.Handle,
 		OrganizationID: &organizationID,
+		StackID:        stack.ID,
 		Type:           &environmentType,
 	})
 	environment, err := c.Client.Operations.PostAccounts(params, c.Token)
