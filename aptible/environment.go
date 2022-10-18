@@ -2,6 +2,7 @@ package aptible
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/aptible/go-deploy/client/operations"
 	"github.com/aptible/go-deploy/models"
@@ -9,9 +10,11 @@ import (
 )
 
 type Environment struct {
-	Deleted bool
-	Handle  string
-	ID      int64
+	Deleted        bool
+	Handle         string
+	ID             int64
+	StackID        int64
+	OrganizationID string
 }
 
 type EnvironmentUpdates struct {
@@ -42,8 +45,10 @@ func (c *Client) CreateEnvironment(organizationID string, stackID int64, attrs E
 		return Environment{}, err
 	}
 	return Environment{
-		Handle: *environment.Payload.Handle,
-		ID:     *environment.Payload.ID,
+		Handle:         *environment.Payload.Handle,
+		ID:             *environment.Payload.ID,
+		StackID:        stackID,
+		OrganizationID: organizationID,
 	}, nil
 }
 
@@ -66,8 +71,21 @@ func (c *Client) GetEnvironment(environmentID int64) (Environment, error) {
 			return Environment{}, e
 		}
 	}
+	stackID, err := GetIDFromHref(environmentData.Payload.Links.Stack.Href.String())
+	if err != nil {
+		return Environment{}, err
+	}
+	organizationSplitLink := strings.Split(environmentData.Payload.Links.Organization.Href.String(), "/")
+	if len(organizationSplitLink) == 0 {
+		e := fmt.Errorf("there was an error when completing the request to get the organization id from the environment, href invalid - %s", environmentData.Payload.Links.Organization.Href.String())
+		return Environment{}, e
+	}
+	organizationID := organizationSplitLink[len(organizationSplitLink)-1]
+
 	environment.Handle = swag.StringValue(environmentData.Payload.Handle)
 	environment.ID = swag.Int64Value(environmentData.Payload.ID)
+	environment.StackID = stackID
+	environment.OrganizationID = organizationID
 	return environment, nil
 }
 
