@@ -52,6 +52,14 @@ func TestEnvironments(t *testing.T) {
 		t.Errorf("Expected the environment to be the same as when it was created: expected %v, got %v", prevEnvironment, environment)
 		return
 	}
+	if !reflect.DeepEqual(environment.OrganizationID, orgID) {
+		t.Errorf("Expected the organization id to be the same as when it was created: expected %v, got %v", environment.OrganizationID, orgID)
+		return
+	}
+	if !reflect.DeepEqual(environment.StackID, stackID) {
+		t.Errorf("Expected the stack id to be the same as when it was created: expected %v, got %v", environment.StackID, stackID)
+		return
+	}
 
 	// update it
 	fmt.Println("Testing environment update")
