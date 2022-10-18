@@ -77,7 +77,7 @@ func (c *Client) GetEnvironment(environmentID int64) (Environment, error) {
 	}
 	organizationSplitLink := strings.Split(environmentData.Payload.Links.Organization.Href.String(), "/")
 	if len(organizationSplitLink) == 0 {
-		e := fmt.Errorf("there was an error when completing the request to get the organization id from the environment, href invalid - %s", organizationSplitLink)
+		e := fmt.Errorf("there was an error when completing the request to get the organization id from the environment, href invalid - %s", environmentData.Payload.Links.Organization.Href.String())
 		return Environment{}, e
 	}
 	organizationID := organizationSplitLink[len(organizationSplitLink)-1]
