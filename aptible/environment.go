@@ -9,6 +9,8 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+const MaximumPagesOfEnvironments = 30
+
 type Environment struct {
 	Deleted        bool
 	Handle         string
@@ -87,6 +89,39 @@ func (c *Client) GetEnvironment(environmentID int64) (Environment, error) {
 	environment.StackID = stackID
 	environment.OrganizationID = organizationID
 	return environment, nil
+}
+
+func (c *Client) GetEnvironmentFromHandle(handle string) (Environment, error) {
+	page := int64(1)
+
+	for {
+		params := operations.NewGetAccountsParams().WithPage(&page)
+		environments, err := c.Client.Operations.GetAccounts(params, c.Token)
+		if err != nil {
+			return Environment{}, err
+		} else if len(environments.GetPayload().Embedded.Accounts) == 0 {
+			break
+		} else if page >= MaximumPagesOfEnvironments {
+			return Environment{}, fmt.Errorf("exceeded %d pages of results for environments in population. "+
+				"Something has gone wrong", MaximumPagesOfEnvironments)
+		}
+
+		for _, environment := range environments.GetPayload().Embedded.Accounts {
+			if environment.Handle == handle {
+				stackID, err := GetIDFromHref(environment.Links.Stack.Href.String())
+				if err != nil {
+					return Environment{}, err
+				}
+				return Environment{
+					ID:      environment.ID,
+					Handle:  environment.Handle,
+					StackID: stackID,
+				}, nil
+			}
+		}
+		page += 1
+	}
+	return Environment{}, fmt.Errorf("unable to find environment with handle passed in: %s", handle)
 }
 
 func (c *Client) UpdateEnvironment(environmentID int64, environmentUpdates EnvironmentUpdates) error {

@@ -5,6 +5,7 @@ package integration
 
 import (
 	"fmt"
+	"math/rand"
 	"reflect"
 	"testing"
 
@@ -26,8 +27,13 @@ func TestEnvironments(t *testing.T) {
 			t.Error("Expected GetEnvironment to not return an error but got", err.Error())
 		}
 	}
-
 	testNotFound(0)
+
+	_, err = client.GetEnvironmentFromHandle(fmt.Sprintf("THIS_HANDLE_SHOULD_NOT_EXIST_%d", rand.Int()))
+	if err == nil {
+		t.Error("Expected no environment to be found and magically one was found!", err.Error())
+		return
+	}
 
 	// create it
 	fmt.Println("Testing environment creation")
@@ -36,6 +42,16 @@ func TestEnvironments(t *testing.T) {
 	})
 	if err != nil {
 		t.Fatal("Expected CreateEnvironment to not return an error but got", err.Error())
+		return
+	}
+
+	environmentByHandle, err := client.GetEnvironmentFromHandle(environment.Handle)
+	if err != nil {
+		t.Fatal("Expected GetEnvironmentFromHandle to find an environment with handle provided, but it errored", err.Error())
+		return
+	}
+	if environmentByHandle.Handle != environment.Handle {
+		t.Fatal("Expected found environment handle (environmentByHandle) to match the one that was provided yet (environment) there is a mismatch", environmentByHandle.Handle, environment.Handle)
 		return
 	}
 
