@@ -79,7 +79,6 @@ func (c *Client) GetStackByName(name string) (Stack, error) {
 	if err != nil {
 		return Stack{}, err
 	}
-	var stacksToReturn Stack
 	for _, stack := range stacks {
 		if name == stack.Name {
 			return Stack{
@@ -89,5 +88,5 @@ func (c *Client) GetStackByName(name string) (Stack, error) {
 			}, nil
 		}
 	}
-	return stacksToReturn, fmt.Errorf("Error, unable to find stack from the name provided: %s\n", name)
+	return Stack{}, fmt.Errorf("Error, unable to find stack from the name provided: %s\n", name)
 }
