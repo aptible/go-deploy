@@ -66,12 +66,11 @@ func (c *Client) GetStack(id int64) (Stack, error) {
 		orgIdParts := strings.Split(result.Payload.Links.Organization.Href.String(), "/")
 		organizationId = orgIdParts[len(orgIdParts)-1]
 	}
-	stackToReturn := Stack{
+	return Stack{
 		ID:             id,
 		OrganizationID: organizationId,
 		Name:           *result.Payload.Name,
-	}
-	return stackToReturn, nil
+	}, nil
 }
 
 func (c *Client) GetStackByName(name string) (Stack, error) {
