@@ -80,11 +80,7 @@ func (c *Client) GetStackByName(name string) (Stack, error) {
 	}
 	for _, stack := range stacks {
 		if name == stack.Name {
-			return Stack{
-				ID:             stack.ID,
-				Name:           stack.Name,
-				OrganizationID: stack.OrganizationID,
-			}, nil
+			return stack, nil
 		}
 	}
 	return Stack{}, fmt.Errorf("Error, unable to find stack from the name provided: %s\n", name)
