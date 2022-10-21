@@ -5,10 +5,12 @@ package integration
 
 import (
 	"fmt"
+	"math/rand"
 	"reflect"
 	"testing"
 
 	"github.com/aptible/go-deploy/aptible"
+	"github.com/aptible/go-deploy/client/operations"
 )
 
 func TestEnvironments(t *testing.T) {
@@ -26,8 +28,13 @@ func TestEnvironments(t *testing.T) {
 			t.Error("Expected GetEnvironment to not return an error but got", err.Error())
 		}
 	}
-
 	testNotFound(0)
+
+	_, err = client.GetEnvironmentFromHandle(fmt.Sprintf("THIS_HANDLE_SHOULD_NOT_EXIST_%d", rand.Int()))
+	if err == nil {
+		t.Error("Expected no environment to be found and magically one was found!", err.Error())
+		return
+	}
 
 	// create it
 	fmt.Println("Testing environment creation")
@@ -36,6 +43,54 @@ func TestEnvironments(t *testing.T) {
 	})
 	if err != nil {
 		t.Fatal("Expected CreateEnvironment to not return an error but got", err.Error())
+		return
+	}
+
+	// Check pagination of GetEnvironmentFromHandle
+	var envs []aptible.Environment
+
+	defer func() {
+		for _, env := range envs {
+			if err := client.DeleteEnvironment(env.ID); err != nil {
+				t.Errorf("Error deleteing Environment %s (%d): %s", env.Handle, env.ID, err.Error())
+			}
+		}
+	}()
+
+	for i := 0; i < 40; i++ {
+		handle := fmt.Sprintf("pagination-test-%d", i)
+		env, err := client.CreateEnvironment(orgID, stackID, aptible.EnvironmentCreateAttrs{
+			Handle: handle,
+		})
+		if err != nil {
+			t.Fatalf("Error creating environment %s: %s", handle, err.Error())
+			return
+		}
+		envs = append(envs, env)
+	}
+
+	page := int64(1)
+	params := operations.NewGetAccountsParams().WithPage(&page)
+	environments, err := client.Client.Operations.GetAccounts(params, client.Token)
+	if err != nil {
+		t.Fatal("Error getting Environments:", err.Error())
+		return
+	}
+
+	for _, env := range environments.GetPayload().Embedded.Accounts {
+		if env.ID == environment.ID {
+			t.Fatalf("Expected envionment %d to not be in the first page of results, but it was", environment.ID)
+			return
+		}
+	}
+
+	environmentByHandle, err := client.GetEnvironmentFromHandle(environment.Handle)
+	if err != nil {
+		t.Fatal("Expected GetEnvironmentFromHandle to find an environment with handle provided, but it errored", err.Error())
+		return
+	}
+	if environmentByHandle.Handle != environment.Handle {
+		t.Fatal("Expected found environment handle (environmentByHandle) to match the one that was provided yet (environment) there is a mismatch", environmentByHandle.Handle, environment.Handle)
 		return
 	}
 

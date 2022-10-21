@@ -21,7 +21,7 @@ func TestStack(t *testing.T) {
 	}
 
 	fmt.Println("Testing non-existent stack get by name (should err)")
-	individualResult, err := client.UNSUPPORTED_GetStackByName("THIS_STACK_SHOULD_NOT_EXIST_EVER")
+	individualResult, err := client.GetStackByName("THIS_STACK_SHOULD_NOT_EXIST_EVER")
 	if err == nil {
 		t.Fatal("Expected GetStackByName to return an error but did not get an err!")
 		return
@@ -32,13 +32,24 @@ func TestStack(t *testing.T) {
 	}
 
 	fmt.Println("Testing get stack list")
-	results, err := client.UNSUPPORTED_GetStacks()
+	results, err := client.GetStacks()
 	if err != nil {
 		t.Fatal("Expected GetStacks to not return an error but got", err.Error())
 		return
 	}
 	if len(results) == 0 {
 		t.Fatal("Expected results from stacks in payload ")
+		return
+	}
+
+	fmt.Println("Testing get stack by name")
+	stackResultByName, err := client.GetStackByName(results[0].Name)
+	if err != nil {
+		t.Fatal("Expected GetStackByName to function properly without an error but got", err.Error())
+		return
+	}
+	if stackResultByName.Name != results[0].Name {
+		t.Fatal("Expected stack name to match the one that was requested to be created but got a mismatch", stackResultByName.Name, results[0].Name)
 		return
 	}
 
@@ -51,7 +62,7 @@ func TestStack(t *testing.T) {
 	}
 
 	fmt.Println("Testing get by stack by name")
-	resultByName, err := client.UNSUPPORTED_GetStackByName(results[0].Name)
+	resultByName, err := client.GetStackByName(results[0].Name)
 	if err != nil {
 		t.Fatal("Expected GetStackByName to not return an error but got", err.Error())
 		return
