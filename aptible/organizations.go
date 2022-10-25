@@ -8,22 +8,17 @@ import (
 	"net/http"
 )
 
-type HALOrganization struct {
+type Organization struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
 }
 
 type HALOrganizationParent struct {
-	Organizations []HALOrganization `json:"organizations"`
+	Organizations []Organization `json:"organizations"`
 }
 
 type HALOrganizationResponse struct {
 	Embedded HALOrganizationParent `json:"_embedded"`
-}
-
-type Organization struct {
-	ID   string
-	Name string
 }
 
 // getOrganizations - get all organizations a user has access to
@@ -53,15 +48,7 @@ func (c *Client) getOrganizations() ([]Organization, error) {
 		return nil, err
 	}
 
-	orgs := make([]Organization, len(out.Embedded.Organizations))
-	for orgIdx, org := range out.Embedded.Organizations {
-		orgs[orgIdx] = Organization{
-			ID:   org.ID,
-			Name: org.Name,
-		}
-	}
-
-	return orgs, nil
+	return out.Embedded.Organizations, nil
 }
 
 // GetOrganization get organizations by user's token. Attempts to get organizations from auth api, then
