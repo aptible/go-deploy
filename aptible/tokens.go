@@ -62,13 +62,18 @@ func loginWithUsernameAndPassword(authUrl, user, password string) (string, error
 	return output["access_token"].(string), nil
 }
 
-// GetToken - gets a token (or error) for use from username password, an environment variable or filesystem
-func GetToken() (string, error) {
+func GetAuthURL() string {
 	// Gets auth server
 	auth := os.Getenv("APTIBLE_AUTH_ROOT_URL")
 	if auth == "" {
 		auth = "https://auth.aptible.com"
 	}
+	return auth
+}
+
+// GetToken - gets a token (or error) for use from username password, an environment variable or filesystem
+func GetToken() (string, error) {
+	auth := GetAuthURL()
 
 	// use auth-server to get tokens
 	user := os.Getenv("APTIBLE_USERNAME")

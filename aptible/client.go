@@ -13,8 +13,9 @@ import (
 )
 
 type Client struct {
-	Client *deploy.DeployAPIV1
-	Token  runtime.ClientAuthInfoWriter
+	Client   *deploy.DeployAPIV1
+	Token    runtime.ClientAuthInfoWriter
+	RawToken string
 }
 
 // sets up client and gets auth token used for API requests
@@ -36,11 +37,13 @@ func SetUpClient() (*Client, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	bearerTokenAuth := httptransport.BearerToken(token)
 
 	c := Client{}
 	c.Client = client
 	c.Token = bearerTokenAuth
+	c.RawToken = token
 	return &c, nil
 }
 
