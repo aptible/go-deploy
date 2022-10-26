@@ -35,7 +35,10 @@ func (c *Client) getOrganizations() ([]Organization, error) {
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
+	} else if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("did not receive 200 from auth, check credentials - %d status code received", resp.StatusCode)
 	}
+
 	defer func(Body io.ReadCloser) {
 		bodyErr := Body.Close()
 		if bodyErr != nil {
