@@ -62,8 +62,16 @@ func (c *Client) GetOrganization() (Organization, error) {
 		return Organization{}, err
 	}
 	if len(organizations) > 1 {
-		return Organization{}, fmt.Errorf("multiple organizations for user, unable to determine" +
-			" a default organization in result")
+		var organizationsErrorString string
+		for idx, organization := range organizations {
+			organizationsErrorString += fmt.Sprintf("%s (org_id: %s)", organization.Name, organization.ID)
+			if idx != len(organizations)-1 {
+				organizationsErrorString += ", "
+			}
+		}
+
+		return Organization{}, fmt.Errorf("multiple organizations for user, unable to determine"+
+			" a default organization in result. Organizations found: %s", organizationsErrorString)
 	}
 
 	if len(organizations) == 0 {
