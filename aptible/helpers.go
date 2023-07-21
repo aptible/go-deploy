@@ -81,3 +81,15 @@ func MakeStringSlice(interfaceSlice []interface{}) ([]string, error) {
 	}
 	return strSlice, nil
 }
+
+// makes a int slice out of a slice of type interface
+func MakeIntSlice(interfaceSlice []interface{}) ([]int64, error) {
+	intSlice := make([]int64, len(interfaceSlice))
+	for i := 0; i < len(interfaceSlice); i++ {
+		if (reflect.TypeOf(interfaceSlice[i]).Kind()) != reflect.Int64 {
+			return []int64{}, fmt.Errorf("slice contains non-string elements")
+		}
+		intSlice[i] = interfaceSlice[i].(int64)
+	}
+	return intSlice, nil
+}
