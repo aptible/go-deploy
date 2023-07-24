@@ -64,7 +64,7 @@ func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (End
 		Platform:    attrs.Platform,
 	}
 
-	if *attrs.Type == "https" {
+	if *attrs.Type == "http" {
 		request.ContainerPort = attrs.ContainerPort
 	} else {
 		request.ContainerPorts = attrs.ContainerPorts
