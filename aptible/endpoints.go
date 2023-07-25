@@ -64,9 +64,11 @@ func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (End
 		Platform:    attrs.Platform,
 	}
 
-	if *attrs.Type == "http_proxy_protocol" {
+	if *attrs.Type == "tcp" {
 		request.ContainerPort = attrs.ContainerPort
-	} else {
+	}
+
+	if *attrs.Type != "http_proxy_protocol" && *attrs.Type != "http" {
 		request.ContainerPorts = attrs.ContainerPorts
 	}
 
