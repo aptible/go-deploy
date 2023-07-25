@@ -64,7 +64,7 @@ func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (End
 		Platform:    attrs.Platform,
 	}
 
-	if *attrs.Type == "tcp" {
+	if *attrs.Type != "tcp" {
 		request.ContainerPort = attrs.ContainerPort
 	}
 
