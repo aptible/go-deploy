@@ -8,15 +8,17 @@ import (
 )
 
 type EndpointUpdates struct {
-	ContainerPort int64
-	IPWhitelist   []string
-	Platform      string
+	ContainerPort  int64
+	ContainerPorts []int64
+	IPWhitelist    []string
+	Platform       string
 }
 
 type Endpoint struct {
 	ID             int64
 	ExternalHost   string
 	ContainerPort  int64
+	ContainerPorts []int64
 	IPWhitelist    []string
 	Platform       string
 	Deleted        bool
@@ -43,6 +45,7 @@ type EndpointCreateAttrs struct {
 	Default            bool
 	Internal           bool
 	ContainerPort      int64
+	ContainerPorts     []int64
 	IPWhitelist        []string
 	Platform           string
 	Acme               bool
@@ -64,6 +67,11 @@ func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (End
 	if *attrs.Type != "tcp" {
 		request.ContainerPort = attrs.ContainerPort
 	}
+
+	if *attrs.Type != "http_proxy_protocol" && *attrs.Type != "http" {
+		request.ContainerPorts = attrs.ContainerPorts
+	}
+
 	if attrs.UserDomain != "" {
 		request.UserDomain = attrs.UserDomain
 	}
@@ -145,6 +153,12 @@ func (c *Client) GetEndpoint(endpointID int64) (Endpoint, error) {
 		endpoint.ContainerPort = *response.Payload.ContainerPort
 	}
 
+	if response.Payload.ContainerPorts == nil {
+		endpoint.ContainerPorts = []int64{}
+	} else {
+		endpoint.ContainerPorts = response.Payload.ContainerPorts
+	}
+
 	if response.Payload.ExternalHost == nil {
 		return endpoint, fmt.Errorf("payload.ExternalHost is a nil pointer")
 	}
@@ -214,9 +228,10 @@ func (c *Client) GetEndpoint(endpointID int64) (Endpoint, error) {
 // UpdateEndpoint() takes in an endpointID and updates needed, and updates the endpoint.
 func (c *Client) UpdateEndpoint(endpointID int64, up EndpointUpdates) error {
 	appRequest := models.AppRequest35{
-		ContainerPort: up.ContainerPort,
-		IPWhitelist:   up.IPWhitelist,
-		Platform:      up.Platform,
+		ContainerPort:  up.ContainerPort,
+		ContainerPorts: up.ContainerPorts,
+		IPWhitelist:    up.IPWhitelist,
+		Platform:       up.Platform,
 	}
 
 	params := operations.NewPutVhostsIDParams().WithID(endpointID).WithAppRequest(&appRequest)
