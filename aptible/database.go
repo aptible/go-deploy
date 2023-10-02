@@ -87,7 +87,7 @@ func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database,
 
 	// Setting the container profile on provision is not currently supported so
 	// if a non-default container profile is requested, restart with the desired profile
-	if attrs.ContainerProfile != "" && attrs.ContainerProfile != "m4" {
+	if attrs.ContainerProfile != "" && attrs.ContainerProfile != "m5" {
 		requestType := "restart"
 		request := models.AppRequest24{
 			Type:            &requestType,
