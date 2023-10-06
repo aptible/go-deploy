@@ -47,7 +47,7 @@ func SetUpClient() (*Client, error) {
 	return &c, nil
 }
 
-// Gets host from env var, ensures it ends in ".com", or sets default.
+// Gets host from env var or sets default.
 func GetHost() (string, error) {
 	host, ok := os.LookupEnv("APTIBLE_API_ROOT_URL")
 	if !ok {
@@ -59,7 +59,7 @@ func GetHost() (string, error) {
 	host = strings.TrimPrefix(host, "https://")
 
 	if !validHost(host) {
-		return "", fmt.Errorf("[ERROR] Host must be of the form xxx.xxx.com. Inputted host: %s", host)
+		return "", fmt.Errorf("[ERROR] Host must be of the form xxx.xxx.xxx. Inputted host: %s", host)
 	}
 
 	return host, nil
@@ -67,8 +67,5 @@ func GetHost() (string, error) {
 
 func validHost(host string) bool {
 	re, _ := regexp.Compile(`^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$`)
-	if re.MatchString(host) && strings.HasSuffix(host, ".com") {
-		return true
-	}
-	return false
+	return re.MatchString(host)
 }

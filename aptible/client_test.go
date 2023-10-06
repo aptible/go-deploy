@@ -17,8 +17,10 @@ func TestGetHost(t *testing.T) {
 		{"https://api.aptible.com", "api.aptible.com", false},
 		{"http://api.aptible.com", "api.aptible.com", false},
 		{"api.aptible.com", "api.aptible.com", false},
-		{"api.aptible", "", true},
-		{"www.api.aptible.c", "", true},
+		{"api.aptible.in", "api.aptible.in", false},
+		{"api.aptible", "api.aptible", false},
+		{"www.api.aptible.c", "www.api.aptible.c", false},
+		{"www.aptible_api.com", "", true},
 		// Add other test cases if we need in the future
 	}
 
