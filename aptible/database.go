@@ -25,7 +25,8 @@ type Database struct {
 }
 
 // DBUpdates - struct to define what operations you contain your DB update to. Add values to this struct
-// 			   to eventually pass it around for consumption by the go sdk
+//
+//	to eventually pass it around for consumption by the go sdk
 type DBUpdates struct {
 	ContainerSize    int64
 	DiskSize         int64
@@ -44,6 +45,7 @@ type DBCreateAttrs struct {
 	DiskSize         int64
 	ContainerProfile string
 	DatabaseImageID  int64
+	Iops             int64
 }
 
 func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database, error) {
@@ -66,9 +68,11 @@ func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database,
 	// provisions database
 	requestType := "provision"
 	provisionRequest := models.AppRequest24{
-		Type:          &requestType,
-		ContainerSize: attrs.ContainerSize,
-		DiskSize:      attrs.DiskSize,
+		Type:            &requestType,
+		ContainerSize:   attrs.ContainerSize,
+		DiskSize:        attrs.DiskSize,
+		InstanceProfile: attrs.ContainerProfile,
+		ProvisionedIops: attrs.Iops,
 	}
 	databaseID := *resp.Payload.ID
 
@@ -83,31 +87,6 @@ func (c *Client) CreateDatabase(accountID int64, attrs DBCreateAttrs) (Database,
 	_, err = c.WaitForOperation(operationID)
 	if err != nil {
 		return Database{}, err
-	}
-
-	// Setting the container profile on provision is not currently supported so
-	// if a non-default container profile is requested, restart with the desired profile
-	if attrs.ContainerProfile != "" && attrs.ContainerProfile != "m5" {
-		requestType := "restart"
-		request := models.AppRequest24{
-			Type:            &requestType,
-			InstanceProfile: attrs.ContainerProfile,
-		}
-
-		params := operations.NewPostDatabasesDatabaseIDOperationsParams().WithDatabaseID(databaseID).WithAppRequest(&request)
-		op, err := c.Client.Operations.PostDatabasesDatabaseIDOperations(params, c.Token)
-		if err != nil {
-			return Database{}, err
-		}
-		if op.Payload.ID != nil {
-			operationID := *op.Payload.ID
-			_, err = c.WaitForOperation(operationID)
-			if err != nil {
-				return Database{}, err
-			}
-		} else {
-			return Database{}, fmt.Errorf("restart operation id is a nil pointer")
-		}
 	}
 
 	// gets database

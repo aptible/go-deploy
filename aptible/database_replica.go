@@ -8,11 +8,12 @@ import (
 )
 
 type ReplicateAttrs struct {
-	EnvID         int64
-	DatabaseID    int64
-	ReplicaHandle string
-	ContainerSize int64
-	DiskSize      int64
+	EnvID            int64
+	DatabaseID       int64
+	ReplicaHandle    string
+	ContainerSize    int64
+	DiskSize         int64
+	ContainerProfile string
 }
 
 type ReplicaIdentifiers struct {
@@ -24,10 +25,12 @@ func (c *Client) CreateReplica(attrs ReplicateAttrs) (Database, error) {
 	operationType := "replicate"
 
 	req := models.AppRequest24{
-		Type:          &operationType,
-		Handle:        attrs.ReplicaHandle,
-		ContainerSize: attrs.ContainerSize,
-		DiskSize:      attrs.DiskSize,
+		Type:            &operationType,
+		Handle:          attrs.ReplicaHandle,
+		ContainerSize:   attrs.ContainerSize,
+		DiskSize:        attrs.DiskSize,
+		InstanceProfile: attrs.ContainerProfile,
+		ProvisionedIops: attrs.Iops,
 	}
 
 	// replicate operation
