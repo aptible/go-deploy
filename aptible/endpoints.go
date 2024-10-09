@@ -68,7 +68,7 @@ func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (End
 		request.ContainerPort = attrs.ContainerPort
 	}
 
-	if *attrs.Type != "http_proxy_protocol" && *attrs.Type != "http" {
+	if *attrs.Type != "http_proxy_protocol" && *attrs.Type != "http" && *attrs.Type != "grpc" {
 		request.ContainerPorts = attrs.ContainerPorts
 	}
 
@@ -285,6 +285,8 @@ func GetEndpointType(t string) (string, error) {
 		return "tcp", nil
 	case "TLS", "tls":
 		return "tls", nil
+	case "GRPC", "gRPC", "grpc":
+		return "grpc", nil
 	default:
 		e := fmt.Errorf("invalid endpoint type, please use HTTPS, TLS, or TCP")
 		return "", e
@@ -299,6 +301,8 @@ func GetHumanReadableEndpointType(t string) (string, error) {
 		return "tcp", nil
 	case "tls":
 		return "tls", nil
+	case "grpc":
+		return "grpc", nil
 	default:
 		e := fmt.Errorf("invalid endpoint type - %s", t)
 		return "", e
