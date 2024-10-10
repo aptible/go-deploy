@@ -288,7 +288,7 @@ func GetEndpointType(t string) (string, error) {
 	case "GRPC", "gRPC", "grpc":
 		return "grpc", nil
 	default:
-		e := fmt.Errorf("invalid endpoint type, please use HTTPS, TLS, or TCP")
+		e := fmt.Errorf("invalid endpoint type, please use HTTPS, TLS, GRPC, or TCP")
 		return "", e
 	}
 }
