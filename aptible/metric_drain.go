@@ -22,6 +22,9 @@ type MetricDrain struct {
 	APIKey     string
 	SeriesURL  strfmt.URI
 	AccountID  int64
+	AuthToken  string
+	Bucket     string
+	Org        string
 }
 
 type MetricDrainCreateAttrs struct {
@@ -34,6 +37,9 @@ type MetricDrainCreateAttrs struct {
 	Database     string
 	APIKey       string
 	SeriesURL    strfmt.URI
+	AuthToken    string
+	Bucket       string
+	Org          string
 }
 
 func (c *Client) CreateMetricDrain(handle string, accountID int64, attrs *MetricDrainCreateAttrs) (*MetricDrain, error) {
@@ -56,6 +62,9 @@ func (c *Client) CreateMetricDrain(handle string, accountID int64, attrs *Metric
 			Database:  attrs.Database,
 			APIKey:    attrs.APIKey,
 			SeriesURL: attrs.SeriesURL,
+			AuthToken: attrs.AuthToken,
+			Bucket:    attrs.Bucket,
+			Org:       attrs.Org,
 		}
 	}
 
@@ -130,6 +139,9 @@ func (c *Client) GetMetricDrain(metricDrainID int64) (*MetricDrain, error) {
 		metricDrain.Database = response.Payload.DrainConfiguration.Database
 		metricDrain.APIKey = response.Payload.DrainConfiguration.APIKey
 		metricDrain.SeriesURL = response.Payload.DrainConfiguration.SeriesURL
+		metricDrain.AuthToken = response.Payload.DrainConfiguration.AuthToken
+		metricDrain.Bucket = response.Payload.DrainConfiguration.Bucket
+		metricDrain.Org = response.Payload.DrainConfiguration.Org
 	}
 
 	if response.Payload.Links.Database != nil {

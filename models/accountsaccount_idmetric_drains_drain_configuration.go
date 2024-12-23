@@ -36,6 +36,12 @@ type AccountsaccountIdmetricDrainsDrainConfiguration struct {
 
 	// username
 	Username string `json:"username,omitempty"`
+
+	AuthToken string `json:"authToken,omitempty"`
+
+	Bucket string `json:"bucket,omitempty"`
+
+	Org string `json:"org,omitempty"`
 }
 
 // Validate validates this accountsaccount idmetric drains drain configuration
