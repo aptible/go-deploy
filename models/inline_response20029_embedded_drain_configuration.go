@@ -36,6 +36,12 @@ type InlineResponse20029EmbeddedDrainConfiguration struct {
 
 	// username
 	Username string `json:"username,omitempty"`
+
+	AuthToken string `json:"authToken,omitempty"`
+
+	Bucket string `json:"bucket,omitempty"`
+
+	Org string `json:"org,omitempty"`
 }
 
 // Validate validates this inline response 200 29 embedded drain configuration
