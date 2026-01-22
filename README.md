@@ -1,7 +1,9 @@
-This repo is currently in beta and under development. We expect frequent, unannounced, breaking changes to occur. In particular,
-the generated code should be considered unstable. We suggest that you use the wrappers provided in the `aptible` package instead because
-those expose a more stable interface.
+⚠️ Deprecation Notice
 
-This library has been experimentally used in production, primarily through the Aptible Terraform provider, without significant issues for the
-past few months. We would still suggest caution because that has only exercised a subset of the functionality and critical bugs may not have
-been discovered in the other portions.
+This repository is deprecated and no longer maintained. Its previous status was unstable and beta, so if you are not already using it, do not begin using it now.
+
+This library does not fully support the current Aptible API surface and will not receive updates, bug fixes, or new features.
+
+If you are looking for an up-to-date Go client for Aptible’s APIs, please use: [aptible-api-go](https://github.com/aptible/aptible-api-go) — the currently maintained Go client generated from Aptible’s OpenAPI specs.
+
+> Important: There is no direct compatibility between these libraries. Migration requires sginificant changes, including updating imports, client initialization, and how API calls are made.
