@@ -9,9 +9,13 @@ func version() string {
 				return dep.Version
 			}
 		}
-		if info.Main.Version != "" {
+		if info.Main.Path == "github.com/aptible/go-deploy" {
 			return info.Main.Version
 		}
 	}
-	return "aptible/go-deploy/unknown"
+	return "unknown"
+}
+
+func userAgent() string {
+	return "aptible/go-deploy/" + version()
 }

@@ -45,7 +45,7 @@ func SetUpClient() (*Client, error) {
 	rt.Producers["application/hal+json"] = runtime.JSONProducer()
 	rt.Transport = &userAgentTransport{
 		wrapped:   http.DefaultTransport,
-		userAgent: "aptible/go-deploy/" + version(),
+		userAgent: userAgent(),
 	}
 	client := deploy.New(rt, strfmt.Default)
 
