@@ -2,6 +2,7 @@ package aptible
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 	"regexp"
 	"strings"
@@ -11,6 +12,17 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 )
+
+type userAgentTransport struct {
+	wrapped   http.RoundTripper
+	userAgent string
+}
+
+func (t *userAgentTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	req = req.Clone(req.Context())
+	req.Header.Set("User-Agent", t.userAgent)
+	return t.wrapped.RoundTrip(req)
+}
 
 type Client struct {
 	Client   *deploy.DeployAPIV1
@@ -31,6 +43,10 @@ func SetUpClient() (*Client, error) {
 		deploy.DefaultSchemes)
 	rt.Consumers["application/hal+json"] = runtime.JSONConsumer()
 	rt.Producers["application/hal+json"] = runtime.JSONProducer()
+	rt.Transport = &userAgentTransport{
+		wrapped:   http.DefaultTransport,
+		userAgent: "aptible/go-deploy/" + version(),
+	}
 	client := deploy.New(rt, strfmt.Default)
 
 	token, err := GetToken()
