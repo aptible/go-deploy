@@ -9,6 +9,9 @@ func version() string {
 				return dep.Version
 			}
 		}
+		if info.Main.Version != "" {
+			return info.Main.Version
+		}
 	}
-	return "unknown"
+	return "aptible/go-deploy/unknown"
 }
