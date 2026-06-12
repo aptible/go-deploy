@@ -68,7 +68,7 @@ func (c *Client) CreateEndpoint(service Service, attrs EndpointCreateAttrs) (End
 		request.ContainerPort = attrs.ContainerPort
 	}
 
-	if *attrs.Type != "http_proxy_protocol" && *attrs.Type != "http" && *attrs.Type != "grpc" {
+	if *attrs.Type != "http" && *attrs.Type != "grpc" {
 		request.ContainerPorts = attrs.ContainerPorts
 	}
 
@@ -280,7 +280,7 @@ func (c *Client) DeleteEndpoint(endpointID int64) error {
 func GetEndpointType(t string) (string, error) {
 	switch t {
 	case "HTTPS", "https":
-		return "http_proxy_protocol", nil
+		return "http", nil
 	case "TCP", "tcp":
 		return "tcp", nil
 	case "TLS", "tls":
@@ -295,7 +295,7 @@ func GetEndpointType(t string) (string, error) {
 
 func GetHumanReadableEndpointType(t string) (string, error) {
 	switch t {
-	case "http_proxy_protocol":
+	case "http_proxy_protocol", "http":
 		return "https", nil
 	case "tcp":
 		return "tcp", nil
