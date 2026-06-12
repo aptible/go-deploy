@@ -47,7 +47,8 @@ func NewGetAccountsAccountIDPermissionsOK() *GetAccountsAccountIDPermissionsOK {
 	return &GetAccountsAccountIDPermissionsOK{}
 }
 
-/*GetAccountsAccountIDPermissionsOK handles this case with default header values.
+/*
+GetAccountsAccountIDPermissionsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetAccountsAccountIDPermissionsDefault(code int) *GetAccountsAccountIDPe
 	}
 }
 
-/*GetAccountsAccountIDPermissionsDefault handles this case with default header values.
+/*
+GetAccountsAccountIDPermissionsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

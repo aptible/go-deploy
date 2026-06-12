@@ -59,7 +59,8 @@ func NewPutAppsIDParamsWithHTTPClient(client *http.Client) *PutAppsIDParams {
 	}
 }
 
-/*PutAppsIDParams contains all the parameters to send to the API endpoint
+/*
+PutAppsIDParams contains all the parameters to send to the API endpoint
 for the put apps ID operation typically these are written to a http.Request
 */
 type PutAppsIDParams struct {

@@ -47,7 +47,8 @@ func NewGetAppsAppIDOperationsOK() *GetAppsAppIDOperationsOK {
 	return &GetAppsAppIDOperationsOK{}
 }
 
-/*GetAppsAppIDOperationsOK handles this case with default header values.
+/*
+GetAppsAppIDOperationsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetAppsAppIDOperationsDefault(code int) *GetAppsAppIDOperationsDefault {
 	}
 }
 
-/*GetAppsAppIDOperationsDefault handles this case with default header values.
+/*
+GetAppsAppIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

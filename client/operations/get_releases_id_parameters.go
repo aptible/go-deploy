@@ -57,7 +57,8 @@ func NewGetReleasesIDParamsWithHTTPClient(client *http.Client) *GetReleasesIDPar
 	}
 }
 
-/*GetReleasesIDParams contains all the parameters to send to the API endpoint
+/*
+GetReleasesIDParams contains all the parameters to send to the API endpoint
 for the get releases ID operation typically these are written to a http.Request
 */
 type GetReleasesIDParams struct {

@@ -59,7 +59,8 @@ func NewPostMetricDrainsMetricDrainIDOperationsParamsWithHTTPClient(client *http
 	}
 }
 
-/*PostMetricDrainsMetricDrainIDOperationsParams contains all the parameters to send to the API endpoint
+/*
+PostMetricDrainsMetricDrainIDOperationsParams contains all the parameters to send to the API endpoint
 for the post metric drains metric drain ID operations operation typically these are written to a http.Request
 */
 type PostMetricDrainsMetricDrainIDOperationsParams struct {

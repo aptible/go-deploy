@@ -47,7 +47,8 @@ func NewPostImagesImageIDOperationsCreated() *PostImagesImageIDOperationsCreated
 	return &PostImagesImageIDOperationsCreated{}
 }
 
-/*PostImagesImageIDOperationsCreated handles this case with default header values.
+/*
+PostImagesImageIDOperationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostImagesImageIDOperationsDefault(code int) *PostImagesImageIDOperation
 	}
 }
 
-/*PostImagesImageIDOperationsDefault handles this case with default header values.
+/*
+PostImagesImageIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

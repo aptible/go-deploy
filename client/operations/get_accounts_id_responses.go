@@ -47,7 +47,8 @@ func NewGetAccountsIDOK() *GetAccountsIDOK {
 	return &GetAccountsIDOK{}
 }
 
-/*GetAccountsIDOK handles this case with default header values.
+/*
+GetAccountsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetAccountsIDDefault(code int) *GetAccountsIDDefault {
 	}
 }
 
-/*GetAccountsIDDefault handles this case with default header values.
+/*
+GetAccountsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

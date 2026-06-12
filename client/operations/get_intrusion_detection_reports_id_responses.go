@@ -47,7 +47,8 @@ func NewGetIntrusionDetectionReportsIDOK() *GetIntrusionDetectionReportsIDOK {
 	return &GetIntrusionDetectionReportsIDOK{}
 }
 
-/*GetIntrusionDetectionReportsIDOK handles this case with default header values.
+/*
+GetIntrusionDetectionReportsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetIntrusionDetectionReportsIDDefault(code int) *GetIntrusionDetectionRe
 	}
 }
 
-/*GetIntrusionDetectionReportsIDDefault handles this case with default header values.
+/*
+GetIntrusionDetectionReportsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

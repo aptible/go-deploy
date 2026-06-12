@@ -57,7 +57,8 @@ func NewGetAccountsAccountIDActivityReportsParamsWithHTTPClient(client *http.Cli
 	}
 }
 
-/*GetAccountsAccountIDActivityReportsParams contains all the parameters to send to the API endpoint
+/*
+GetAccountsAccountIDActivityReportsParams contains all the parameters to send to the API endpoint
 for the get accounts account ID activity reports operation typically these are written to a http.Request
 */
 type GetAccountsAccountIDActivityReportsParams struct {

@@ -57,7 +57,8 @@ func NewDeleteLogDrainsIDParamsWithHTTPClient(client *http.Client) *DeleteLogDra
 	}
 }
 
-/*DeleteLogDrainsIDParams contains all the parameters to send to the API endpoint
+/*
+DeleteLogDrainsIDParams contains all the parameters to send to the API endpoint
 for the delete log drains ID operation typically these are written to a http.Request
 */
 type DeleteLogDrainsIDParams struct {

@@ -59,7 +59,8 @@ func NewPostAccountsAccountIDLogDrainsParamsWithHTTPClient(client *http.Client) 
 	}
 }
 
-/*PostAccountsAccountIDLogDrainsParams contains all the parameters to send to the API endpoint
+/*
+PostAccountsAccountIDLogDrainsParams contains all the parameters to send to the API endpoint
 for the post accounts account ID log drains operation typically these are written to a http.Request
 */
 type PostAccountsAccountIDLogDrainsParams struct {

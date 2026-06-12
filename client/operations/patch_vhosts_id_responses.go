@@ -47,7 +47,8 @@ func NewPatchVhostsIDOK() *PatchVhostsIDOK {
 	return &PatchVhostsIDOK{}
 }
 
-/*PatchVhostsIDOK handles this case with default header values.
+/*
+PatchVhostsIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPatchVhostsIDDefault(code int) *PatchVhostsIDDefault {
 	}
 }
 
-/*PatchVhostsIDDefault handles this case with default header values.
+/*
+PatchVhostsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

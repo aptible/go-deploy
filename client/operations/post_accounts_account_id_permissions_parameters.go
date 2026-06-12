@@ -59,7 +59,8 @@ func NewPostAccountsAccountIDPermissionsParamsWithHTTPClient(client *http.Client
 	}
 }
 
-/*PostAccountsAccountIDPermissionsParams contains all the parameters to send to the API endpoint
+/*
+PostAccountsAccountIDPermissionsParams contains all the parameters to send to the API endpoint
 for the post accounts account ID permissions operation typically these are written to a http.Request
 */
 type PostAccountsAccountIDPermissionsParams struct {

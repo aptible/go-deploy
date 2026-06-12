@@ -47,7 +47,8 @@ func NewGetReleasesReleaseIDContainersOK() *GetReleasesReleaseIDContainersOK {
 	return &GetReleasesReleaseIDContainersOK{}
 }
 
-/*GetReleasesReleaseIDContainersOK handles this case with default header values.
+/*
+GetReleasesReleaseIDContainersOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetReleasesReleaseIDContainersDefault(code int) *GetReleasesReleaseIDCon
 	}
 }
 
-/*GetReleasesReleaseIDContainersDefault handles this case with default header values.
+/*
+GetReleasesReleaseIDContainersDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

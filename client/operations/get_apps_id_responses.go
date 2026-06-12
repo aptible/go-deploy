@@ -47,7 +47,8 @@ func NewGetAppsIDOK() *GetAppsIDOK {
 	return &GetAppsIDOK{}
 }
 
-/*GetAppsIDOK handles this case with default header values.
+/*
+GetAppsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetAppsIDDefault(code int) *GetAppsIDDefault {
 	}
 }
 
-/*GetAppsIDDefault handles this case with default header values.
+/*
+GetAppsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

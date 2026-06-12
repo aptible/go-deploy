@@ -47,7 +47,8 @@ func NewPostServicesServiceIDVhostsCreated() *PostServicesServiceIDVhostsCreated
 	return &PostServicesServiceIDVhostsCreated{}
 }
 
-/*PostServicesServiceIDVhostsCreated handles this case with default header values.
+/*
+PostServicesServiceIDVhostsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostServicesServiceIDVhostsDefault(code int) *PostServicesServiceIDVhost
 	}
 }
 
-/*PostServicesServiceIDVhostsDefault handles this case with default header values.
+/*
+PostServicesServiceIDVhostsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

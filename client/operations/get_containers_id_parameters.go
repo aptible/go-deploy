@@ -57,7 +57,8 @@ func NewGetContainersIDParamsWithHTTPClient(client *http.Client) *GetContainersI
 	}
 }
 
-/*GetContainersIDParams contains all the parameters to send to the API endpoint
+/*
+GetContainersIDParams contains all the parameters to send to the API endpoint
 for the get containers ID operation typically these are written to a http.Request
 */
 type GetContainersIDParams struct {

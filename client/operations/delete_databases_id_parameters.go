@@ -57,7 +57,8 @@ func NewDeleteDatabasesIDParamsWithHTTPClient(client *http.Client) *DeleteDataba
 	}
 }
 
-/*DeleteDatabasesIDParams contains all the parameters to send to the API endpoint
+/*
+DeleteDatabasesIDParams contains all the parameters to send to the API endpoint
 for the delete databases ID operation typically these are written to a http.Request
 */
 type DeleteDatabasesIDParams struct {

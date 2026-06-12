@@ -57,7 +57,8 @@ func NewGetIntrusionDetectionReportsIDParamsWithHTTPClient(client *http.Client) 
 	}
 }
 
-/*GetIntrusionDetectionReportsIDParams contains all the parameters to send to the API endpoint
+/*
+GetIntrusionDetectionReportsIDParams contains all the parameters to send to the API endpoint
 for the get intrusion detection reports ID operation typically these are written to a http.Request
 */
 type GetIntrusionDetectionReportsIDParams struct {

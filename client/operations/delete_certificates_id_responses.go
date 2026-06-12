@@ -47,7 +47,8 @@ func NewDeleteCertificatesIDNoContent() *DeleteCertificatesIDNoContent {
 	return &DeleteCertificatesIDNoContent{}
 }
 
-/*DeleteCertificatesIDNoContent handles this case with default header values.
+/*
+DeleteCertificatesIDNoContent handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewDeleteCertificatesIDDefault(code int) *DeleteCertificatesIDDefault {
 	}
 }
 
-/*DeleteCertificatesIDDefault handles this case with default header values.
+/*
+DeleteCertificatesIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

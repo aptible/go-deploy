@@ -57,7 +57,8 @@ func NewGetImagesImageIDOperationsParamsWithHTTPClient(client *http.Client) *Get
 	}
 }
 
-/*GetImagesImageIDOperationsParams contains all the parameters to send to the API endpoint
+/*
+GetImagesImageIDOperationsParams contains all the parameters to send to the API endpoint
 for the get images image ID operations operation typically these are written to a http.Request
 */
 type GetImagesImageIDOperationsParams struct {

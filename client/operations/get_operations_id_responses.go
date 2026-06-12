@@ -47,7 +47,8 @@ func NewGetOperationsIDOK() *GetOperationsIDOK {
 	return &GetOperationsIDOK{}
 }
 
-/*GetOperationsIDOK handles this case with default header values.
+/*
+GetOperationsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetOperationsIDDefault(code int) *GetOperationsIDDefault {
 	}
 }
 
-/*GetOperationsIDDefault handles this case with default header values.
+/*
+GetOperationsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

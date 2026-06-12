@@ -47,7 +47,8 @@ func NewGetStacksOK() *GetStacksOK {
 	return &GetStacksOK{}
 }
 
-/*GetStacksOK handles this case with default header values.
+/*
+GetStacksOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetStacksDefault(code int) *GetStacksDefault {
 	}
 }
 
-/*GetStacksDefault handles this case with default header values.
+/*
+GetStacksDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

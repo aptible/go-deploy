@@ -47,7 +47,8 @@ func NewDeleteBackupRetentionPoliciesIDNoContent() *DeleteBackupRetentionPolicie
 	return &DeleteBackupRetentionPoliciesIDNoContent{}
 }
 
-/*DeleteBackupRetentionPoliciesIDNoContent handles this case with default header values.
+/*
+DeleteBackupRetentionPoliciesIDNoContent handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewDeleteBackupRetentionPoliciesIDDefault(code int) *DeleteBackupRetentionP
 	}
 }
 
-/*DeleteBackupRetentionPoliciesIDDefault handles this case with default header values.
+/*
+DeleteBackupRetentionPoliciesIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

@@ -47,7 +47,8 @@ func NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK() *GetIntrusi
 	return &GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK{}
 }
 
-/*GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK handles this case with default header values.
+/*
+GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvOK handles this case with default header values.
 
 Presigned URL
 */
@@ -70,7 +71,8 @@ func NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvDefault(code int
 	}
 }
 
-/*GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvDefault handles this case with default header values.
+/*
+GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

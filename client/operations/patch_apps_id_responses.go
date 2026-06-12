@@ -47,7 +47,8 @@ func NewPatchAppsIDOK() *PatchAppsIDOK {
 	return &PatchAppsIDOK{}
 }
 
-/*PatchAppsIDOK handles this case with default header values.
+/*
+PatchAppsIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPatchAppsIDDefault(code int) *PatchAppsIDDefault {
 	}
 }
 
-/*PatchAppsIDDefault handles this case with default header values.
+/*
+PatchAppsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

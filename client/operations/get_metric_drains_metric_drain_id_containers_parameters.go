@@ -57,7 +57,8 @@ func NewGetMetricDrainsMetricDrainIDContainersParamsWithHTTPClient(client *http.
 	}
 }
 
-/*GetMetricDrainsMetricDrainIDContainersParams contains all the parameters to send to the API endpoint
+/*
+GetMetricDrainsMetricDrainIDContainersParams contains all the parameters to send to the API endpoint
 for the get metric drains metric drain ID containers operation typically these are written to a http.Request
 */
 type GetMetricDrainsMetricDrainIDContainersParams struct {

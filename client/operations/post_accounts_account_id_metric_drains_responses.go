@@ -47,7 +47,8 @@ func NewPostAccountsAccountIDMetricDrainsCreated() *PostAccountsAccountIDMetricD
 	return &PostAccountsAccountIDMetricDrainsCreated{}
 }
 
-/*PostAccountsAccountIDMetricDrainsCreated handles this case with default header values.
+/*
+PostAccountsAccountIDMetricDrainsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostAccountsAccountIDMetricDrainsDefault(code int) *PostAccountsAccountI
 	}
 }
 
-/*PostAccountsAccountIDMetricDrainsDefault handles this case with default header values.
+/*
+PostAccountsAccountIDMetricDrainsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

@@ -57,7 +57,8 @@ func NewGetAccountsAccountIDLogDrainsParamsWithHTTPClient(client *http.Client) *
 	}
 }
 
-/*GetAccountsAccountIDLogDrainsParams contains all the parameters to send to the API endpoint
+/*
+GetAccountsAccountIDLogDrainsParams contains all the parameters to send to the API endpoint
 for the get accounts account ID log drains operation typically these are written to a http.Request
 */
 type GetAccountsAccountIDLogDrainsParams struct {

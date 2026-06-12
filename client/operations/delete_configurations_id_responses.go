@@ -47,7 +47,8 @@ func NewDeleteConfigurationsIDNoContent() *DeleteConfigurationsIDNoContent {
 	return &DeleteConfigurationsIDNoContent{}
 }
 
-/*DeleteConfigurationsIDNoContent handles this case with default header values.
+/*
+DeleteConfigurationsIDNoContent handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewDeleteConfigurationsIDDefault(code int) *DeleteConfigurationsIDDefault {
 	}
 }
 
-/*DeleteConfigurationsIDDefault handles this case with default header values.
+/*
+DeleteConfigurationsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

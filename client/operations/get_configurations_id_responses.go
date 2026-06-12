@@ -47,7 +47,8 @@ func NewGetConfigurationsIDOK() *GetConfigurationsIDOK {
 	return &GetConfigurationsIDOK{}
 }
 
-/*GetConfigurationsIDOK handles this case with default header values.
+/*
+GetConfigurationsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetConfigurationsIDDefault(code int) *GetConfigurationsIDDefault {
 	}
 }
 
-/*GetConfigurationsIDDefault handles this case with default header values.
+/*
+GetConfigurationsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

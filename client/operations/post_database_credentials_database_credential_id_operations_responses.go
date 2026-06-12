@@ -47,7 +47,8 @@ func NewPostDatabaseCredentialsDatabaseCredentialIDOperationsCreated() *PostData
 	return &PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated{}
 }
 
-/*PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated handles this case with default header values.
+/*
+PostDatabaseCredentialsDatabaseCredentialIDOperationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostDatabaseCredentialsDatabaseCredentialIDOperationsDefault(code int) *
 	}
 }
 
-/*PostDatabaseCredentialsDatabaseCredentialIDOperationsDefault handles this case with default header values.
+/*
+PostDatabaseCredentialsDatabaseCredentialIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

@@ -57,7 +57,8 @@ func NewGetEphemeralSessionsEphemeralSessionIDEphemeralContainersParamsWithHTTPC
 	}
 }
 
-/*GetEphemeralSessionsEphemeralSessionIDEphemeralContainersParams contains all the parameters to send to the API endpoint
+/*
+GetEphemeralSessionsEphemeralSessionIDEphemeralContainersParams contains all the parameters to send to the API endpoint
 for the get ephemeral sessions ephemeral session ID ephemeral containers operation typically these are written to a http.Request
 */
 type GetEphemeralSessionsEphemeralSessionIDEphemeralContainersParams struct {

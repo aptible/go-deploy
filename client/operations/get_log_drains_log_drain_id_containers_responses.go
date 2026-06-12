@@ -47,7 +47,8 @@ func NewGetLogDrainsLogDrainIDContainersOK() *GetLogDrainsLogDrainIDContainersOK
 	return &GetLogDrainsLogDrainIDContainersOK{}
 }
 
-/*GetLogDrainsLogDrainIDContainersOK handles this case with default header values.
+/*
+GetLogDrainsLogDrainIDContainersOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetLogDrainsLogDrainIDContainersDefault(code int) *GetLogDrainsLogDrainI
 	}
 }
 
-/*GetLogDrainsLogDrainIDContainersDefault handles this case with default header values.
+/*
+GetLogDrainsLogDrainIDContainersDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

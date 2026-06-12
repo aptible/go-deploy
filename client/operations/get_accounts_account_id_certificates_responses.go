@@ -47,7 +47,8 @@ func NewGetAccountsAccountIDCertificatesOK() *GetAccountsAccountIDCertificatesOK
 	return &GetAccountsAccountIDCertificatesOK{}
 }
 
-/*GetAccountsAccountIDCertificatesOK handles this case with default header values.
+/*
+GetAccountsAccountIDCertificatesOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetAccountsAccountIDCertificatesDefault(code int) *GetAccountsAccountIDC
 	}
 }
 
-/*GetAccountsAccountIDCertificatesDefault handles this case with default header values.
+/*
+GetAccountsAccountIDCertificatesDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

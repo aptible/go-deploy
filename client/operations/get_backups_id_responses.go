@@ -47,7 +47,8 @@ func NewGetBackupsIDOK() *GetBackupsIDOK {
 	return &GetBackupsIDOK{}
 }
 
-/*GetBackupsIDOK handles this case with default header values.
+/*
+GetBackupsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetBackupsIDDefault(code int) *GetBackupsIDDefault {
 	}
 }
 
-/*GetBackupsIDDefault handles this case with default header values.
+/*
+GetBackupsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

@@ -47,7 +47,8 @@ func NewPutDatabasesIDOK() *PutDatabasesIDOK {
 	return &PutDatabasesIDOK{}
 }
 
-/*PutDatabasesIDOK handles this case with default header values.
+/*
+PutDatabasesIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPutDatabasesIDDefault(code int) *PutDatabasesIDDefault {
 	}
 }
 
-/*PutDatabasesIDDefault handles this case with default header values.
+/*
+PutDatabasesIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

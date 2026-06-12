@@ -47,7 +47,8 @@ func NewPostAccountsAccountIDLogDrainsCreated() *PostAccountsAccountIDLogDrainsC
 	return &PostAccountsAccountIDLogDrainsCreated{}
 }
 
-/*PostAccountsAccountIDLogDrainsCreated handles this case with default header values.
+/*
+PostAccountsAccountIDLogDrainsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostAccountsAccountIDLogDrainsDefault(code int) *PostAccountsAccountIDLo
 	}
 }
 
-/*PostAccountsAccountIDLogDrainsDefault handles this case with default header values.
+/*
+PostAccountsAccountIDLogDrainsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

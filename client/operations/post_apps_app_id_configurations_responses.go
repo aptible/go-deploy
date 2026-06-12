@@ -47,7 +47,8 @@ func NewPostAppsAppIDConfigurationsCreated() *PostAppsAppIDConfigurationsCreated
 	return &PostAppsAppIDConfigurationsCreated{}
 }
 
-/*PostAppsAppIDConfigurationsCreated handles this case with default header values.
+/*
+PostAppsAppIDConfigurationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostAppsAppIDConfigurationsDefault(code int) *PostAppsAppIDConfiguration
 	}
 }
 
-/*PostAppsAppIDConfigurationsDefault handles this case with default header values.
+/*
+PostAppsAppIDConfigurationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

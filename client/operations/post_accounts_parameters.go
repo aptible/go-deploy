@@ -58,7 +58,8 @@ func NewPostAccountsParamsWithHTTPClient(client *http.Client) *PostAccountsParam
 	}
 }
 
-/*PostAccountsParams contains all the parameters to send to the API endpoint
+/*
+PostAccountsParams contains all the parameters to send to the API endpoint
 for the post accounts operation typically these are written to a http.Request
 */
 type PostAccountsParams struct {

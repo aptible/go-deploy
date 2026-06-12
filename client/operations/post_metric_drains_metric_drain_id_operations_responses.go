@@ -47,7 +47,8 @@ func NewPostMetricDrainsMetricDrainIDOperationsCreated() *PostMetricDrainsMetric
 	return &PostMetricDrainsMetricDrainIDOperationsCreated{}
 }
 
-/*PostMetricDrainsMetricDrainIDOperationsCreated handles this case with default header values.
+/*
+PostMetricDrainsMetricDrainIDOperationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostMetricDrainsMetricDrainIDOperationsDefault(code int) *PostMetricDrai
 	}
 }
 
-/*PostMetricDrainsMetricDrainIDOperationsDefault handles this case with default header values.
+/*
+PostMetricDrainsMetricDrainIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

@@ -47,7 +47,8 @@ func NewGetAccountsAccountIDLogDrainsOK() *GetAccountsAccountIDLogDrainsOK {
 	return &GetAccountsAccountIDLogDrainsOK{}
 }
 
-/*GetAccountsAccountIDLogDrainsOK handles this case with default header values.
+/*
+GetAccountsAccountIDLogDrainsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetAccountsAccountIDLogDrainsDefault(code int) *GetAccountsAccountIDLogD
 	}
 }
 
-/*GetAccountsAccountIDLogDrainsDefault handles this case with default header values.
+/*
+GetAccountsAccountIDLogDrainsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

@@ -47,7 +47,8 @@ func NewPostLogDrainsLogDrainIDOperationsCreated() *PostLogDrainsLogDrainIDOpera
 	return &PostLogDrainsLogDrainIDOperationsCreated{}
 }
 
-/*PostLogDrainsLogDrainIDOperationsCreated handles this case with default header values.
+/*
+PostLogDrainsLogDrainIDOperationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostLogDrainsLogDrainIDOperationsDefault(code int) *PostLogDrainsLogDrai
 	}
 }
 
-/*PostLogDrainsLogDrainIDOperationsDefault handles this case with default header values.
+/*
+PostLogDrainsLogDrainIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

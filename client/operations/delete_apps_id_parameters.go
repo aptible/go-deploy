@@ -57,7 +57,8 @@ func NewDeleteAppsIDParamsWithHTTPClient(client *http.Client) *DeleteAppsIDParam
 	}
 }
 
-/*DeleteAppsIDParams contains all the parameters to send to the API endpoint
+/*
+DeleteAppsIDParams contains all the parameters to send to the API endpoint
 for the delete apps ID operation typically these are written to a http.Request
 */
 type DeleteAppsIDParams struct {

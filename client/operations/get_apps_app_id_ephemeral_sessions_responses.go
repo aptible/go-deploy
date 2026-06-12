@@ -47,7 +47,8 @@ func NewGetAppsAppIDEphemeralSessionsOK() *GetAppsAppIDEphemeralSessionsOK {
 	return &GetAppsAppIDEphemeralSessionsOK{}
 }
 
-/*GetAppsAppIDEphemeralSessionsOK handles this case with default header values.
+/*
+GetAppsAppIDEphemeralSessionsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetAppsAppIDEphemeralSessionsDefault(code int) *GetAppsAppIDEphemeralSes
 	}
 }
 
-/*GetAppsAppIDEphemeralSessionsDefault handles this case with default header values.
+/*
+GetAppsAppIDEphemeralSessionsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

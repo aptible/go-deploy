@@ -47,7 +47,8 @@ func NewGetActivityReportsActivityReportIDDownloadOK() *GetActivityReportsActivi
 	return &GetActivityReportsActivityReportIDDownloadOK{}
 }
 
-/*GetActivityReportsActivityReportIDDownloadOK handles this case with default header values.
+/*
+GetActivityReportsActivityReportIDDownloadOK handles this case with default header values.
 
 Presigned download URL
 */
@@ -70,7 +71,8 @@ func NewGetActivityReportsActivityReportIDDownloadDefault(code int) *GetActivity
 	}
 }
 
-/*GetActivityReportsActivityReportIDDownloadDefault handles this case with default header values.
+/*
+GetActivityReportsActivityReportIDDownloadDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

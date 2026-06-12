@@ -57,7 +57,8 @@ func NewGetDatabaseCredentialsIDParamsWithHTTPClient(client *http.Client) *GetDa
 	}
 }
 
-/*GetDatabaseCredentialsIDParams contains all the parameters to send to the API endpoint
+/*
+GetDatabaseCredentialsIDParams contains all the parameters to send to the API endpoint
 for the get database credentials ID operation typically these are written to a http.Request
 */
 type GetDatabaseCredentialsIDParams struct {

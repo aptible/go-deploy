@@ -59,7 +59,8 @@ func NewPutDatabasesIDParamsWithHTTPClient(client *http.Client) *PutDatabasesIDP
 	}
 }
 
-/*PutDatabasesIDParams contains all the parameters to send to the API endpoint
+/*
+PutDatabasesIDParams contains all the parameters to send to the API endpoint
 for the put databases ID operation typically these are written to a http.Request
 */
 type PutDatabasesIDParams struct {

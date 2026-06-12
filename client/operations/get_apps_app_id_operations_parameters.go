@@ -57,7 +57,8 @@ func NewGetAppsAppIDOperationsParamsWithHTTPClient(client *http.Client) *GetApps
 	}
 }
 
-/*GetAppsAppIDOperationsParams contains all the parameters to send to the API endpoint
+/*
+GetAppsAppIDOperationsParams contains all the parameters to send to the API endpoint
 for the get apps app ID operations operation typically these are written to a http.Request
 */
 type GetAppsAppIDOperationsParams struct {

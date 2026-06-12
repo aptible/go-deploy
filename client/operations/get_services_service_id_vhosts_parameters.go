@@ -57,7 +57,8 @@ func NewGetServicesServiceIDVhostsParamsWithHTTPClient(client *http.Client) *Get
 	}
 }
 
-/*GetServicesServiceIDVhostsParams contains all the parameters to send to the API endpoint
+/*
+GetServicesServiceIDVhostsParams contains all the parameters to send to the API endpoint
 for the get services service ID vhosts operation typically these are written to a http.Request
 */
 type GetServicesServiceIDVhostsParams struct {

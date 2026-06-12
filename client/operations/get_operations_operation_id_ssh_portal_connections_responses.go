@@ -47,7 +47,8 @@ func NewGetOperationsOperationIDSSHPortalConnectionsOK() *GetOperationsOperation
 	return &GetOperationsOperationIDSSHPortalConnectionsOK{}
 }
 
-/*GetOperationsOperationIDSSHPortalConnectionsOK handles this case with default header values.
+/*
+GetOperationsOperationIDSSHPortalConnectionsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetOperationsOperationIDSSHPortalConnectionsDefault(code int) *GetOperat
 	}
 }
 
-/*GetOperationsOperationIDSSHPortalConnectionsDefault handles this case with default header values.
+/*
+GetOperationsOperationIDSSHPortalConnectionsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

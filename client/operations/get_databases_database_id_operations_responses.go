@@ -47,7 +47,8 @@ func NewGetDatabasesDatabaseIDOperationsOK() *GetDatabasesDatabaseIDOperationsOK
 	return &GetDatabasesDatabaseIDOperationsOK{}
 }
 
-/*GetDatabasesDatabaseIDOperationsOK handles this case with default header values.
+/*
+GetDatabasesDatabaseIDOperationsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetDatabasesDatabaseIDOperationsDefault(code int) *GetDatabasesDatabaseI
 	}
 }
 
-/*GetDatabasesDatabaseIDOperationsDefault handles this case with default header values.
+/*
+GetDatabasesDatabaseIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

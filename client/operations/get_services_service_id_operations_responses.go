@@ -47,7 +47,8 @@ func NewGetServicesServiceIDOperationsOK() *GetServicesServiceIDOperationsOK {
 	return &GetServicesServiceIDOperationsOK{}
 }
 
-/*GetServicesServiceIDOperationsOK handles this case with default header values.
+/*
+GetServicesServiceIDOperationsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetServicesServiceIDOperationsDefault(code int) *GetServicesServiceIDOpe
 	}
 }
 
-/*GetServicesServiceIDOperationsDefault handles this case with default header values.
+/*
+GetServicesServiceIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

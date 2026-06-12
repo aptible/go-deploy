@@ -47,7 +47,8 @@ func NewDeleteLogDrainsIDNoContent() *DeleteLogDrainsIDNoContent {
 	return &DeleteLogDrainsIDNoContent{}
 }
 
-/*DeleteLogDrainsIDNoContent handles this case with default header values.
+/*
+DeleteLogDrainsIDNoContent handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewDeleteLogDrainsIDDefault(code int) *DeleteLogDrainsIDDefault {
 	}
 }
 
-/*DeleteLogDrainsIDDefault handles this case with default header values.
+/*
+DeleteLogDrainsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

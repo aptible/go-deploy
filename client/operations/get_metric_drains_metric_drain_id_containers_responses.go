@@ -47,7 +47,8 @@ func NewGetMetricDrainsMetricDrainIDContainersOK() *GetMetricDrainsMetricDrainID
 	return &GetMetricDrainsMetricDrainIDContainersOK{}
 }
 
-/*GetMetricDrainsMetricDrainIDContainersOK handles this case with default header values.
+/*
+GetMetricDrainsMetricDrainIDContainersOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetMetricDrainsMetricDrainIDContainersDefault(code int) *GetMetricDrains
 	}
 }
 
-/*GetMetricDrainsMetricDrainIDContainersDefault handles this case with default header values.
+/*
+GetMetricDrainsMetricDrainIDContainersDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

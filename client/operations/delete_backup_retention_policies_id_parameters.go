@@ -57,7 +57,8 @@ func NewDeleteBackupRetentionPoliciesIDParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/*DeleteBackupRetentionPoliciesIDParams contains all the parameters to send to the API endpoint
+/*
+DeleteBackupRetentionPoliciesIDParams contains all the parameters to send to the API endpoint
 for the delete backup retention policies ID operation typically these are written to a http.Request
 */
 type DeleteBackupRetentionPoliciesIDParams struct {

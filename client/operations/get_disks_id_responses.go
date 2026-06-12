@@ -47,7 +47,8 @@ func NewGetDisksIDOK() *GetDisksIDOK {
 	return &GetDisksIDOK{}
 }
 
-/*GetDisksIDOK handles this case with default header values.
+/*
+GetDisksIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetDisksIDDefault(code int) *GetDisksIDDefault {
 	}
 }
 
-/*GetDisksIDDefault handles this case with default header values.
+/*
+GetDisksIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

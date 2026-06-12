@@ -57,7 +57,8 @@ func NewGetAccountsAccountIDCertificatesParamsWithHTTPClient(client *http.Client
 	}
 }
 
-/*GetAccountsAccountIDCertificatesParams contains all the parameters to send to the API endpoint
+/*
+GetAccountsAccountIDCertificatesParams contains all the parameters to send to the API endpoint
 for the get accounts account ID certificates operation typically these are written to a http.Request
 */
 type GetAccountsAccountIDCertificatesParams struct {

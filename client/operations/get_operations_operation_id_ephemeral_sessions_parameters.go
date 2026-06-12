@@ -57,7 +57,8 @@ func NewGetOperationsOperationIDEphemeralSessionsParamsWithHTTPClient(client *ht
 	}
 }
 
-/*GetOperationsOperationIDEphemeralSessionsParams contains all the parameters to send to the API endpoint
+/*
+GetOperationsOperationIDEphemeralSessionsParams contains all the parameters to send to the API endpoint
 for the get operations operation ID ephemeral sessions operation typically these are written to a http.Request
 */
 type GetOperationsOperationIDEphemeralSessionsParams struct {

@@ -57,7 +57,8 @@ func NewGetServicesServiceIDReleasesParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/*GetServicesServiceIDReleasesParams contains all the parameters to send to the API endpoint
+/*
+GetServicesServiceIDReleasesParams contains all the parameters to send to the API endpoint
 for the get services service ID releases operation typically these are written to a http.Request
 */
 type GetServicesServiceIDReleasesParams struct {

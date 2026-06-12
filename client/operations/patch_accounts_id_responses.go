@@ -47,7 +47,8 @@ func NewPatchAccountsIDOK() *PatchAccountsIDOK {
 	return &PatchAccountsIDOK{}
 }
 
-/*PatchAccountsIDOK handles this case with default header values.
+/*
+PatchAccountsIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPatchAccountsIDDefault(code int) *PatchAccountsIDDefault {
 	}
 }
 
-/*PatchAccountsIDDefault handles this case with default header values.
+/*
+PatchAccountsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

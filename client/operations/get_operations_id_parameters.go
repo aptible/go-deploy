@@ -57,7 +57,8 @@ func NewGetOperationsIDParamsWithHTTPClient(client *http.Client) *GetOperationsI
 	}
 }
 
-/*GetOperationsIDParams contains all the parameters to send to the API endpoint
+/*
+GetOperationsIDParams contains all the parameters to send to the API endpoint
 for the get operations ID operation typically these are written to a http.Request
 */
 type GetOperationsIDParams struct {

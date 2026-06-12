@@ -57,7 +57,8 @@ func NewGetAppsAppIDImagesParamsWithHTTPClient(client *http.Client) *GetAppsAppI
 	}
 }
 
-/*GetAppsAppIDImagesParams contains all the parameters to send to the API endpoint
+/*
+GetAppsAppIDImagesParams contains all the parameters to send to the API endpoint
 for the get apps app ID images operation typically these are written to a http.Request
 */
 type GetAppsAppIDImagesParams struct {

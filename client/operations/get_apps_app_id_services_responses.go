@@ -47,7 +47,8 @@ func NewGetAppsAppIDServicesOK() *GetAppsAppIDServicesOK {
 	return &GetAppsAppIDServicesOK{}
 }
 
-/*GetAppsAppIDServicesOK handles this case with default header values.
+/*
+GetAppsAppIDServicesOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetAppsAppIDServicesDefault(code int) *GetAppsAppIDServicesDefault {
 	}
 }
 
-/*GetAppsAppIDServicesDefault handles this case with default header values.
+/*
+GetAppsAppIDServicesDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

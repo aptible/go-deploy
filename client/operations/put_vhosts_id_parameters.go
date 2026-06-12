@@ -59,7 +59,8 @@ func NewPutVhostsIDParamsWithHTTPClient(client *http.Client) *PutVhostsIDParams 
 	}
 }
 
-/*PutVhostsIDParams contains all the parameters to send to the API endpoint
+/*
+PutVhostsIDParams contains all the parameters to send to the API endpoint
 for the put vhosts ID operation typically these are written to a http.Request
 */
 type PutVhostsIDParams struct {

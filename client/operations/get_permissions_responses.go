@@ -47,7 +47,8 @@ func NewGetPermissionsOK() *GetPermissionsOK {
 	return &GetPermissionsOK{}
 }
 
-/*GetPermissionsOK handles this case with default header values.
+/*
+GetPermissionsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetPermissionsDefault(code int) *GetPermissionsDefault {
 	}
 }
 
-/*GetPermissionsDefault handles this case with default header values.
+/*
+GetPermissionsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

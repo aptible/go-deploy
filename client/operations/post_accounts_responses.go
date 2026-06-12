@@ -47,7 +47,8 @@ func NewPostAccountsCreated() *PostAccountsCreated {
 	return &PostAccountsCreated{}
 }
 
-/*PostAccountsCreated handles this case with default header values.
+/*
+PostAccountsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostAccountsDefault(code int) *PostAccountsDefault {
 	}
 }
 
-/*PostAccountsDefault handles this case with default header values.
+/*
+PostAccountsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

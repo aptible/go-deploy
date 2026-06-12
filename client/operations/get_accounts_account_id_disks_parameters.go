@@ -57,7 +57,8 @@ func NewGetAccountsAccountIDDisksParamsWithHTTPClient(client *http.Client) *GetA
 	}
 }
 
-/*GetAccountsAccountIDDisksParams contains all the parameters to send to the API endpoint
+/*
+GetAccountsAccountIDDisksParams contains all the parameters to send to the API endpoint
 for the get accounts account ID disks operation typically these are written to a http.Request
 */
 type GetAccountsAccountIDDisksParams struct {

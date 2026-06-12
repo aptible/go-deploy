@@ -47,7 +47,8 @@ func NewGetActivityReportsIDOK() *GetActivityReportsIDOK {
 	return &GetActivityReportsIDOK{}
 }
 
-/*GetActivityReportsIDOK handles this case with default header values.
+/*
+GetActivityReportsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetActivityReportsIDDefault(code int) *GetActivityReportsIDDefault {
 	}
 }
 
-/*GetActivityReportsIDDefault handles this case with default header values.
+/*
+GetActivityReportsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

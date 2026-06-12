@@ -57,7 +57,8 @@ func NewGetAccountsAccountIDVhostsParamsWithHTTPClient(client *http.Client) *Get
 	}
 }
 
-/*GetAccountsAccountIDVhostsParams contains all the parameters to send to the API endpoint
+/*
+GetAccountsAccountIDVhostsParams contains all the parameters to send to the API endpoint
 for the get accounts account ID vhosts operation typically these are written to a http.Request
 */
 type GetAccountsAccountIDVhostsParams struct {

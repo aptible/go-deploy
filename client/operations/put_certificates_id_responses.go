@@ -47,7 +47,8 @@ func NewPutCertificatesIDOK() *PutCertificatesIDOK {
 	return &PutCertificatesIDOK{}
 }
 
-/*PutCertificatesIDOK handles this case with default header values.
+/*
+PutCertificatesIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPutCertificatesIDDefault(code int) *PutCertificatesIDDefault {
 	}
 }
 
-/*PutCertificatesIDDefault handles this case with default header values.
+/*
+PutCertificatesIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

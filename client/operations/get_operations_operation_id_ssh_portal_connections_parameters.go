@@ -57,7 +57,8 @@ func NewGetOperationsOperationIDSSHPortalConnectionsParamsWithHTTPClient(client 
 	}
 }
 
-/*GetOperationsOperationIDSSHPortalConnectionsParams contains all the parameters to send to the API endpoint
+/*
+GetOperationsOperationIDSSHPortalConnectionsParams contains all the parameters to send to the API endpoint
 for the get operations operation ID SSH portal connections operation typically these are written to a http.Request
 */
 type GetOperationsOperationIDSSHPortalConnectionsParams struct {

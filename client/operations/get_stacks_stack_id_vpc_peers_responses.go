@@ -47,7 +47,8 @@ func NewGetStacksStackIDVpcPeersOK() *GetStacksStackIDVpcPeersOK {
 	return &GetStacksStackIDVpcPeersOK{}
 }
 
-/*GetStacksStackIDVpcPeersOK handles this case with default header values.
+/*
+GetStacksStackIDVpcPeersOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetStacksStackIDVpcPeersDefault(code int) *GetStacksStackIDVpcPeersDefau
 	}
 }
 
-/*GetStacksStackIDVpcPeersDefault handles this case with default header values.
+/*
+GetStacksStackIDVpcPeersDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

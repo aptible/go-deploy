@@ -47,7 +47,8 @@ func NewGetServicesServiceIDVhostsOK() *GetServicesServiceIDVhostsOK {
 	return &GetServicesServiceIDVhostsOK{}
 }
 
-/*GetServicesServiceIDVhostsOK handles this case with default header values.
+/*
+GetServicesServiceIDVhostsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetServicesServiceIDVhostsDefault(code int) *GetServicesServiceIDVhostsD
 	}
 }
 
-/*GetServicesServiceIDVhostsDefault handles this case with default header values.
+/*
+GetServicesServiceIDVhostsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

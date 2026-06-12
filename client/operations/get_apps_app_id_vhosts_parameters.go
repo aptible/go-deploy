@@ -57,7 +57,8 @@ func NewGetAppsAppIDVhostsParamsWithHTTPClient(client *http.Client) *GetAppsAppI
 	}
 }
 
-/*GetAppsAppIDVhostsParams contains all the parameters to send to the API endpoint
+/*
+GetAppsAppIDVhostsParams contains all the parameters to send to the API endpoint
 for the get apps app ID vhosts operation typically these are written to a http.Request
 */
 type GetAppsAppIDVhostsParams struct {

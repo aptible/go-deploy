@@ -47,7 +47,8 @@ func NewPostAccountsAccountIDCertificatesCreated() *PostAccountsAccountIDCertifi
 	return &PostAccountsAccountIDCertificatesCreated{}
 }
 
-/*PostAccountsAccountIDCertificatesCreated handles this case with default header values.
+/*
+PostAccountsAccountIDCertificatesCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostAccountsAccountIDCertificatesDefault(code int) *PostAccountsAccountI
 	}
 }
 
-/*PostAccountsAccountIDCertificatesDefault handles this case with default header values.
+/*
+PostAccountsAccountIDCertificatesDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

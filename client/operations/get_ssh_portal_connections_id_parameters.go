@@ -57,7 +57,8 @@ func NewGetSSHPortalConnectionsIDParamsWithHTTPClient(client *http.Client) *GetS
 	}
 }
 
-/*GetSSHPortalConnectionsIDParams contains all the parameters to send to the API endpoint
+/*
+GetSSHPortalConnectionsIDParams contains all the parameters to send to the API endpoint
 for the get SSH portal connections ID operation typically these are written to a http.Request
 */
 type GetSSHPortalConnectionsIDParams struct {

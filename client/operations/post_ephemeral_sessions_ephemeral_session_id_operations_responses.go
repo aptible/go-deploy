@@ -47,7 +47,8 @@ func NewPostEphemeralSessionsEphemeralSessionIDOperationsCreated() *PostEphemera
 	return &PostEphemeralSessionsEphemeralSessionIDOperationsCreated{}
 }
 
-/*PostEphemeralSessionsEphemeralSessionIDOperationsCreated handles this case with default header values.
+/*
+PostEphemeralSessionsEphemeralSessionIDOperationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostEphemeralSessionsEphemeralSessionIDOperationsDefault(code int) *Post
 	}
 }
 
-/*PostEphemeralSessionsEphemeralSessionIDOperationsDefault handles this case with default header values.
+/*
+PostEphemeralSessionsEphemeralSessionIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

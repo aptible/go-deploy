@@ -59,7 +59,8 @@ func NewPatchVhostsIDParamsWithHTTPClient(client *http.Client) *PatchVhostsIDPar
 	}
 }
 
-/*PatchVhostsIDParams contains all the parameters to send to the API endpoint
+/*
+PatchVhostsIDParams contains all the parameters to send to the API endpoint
 for the patch vhosts ID operation typically these are written to a http.Request
 */
 type PatchVhostsIDParams struct {

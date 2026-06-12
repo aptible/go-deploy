@@ -59,7 +59,8 @@ func NewPutOperationsIDParamsWithHTTPClient(client *http.Client) *PutOperationsI
 	}
 }
 
-/*PutOperationsIDParams contains all the parameters to send to the API endpoint
+/*
+PutOperationsIDParams contains all the parameters to send to the API endpoint
 for the put operations ID operation typically these are written to a http.Request
 */
 type PutOperationsIDParams struct {

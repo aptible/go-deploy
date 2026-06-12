@@ -47,7 +47,8 @@ func NewPutLogDrainsIDOK() *PutLogDrainsIDOK {
 	return &PutLogDrainsIDOK{}
 }
 
-/*PutLogDrainsIDOK handles this case with default header values.
+/*
+PutLogDrainsIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPutLogDrainsIDDefault(code int) *PutLogDrainsIDDefault {
 	}
 }
 
-/*PutLogDrainsIDDefault handles this case with default header values.
+/*
+PutLogDrainsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

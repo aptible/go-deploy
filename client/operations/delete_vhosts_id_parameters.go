@@ -57,7 +57,8 @@ func NewDeleteVhostsIDParamsWithHTTPClient(client *http.Client) *DeleteVhostsIDP
 	}
 }
 
-/*DeleteVhostsIDParams contains all the parameters to send to the API endpoint
+/*
+DeleteVhostsIDParams contains all the parameters to send to the API endpoint
 for the delete vhosts ID operation typically these are written to a http.Request
 */
 type DeleteVhostsIDParams struct {

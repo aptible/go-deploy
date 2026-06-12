@@ -47,7 +47,8 @@ func NewGetSSHPortalConnectionsIDOK() *GetSSHPortalConnectionsIDOK {
 	return &GetSSHPortalConnectionsIDOK{}
 }
 
-/*GetSSHPortalConnectionsIDOK handles this case with default header values.
+/*
+GetSSHPortalConnectionsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetSSHPortalConnectionsIDDefault(code int) *GetSSHPortalConnectionsIDDef
 	}
 }
 
-/*GetSSHPortalConnectionsIDDefault handles this case with default header values.
+/*
+GetSSHPortalConnectionsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

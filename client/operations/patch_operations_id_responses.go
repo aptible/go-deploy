@@ -47,7 +47,8 @@ func NewPatchOperationsIDOK() *PatchOperationsIDOK {
 	return &PatchOperationsIDOK{}
 }
 
-/*PatchOperationsIDOK handles this case with default header values.
+/*
+PatchOperationsIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPatchOperationsIDDefault(code int) *PatchOperationsIDDefault {
 	}
 }
 
-/*PatchOperationsIDDefault handles this case with default header values.
+/*
+PatchOperationsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

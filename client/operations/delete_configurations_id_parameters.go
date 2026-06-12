@@ -57,7 +57,8 @@ func NewDeleteConfigurationsIDParamsWithHTTPClient(client *http.Client) *DeleteC
 	}
 }
 
-/*DeleteConfigurationsIDParams contains all the parameters to send to the API endpoint
+/*
+DeleteConfigurationsIDParams contains all the parameters to send to the API endpoint
 for the delete configurations ID operation typically these are written to a http.Request
 */
 type DeleteConfigurationsIDParams struct {

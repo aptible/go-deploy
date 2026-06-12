@@ -57,7 +57,8 @@ func NewGetLogDrainsLogDrainIDEphemeralContainersParamsWithHTTPClient(client *ht
 	}
 }
 
-/*GetLogDrainsLogDrainIDEphemeralContainersParams contains all the parameters to send to the API endpoint
+/*
+GetLogDrainsLogDrainIDEphemeralContainersParams contains all the parameters to send to the API endpoint
 for the get log drains log drain ID ephemeral containers operation typically these are written to a http.Request
 */
 type GetLogDrainsLogDrainIDEphemeralContainersParams struct {
