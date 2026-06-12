@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"testing"
-
-	"github.com/mitchellh/go-homedir"
 )
 
 func mockEnv(envVar, value string) func() {
@@ -39,7 +37,6 @@ func TestGetTokenEnv(t *testing.T) {
 }
 
 func TestGetToken(t *testing.T) {
-	homedir.DisableCache = true
 	tmpHome, err := ioutil.TempDir(os.TempDir(), "go-deploy")
 	if err != nil {
 		t.Error("Failed to create the temp directory", err)
