@@ -59,7 +59,8 @@ func NewPatchDatabasesIDParamsWithHTTPClient(client *http.Client) *PatchDatabase
 	}
 }
 
-/*PatchDatabasesIDParams contains all the parameters to send to the API endpoint
+/*
+PatchDatabasesIDParams contains all the parameters to send to the API endpoint
 for the patch databases ID operation typically these are written to a http.Request
 */
 type PatchDatabasesIDParams struct {

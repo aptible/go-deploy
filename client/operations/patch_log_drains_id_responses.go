@@ -47,7 +47,8 @@ func NewPatchLogDrainsIDOK() *PatchLogDrainsIDOK {
 	return &PatchLogDrainsIDOK{}
 }
 
-/*PatchLogDrainsIDOK handles this case with default header values.
+/*
+PatchLogDrainsIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPatchLogDrainsIDDefault(code int) *PatchLogDrainsIDDefault {
 	}
 }
 
-/*PatchLogDrainsIDDefault handles this case with default header values.
+/*
+PatchLogDrainsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

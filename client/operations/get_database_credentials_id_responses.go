@@ -47,7 +47,8 @@ func NewGetDatabaseCredentialsIDOK() *GetDatabaseCredentialsIDOK {
 	return &GetDatabaseCredentialsIDOK{}
 }
 
-/*GetDatabaseCredentialsIDOK handles this case with default header values.
+/*
+GetDatabaseCredentialsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetDatabaseCredentialsIDDefault(code int) *GetDatabaseCredentialsIDDefau
 	}
 }
 
-/*GetDatabaseCredentialsIDDefault handles this case with default header values.
+/*
+GetDatabaseCredentialsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

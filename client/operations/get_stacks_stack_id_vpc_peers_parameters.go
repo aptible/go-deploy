@@ -57,7 +57,8 @@ func NewGetStacksStackIDVpcPeersParamsWithHTTPClient(client *http.Client) *GetSt
 	}
 }
 
-/*GetStacksStackIDVpcPeersParams contains all the parameters to send to the API endpoint
+/*
+GetStacksStackIDVpcPeersParams contains all the parameters to send to the API endpoint
 for the get stacks stack ID vpc peers operation typically these are written to a http.Request
 */
 type GetStacksStackIDVpcPeersParams struct {

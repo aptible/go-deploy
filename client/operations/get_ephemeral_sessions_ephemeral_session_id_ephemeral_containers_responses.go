@@ -47,7 +47,8 @@ func NewGetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK() *GetEpheme
 	return &GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK{}
 }
 
-/*GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK handles this case with default header values.
+/*
+GetEphemeralSessionsEphemeralSessionIDEphemeralContainersOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetEphemeralSessionsEphemeralSessionIDEphemeralContainersDefault(code in
 	}
 }
 
-/*GetEphemeralSessionsEphemeralSessionIDEphemeralContainersDefault handles this case with default header values.
+/*
+GetEphemeralSessionsEphemeralSessionIDEphemeralContainersDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

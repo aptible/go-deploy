@@ -47,7 +47,8 @@ func NewGetEphemeralContainersIDOK() *GetEphemeralContainersIDOK {
 	return &GetEphemeralContainersIDOK{}
 }
 
-/*GetEphemeralContainersIDOK handles this case with default header values.
+/*
+GetEphemeralContainersIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetEphemeralContainersIDDefault(code int) *GetEphemeralContainersIDDefau
 	}
 }
 
-/*GetEphemeralContainersIDDefault handles this case with default header values.
+/*
+GetEphemeralContainersIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

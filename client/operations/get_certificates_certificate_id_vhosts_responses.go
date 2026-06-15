@@ -47,7 +47,8 @@ func NewGetCertificatesCertificateIDVhostsOK() *GetCertificatesCertificateIDVhos
 	return &GetCertificatesCertificateIDVhostsOK{}
 }
 
-/*GetCertificatesCertificateIDVhostsOK handles this case with default header values.
+/*
+GetCertificatesCertificateIDVhostsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetCertificatesCertificateIDVhostsDefault(code int) *GetCertificatesCert
 	}
 }
 
-/*GetCertificatesCertificateIDVhostsDefault handles this case with default header values.
+/*
+GetCertificatesCertificateIDVhostsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

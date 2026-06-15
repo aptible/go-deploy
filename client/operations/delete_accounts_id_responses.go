@@ -47,7 +47,8 @@ func NewDeleteAccountsIDNoContent() *DeleteAccountsIDNoContent {
 	return &DeleteAccountsIDNoContent{}
 }
 
-/*DeleteAccountsIDNoContent handles this case with default header values.
+/*
+DeleteAccountsIDNoContent handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewDeleteAccountsIDDefault(code int) *DeleteAccountsIDDefault {
 	}
 }
 
-/*DeleteAccountsIDDefault handles this case with default header values.
+/*
+DeleteAccountsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

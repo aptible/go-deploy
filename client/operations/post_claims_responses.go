@@ -47,7 +47,8 @@ func NewPostClaimsNoContent() *PostClaimsNoContent {
 	return &PostClaimsNoContent{}
 }
 
-/*PostClaimsNoContent handles this case with default header values.
+/*
+PostClaimsNoContent handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPostClaimsDefault(code int) *PostClaimsDefault {
 	}
 }
 
-/*PostClaimsDefault handles this case with default header values.
+/*
+PostClaimsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

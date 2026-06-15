@@ -57,7 +57,8 @@ func NewGetActivityReportsActivityReportIDDownloadParamsWithHTTPClient(client *h
 	}
 }
 
-/*GetActivityReportsActivityReportIDDownloadParams contains all the parameters to send to the API endpoint
+/*
+GetActivityReportsActivityReportIDDownloadParams contains all the parameters to send to the API endpoint
 for the get activity reports activity report ID download operation typically these are written to a http.Request
 */
 type GetActivityReportsActivityReportIDDownloadParams struct {

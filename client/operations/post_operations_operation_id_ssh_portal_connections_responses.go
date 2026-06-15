@@ -47,7 +47,8 @@ func NewPostOperationsOperationIDSSHPortalConnectionsCreated() *PostOperationsOp
 	return &PostOperationsOperationIDSSHPortalConnectionsCreated{}
 }
 
-/*PostOperationsOperationIDSSHPortalConnectionsCreated handles this case with default header values.
+/*
+PostOperationsOperationIDSSHPortalConnectionsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostOperationsOperationIDSSHPortalConnectionsDefault(code int) *PostOper
 	}
 }
 
-/*PostOperationsOperationIDSSHPortalConnectionsDefault handles this case with default header values.
+/*
+PostOperationsOperationIDSSHPortalConnectionsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

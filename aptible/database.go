@@ -25,7 +25,8 @@ type Database struct {
 }
 
 // DBUpdates - struct to define what operations you contain your DB update to. Add values to this struct
-// 			   to eventually pass it around for consumption by the go sdk
+//
+//	to eventually pass it around for consumption by the go sdk
 type DBUpdates struct {
 	ContainerSize    int64
 	DiskSize         int64

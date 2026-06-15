@@ -47,7 +47,8 @@ func NewPostDatabasesDatabaseIDConfigurationsCreated() *PostDatabasesDatabaseIDC
 	return &PostDatabasesDatabaseIDConfigurationsCreated{}
 }
 
-/*PostDatabasesDatabaseIDConfigurationsCreated handles this case with default header values.
+/*
+PostDatabasesDatabaseIDConfigurationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostDatabasesDatabaseIDConfigurationsDefault(code int) *PostDatabasesDat
 	}
 }
 
-/*PostDatabasesDatabaseIDConfigurationsDefault handles this case with default header values.
+/*
+PostDatabasesDatabaseIDConfigurationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

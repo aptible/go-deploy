@@ -47,7 +47,8 @@ func NewPatchDatabasesIDOK() *PatchDatabasesIDOK {
 	return &PatchDatabasesIDOK{}
 }
 
-/*PatchDatabasesIDOK handles this case with default header values.
+/*
+PatchDatabasesIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPatchDatabasesIDDefault(code int) *PatchDatabasesIDDefault {
 	}
 }
 
-/*PatchDatabasesIDDefault handles this case with default header values.
+/*
+PatchDatabasesIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

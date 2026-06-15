@@ -47,7 +47,8 @@ func NewGetStacksStackIDIntrusionDetectionReportsOK() *GetStacksStackIDIntrusion
 	return &GetStacksStackIDIntrusionDetectionReportsOK{}
 }
 
-/*GetStacksStackIDIntrusionDetectionReportsOK handles this case with default header values.
+/*
+GetStacksStackIDIntrusionDetectionReportsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetStacksStackIDIntrusionDetectionReportsDefault(code int) *GetStacksSta
 	}
 }
 
-/*GetStacksStackIDIntrusionDetectionReportsDefault handles this case with default header values.
+/*
+GetStacksStackIDIntrusionDetectionReportsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

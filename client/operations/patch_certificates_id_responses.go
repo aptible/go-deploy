@@ -47,7 +47,8 @@ func NewPatchCertificatesIDOK() *PatchCertificatesIDOK {
 	return &PatchCertificatesIDOK{}
 }
 
-/*PatchCertificatesIDOK handles this case with default header values.
+/*
+PatchCertificatesIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPatchCertificatesIDDefault(code int) *PatchCertificatesIDDefault {
 	}
 }
 
-/*PatchCertificatesIDDefault handles this case with default header values.
+/*
+PatchCertificatesIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

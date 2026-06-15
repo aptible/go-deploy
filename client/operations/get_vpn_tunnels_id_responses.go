@@ -47,7 +47,8 @@ func NewGetVpnTunnelsIDOK() *GetVpnTunnelsIDOK {
 	return &GetVpnTunnelsIDOK{}
 }
 
-/*GetVpnTunnelsIDOK handles this case with default header values.
+/*
+GetVpnTunnelsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetVpnTunnelsIDDefault(code int) *GetVpnTunnelsIDDefault {
 	}
 }
 
-/*GetVpnTunnelsIDDefault handles this case with default header values.
+/*
+GetVpnTunnelsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

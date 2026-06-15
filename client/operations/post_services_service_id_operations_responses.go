@@ -47,7 +47,8 @@ func NewPostServicesServiceIDOperationsCreated() *PostServicesServiceIDOperation
 	return &PostServicesServiceIDOperationsCreated{}
 }
 
-/*PostServicesServiceIDOperationsCreated handles this case with default header values.
+/*
+PostServicesServiceIDOperationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostServicesServiceIDOperationsDefault(code int) *PostServicesServiceIDO
 	}
 }
 
-/*PostServicesServiceIDOperationsDefault handles this case with default header values.
+/*
+PostServicesServiceIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

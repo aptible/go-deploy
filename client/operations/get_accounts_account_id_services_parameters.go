@@ -57,7 +57,8 @@ func NewGetAccountsAccountIDServicesParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/*GetAccountsAccountIDServicesParams contains all the parameters to send to the API endpoint
+/*
+GetAccountsAccountIDServicesParams contains all the parameters to send to the API endpoint
 for the get accounts account ID services operation typically these are written to a http.Request
 */
 type GetAccountsAccountIDServicesParams struct {

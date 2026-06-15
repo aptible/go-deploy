@@ -59,7 +59,8 @@ func NewPostServicesServiceIDOperationsParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/*PostServicesServiceIDOperationsParams contains all the parameters to send to the API endpoint
+/*
+PostServicesServiceIDOperationsParams contains all the parameters to send to the API endpoint
 for the post services service ID operations operation typically these are written to a http.Request
 */
 type PostServicesServiceIDOperationsParams struct {

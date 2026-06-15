@@ -59,7 +59,8 @@ func NewPostImagesImageIDOperationsParamsWithHTTPClient(client *http.Client) *Po
 	}
 }
 
-/*PostImagesImageIDOperationsParams contains all the parameters to send to the API endpoint
+/*
+PostImagesImageIDOperationsParams contains all the parameters to send to the API endpoint
 for the post images image ID operations operation typically these are written to a http.Request
 */
 type PostImagesImageIDOperationsParams struct {

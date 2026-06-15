@@ -47,7 +47,8 @@ func NewPutVhostsIDOK() *PutVhostsIDOK {
 	return &PutVhostsIDOK{}
 }
 
-/*PutVhostsIDOK handles this case with default header values.
+/*
+PutVhostsIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPutVhostsIDDefault(code int) *PutVhostsIDDefault {
 	}
 }
 
-/*PutVhostsIDDefault handles this case with default header values.
+/*
+PutVhostsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

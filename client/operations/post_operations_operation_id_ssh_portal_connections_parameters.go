@@ -59,7 +59,8 @@ func NewPostOperationsOperationIDSSHPortalConnectionsParamsWithHTTPClient(client
 	}
 }
 
-/*PostOperationsOperationIDSSHPortalConnectionsParams contains all the parameters to send to the API endpoint
+/*
+PostOperationsOperationIDSSHPortalConnectionsParams contains all the parameters to send to the API endpoint
 for the post operations operation ID SSH portal connections operation typically these are written to a http.Request
 */
 type PostOperationsOperationIDSSHPortalConnectionsParams struct {

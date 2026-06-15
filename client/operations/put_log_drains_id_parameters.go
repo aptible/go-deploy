@@ -59,7 +59,8 @@ func NewPutLogDrainsIDParamsWithHTTPClient(client *http.Client) *PutLogDrainsIDP
 	}
 }
 
-/*PutLogDrainsIDParams contains all the parameters to send to the API endpoint
+/*
+PutLogDrainsIDParams contains all the parameters to send to the API endpoint
 for the put log drains ID operation typically these are written to a http.Request
 */
 type PutLogDrainsIDParams struct {

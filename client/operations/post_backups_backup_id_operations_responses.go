@@ -47,7 +47,8 @@ func NewPostBackupsBackupIDOperationsCreated() *PostBackupsBackupIDOperationsCre
 	return &PostBackupsBackupIDOperationsCreated{}
 }
 
-/*PostBackupsBackupIDOperationsCreated handles this case with default header values.
+/*
+PostBackupsBackupIDOperationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostBackupsBackupIDOperationsDefault(code int) *PostBackupsBackupIDOpera
 	}
 }
 
-/*PostBackupsBackupIDOperationsDefault handles this case with default header values.
+/*
+PostBackupsBackupIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

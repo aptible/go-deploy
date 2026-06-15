@@ -59,7 +59,8 @@ func NewPostBackupsBackupIDOperationsParamsWithHTTPClient(client *http.Client) *
 	}
 }
 
-/*PostBackupsBackupIDOperationsParams contains all the parameters to send to the API endpoint
+/*
+PostBackupsBackupIDOperationsParams contains all the parameters to send to the API endpoint
 for the post backups backup ID operations operation typically these are written to a http.Request
 */
 type PostBackupsBackupIDOperationsParams struct {

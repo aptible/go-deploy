@@ -57,7 +57,8 @@ func NewDeleteCertificatesIDParamsWithHTTPClient(client *http.Client) *DeleteCer
 	}
 }
 
-/*DeleteCertificatesIDParams contains all the parameters to send to the API endpoint
+/*
+DeleteCertificatesIDParams contains all the parameters to send to the API endpoint
 for the delete certificates ID operation typically these are written to a http.Request
 */
 type DeleteCertificatesIDParams struct {

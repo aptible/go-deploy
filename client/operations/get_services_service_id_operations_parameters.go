@@ -57,7 +57,8 @@ func NewGetServicesServiceIDOperationsParamsWithHTTPClient(client *http.Client) 
 	}
 }
 
-/*GetServicesServiceIDOperationsParams contains all the parameters to send to the API endpoint
+/*
+GetServicesServiceIDOperationsParams contains all the parameters to send to the API endpoint
 for the get services service ID operations operation typically these are written to a http.Request
 */
 type GetServicesServiceIDOperationsParams struct {

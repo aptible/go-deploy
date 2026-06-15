@@ -9,8 +9,6 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-
-	"github.com/mitchellh/go-homedir"
 )
 
 // loginWithUsernameAndPassword - specifically requests APTIBLE_AUTH_ROOT_URL for token with a username/password
@@ -88,7 +86,7 @@ func GetToken() (string, error) {
 		return token, nil
 	}
 
-	home, err := homedir.Dir()
+	home, err := os.UserHomeDir()
 	if err != nil {
 		return "", fmt.Errorf("Your token is invalid. Are you logged in? Error: %v", err.Error())
 	}

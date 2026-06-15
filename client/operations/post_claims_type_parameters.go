@@ -58,7 +58,8 @@ func NewPostClaimsTypeParamsWithHTTPClient(client *http.Client) *PostClaimsTypeP
 	}
 }
 
-/*PostClaimsTypeParams contains all the parameters to send to the API endpoint
+/*
+PostClaimsTypeParams contains all the parameters to send to the API endpoint
 for the post claims type operation typically these are written to a http.Request
 */
 type PostClaimsTypeParams struct {

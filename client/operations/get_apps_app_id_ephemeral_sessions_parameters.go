@@ -57,7 +57,8 @@ func NewGetAppsAppIDEphemeralSessionsParamsWithHTTPClient(client *http.Client) *
 	}
 }
 
-/*GetAppsAppIDEphemeralSessionsParams contains all the parameters to send to the API endpoint
+/*
+GetAppsAppIDEphemeralSessionsParams contains all the parameters to send to the API endpoint
 for the get apps app ID ephemeral sessions operation typically these are written to a http.Request
 */
 type GetAppsAppIDEphemeralSessionsParams struct {

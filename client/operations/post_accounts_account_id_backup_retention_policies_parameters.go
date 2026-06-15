@@ -59,7 +59,8 @@ func NewPostAccountsAccountIDBackupRetentionPoliciesParamsWithHTTPClient(client 
 	}
 }
 
-/*PostAccountsAccountIDBackupRetentionPoliciesParams contains all the parameters to send to the API endpoint
+/*
+PostAccountsAccountIDBackupRetentionPoliciesParams contains all the parameters to send to the API endpoint
 for the post accounts account ID backup retention policies operation typically these are written to a http.Request
 */
 type PostAccountsAccountIDBackupRetentionPoliciesParams struct {

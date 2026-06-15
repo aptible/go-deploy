@@ -47,7 +47,8 @@ func NewGetAccountsAccountIDBackupRetentionPoliciesOK() *GetAccountsAccountIDBac
 	return &GetAccountsAccountIDBackupRetentionPoliciesOK{}
 }
 
-/*GetAccountsAccountIDBackupRetentionPoliciesOK handles this case with default header values.
+/*
+GetAccountsAccountIDBackupRetentionPoliciesOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetAccountsAccountIDBackupRetentionPoliciesDefault(code int) *GetAccount
 	}
 }
 
-/*GetAccountsAccountIDBackupRetentionPoliciesDefault handles this case with default header values.
+/*
+GetAccountsAccountIDBackupRetentionPoliciesDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

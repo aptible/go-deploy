@@ -47,7 +47,8 @@ func NewGetDatabasesOK() *GetDatabasesOK {
 	return &GetDatabasesOK{}
 }
 
-/*GetDatabasesOK handles this case with default header values.
+/*
+GetDatabasesOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetDatabasesDefault(code int) *GetDatabasesDefault {
 	}
 }
 
-/*GetDatabasesDefault handles this case with default header values.
+/*
+GetDatabasesDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

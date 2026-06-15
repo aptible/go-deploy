@@ -47,7 +47,8 @@ func NewPostVhostsVhostIDOperationsCreated() *PostVhostsVhostIDOperationsCreated
 	return &PostVhostsVhostIDOperationsCreated{}
 }
 
-/*PostVhostsVhostIDOperationsCreated handles this case with default header values.
+/*
+PostVhostsVhostIDOperationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostVhostsVhostIDOperationsDefault(code int) *PostVhostsVhostIDOperation
 	}
 }
 
-/*PostVhostsVhostIDOperationsDefault handles this case with default header values.
+/*
+PostVhostsVhostIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

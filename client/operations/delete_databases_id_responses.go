@@ -47,7 +47,8 @@ func NewDeleteDatabasesIDNoContent() *DeleteDatabasesIDNoContent {
 	return &DeleteDatabasesIDNoContent{}
 }
 
-/*DeleteDatabasesIDNoContent handles this case with default header values.
+/*
+DeleteDatabasesIDNoContent handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewDeleteDatabasesIDDefault(code int) *DeleteDatabasesIDDefault {
 	}
 }
 
-/*DeleteDatabasesIDDefault handles this case with default header values.
+/*
+DeleteDatabasesIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

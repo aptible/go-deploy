@@ -57,7 +57,8 @@ func NewGetEphemeralContainersIDParamsWithHTTPClient(client *http.Client) *GetEp
 	}
 }
 
-/*GetEphemeralContainersIDParams contains all the parameters to send to the API endpoint
+/*
+GetEphemeralContainersIDParams contains all the parameters to send to the API endpoint
 for the get ephemeral containers ID operation typically these are written to a http.Request
 */
 type GetEphemeralContainersIDParams struct {

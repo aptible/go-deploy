@@ -57,7 +57,8 @@ func NewGetIntrusionDetectionReportsIntrusionReportIDDownloadCsvParamsWithHTTPCl
 	}
 }
 
-/*GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvParams contains all the parameters to send to the API endpoint
+/*
+GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvParams contains all the parameters to send to the API endpoint
 for the get intrusion detection reports intrusion report ID download csv operation typically these are written to a http.Request
 */
 type GetIntrusionDetectionReportsIntrusionReportIDDownloadCsvParams struct {

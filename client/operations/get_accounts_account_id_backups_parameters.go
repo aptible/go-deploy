@@ -57,7 +57,8 @@ func NewGetAccountsAccountIDBackupsParamsWithHTTPClient(client *http.Client) *Ge
 	}
 }
 
-/*GetAccountsAccountIDBackupsParams contains all the parameters to send to the API endpoint
+/*
+GetAccountsAccountIDBackupsParams contains all the parameters to send to the API endpoint
 for the get accounts account ID backups operation typically these are written to a http.Request
 */
 type GetAccountsAccountIDBackupsParams struct {

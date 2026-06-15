@@ -47,7 +47,8 @@ func NewGetCertificatesCertificateIDAppsOK() *GetCertificatesCertificateIDAppsOK
 	return &GetCertificatesCertificateIDAppsOK{}
 }
 
-/*GetCertificatesCertificateIDAppsOK handles this case with default header values.
+/*
+GetCertificatesCertificateIDAppsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetCertificatesCertificateIDAppsDefault(code int) *GetCertificatesCertif
 	}
 }
 
-/*GetCertificatesCertificateIDAppsDefault handles this case with default header values.
+/*
+GetCertificatesCertificateIDAppsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

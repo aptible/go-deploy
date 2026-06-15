@@ -57,7 +57,8 @@ func NewGetLogDrainsLogDrainIDOperationsParamsWithHTTPClient(client *http.Client
 	}
 }
 
-/*GetLogDrainsLogDrainIDOperationsParams contains all the parameters to send to the API endpoint
+/*
+GetLogDrainsLogDrainIDOperationsParams contains all the parameters to send to the API endpoint
 for the get log drains log drain ID operations operation typically these are written to a http.Request
 */
 type GetLogDrainsLogDrainIDOperationsParams struct {

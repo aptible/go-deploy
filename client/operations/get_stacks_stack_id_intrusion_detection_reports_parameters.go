@@ -57,7 +57,8 @@ func NewGetStacksStackIDIntrusionDetectionReportsParamsWithHTTPClient(client *ht
 	}
 }
 
-/*GetStacksStackIDIntrusionDetectionReportsParams contains all the parameters to send to the API endpoint
+/*
+GetStacksStackIDIntrusionDetectionReportsParams contains all the parameters to send to the API endpoint
 for the get stacks stack ID intrusion detection reports operation typically these are written to a http.Request
 */
 type GetStacksStackIDIntrusionDetectionReportsParams struct {

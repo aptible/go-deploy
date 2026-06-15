@@ -47,7 +47,8 @@ func NewGetReleasesIDOK() *GetReleasesIDOK {
 	return &GetReleasesIDOK{}
 }
 
-/*GetReleasesIDOK handles this case with default header values.
+/*
+GetReleasesIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetReleasesIDDefault(code int) *GetReleasesIDDefault {
 	}
 }
 
-/*GetReleasesIDDefault handles this case with default header values.
+/*
+GetReleasesIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

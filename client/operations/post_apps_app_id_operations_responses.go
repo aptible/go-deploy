@@ -47,7 +47,8 @@ func NewPostAppsAppIDOperationsCreated() *PostAppsAppIDOperationsCreated {
 	return &PostAppsAppIDOperationsCreated{}
 }
 
-/*PostAppsAppIDOperationsCreated handles this case with default header values.
+/*
+PostAppsAppIDOperationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostAppsAppIDOperationsDefault(code int) *PostAppsAppIDOperationsDefault
 	}
 }
 
-/*PostAppsAppIDOperationsDefault handles this case with default header values.
+/*
+PostAppsAppIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

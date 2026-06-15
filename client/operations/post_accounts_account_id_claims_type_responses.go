@@ -47,7 +47,8 @@ func NewPostAccountsAccountIDClaimsTypeNoContent() *PostAccountsAccountIDClaimsT
 	return &PostAccountsAccountIDClaimsTypeNoContent{}
 }
 
-/*PostAccountsAccountIDClaimsTypeNoContent handles this case with default header values.
+/*
+PostAccountsAccountIDClaimsTypeNoContent handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPostAccountsAccountIDClaimsTypeDefault(code int) *PostAccountsAccountIDC
 	}
 }
 
-/*PostAccountsAccountIDClaimsTypeDefault handles this case with default header values.
+/*
+PostAccountsAccountIDClaimsTypeDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

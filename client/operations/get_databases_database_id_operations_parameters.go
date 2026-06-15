@@ -57,7 +57,8 @@ func NewGetDatabasesDatabaseIDOperationsParamsWithHTTPClient(client *http.Client
 	}
 }
 
-/*GetDatabasesDatabaseIDOperationsParams contains all the parameters to send to the API endpoint
+/*
+GetDatabasesDatabaseIDOperationsParams contains all the parameters to send to the API endpoint
 for the get databases database ID operations operation typically these are written to a http.Request
 */
 type GetDatabasesDatabaseIDOperationsParams struct {

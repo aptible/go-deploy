@@ -47,7 +47,8 @@ func NewGetLogDrainsIDOK() *GetLogDrainsIDOK {
 	return &GetLogDrainsIDOK{}
 }
 
-/*GetLogDrainsIDOK handles this case with default header values.
+/*
+GetLogDrainsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetLogDrainsIDDefault(code int) *GetLogDrainsIDDefault {
 	}
 }
 
-/*GetLogDrainsIDDefault handles this case with default header values.
+/*
+GetLogDrainsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

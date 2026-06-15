@@ -47,7 +47,8 @@ func NewGetEphemeralSessionsIDOK() *GetEphemeralSessionsIDOK {
 	return &GetEphemeralSessionsIDOK{}
 }
 
-/*GetEphemeralSessionsIDOK handles this case with default header values.
+/*
+GetEphemeralSessionsIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetEphemeralSessionsIDDefault(code int) *GetEphemeralSessionsIDDefault {
 	}
 }
 
-/*GetEphemeralSessionsIDDefault handles this case with default header values.
+/*
+GetEphemeralSessionsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

@@ -57,7 +57,8 @@ func NewGetAppsParamsWithHTTPClient(client *http.Client) *GetAppsParams {
 	}
 }
 
-/*GetAppsParams contains all the parameters to send to the API endpoint
+/*
+GetAppsParams contains all the parameters to send to the API endpoint
 for the get apps operation typically these are written to a http.Request
 */
 type GetAppsParams struct {

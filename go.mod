@@ -8,5 +8,4 @@ require (
 	github.com/go-openapi/strfmt v0.19.4
 	github.com/go-openapi/swag v0.19.6
 	github.com/go-openapi/validate v0.19.5
-	github.com/mitchellh/go-homedir v1.1.0
 )

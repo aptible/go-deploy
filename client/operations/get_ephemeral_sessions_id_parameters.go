@@ -57,7 +57,8 @@ func NewGetEphemeralSessionsIDParamsWithHTTPClient(client *http.Client) *GetEphe
 	}
 }
 
-/*GetEphemeralSessionsIDParams contains all the parameters to send to the API endpoint
+/*
+GetEphemeralSessionsIDParams contains all the parameters to send to the API endpoint
 for the get ephemeral sessions ID operation typically these are written to a http.Request
 */
 type GetEphemeralSessionsIDParams struct {

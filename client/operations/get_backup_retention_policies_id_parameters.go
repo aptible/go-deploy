@@ -57,7 +57,8 @@ func NewGetBackupRetentionPoliciesIDParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/*GetBackupRetentionPoliciesIDParams contains all the parameters to send to the API endpoint
+/*
+GetBackupRetentionPoliciesIDParams contains all the parameters to send to the API endpoint
 for the get backup retention policies ID operation typically these are written to a http.Request
 */
 type GetBackupRetentionPoliciesIDParams struct {

@@ -47,7 +47,8 @@ func NewGetAppsAppIDVhostsOK() *GetAppsAppIDVhostsOK {
 	return &GetAppsAppIDVhostsOK{}
 }
 
-/*GetAppsAppIDVhostsOK handles this case with default header values.
+/*
+GetAppsAppIDVhostsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetAppsAppIDVhostsDefault(code int) *GetAppsAppIDVhostsDefault {
 	}
 }
 
-/*GetAppsAppIDVhostsDefault handles this case with default header values.
+/*
+GetAppsAppIDVhostsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

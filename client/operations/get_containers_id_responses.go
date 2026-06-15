@@ -47,7 +47,8 @@ func NewGetContainersIDOK() *GetContainersIDOK {
 	return &GetContainersIDOK{}
 }
 
-/*GetContainersIDOK handles this case with default header values.
+/*
+GetContainersIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetContainersIDDefault(code int) *GetContainersIDDefault {
 	}
 }
 
-/*GetContainersIDDefault handles this case with default header values.
+/*
+GetContainersIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

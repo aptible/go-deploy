@@ -59,7 +59,8 @@ func NewPatchCertificatesIDParamsWithHTTPClient(client *http.Client) *PatchCerti
 	}
 }
 
-/*PatchCertificatesIDParams contains all the parameters to send to the API endpoint
+/*
+PatchCertificatesIDParams contains all the parameters to send to the API endpoint
 for the patch certificates ID operation typically these are written to a http.Request
 */
 type PatchCertificatesIDParams struct {

@@ -59,7 +59,8 @@ func NewPostDatabasesDatabaseIDConfigurationsParamsWithHTTPClient(client *http.C
 	}
 }
 
-/*PostDatabasesDatabaseIDConfigurationsParams contains all the parameters to send to the API endpoint
+/*
+PostDatabasesDatabaseIDConfigurationsParams contains all the parameters to send to the API endpoint
 for the post databases database ID configurations operation typically these are written to a http.Request
 */
 type PostDatabasesDatabaseIDConfigurationsParams struct {

@@ -47,7 +47,8 @@ func NewPutAccountsIDOK() *PutAccountsIDOK {
 	return &PutAccountsIDOK{}
 }
 
-/*PutAccountsIDOK handles this case with default header values.
+/*
+PutAccountsIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPutAccountsIDDefault(code int) *PutAccountsIDDefault {
 	}
 }
 
-/*PutAccountsIDDefault handles this case with default header values.
+/*
+PutAccountsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

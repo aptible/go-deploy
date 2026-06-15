@@ -47,7 +47,8 @@ func NewGetStacksIDOK() *GetStacksIDOK {
 	return &GetStacksIDOK{}
 }
 
-/*GetStacksIDOK handles this case with default header values.
+/*
+GetStacksIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetStacksIDDefault(code int) *GetStacksIDDefault {
 	}
 }
 
-/*GetStacksIDDefault handles this case with default header values.
+/*
+GetStacksIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

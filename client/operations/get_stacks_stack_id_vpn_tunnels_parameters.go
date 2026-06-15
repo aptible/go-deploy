@@ -57,7 +57,8 @@ func NewGetStacksStackIDVpnTunnelsParamsWithHTTPClient(client *http.Client) *Get
 	}
 }
 
-/*GetStacksStackIDVpnTunnelsParams contains all the parameters to send to the API endpoint
+/*
+GetStacksStackIDVpnTunnelsParams contains all the parameters to send to the API endpoint
 for the get stacks stack ID vpn tunnels operation typically these are written to a http.Request
 */
 type GetStacksStackIDVpnTunnelsParams struct {

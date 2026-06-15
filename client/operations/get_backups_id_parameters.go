@@ -57,7 +57,8 @@ func NewGetBackupsIDParamsWithHTTPClient(client *http.Client) *GetBackupsIDParam
 	}
 }
 
-/*GetBackupsIDParams contains all the parameters to send to the API endpoint
+/*
+GetBackupsIDParams contains all the parameters to send to the API endpoint
 for the get backups ID operation typically these are written to a http.Request
 */
 type GetBackupsIDParams struct {

@@ -47,7 +47,8 @@ func NewGetOperationsOperationIDEphemeralSessionsOK() *GetOperationsOperationIDE
 	return &GetOperationsOperationIDEphemeralSessionsOK{}
 }
 
-/*GetOperationsOperationIDEphemeralSessionsOK handles this case with default header values.
+/*
+GetOperationsOperationIDEphemeralSessionsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetOperationsOperationIDEphemeralSessionsDefault(code int) *GetOperation
 	}
 }
 
-/*GetOperationsOperationIDEphemeralSessionsDefault handles this case with default header values.
+/*
+GetOperationsOperationIDEphemeralSessionsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

@@ -57,7 +57,8 @@ func NewGetAccountsAccountIDMetricDrainsParamsWithHTTPClient(client *http.Client
 	}
 }
 
-/*GetAccountsAccountIDMetricDrainsParams contains all the parameters to send to the API endpoint
+/*
+GetAccountsAccountIDMetricDrainsParams contains all the parameters to send to the API endpoint
 for the get accounts account ID metric drains operation typically these are written to a http.Request
 */
 type GetAccountsAccountIDMetricDrainsParams struct {

@@ -59,7 +59,8 @@ func NewPostAppsAppIDConfigurationsParamsWithHTTPClient(client *http.Client) *Po
 	}
 }
 
-/*PostAppsAppIDConfigurationsParams contains all the parameters to send to the API endpoint
+/*
+PostAppsAppIDConfigurationsParams contains all the parameters to send to the API endpoint
 for the post apps app ID configurations operation typically these are written to a http.Request
 */
 type PostAppsAppIDConfigurationsParams struct {

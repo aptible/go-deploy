@@ -47,7 +47,8 @@ func NewPostAccountsAccountIDBackupRetentionPoliciesCreated() *PostAccountsAccou
 	return &PostAccountsAccountIDBackupRetentionPoliciesCreated{}
 }
 
-/*PostAccountsAccountIDBackupRetentionPoliciesCreated handles this case with default header values.
+/*
+PostAccountsAccountIDBackupRetentionPoliciesCreated handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPostAccountsAccountIDBackupRetentionPoliciesDefault(code int) *PostAccou
 	}
 }
 
-/*PostAccountsAccountIDBackupRetentionPoliciesDefault handles this case with default header values.
+/*
+PostAccountsAccountIDBackupRetentionPoliciesDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

@@ -47,7 +47,8 @@ func NewDeleteAppsIDNoContent() *DeleteAppsIDNoContent {
 	return &DeleteAppsIDNoContent{}
 }
 
-/*DeleteAppsIDNoContent handles this case with default header values.
+/*
+DeleteAppsIDNoContent handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewDeleteAppsIDDefault(code int) *DeleteAppsIDDefault {
 	}
 }
 
-/*DeleteAppsIDDefault handles this case with default header values.
+/*
+DeleteAppsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

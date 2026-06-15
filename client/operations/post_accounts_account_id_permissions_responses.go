@@ -47,7 +47,8 @@ func NewPostAccountsAccountIDPermissionsCreated() *PostAccountsAccountIDPermissi
 	return &PostAccountsAccountIDPermissionsCreated{}
 }
 
-/*PostAccountsAccountIDPermissionsCreated handles this case with default header values.
+/*
+PostAccountsAccountIDPermissionsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostAccountsAccountIDPermissionsDefault(code int) *PostAccountsAccountID
 	}
 }
 
-/*PostAccountsAccountIDPermissionsDefault handles this case with default header values.
+/*
+PostAccountsAccountIDPermissionsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

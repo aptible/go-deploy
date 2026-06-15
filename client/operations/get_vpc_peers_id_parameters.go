@@ -57,7 +57,8 @@ func NewGetVpcPeersIDParamsWithHTTPClient(client *http.Client) *GetVpcPeersIDPar
 	}
 }
 
-/*GetVpcPeersIDParams contains all the parameters to send to the API endpoint
+/*
+GetVpcPeersIDParams contains all the parameters to send to the API endpoint
 for the get vpc peers ID operation typically these are written to a http.Request
 */
 type GetVpcPeersIDParams struct {

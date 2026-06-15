@@ -47,7 +47,8 @@ func NewPostAccountsAccountIDDatabasesCreated() *PostAccountsAccountIDDatabasesC
 	return &PostAccountsAccountIDDatabasesCreated{}
 }
 
-/*PostAccountsAccountIDDatabasesCreated handles this case with default header values.
+/*
+PostAccountsAccountIDDatabasesCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostAccountsAccountIDDatabasesDefault(code int) *PostAccountsAccountIDDa
 	}
 }
 
-/*PostAccountsAccountIDDatabasesDefault handles this case with default header values.
+/*
+PostAccountsAccountIDDatabasesDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

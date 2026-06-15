@@ -57,7 +57,8 @@ func NewGetVpnTunnelsIDParamsWithHTTPClient(client *http.Client) *GetVpnTunnelsI
 	}
 }
 
-/*GetVpnTunnelsIDParams contains all the parameters to send to the API endpoint
+/*
+GetVpnTunnelsIDParams contains all the parameters to send to the API endpoint
 for the get vpn tunnels ID operation typically these are written to a http.Request
 */
 type GetVpnTunnelsIDParams struct {

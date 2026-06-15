@@ -57,7 +57,8 @@ func NewGetDisksIDParamsWithHTTPClient(client *http.Client) *GetDisksIDParams {
 	}
 }
 
-/*GetDisksIDParams contains all the parameters to send to the API endpoint
+/*
+GetDisksIDParams contains all the parameters to send to the API endpoint
 for the get disks ID operation typically these are written to a http.Request
 */
 type GetDisksIDParams struct {

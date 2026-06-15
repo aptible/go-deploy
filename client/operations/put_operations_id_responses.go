@@ -47,7 +47,8 @@ func NewPutOperationsIDOK() *PutOperationsIDOK {
 	return &PutOperationsIDOK{}
 }
 
-/*PutOperationsIDOK handles this case with default header values.
+/*
+PutOperationsIDOK handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewPutOperationsIDDefault(code int) *PutOperationsIDDefault {
 	}
 }
 
-/*PutOperationsIDDefault handles this case with default header values.
+/*
+PutOperationsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

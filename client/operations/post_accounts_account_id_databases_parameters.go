@@ -59,7 +59,8 @@ func NewPostAccountsAccountIDDatabasesParamsWithHTTPClient(client *http.Client) 
 	}
 }
 
-/*PostAccountsAccountIDDatabasesParams contains all the parameters to send to the API endpoint
+/*
+PostAccountsAccountIDDatabasesParams contains all the parameters to send to the API endpoint
 for the post accounts account ID databases operation typically these are written to a http.Request
 */
 type PostAccountsAccountIDDatabasesParams struct {

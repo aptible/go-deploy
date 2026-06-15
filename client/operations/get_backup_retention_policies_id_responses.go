@@ -47,7 +47,8 @@ func NewGetBackupRetentionPoliciesIDOK() *GetBackupRetentionPoliciesIDOK {
 	return &GetBackupRetentionPoliciesIDOK{}
 }
 
-/*GetBackupRetentionPoliciesIDOK handles this case with default header values.
+/*
+GetBackupRetentionPoliciesIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetBackupRetentionPoliciesIDDefault(code int) *GetBackupRetentionPolicie
 	}
 }
 
-/*GetBackupRetentionPoliciesIDDefault handles this case with default header values.
+/*
+GetBackupRetentionPoliciesIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

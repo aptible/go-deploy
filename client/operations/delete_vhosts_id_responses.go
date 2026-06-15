@@ -47,7 +47,8 @@ func NewDeleteVhostsIDNoContent() *DeleteVhostsIDNoContent {
 	return &DeleteVhostsIDNoContent{}
 }
 
-/*DeleteVhostsIDNoContent handles this case with default header values.
+/*
+DeleteVhostsIDNoContent handles this case with default header values.
 
 successful
 */
@@ -70,7 +71,8 @@ func NewDeleteVhostsIDDefault(code int) *DeleteVhostsIDDefault {
 	}
 }
 
-/*DeleteVhostsIDDefault handles this case with default header values.
+/*
+DeleteVhostsIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

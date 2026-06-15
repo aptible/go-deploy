@@ -57,7 +57,8 @@ func NewGetStacksStackIDAccountsParamsWithHTTPClient(client *http.Client) *GetSt
 	}
 }
 
-/*GetStacksStackIDAccountsParams contains all the parameters to send to the API endpoint
+/*
+GetStacksStackIDAccountsParams contains all the parameters to send to the API endpoint
 for the get stacks stack ID accounts operation typically these are written to a http.Request
 */
 type GetStacksStackIDAccountsParams struct {

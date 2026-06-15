@@ -47,7 +47,8 @@ func NewGetVhostsVhostIDOperationsOK() *GetVhostsVhostIDOperationsOK {
 	return &GetVhostsVhostIDOperationsOK{}
 }
 
-/*GetVhostsVhostIDOperationsOK handles this case with default header values.
+/*
+GetVhostsVhostIDOperationsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetVhostsVhostIDOperationsDefault(code int) *GetVhostsVhostIDOperationsD
 	}
 }
 
-/*GetVhostsVhostIDOperationsDefault handles this case with default header values.
+/*
+GetVhostsVhostIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

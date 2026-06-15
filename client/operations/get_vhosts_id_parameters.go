@@ -57,7 +57,8 @@ func NewGetVhostsIDParamsWithHTTPClient(client *http.Client) *GetVhostsIDParams 
 	}
 }
 
-/*GetVhostsIDParams contains all the parameters to send to the API endpoint
+/*
+GetVhostsIDParams contains all the parameters to send to the API endpoint
 for the get vhosts ID operation typically these are written to a http.Request
 */
 type GetVhostsIDParams struct {

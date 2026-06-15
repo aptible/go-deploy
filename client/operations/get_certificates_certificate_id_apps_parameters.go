@@ -57,7 +57,8 @@ func NewGetCertificatesCertificateIDAppsParamsWithHTTPClient(client *http.Client
 	}
 }
 
-/*GetCertificatesCertificateIDAppsParams contains all the parameters to send to the API endpoint
+/*
+GetCertificatesCertificateIDAppsParams contains all the parameters to send to the API endpoint
 for the get certificates certificate ID apps operation typically these are written to a http.Request
 */
 type GetCertificatesCertificateIDAppsParams struct {

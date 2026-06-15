@@ -47,7 +47,8 @@ func NewGetVpcPeersIDOK() *GetVpcPeersIDOK {
 	return &GetVpcPeersIDOK{}
 }
 
-/*GetVpcPeersIDOK handles this case with default header values.
+/*
+GetVpcPeersIDOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetVpcPeersIDDefault(code int) *GetVpcPeersIDDefault {
 	}
 }
 
-/*GetVpcPeersIDDefault handles this case with default header values.
+/*
+GetVpcPeersIDDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

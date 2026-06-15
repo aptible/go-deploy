@@ -57,7 +57,8 @@ func NewGetAccountsAccountIDBackupRetentionPoliciesParamsWithHTTPClient(client *
 	}
 }
 
-/*GetAccountsAccountIDBackupRetentionPoliciesParams contains all the parameters to send to the API endpoint
+/*
+GetAccountsAccountIDBackupRetentionPoliciesParams contains all the parameters to send to the API endpoint
 for the get accounts account ID backup retention policies operation typically these are written to a http.Request
 */
 type GetAccountsAccountIDBackupRetentionPoliciesParams struct {

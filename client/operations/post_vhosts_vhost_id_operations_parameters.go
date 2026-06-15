@@ -59,7 +59,8 @@ func NewPostVhostsVhostIDOperationsParamsWithHTTPClient(client *http.Client) *Po
 	}
 }
 
-/*PostVhostsVhostIDOperationsParams contains all the parameters to send to the API endpoint
+/*
+PostVhostsVhostIDOperationsParams contains all the parameters to send to the API endpoint
 for the post vhosts vhost ID operations operation typically these are written to a http.Request
 */
 type PostVhostsVhostIDOperationsParams struct {

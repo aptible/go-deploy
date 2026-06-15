@@ -47,7 +47,8 @@ func NewGetImagesImageIDOperationsOK() *GetImagesImageIDOperationsOK {
 	return &GetImagesImageIDOperationsOK{}
 }
 
-/*GetImagesImageIDOperationsOK handles this case with default header values.
+/*
+GetImagesImageIDOperationsOK handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewGetImagesImageIDOperationsDefault(code int) *GetImagesImageIDOperationsD
 	}
 }
 
-/*GetImagesImageIDOperationsDefault handles this case with default header values.
+/*
+GetImagesImageIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */

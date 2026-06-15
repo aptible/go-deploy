@@ -59,7 +59,8 @@ func NewPatchLogDrainsIDParamsWithHTTPClient(client *http.Client) *PatchLogDrain
 	}
 }
 
-/*PatchLogDrainsIDParams contains all the parameters to send to the API endpoint
+/*
+PatchLogDrainsIDParams contains all the parameters to send to the API endpoint
 for the patch log drains ID operation typically these are written to a http.Request
 */
 type PatchLogDrainsIDParams struct {

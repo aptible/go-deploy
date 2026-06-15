@@ -59,7 +59,8 @@ func NewPutCertificatesIDParamsWithHTTPClient(client *http.Client) *PutCertifica
 	}
 }
 
-/*PutCertificatesIDParams contains all the parameters to send to the API endpoint
+/*
+PutCertificatesIDParams contains all the parameters to send to the API endpoint
 for the put certificates ID operation typically these are written to a http.Request
 */
 type PutCertificatesIDParams struct {

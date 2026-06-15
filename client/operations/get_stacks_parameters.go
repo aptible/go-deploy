@@ -57,7 +57,8 @@ func NewGetStacksParamsWithHTTPClient(client *http.Client) *GetStacksParams {
 	}
 }
 
-/*GetStacksParams contains all the parameters to send to the API endpoint
+/*
+GetStacksParams contains all the parameters to send to the API endpoint
 for the get stacks operation typically these are written to a http.Request
 */
 type GetStacksParams struct {

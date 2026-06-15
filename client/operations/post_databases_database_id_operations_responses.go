@@ -47,7 +47,8 @@ func NewPostDatabasesDatabaseIDOperationsCreated() *PostDatabasesDatabaseIDOpera
 	return &PostDatabasesDatabaseIDOperationsCreated{}
 }
 
-/*PostDatabasesDatabaseIDOperationsCreated handles this case with default header values.
+/*
+PostDatabasesDatabaseIDOperationsCreated handles this case with default header values.
 
 successful
 */
@@ -82,7 +83,8 @@ func NewPostDatabasesDatabaseIDOperationsDefault(code int) *PostDatabasesDatabas
 	}
 }
 
-/*PostDatabasesDatabaseIDOperationsDefault handles this case with default header values.
+/*
+PostDatabasesDatabaseIDOperationsDefault handles this case with default header values.
 
 Error response. Often a 4xx or 5xx status code
 */
